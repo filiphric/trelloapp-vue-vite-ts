@@ -337,7 +337,7 @@ it('shows an error message when there’s a network error on creating card', () 
 
 });
 
-it.only('update board name and delete board', () => {
+it('update board name and delete board', () => {
 
   cy
     .visit(`/board/${Cypress.env('boards')[0].id}`);

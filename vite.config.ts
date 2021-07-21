@@ -3,18 +3,19 @@ import { defineConfig } from "vite";
 import svgLoader from "vite-svg-loader";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
-import { babel } from "@rollup/plugin-babel";
+import istanbul from 'vite-plugin-istanbul';
+
 
 export default defineConfig({
   plugins: [
     vue(),
     svgLoader(),
-    babel({
-      babelHelpers: "runtime",
-      include: ["src/*", "src/**/*"],
-      exclude: ["node_modules/", "cypress/"],
-      extensions: [".ts", ".vue"]
-    })
+    istanbul({
+      include: 'src/*',
+      exclude: ['node_modules', 'test/'],
+      extension: [ '.js', '.ts', '.vue' ],
+      requireEnv: true,
+    }),
   ],
   resolve: {
     alias: {
