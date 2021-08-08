@@ -1,7 +1,7 @@
 <template>
   <Navbar />
   <div class="background bg-white h-screen grid">
-    <div class="loading place-self-center">
+    <div class="loading place-self-center" data-cy="404">
       <span class="font-bold text-8xl text-gray-200 text-center block mb-4"
         >404</span
       >

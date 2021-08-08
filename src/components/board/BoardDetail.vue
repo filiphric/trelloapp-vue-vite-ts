@@ -7,6 +7,7 @@
     <div
       v-else
       class="overflow-x-auto overflow-y-hidden h-full whitespace-nowrap"
+      data-cy="board-detail"
     >
       <div class="py-2.5">
         <div class="relative inline-block ml-3 mr-0 py-1.5 h-8">

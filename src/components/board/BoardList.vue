@@ -1,5 +1,5 @@
 <template>
-  <div class="background bg-white h-screen grid">
+  <div class="background bg-white h-screen grid" data-cy="board-list">
     <div class="loading place-self-center" v-if="boards.loading">
       <Loading />
       &nbsp;&nbsp;Loading data ...

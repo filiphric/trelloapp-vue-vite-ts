@@ -15,7 +15,7 @@ declare namespace Cypress {
      * Adds new list via API and saves it to env
     */
     addListApi(options: {
-      title: string;
+      name: string;
       boardIndex?: number;
     }): Chainable<Element>
 

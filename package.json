@@ -7,7 +7,7 @@
     "start": "concurrently \"vite\" \"node ./api/index.js\""
   },
   "dependencies": {
-    "@cypress/code-coverage": "^3.9.5",
+    "@cypress/code-coverage": "^3.9.10",
     "@rollup/plugin-babel": "^5.3.0",
     "@types/chai": "^4.2.18",
     "@vue/babel-preset-app": "^4.5.13",
@@ -20,7 +20,7 @@
     "vue-router": "^4.0.0-0"
   },
   "devDependencies": {
-    "@4tw/cypress-drag-drop": "^1.6.0",
+    "@4tw/cypress-drag-drop": "^1.8.0",
     "@tailwindcss/jit": "^0.1.18",
     "@types/mocha": "^8.2.2",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
@@ -35,9 +35,9 @@
     "axios": "^0.21.1",
     "concurrently": "^6.0.0",
     "connect-busboy": "^0.0.2",
-    "cypress": "^6.8.0",
-    "cypress-file-upload": "^5.0.7",
-    "cypress-real-events": "^1.4.0",
+    "cypress": "^8.2.0",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-real-events": "^1.5.1",
     "eslint": "^7.26.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.23.2",

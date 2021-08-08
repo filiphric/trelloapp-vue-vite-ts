@@ -3,6 +3,7 @@
   <div
     v-if="dropdown"
     class="bg-white absolute rounded-sm top-11 shadow-xl z-10 w-dropdown left-dropdown right-8 py-2"
+    data-cy="dropdown"
     v-click-away="onClickAway"
   >
     <div class="text-gray-600 text-sm h-7 mt-0.5 text-center">List actions</div>
@@ -24,6 +25,7 @@
       <div
         class="text-red-600 text-sm py-1 block cursor-pointer hover:bg-gray1 px-2 active:bg-gray2"
         @click="deleteList(list.id); showDropdown()"
+        data-cy="delete-list"
       >
         Delete this list
       </div>

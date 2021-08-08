@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="zeroLists || inputActive"
+    v-if="inputActive"
     class="bg-gray2 w-list px-1.5 py-1 cursor-pointer grid rounded-sm ml-3 shadow-md"
     v-click-away="onClickAway"
   >
@@ -51,14 +51,13 @@ export default defineComponent({
   },
    setup() {
     const currentBoard = boardDetail();
-    const zeroLists = currentBoard.lists.length === 0;
     const createList = currentBoard.createList
-    return { currentBoard, zeroLists, createList };
+    return { currentBoard, createList };
   },
   data() {
     return {
       listTitle: '',
-      inputActive: false
+      inputActive: false || this.currentBoard.lists.length < 1
     };
   },
   $refs: {
