@@ -32,11 +32,11 @@
 </template>
 
 <script lang="ts">
-import { boardList } from "@/stores/boardList";
-import { defineComponent } from "vue";
-import BoardItem from "@/components/board/BoardItem.vue";
-import BoardCreate from "@/components/board/BoardCreate.vue";
-import Loading from "@/assets/icons/loading.svg";
+import { boardList } from '@/stores/boardList';
+import { defineComponent } from 'vue';
+import BoardItem from '@/components/board/BoardItem.vue';
+import BoardCreate from '@/components/board/BoardCreate.vue';
+import Loading from '@/assets/icons/loading.svg';
 export default defineComponent({
   setup() {
     const boards = boardList();
@@ -46,7 +46,7 @@ export default defineComponent({
 
     return { boards };
   },
-  name: "BoardList",
+  name: 'BoardList',
   components: {
     BoardItem,
     BoardCreate,

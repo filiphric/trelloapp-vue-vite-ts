@@ -25,7 +25,10 @@
       </div>
       <div
         class="text-red-600 text-sm py-1 block cursor-pointer hover:bg-gray1 px-2 active:bg-gray2"
-        @click="deleteList(list.id); showDropdown()"
+        @click="
+          deleteList(list.id);
+          showDropdown();
+        "
         data-cy="delete-list"
       >
         Delete this list
@@ -36,7 +39,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { boardDetail } from "@/stores/boardDetail";
+import { boardDetail } from '@/stores/boardDetail';
 import Cross from '@/assets/icons/cross.svg';
 import Dots from '@/assets/icons/dots.svg';
 export default defineComponent({

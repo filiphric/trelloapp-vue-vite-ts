@@ -27,16 +27,16 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { user } from "@/stores/user";
+import { user } from '@/stores/user';
 import User from '@/assets/icons/user.svg';
 import Circle from '@/assets/icons/circle.svg';
 
 export default defineComponent({
   setup() {
-    const userState = user()
-    const loggedIn = userState.loggedIn
-    const userEmail = userState.userEmail
-    return { userState, loggedIn, userEmail}
+    const userState = user();
+    const loggedIn = userState.loggedIn;
+    const userEmail = userState.userEmail;
+    return { userState, loggedIn, userEmail };
   },
   data: function() {
     return {

@@ -32,10 +32,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import axios from "axios";
-import Star from "@/assets/icons/star.svg";
-import Board from "@/typings/board";
+import { defineComponent } from 'vue';
+import axios from 'axios';
+import Star from '@/assets/icons/star.svg';
+import Board from '@/typings/board';
 export default defineComponent({
   components: {
     Star
@@ -54,8 +54,8 @@ export default defineComponent({
       board.starred = flag;
     }
   },
-  name: "Board",
-  props: ["board"]
+  name: 'Board',
+  props: ['board']
 });
 </script>
 

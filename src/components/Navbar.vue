@@ -6,7 +6,7 @@
       :class="[$route.path !== '/' ? 'visible' : 'invisible']"
       class="bg-white bg-opacity-30 hover:bg-opacity-20 self-center text-white rounded-sm ml-3 w-8 h-8 cursor-pointer grid"
     >
-      <Home class="place-self-center"/>
+      <Home class="place-self-center" />
     </button>
     <img class="h-10 py-2 place-self-center" :src="trelloLogo" />
     <Login />

@@ -27,7 +27,13 @@
       <Dropdown @toggleInput="showCardCreate" :list="list" />
     </div>
     <div>
-      <CardItem v-for="card in currentBoard.cards.filter(item => item.listId === list.id)" :key="card.id" :card="card" />
+      <CardItem
+        v-for="card in currentBoard.cards.filter(
+          item => item.listId === list.id
+        )"
+        :key="card.id"
+        :card="card"
+      />
       <div
         v-if="!cardCreate"
         @click="showCardCreate(true)"
@@ -43,7 +49,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { boardDetail } from "@/stores/boardDetail";
+import { boardDetail } from '@/stores/boardDetail';
 import Plus from '@/assets/icons/plus.svg';
 import CardItem from '@/components/card/CardItem.vue';
 import CardCreateInput from '@/components/card/CardCreateInput.vue';
@@ -56,8 +62,8 @@ export default defineComponent({
     Plus
   },
   setup() {
-    const currentBoard = boardDetail()
-    const updateList = currentBoard.updateList
+    const currentBoard = boardDetail();
+    const updateList = currentBoard.updateList;
     return { currentBoard, updateList };
   },
   data() {
@@ -72,7 +78,7 @@ export default defineComponent({
     },
     showCardCreate(flag: boolean) {
       this.cardCreate = flag;
-    },
+    }
   },
   props: ['list']
 });

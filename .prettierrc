@@ -3,6 +3,5 @@
   "useTabs": false,
   "semi": true,
   "singleQuote": true,
-  "parser": "vue",
   "overrides": []
 }

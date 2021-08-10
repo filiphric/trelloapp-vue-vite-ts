@@ -11,7 +11,7 @@
       >
         {{ card.name }}
       </div>
-      <div v-if="showEdit" >
+      <div v-if="showEdit">
         <Pen
           class="absolute right-2 top-2 inline-block p-1 w-5 h-5 text-gray-700 bg-gray1 bg-opacity-60"
         />

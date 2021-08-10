@@ -40,7 +40,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { boardDetail } from "@/stores/boardDetail";
+import { boardDetail } from '@/stores/boardDetail';
 import Plus from '@/assets/icons/plus.svg';
 import Cross from '@/assets/icons/cross.svg';
 import SaveButton from '@/components/SaveButton.vue';
@@ -50,9 +50,9 @@ export default defineComponent({
     SaveButton,
     Cross
   },
-   setup() {
+  setup() {
     const currentBoard = boardDetail();
-    const createList = currentBoard.createList
+    const createList = currentBoard.createList;
     return { currentBoard, createList };
   },
   data() {

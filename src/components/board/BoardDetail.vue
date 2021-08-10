@@ -74,13 +74,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { boardDetail } from "@/stores/boardDetail";
-import { useRoute } from "vue-router";
-import ListItem from "@/components/list/ListItem.vue";
-import ListCreate from "@/components/list/ListCreate.vue";
-import Loading from "@/assets/icons/loading.svg";
-import Star from "@/assets/icons/star.svg";
+import { defineComponent } from 'vue';
+import { boardDetail } from '@/stores/boardDetail';
+import { useRoute } from 'vue-router';
+import ListItem from '@/components/list/ListItem.vue';
+import ListCreate from '@/components/list/ListCreate.vue';
+import Loading from '@/assets/icons/loading.svg';
+import Star from '@/assets/icons/star.svg';
 
 export default defineComponent({
   setup() {

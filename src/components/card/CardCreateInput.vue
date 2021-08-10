@@ -28,16 +28,16 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { boardDetail } from "@/stores/boardDetail";
+import { boardDetail } from '@/stores/boardDetail';
 import Card from '@/typings/card';
 import moment from 'moment';
 import SaveButton from '@/components/SaveButton.vue';
 import Cross from '@/assets/icons/Cross.svg';
 
 export default defineComponent({
-   setup() {
+  setup() {
     const currentBoard = boardDetail();
-    const createCard = currentBoard.createCard
+    const createCard = currentBoard.createCard;
     return { currentBoard, createCard };
   },
   data() {

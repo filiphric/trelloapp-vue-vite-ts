@@ -34,11 +34,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import axios from "axios";
-import Cross from "@/assets/icons/cross.svg";
-import SaveButton from "../SaveButton.vue";
-import { errorMessage } from "@/stores/errorMessage";
+import { defineComponent } from 'vue';
+import axios from 'axios';
+import Cross from '@/assets/icons/cross.svg';
+import SaveButton from '../SaveButton.vue';
+import { errorMessage } from '@/stores/errorMessage';
 export default defineComponent({
   setup() {
     const error = errorMessage();
@@ -46,7 +46,7 @@ export default defineComponent({
   },
   data: function() {
     return {
-      newBoardTitle: "",
+      newBoardTitle: '',
       newBoardInputActive: false
     };
   },
@@ -60,7 +60,7 @@ export default defineComponent({
   methods: {
     onClickAway() {
       this.newBoardInputActive = false;
-      this.newBoardTitle = "";
+      this.newBoardTitle = '';
     },
     createNewBoard() {
       if (!this.newBoardTitle) {
@@ -68,14 +68,14 @@ export default defineComponent({
       }
       // send api request to create a board
       axios
-        .post("/api/boards", { name: this.newBoardTitle })
+        .post('/api/boards', { name: this.newBoardTitle })
         .then(({ data }) => {
           this.$router.push(`/board/${data.id}`);
         })
         .catch(() => {
-          this.error.showError("There was an error creating board");
+          this.error.showError('There was an error creating board');
         });
-      this.newBoardTitle = "";
+      this.newBoardTitle = '';
     },
     toggleNewBoardInput: function(flag: boolean) {
       this.newBoardInputActive = flag;
@@ -85,7 +85,7 @@ export default defineComponent({
       });
     }
   },
-  name: "BoardCreate"
+  name: 'BoardCreate'
 });
 </script>
 
