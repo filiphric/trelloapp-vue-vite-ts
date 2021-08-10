@@ -15,6 +15,7 @@
     <div class="pt-2">
       <div
         class="text-gray-700 text-sm py-1 block cursor-pointer hover:bg-gray1 px-2 active:bg-gray2"
+        data-cy="card-add"
         @click="
           this.$emit('toggleInput', true);
           dropdown = false;

@@ -23,7 +23,7 @@ declare namespace Cypress {
      * create new Card via API
     */
     addCardApi(options: {
-      title: string;
+      name: string;
       boardIndex?: number;
       listIndex?: number;
     }): Chainable<Element>

@@ -1,8 +1,8 @@
-Cypress.Commands.add('addCardApi', ({ title, boardIndex = 0, listIndex = 0 }) => {
+Cypress.Commands.add('addCardApi', ({ name, boardIndex = 0, listIndex = 0 }) => {
 
   cy
     .request('POST', '/api/cards', {
-      title,
+      name,
       boardId: Cypress.env('boards')[boardIndex].id,
       listId: Cypress.env('lists')[listIndex].id
     })

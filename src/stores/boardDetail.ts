@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import Board from "@/typings/board";
 import List from "@/typings/list";
+import Card from "@/typings/card";
 
 export const boardDetail = defineStore({
   id: "boardDetail",
@@ -51,9 +52,10 @@ export const boardDetail = defineStore({
       );
       this.lists = this.lists.filter(item => item.id !== listId)
     },
-    async updateList(list) {
-      await axios.patch(`/api/lists/${list.id}`, {
-        name: list.name
+    async updateList(list: List) {
+      const { id, name } = list
+      await axios.patch(`/api/lists/${id}`, {
+        name
       });
     },
     async createCard(card: Card) {

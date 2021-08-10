@@ -20,6 +20,7 @@
       <SaveButton buttonText="Add list" data-cy="save" @click="addList()" />
       <Cross
         class="w-8 h-8 p-1 mx-0.5 fill-current text-gray-600 order-last inline-block"
+        data-cy="cancel"
         @click.stop="
           inputActive = false;
           listTitle = '';

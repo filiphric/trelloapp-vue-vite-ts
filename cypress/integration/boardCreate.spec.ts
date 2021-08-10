@@ -13,6 +13,24 @@ it('creates a board', () => {
 
 })
 
+it('creates a board via create button', () => {
+
+  cy
+    .visit('/')
+
+  cy
+    .get('[data-cy="create-board"]')
+    .click()
+
+  cy
+    .get('[data-cy="new-board-input"]')
+    .type('new board')
+    
+  cy
+    .get('[data-cy="new-board-create"]')
+    .click()
+})
+
 it('closes create board dialog', () => {
 
   cy
