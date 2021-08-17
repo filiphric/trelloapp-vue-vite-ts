@@ -1,44 +1,28 @@
-import '../support/commands/addBoardApi'
-import '../support/commands/addListApi'
+import '../support/commands/addBoardApi';
+import '../support/commands/addListApi';
 
-beforeEach(() => {
+describe('board detail', () => {
+  beforeEach(() => {
+    cy.request('POST', '/api/reset');
 
-  cy
-    .request('POST', '/api/reset');
+    cy.addBoardApi('new board');
+  });
 
-  cy
-    .addBoardApi('new board');
+  it('cancels renaming of a board', () => {
+    cy.visit(`/board/${Cypress.env('boards')[0].id}`);
 
-}) 
+    cy.get('[data-cy=board-title]').click();
 
-it('cancels renaming of a board', () => {
+    cy.get('[data-cy="board-detail"]').click();
 
-  cy
-    .visit(`/board/${Cypress.env('boards')[0].id}`);
+    cy.get('[data-cy=board-title]').type('{esc}');
+  });
 
-  cy
-    .get('[data-cy=board-title]')
-    .click()
+  it('renames of a board', () => {
+    cy.visit(`/board/${Cypress.env('boards')[0].id}`);
 
-  cy
-    .get('[data-cy="board-detail"]')
-    .click()
-
-  cy
-    .get('[data-cy=board-title]')
-    .type('{esc}')
-
-})
-
-it('renames of a board', () => {
-
-  cy
-    .visit(`/board/${Cypress.env('boards')[0].id}`);
-
-  cy
-    .get('[data-cy=board-title]')
-    .clear()
-    .type('new name of the board{enter}')
-
-})
-
+    cy.get('[data-cy=board-title]')
+      .clear()
+      .type('new name of the board{enter}');
+  });
+});

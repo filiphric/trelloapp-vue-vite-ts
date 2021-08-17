@@ -1,10 +1,9 @@
-// vite.config.js
 import { defineConfig } from "vite";
 import svgLoader from "vite-svg-loader";
 import vue from "@vitejs/plugin-vue";
+import { createServer } from "./api/index";
 import path from "path";
 import istanbul from 'vite-plugin-istanbul';
-
 
 export default defineConfig({
   plugins: [
@@ -16,6 +15,7 @@ export default defineConfig({
       extension: [ '.js', '.ts', '.vue' ],
       requireEnv: true,
     }),
+    createServer()
   ],
   resolve: {
     alias: {

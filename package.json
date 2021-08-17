@@ -2,9 +2,7 @@
   "name": "trelloapp-vue-vite-ts",
   "version": "0.0.0",
   "scripts": {
-    "serve": "vite preview",
-    "build": "vue-tsc --noEmit && vite build",
-    "start": "concurrently \"vite\" \"node ./api/index.js\""
+    "start": "vite"
   },
   "dependencies": {
     "@cypress/code-coverage": "^3.9.10",
@@ -38,6 +36,7 @@
     "cypress": "^8.2.0",
     "cypress-file-upload": "^5.0.8",
     "cypress-real-events": "^1.5.1",
+    "cypress-watch-and-reload": "^1.5.0",
     "eslint": "^7.26.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.23.2",
@@ -47,6 +46,7 @@
     "json-server": "^0.16.3",
     "json-server-auth": "^1.2.1",
     "moment": "^2.29.1",
+    "nocache": "^3.0.1",
     "postcss": "^8.2.9",
     "require-uncached": "^2.0.0",
     "sendmail": "^1.6.1",

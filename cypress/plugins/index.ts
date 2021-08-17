@@ -8,11 +8,7 @@ module.exports = (on, config) => {
     },
   })
   require('@cypress/code-coverage/task')(on, config);
+  require('cypress-watch-and-reload/plugins')(config)
 
-  // add other cards to be registered here
-
-
-  // IMPORTANT to return the config object
-  // with the any changed environment variables
   return config;
 };

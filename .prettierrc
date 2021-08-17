@@ -3,5 +3,7 @@
   "useTabs": false,
   "semi": true,
   "singleQuote": true,
-  "overrides": []
+  "overrides": [],
+  "printWidth": 160,
+  "bracketSpacing": false
 }

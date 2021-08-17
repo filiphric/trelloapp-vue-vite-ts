@@ -8,6 +8,9 @@
     "openMode": 0,
     "runMode": 10
   },
+  "cypress-watch-and-reload": {
+    "watch": ["src/*/*.vue", "src/*/*.ts"]
+  },
   "supportFile": "cypress/support/index.ts",
   "video": false,
   "viewportHeight": 550,

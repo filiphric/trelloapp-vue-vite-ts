@@ -1,26 +1,17 @@
-import '../support/commands/addBoardApi'
+import '../support/commands/addBoardApi';
 
-beforeEach( () => {
+describe('navigation bar', () => {
+  beforeEach(() => {
+    cy.request('POST', '/api/reset');
 
-  cy
-    .request('POST', '/api/reset');
+    cy.addBoardApi('new board');
+  });
 
-  cy
-    .addBoardApi('new board');
+  it('can navigate back to home page', () => {
+    cy.visit(`/board/${Cypress.env('boards')[0].id}`);
 
-})
+    cy.get('[data-cy=home]').click();
 
-it('can navigate back to home page', () => {
-
-  cy
-    .visit(`/board/${Cypress.env('boards')[0].id}`);
-
-  cy
-    .get('[data-cy=home]')
-    .click()
-
-  cy
-    .location('pathname')
-    .should('eq', '/')
-
-})
+    cy.location('pathname').should('eq', '/');
+  });
+});

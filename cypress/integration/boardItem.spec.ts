@@ -1,22 +1,15 @@
-import '../support/commands/addBoardApi'
+import '../support/commands/addBoardApi';
 
-it('stars board item', () => {
+describe('board item', () => {
+  it('stars board item', () => {
+    cy.request('POST', '/api/reset');
 
-  cy
-    .request('POST', '/api/reset')
+    cy.addBoardApi('new board');
 
+    cy.visit('/');
 
-  cy
-    .addBoardApi('new board');
+    cy.get('[data-cy="board-item"]').realHover();
 
-  cy
-    .visit('/')
-
-  cy
-    .get('[data-cy="board-item"]')
-    .realHover()
-
-  cy
-    .get('[data-cy="star"]')
-    .click()
-})
+    cy.get('[data-cy="star"]').click();
+  });
+});
