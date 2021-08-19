@@ -4,6 +4,7 @@
       class="flex bg-white relative px-2 py-1.5 rounded border-b border-gray7 cursor-pointer hover:bg-gray1 my-1.5"
       @mouseover="showEdit = true"
       @mouseout="showEdit = false"
+      @click="showCardModule(card.id, true)"
     >
       <div
         class="inline-block flex-grow select-none text-sm text-gray-800"
@@ -23,7 +24,20 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Pen from '@/assets/icons/pen.svg';
+import { boardDetail } from '@/stores/boardDetail';
+import route from '@/router'
+
 export default defineComponent({
+  setup() {
+    const store = boardDetail();
+    const showCardModule = store.showCardModule;
+    const cardId = route.currentRoute.value.query.card
+    const cardFlag = cardId ? true : false
+    if (cardFlag) {
+      store.showCardModule(cardId, true)
+    }
+    return { store, showCardModule };
+  },
   components: {
     Pen
   },

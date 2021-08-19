@@ -1,8 +1,7 @@
 <template>
   <div class="background bg-white h-screen grid" data-cy="board-list">
     <div class="loading place-self-center" v-if="boards.loading">
-      <Loading />
-      &nbsp;&nbsp;Loading data ...
+      <Loading class="inline-block"/>&nbsp;&nbsp;Loading data ...
     </div>
 
     <div v-cloak class="container mx-auto" v-else>

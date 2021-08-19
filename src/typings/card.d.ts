@@ -5,7 +5,7 @@ interface Card {
   listId: number;
   name: string;
   description: string;
-  id?: number;
+  id: number;
   created: Moment | string;
   deadline: Moment | string;
   completed: boolean;

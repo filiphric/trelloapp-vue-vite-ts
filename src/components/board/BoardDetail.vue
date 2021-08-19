@@ -1,8 +1,8 @@
 <template>
   <div class="bg-blue6 h-screen grid">
+    <!-- <CardDetail v-if="currentBoard.cardModule" /> -->
     <div class="loading place-self-center" v-if="currentBoard.loading">
-      <Loading />
-      &nbsp;&nbsp;Loading data ...
+      <Loading class="inline-block"/>&nbsp;&nbsp;Loading data ...
     </div>
     <div
       v-else

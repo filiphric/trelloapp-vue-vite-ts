@@ -8,14 +8,14 @@
     >
       <Home class="place-self-center" />
     </button>
-    <img class="h-10 py-2 place-self-center" :src="trelloLogo" />
+    <img class="h-10 py-3 place-self-center opacity-60 hover:opacity-100 cursor-pointer" :src="trelloLogo" @click="navigate()"/>
     <Login />
   </nav>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import trelloLogo from '@/assets/trello-logo.png';
+import trelloLogo from '@/assets/trello-logo.gif';
 import Home from '@/assets/icons/home.svg';
 import Login from '@/components/Login.vue';
 

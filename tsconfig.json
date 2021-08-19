@@ -18,7 +18,8 @@
       "vite/client",
       "vite-svg-loader",
       "cypress",
-      "cypress-real-events"
+      "cypress-real-events",
+      "node"
     ],
     "baseUrl": "./",
     "paths": {

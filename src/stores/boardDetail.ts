@@ -3,6 +3,7 @@ import axios from "axios";
 import Board from "@/typings/board";
 import List from "@/typings/list";
 import Card from "@/typings/card";
+import router from '@/router'
 
 export const boardDetail = defineStore({
   id: "boardDetail",
@@ -11,11 +12,14 @@ export const boardDetail = defineStore({
       board: {},
       lists: [],
       cards: [],
-      loading: true
+      loading: true,
+      cardModule: false,
+      activeCard: {}
     };
   },
   actions: {
     async fetch(id: string) {
+
       this.loading = true;
 
       const board = await axios.get(`/api/boards/${id}`);
@@ -64,5 +68,17 @@ export const boardDetail = defineStore({
       );
       this.cards.push(createdCard.data);
     },
+    async showCardModule(cardId: Card<id>, flag: boolean) {
+      if (flag) {
+        router.push(`${router.currentRoute.value.path}?card=${cardId}`) 
+        const card = await axios.get(`/api/cards/${cardId}`);
+        this.activeCard = card.data;
+      } else {
+        router.push(router.currentRoute.value.path)
+        this.activeCard = {}
+      }
+      this.cardModule = flag
+      console.log(this.activeCard)
+    }
   }
 });

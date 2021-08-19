@@ -5,6 +5,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        backdrop: "#000000a3",
+        
         blue1: "#E4F0F6",
         blue2: "#BCD9EA",
         blue3: "#8BBDD9",
@@ -40,7 +42,8 @@ module.exports = {
       },
       width: {
         list: "272px",
-        dropdown: "316px"
+        dropdown: "316px",
+        cardDetail: "768px"
       },
       inset: {
         dropdown: "234px"
