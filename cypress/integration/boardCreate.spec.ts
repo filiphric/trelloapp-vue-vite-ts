@@ -1,4 +1,8 @@
 describe('creating board', () => {
+
+  beforeEach( () => {
+    cy.request('POST', '/api/reset')
+  })
   it('creates a board', () => {
     cy.visit('/');
     cy.get('[data-cy="create-board"]').click();

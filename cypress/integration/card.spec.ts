@@ -65,12 +65,9 @@ describe('creating a card', () => {
 
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
 
-    cy.get('[data-cy=card]').trigger('mouseover');
+    cy.get('[data-cy=card]').realHover();
 
     cy.get('[data-cy="card-edit"]').should('be.visible');
 
-    cy.get('[data-cy=card]').trigger('mouseout');
-
-    cy.get('[data-cy="card-edit"]').should('not.exist');
   });
 });

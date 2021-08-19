@@ -14,7 +14,11 @@ export const boardDetail = defineStore({
       cards: [],
       loading: true,
       cardModule: false,
-      activeCard: {}
+      activeCard: {},
+      errorMessage: {
+        show: false,
+        message: ""
+      }
     };
   },
   actions: {
@@ -68,17 +72,33 @@ export const boardDetail = defineStore({
       );
       this.cards.push(createdCard.data);
     },
-    async showCardModule(cardId: Card<id>, flag: boolean) {
+    async showCardModule(cardId: string, flag: boolean) {
       if (flag) {
         router.push(`${router.currentRoute.value.path}?card=${cardId}`) 
-        const card = await axios.get(`/api/cards/${cardId}`);
-        this.activeCard = card.data;
+        await axios.get(`/api/cards/${cardId}`)
+        .then( (c) => {
+          this.activeCard = c.data;
+          this.cardModule = true
+        })
+        .catch(() => {
+          router.push(router.currentRoute.value.path)
+          this.activeCard = {}
+          this.cardModule = false
+          this.showError('Card was not found');
+        });
       } else {
         router.push(router.currentRoute.value.path)
         this.activeCard = {}
+        this.cardModule = false
       }
-      this.cardModule = flag
-      console.log(this.activeCard)
+    },
+    async showError(message: string) {
+      this.errorMessage.message = message;
+      this.errorMessage.show = true;
+      setTimeout(() => {
+        // hide error message after 4 seconds
+        this.errorMessage.show = false;
+      }, 4000);
     }
   }
 });

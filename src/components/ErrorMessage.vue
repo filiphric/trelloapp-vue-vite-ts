@@ -1,22 +1,22 @@
 <template>
   <div
-    v-if="error.show"
+    v-if="state.errorMessage.show"
     class="h-10 errorMessage text-base shadow-md py-1.5 text-white absolute right-0 left-0 text-center z-50"
     style="background: #f85252;"
     data-cy="error-message"
   >
-    {{ error.message }}
+    {{ state.errorMessage.message }}
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { errorMessage } from '@/stores/errorMessage';
+import { boardDetail } from '@/stores/boardDetail';
 
 export default defineComponent({
   setup() {
-    const error = errorMessage();
-    return { error };
+    const state = boardDetail();
+    return { state };
   }
 });
 </script>

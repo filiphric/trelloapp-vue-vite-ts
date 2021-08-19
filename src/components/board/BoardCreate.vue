@@ -38,11 +38,11 @@ import { defineComponent } from 'vue';
 import axios from 'axios';
 import Cross from '@/assets/icons/cross.svg';
 import SaveButton from '../SaveButton.vue';
-import { errorMessage } from '@/stores/errorMessage';
+import { boardDetail } from '@/stores/boardDetail';
 export default defineComponent({
   setup() {
-    const error = errorMessage();
-    return { error };
+    const state = boardDetail();
+    return { state };
   },
   data: function() {
     return {
@@ -73,7 +73,7 @@ export default defineComponent({
           this.$router.push(`/board/${data.id}`);
         })
         .catch(() => {
-          this.error.showError('There was an error creating board');
+          this.state.showError('There was an error creating board');
         });
       this.newBoardTitle = '';
     },
