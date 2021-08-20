@@ -12,7 +12,7 @@
           $event.target.select();
           inputActive = true;
         "
-        @change="updateList(list)"
+        @change="renameList(list)"
         @keyup.enter="
           $event.target.blur();
           inputActive = false;
@@ -63,8 +63,8 @@ export default defineComponent({
   },
   setup() {
     const state = store();
-    const updateList = state.updateList;
-    return { state, updateList };
+    const renameList = state.renameList;
+    return { state, renameList };
   },
   data() {
     return {

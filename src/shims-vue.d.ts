@@ -9,3 +9,4 @@ declare module '*.svg' {
   const svg: DefineComponent<{}, {}, any>
   export default svg
 }
+

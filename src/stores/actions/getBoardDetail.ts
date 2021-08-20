@@ -1,7 +1,7 @@
 import axios from "axios";
-import { StateTree } from "pinia";
+import { PiniaCustomStateProperties } from "pinia";
 
-export const getBoardDetail =  async function(this: StateTree, id: string) {
+export const getBoardDetail =  async function(this: PiniaCustomStateProperties, id: string) {
 
   this.loading = true;
 

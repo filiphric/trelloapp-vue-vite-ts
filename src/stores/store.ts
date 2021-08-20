@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { getBoardDetail } from "./actions/getBoardDetail";
+import { patchCard } from "./actions/patchCard";
 import axios from "axios";
 import Board from "@/typings/board";
 import List from "@/typings/list";
@@ -16,7 +17,8 @@ export const store = defineStore({
       loading: true,
       cardModule: false,
       activeCard: {},
-      errorMessage: {
+      notification: {
+        error: false,
         show: false,
         message: ""
       },
@@ -26,7 +28,13 @@ export const store = defineStore({
     };
   },
   actions: {
+    // board actions
     getBoardDetail,
+
+    // card actions
+    patchCard,
+
+    // to refactor
     async getBoardList() {
       const boards = await axios.get(`/api/boards`);
       this.boardList.all = boards.data;
@@ -52,12 +60,13 @@ export const store = defineStore({
       );
       this.lists = this.lists.filter(item => item.id !== listId)
     },
-    async updateList(list: List) {
+    async renameList(list: List) {
       const { id, name } = list
       await axios.patch(`/api/lists/${id}`, {
         name
       });
     },
+    
     async createCard(card: Card) {
       const createdCard = await axios.post(
         `/api/cards`, card 
@@ -85,11 +94,12 @@ export const store = defineStore({
       }
     },
     async showError(message: string) {
-      this.errorMessage.message = message;
-      this.errorMessage.show = true;
+      this.notification.message = message;
+      this.notification.error = true;
+      this.notification.show = true;
       setTimeout(() => {
         // hide error message after 4 seconds
-        this.errorMessage.show = false;
+        this.notification.show = false;
       }, 4000);
     }
   },

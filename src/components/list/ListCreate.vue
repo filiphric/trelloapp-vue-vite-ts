@@ -34,7 +34,7 @@
     v-else
     @click="enableInput()"
   >
-    <Plus class="w-3 h-3 inline-block" /> Add another list
+    <Plus class="w-3 h-3 inline-block" /> {{(!this.state.lists.length) ? 'Add a list' : 'Add another list'}}
   </div>
 </template>
 
