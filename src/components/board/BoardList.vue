@@ -8,7 +8,8 @@
       <!-- STARRED BOARDS -->
       <h1
         class="text-3xl py-5 font-semibold inline-block"
-        v-show="state.starred.length"
+        data-cy="starred-boards"
+        v-if="state.starred.length"
       >
         Starred
       </h1>
@@ -21,7 +22,7 @@
       </div>
 
       <!-- ALL BOARDS -->
-      <h1 class="text-3xl py-5 font-semibold inline-block">My Boards</h1>
+      <h1 class="text-3xl py-5 font-semibold inline-block" data-cy="all-boards">My Boards</h1>
       <div class="flex flex-cols-3 gap-8 flex-wrap">
         <BoardItem v-for="board in state.boardList.all" :key="board.id" :board="board" />
         <BoardCreate></BoardCreate>
