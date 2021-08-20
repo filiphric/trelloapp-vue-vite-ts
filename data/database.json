@@ -3,30 +3,12 @@
     {
       "name": "new board",
       "user": 0,
-      "id": 75597770538,
+      "id": 41493290612,
       "starred": false,
-      "created": "2021-08-19"
+      "created": "2021-08-20"
     }
   ],
-  "cards": [
-    {
-      "boardId": 75597770538,
-      "listId": 4408359440,
-      "name": "dasd",
-      "description": "",
-      "created": "2021-08-19",
-      "deadline": "2021-08-22",
-      "completed": false,
-      "id": 82668344629
-    }
-  ],
+  "cards": [],
   "users": [],
-  "lists": [
-    {
-      "name": "das",
-      "boardId": 75597770538,
-      "id": 4408359440,
-      "created": "2021-08-19"
-    }
-  ]
+  "lists": []
 }

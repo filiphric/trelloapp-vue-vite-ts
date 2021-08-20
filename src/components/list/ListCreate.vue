@@ -40,7 +40,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { boardDetail } from '@/stores/boardDetail';
+import { store } from '@/stores/store';
 import Plus from '@/assets/icons/plus.svg';
 import Cross from '@/assets/icons/cross.svg';
 import SaveButton from '@/components/SaveButton.vue';
@@ -51,14 +51,14 @@ export default defineComponent({
     Cross
   },
   setup() {
-    const currentBoard = boardDetail();
-    const createList = currentBoard.createList;
-    return { currentBoard, createList };
+    const state = store();
+    const createList = state.createList;
+    return { state, createList };
   },
   data() {
     return {
       listTitle: '',
-      inputActive: false || this.currentBoard.lists.length < 1
+      inputActive: false || this.state.lists.length < 1
     };
   },
   $refs: {
@@ -82,7 +82,7 @@ export default defineComponent({
         return;
       }
 
-      const boardId = this.currentBoard.board.id;
+      const boardId = this.state.board.id;
       const name = this.listTitle;
 
       this.createList(boardId, name);

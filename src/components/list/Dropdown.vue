@@ -39,12 +39,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { boardDetail } from '@/stores/boardDetail';
+import { store } from '@/stores/store';
 import Cross from '@/assets/icons/cross.svg';
 import Dots from '@/assets/icons/dots.svg';
 export default defineComponent({
   setup() {
-    const deleteList = boardDetail().deleteList;
+    const deleteList = store().deleteList;
     return { deleteList };
   },
   data() {

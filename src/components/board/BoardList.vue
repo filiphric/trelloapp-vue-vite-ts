@@ -1,6 +1,6 @@
 <template>
   <div class="background bg-white h-screen grid" data-cy="board-list">
-    <div class="loading place-self-center" v-if="boards.loading">
+    <div class="loading place-self-center" v-if="state.loading">
       <Loading class="inline-block"/>&nbsp;&nbsp;Loading data ...
     </div>
 
@@ -8,13 +8,13 @@
       <!-- STARRED BOARDS -->
       <h1
         class="text-3xl py-5 font-semibold inline-block"
-        v-show="boards.starred.length"
+        v-show="state.starred.length"
       >
         Starred
       </h1>
       <div class="flex flex-cols-3 gap-8 flex-wrap">
         <BoardItem
-          v-for="board in boards.starred"
+          v-for="board in state.starred"
           :key="board.id"
           :board="board"
         />
@@ -23,7 +23,7 @@
       <!-- ALL BOARDS -->
       <h1 class="text-3xl py-5 font-semibold inline-block">My Boards</h1>
       <div class="flex flex-cols-3 gap-8 flex-wrap">
-        <BoardItem v-for="board in boards.all" :key="board.id" :board="board" />
+        <BoardItem v-for="board in state.boardList.all" :key="board.id" :board="board" />
         <BoardCreate></BoardCreate>
       </div>
     </div>
@@ -31,19 +31,16 @@
 </template>
 
 <script lang="ts">
-import { boardList } from '@/stores/boardList';
+import { store } from '@/stores/store';
 import { defineComponent } from 'vue';
 import BoardItem from '@/components/board/BoardItem.vue';
 import BoardCreate from '@/components/board/BoardCreate.vue';
 import Loading from '@/assets/icons/loading.svg';
 export default defineComponent({
   setup() {
-    const boards = boardList();
-
-    // load board list from API
-    boards.fetch();
-
-    return { boards };
+    const state = store();
+    state.getBoardList();
+    return { state };
   },
   name: 'BoardList',
   components: {

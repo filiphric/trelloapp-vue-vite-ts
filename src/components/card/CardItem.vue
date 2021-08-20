@@ -29,19 +29,19 @@
 import { defineComponent } from 'vue';
 import Pen from '@/assets/icons/pen.svg';
 import Clock from '@/assets/icons/clock.svg';
-import { boardDetail } from '@/stores/boardDetail';
+import { store } from '@/stores/store';
 import route from '@/router'
 
 export default defineComponent({
   setup() {
-    const store = boardDetail();
-    const showCardModule = store.showCardModule;
+    const state = store();
+    const showCardModule = state.showCardModule;
     const cardId = route.currentRoute.value.query.card
     const cardFlag = cardId ? true : false
     if (cardFlag) {
-      store.showCardModule(cardId, true)
+      state.showCardModule(cardId, true)
     }
-    return { store, showCardModule };
+    return { state, showCardModule };
   },
   components: {
     Pen,

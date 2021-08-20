@@ -28,7 +28,7 @@
     </div>
     <div>
       <CardItem
-        v-for="card in currentBoard.cards.filter(
+        v-for="card in state.cards.filter(
           item => item.listId === list.id
         )"
         :key="card.id"
@@ -49,7 +49,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { boardDetail } from '@/stores/boardDetail';
+import { store } from '@/stores/store';
 import Plus from '@/assets/icons/plus.svg';
 import CardItem from '@/components/card/CardItem.vue';
 import CardCreateInput from '@/components/card/CardCreateInput.vue';
@@ -62,9 +62,9 @@ export default defineComponent({
     Plus
   },
   setup() {
-    const currentBoard = boardDetail();
-    const updateList = currentBoard.updateList;
-    return { currentBoard, updateList };
+    const state = store();
+    const updateList = state.updateList;
+    return { state, updateList };
   },
   data() {
     return {

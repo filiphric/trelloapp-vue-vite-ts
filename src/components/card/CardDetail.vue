@@ -13,15 +13,15 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { boardDetail } from '@/stores/boardDetail';
+import { store } from '@/stores/store';
 
 export default defineComponent({
   setup() {
-    const store = boardDetail();
-    const showCardModule = store.showCardModule;
-    const card = store.activeCard
+    const state = store();
+    const showCardModule = state.showCardModule;
+    const card = state.activeCard
     
-    return { store, showCardModule, card };
+    return { state, showCardModule, card };
   },
   components: {
   },

@@ -38,10 +38,10 @@ import { defineComponent } from 'vue';
 import axios from 'axios';
 import Cross from '@/assets/icons/cross.svg';
 import SaveButton from '../SaveButton.vue';
-import { boardDetail } from '@/stores/boardDetail';
+import { store } from '@/stores/store';
 export default defineComponent({
   setup() {
-    const state = boardDetail();
+    const state = store();
     return { state };
   },
   data: function() {

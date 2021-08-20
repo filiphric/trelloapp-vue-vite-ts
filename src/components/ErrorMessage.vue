@@ -11,11 +11,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { boardDetail } from '@/stores/boardDetail';
+import { store } from '@/stores/store';
 
 export default defineComponent({
   setup() {
-    const state = boardDetail();
+    const state = store();
     return { state };
   }
 });

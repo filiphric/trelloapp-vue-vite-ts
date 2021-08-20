@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { boardDetail } from '@/stores/boardDetail';
+import { store } from '@/stores/store';
 import Card from '@/typings/card';
 import moment from 'moment';
 import SaveButton from '@/components/SaveButton.vue';
@@ -36,9 +36,9 @@ import Cross from '@/assets/icons/Cross.svg';
 
 export default defineComponent({
   setup() {
-    const currentBoard = boardDetail();
-    const createCard = currentBoard.createCard;
-    return { currentBoard, createCard };
+    const state = store();
+    const createCard = state.createCard;
+    return { state, createCard };
   },
   data() {
     return {
@@ -65,7 +65,7 @@ export default defineComponent({
         return;
       }
       const data: Card = {
-        boardId: this.currentBoard.board.id,
+        boardId: this.state.board.id,
         listId: this.list.id,
         name: this.cardTitle,
         description: '',

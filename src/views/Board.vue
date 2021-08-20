@@ -1,5 +1,5 @@
 <template>
-  <CardDetail v-if="store.cardModule" />
+  <CardDetail v-if="state.cardModule" />
   <Navbar />
   <BoardDetail />
 </template>
@@ -8,12 +8,12 @@
 import Navbar from '@/components/Navbar.vue';
 import BoardDetail from '@/components/board/BoardDetail.vue';
 import CardDetail from '@/components/card/CardDetail.vue';
-import { boardDetail } from '@/stores/boardDetail';
+import { store } from '@/stores/store';
 
 export default {
   setup() {
-    const store = boardDetail();
-    return { store };
+    const state = store();
+    return { state };
   },
   
   name: 'Board',

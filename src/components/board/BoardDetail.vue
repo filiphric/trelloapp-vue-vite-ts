@@ -1,7 +1,6 @@
 <template>
   <div class="bg-blue6 h-screen grid">
-    <!-- <CardDetail v-if="currentBoard.cardModule" /> -->
-    <div class="loading place-self-center" v-if="currentBoard.loading">
+    <div class="loading place-self-center" v-if="state.loading">
       <Loading class="inline-block"/>&nbsp;&nbsp;Loading data ...
     </div>
     <div
@@ -12,7 +11,7 @@
       <div class="py-2.5">
         <div class="relative inline-block ml-3 mr-0 py-1.5 h-8">
           <div class="invisible font-bold px-3 inline-block">
-            {{ currentBoard.board.name }}
+            {{ state.board.name }}
           </div>
           <input
             class="absolute outline-none font-bold top-0 bottom-0 right-0 left-0 w-full pl-3 rounded-sm cursor-pointer"
@@ -26,8 +25,8 @@
               inputActive = true;
             "
             @change="
-              currentBoard.patchBoard(currentBoard.board, {
-                name: currentBoard.board.name
+              state.patchBoard(state.board, {
+                name: state.board.name
               })
             "
             @keyup.enter="
@@ -38,20 +37,20 @@
               $event.target.blur();
               inputActive = false;
             "
-            v-model="currentBoard.board.name"
+            v-model="state.board.name"
             v-click-away="onClickAway"
             data-cy="board-title"
           />
         </div>
         <div
           @click="
-            currentBoard.patchBoard(currentBoard.board, {
-              starred: !currentBoard.board.starred
+            state.patchBoard(state.board, {
+              starred: !state.board.starred
             })
           "
           class="relative bg-white bg-opacity-20 hover:bg-opacity-30 self-center rounded-sm ml-2 w-8 h-8 cursor-pointer inline-grid"
           :class="[
-            currentBoard.board.starred
+            state.board.starred
               ? 'fill-current text-yellow-300'
               : 'stroke-current text-white'
           ]"
@@ -61,13 +60,13 @@
       </div>
       <div
         class="inline-block h-full align-top"
-        v-for="list in currentBoard.lists"
+        v-for="list in state.lists"
         :key="list.id"
       >
         <ListItem :list="list" />
       </div>
       <div class="inline-block h-full">
-        <ListCreate :board="currentBoard.board.id" />
+        <ListCreate :board="state.board.id" />
       </div>
     </div>
   </div>
@@ -75,7 +74,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { boardDetail } from '@/stores/boardDetail';
+import { store } from '@/stores/store';
 import { useRoute } from 'vue-router';
 import ListItem from '@/components/list/ListItem.vue';
 import ListCreate from '@/components/list/ListCreate.vue';
@@ -85,9 +84,9 @@ import Star from '@/assets/icons/star.svg';
 export default defineComponent({
   setup() {
     const route = useRoute();
-    const currentBoard = boardDetail();
-    currentBoard.fetch(route.params.board as string);
-    return { currentBoard, useRoute };
+    const state = store();
+    state.getBoardDetail(route.params.board as string);
+    return { state, useRoute };
   },
   components: {
     ListItem,
