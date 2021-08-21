@@ -19,6 +19,7 @@ describe('creating board', () => {
     cy.intercept('POST', '/api/boards').as('createBoard')
     cy.visit('/');
     cy.get('[data-cy="create-board"]').click();
+    cy.get('[data-cy="new-board-input"]').should('be.focused');
     cy.get('[data-cy="new-board-input"]').type('new board');
     cy.get('[data-cy="new-board-create"]').click();
     cy.wait('@createBoard').then(({ response }) => {
