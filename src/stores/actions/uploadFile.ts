@@ -1,6 +1,7 @@
+import Card from "@/typings/card";
 import axios from "axios";
 
-export const uploadFile =  async function(this: any, acceptFiles: File[], cardId: number) {
+export const uploadFile =  async function(this: any, acceptFiles: File[], cardId: Card['id']) {
     const formData = new FormData();
     const file = acceptFiles[0]
     formData.append("image", file);

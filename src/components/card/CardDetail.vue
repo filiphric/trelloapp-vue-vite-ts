@@ -1,22 +1,47 @@
 <template>
   <div class="bg-backdrop flex justify-center items-center fixed top-0 left-0 h-full w-full z-40" @click.self="showCardModule(state.activeCard.id, false)">
-    <div class="bg-gray2 w-cardDetail h-5/6 p-8 grid grid-cols-8 overflow-scroll">
+    <div class="bg-gray2 w-cardDetail h-5/6 p-8 grid grid-cols-8 gap-x-2 overflow-scroll">
       <div class="col-span-6 text-gray-800">
         <div class="ml-9 mb-4">
           <div class="inline-block">
             <Board class="stroke-current fill-current text-gray-800 -ml-8 -mb-1 w-5 h-5" />
           </div>
-          <h2 class="text-xl font-semibold text-gray-800 inline-block">{{ state.activeCard.name }}</h2>
+          <input
+              class="font-bold rounded-sm cursor-pointer bg-gray2 py-1 focus:px-1.5 focus:bg-white w-full"
+              @focus="
+                $event.target.select();
+                inputActive = true;
+              "
+              @change="
+                state.patchCard(state.activeCard, {
+                  name: state.activeCard.name
+                })
+              "
+              @keyup.enter="
+                $event.target.blur();
+                inputActive = false;
+              "
+              @keyup.esc="
+                $event.target.blur();
+                inputActive = false;
+              "
+              v-model="state.activeCard.name"
+              v-click-away="onClickAway"
+              data-cy="card-title"
+            />
           <h2 class="text-sm text-gray10">in list <span class="underline">{{ cardListName }}</span></h2>
         </div>
         <div class="ml-9 mb-4">
           <h2 class="text-sm block text-gray10 cursor-default">DUE DATE</h2>
           <div class="inline-block mt-2">
             <Checkbox :card="state.activeCard" />
-            <h2 class="inline-block px-4 py-1 rounded-sm  font-light text-gray-800 bg-gray3 hover:bg-gray5 cursor-pointer">{{ new Date(state.activeCard.deadline).toDateString() }}
+            <h2 class="inline-block px-4 py-1 rounded-sm font-light text-gray-800 bg-gray3 hover:bg-gray5 cursor-default">{{ new Date(state.activeCard.deadline).toDateString() }}
               <div v-show="state.activeCard.completed" class="text-sm bg-green5 inline-block text-white px-2 mx-1 rounded-sm">COMPLETED</div>
-              <Downarrow class="stroke-current fill-current text-gray-800 w-2.5 pb-0.5 ml-2 inline-block" />
+                <Downarrow class="stroke-current fill-current text-gray-800 w-5 py-2 pl-2 inline-block cursor-pointer" @click="showDate = true"/>
             </h2>
+            <div v-if="showDate" class="w-full absolute">
+              <DatePicker v-click-away="onClickAway" class="shadow-lg" data-cy="card-deadline" v-model="state.activeCard.deadline" @dayclick="state.patchCard(state.activeCard, { deadline: state.activeCard.deadline }); showDate = false" />
+            </div>
           </div>
         </div>
         <div class="ml-9 mb-4">
@@ -31,14 +56,22 @@
             <Attachment class="stroke-current fill-current text-gray-800 -ml-8 -mb-1 w-5 h-5" />
           </div>
           <h1 class="text-lg font-semibold mb-4 text-black inline-block">Attachment</h1>
-          <div v-if="state.activeCard.image"><img :src="'/backend' + state.activeCard.image"></div>
+          <div v-if="state.activeCard.image" class="grid grid-cols-6 gap-x-4">
+            <div class="col-span-2 row-span-2"><img :src="'/backend' + state.activeCard.image"></div>
+            <div class="font-bold col-span-4">{{ state.activeCard.image.replace(`/data/uploaded/${state.activeCard.id}_`, '') }}
+              <div class="block underline cursor-pointer font-normal" @click="state.patchCard(state.activeCard, { image: null })"><Cross class="inline-block w-4 mb-1"/>Delete</div>
+            </div>
+          </div>
           <Dropzone :card="state.activeCard" v-else/>
         </div>
       </div>
-      <div class="col-span-2">
-        <Cross class="w-6 h-6 fill-current text-gray-600 relative right-0 top-0"/>
-        <div>delete</div>
-        <div>copy</div>
+      <div class="col-span-2 grid content-start gap-y-2">
+        <div class="self-end cursor-pointer place-self-end hover:bg-gray5 w-8 h-8 grid place-content-center">
+          <Cross class="w-6 h-6 fill-current text-gray-600" @click="showCardModule(state.activeCard.id, false)"/>
+        </div>
+        <div class="bg-gray3 px-2 py-0.5 text-sm rounded-sm text-gray-600 cursor-pointer hover:bg-gray5" @click="showDate = true"><Clock class="w-4 inline-block mr-2 mb-0.5"/>Due date</div>
+        <div class="bg-gray3 px-2 py-0.5 text-sm rounded-sm text-gray-600 cursor-pointer hover:bg-gray5" @click="copyProperties(state.activeCard)"><Copy class="w-4 inline-block mr-2 mb-0.5"/>Copy attributes</div>
+        <div class="bg-gray3 px-2 py-0.5 text-sm rounded-sm text-gray-600 cursor-pointer hover:bg-gray5" @click="state.deleteCard(state.activeCard.id)"><Trash class="w-4 inline-block mr-2 mb-0.5"/>Delete card</div>
       </div>
     </div>
   </div>
@@ -49,12 +82,16 @@ import { defineComponent } from 'vue';
 import { store } from '@/stores/store';
 import Board from '@/assets/icons/board.svg';
 import Cross from '@/assets/icons/cross.svg';
+import Clock from '@/assets/icons/clock.svg';
+import Copy from '@/assets/icons/copy.svg';
 import Downarrow from '@/assets/icons/downarrow.svg';
+import Trash from '@/assets/icons/trash.svg'
 import Attachment from '@/assets/icons/attachment.svg';
 import Description from '@/assets/icons/description.svg';
 import Checkbox from '@/components/Checkbox.vue'
 import Card from '@/typings/card';
 import Dropzone from '../Dropzone.vue';
+import { DatePicker } from 'v-calendar';
 
 export default defineComponent({
   setup() {
@@ -63,14 +100,57 @@ export default defineComponent({
     const cardListName = state.lists.find((c: Card) => c.id === state.activeCard.listId)!['name'];
     return { state, showCardModule, cardListName };
   },
+  methods: {
+    onClickAway() {
+      this.showDate = false;
+    },
+    copyProperties(content)  {
+      const clipBoardValue = JSON.stringify(content, null, 2);
+      const clipboard = window.navigator.clipboard;
+      /*
+        * fallback to older browsers (including Safari)
+        * if clipboard API not supported
+        */
+      if (!clipboard || typeof clipboard.writeText !== 'function') {
+        const textarea = document.createElement('textarea');
+        textarea.value = clipBoardValue;
+        textarea.setAttribute('readonly', true);
+        textarea.setAttribute('contenteditable', true);
+        textarea.style.position = 'absolute';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.select();
+        const range = document.createRange();
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        textarea.setSelectionRange(0, textarea.value.length);
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        return Promise.resolve(true);
+      }
+      this.state.showNotification('Card info copied to clipboard', false)
+      return clipboard.writeText(clipBoardValue);
+    },
+  },
+  data() {
+    return {
+      showDate: false,
+      inputActive: false
+    }
+  },
   components: {
     Board,
     Cross,
+    Copy,
+    Clock,
     Downarrow,
     Attachment,
     Checkbox,
     Description,
-    Dropzone
+    Dropzone,
+    DatePicker,
+    Trash
   },
 });
 </script>

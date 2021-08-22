@@ -6,6 +6,7 @@ interface Card {
   name: string;
   description: string;
   id: number;
+  image: string;
   created: Moment | string;
   deadline: Moment | string;
   completed: boolean;

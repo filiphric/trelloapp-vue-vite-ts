@@ -3,42 +3,19 @@
     {
       "name": "new board",
       "user": 0,
-      "id": 34804951459,
+      "id": 19990926813,
       "starred": false,
-      "created": "2021-08-21"
+      "created": "2021-08-22"
     }
   ],
-  "cards": [
-    {
-      "boardId": 34804951459,
-      "listId": 40458985280,
-      "name": "a",
-      "description": "",
-      "created": "2021-08-21",
-      "deadline": "2021-08-24",
-      "completed": true,
-      "id": 65377145972,
-      "image": "/data/uploaded/65377145972_20181119-it-konferencia-kroneit-5876.jpg"
-    },
-    {
-      "boardId": 34804951459,
-      "listId": 40458985280,
-      "name": "jgkj",
-      "description": "",
-      "created": "2021-08-22",
-      "deadline": "2021-08-25",
-      "completed": false,
-      "id": 21843029823,
-      "image": "/data/uploaded/21843029823_DSC06713.jpg"
-    }
-  ],
+  "cards": [],
   "users": [],
   "lists": [
     {
-      "name": "das",
-      "boardId": 34804951459,
-      "id": 40458985280,
-      "created": "2021-08-21"
+      "name": "fgwedfgaagfd",
+      "boardId": 19990926813,
+      "id": 75923472129,
+      "created": "2021-08-22"
     }
   ]
 }

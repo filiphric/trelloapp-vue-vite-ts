@@ -10,9 +10,10 @@ declare module 'pinia' {
     cards: Card[],
     loading: boolean,
     cardModule: boolean,
-    activeCard: Card,
+    activeCard: Card | {},
     notification: {
       show: boolean,
+      error: boolean,
       message: string
     },
     boardList: {

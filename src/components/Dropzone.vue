@@ -15,7 +15,6 @@
 import { store } from '@/stores/store'
 import { useDropzone } from 'vue3-dropzone'
 import Dropicon from '@/assets/icons/dropicon.svg'
-import axios from 'axios'
 export default {
   name: 'UseDropzoneDemo',
   components: {

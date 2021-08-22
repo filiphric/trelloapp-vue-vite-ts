@@ -15,7 +15,6 @@ export default {
     const state = store();
     return { state };
   },
-  
   name: 'Board',
   components: {
     CardDetail,

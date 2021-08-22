@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { getBoardDetail } from "./actions/getBoardDetail";
 import { patchCard } from "./actions/patchCard";
 import { uploadFile } from "./actions/uploadFile";
+import { deleteCard } from "./actions/deleteCard";
 import axios from "axios";
 import Board from "@/typings/board";
 import List from "@/typings/list";
@@ -34,6 +35,7 @@ export const store = defineStore({
 
     // card actions
     patchCard,
+    deleteCard,
     uploadFile,
 
     // to refactor
@@ -50,13 +52,13 @@ export const store = defineStore({
       this.board = patchedBoard.data;
     },
     async createList(boardId: Board, name: string) {
-      const createdList = await axios.post(
+      const { data } = await axios.post(
         `/api/lists`,
         { name, boardId }
       );
-      this.lists.push(createdList.data);
+      this.lists.push(data);
     },
-    async deleteList(listId: List) {
+    async deleteList(listId: List['id']) {
       await axios.delete(
         `/api/lists/${listId}`
       );
@@ -69,24 +71,24 @@ export const store = defineStore({
       });
     },
     async createCard(card: Card) {
-      const createdCard = await axios.post(
+      const { data } = await axios.post(
         `/api/cards`, card 
       );
-      this.cards.push(createdCard.data);
+      this.cards.push(data);
     },
-    async showCardModule(cardId: string, flag: boolean) {
+    async showCardModule(cardId: Card['id'], flag: boolean) {
       if (flag) {
         router.push(`${router.currentRoute.value.path}?card=${cardId}`) 
         await axios.get(`/api/cards/${cardId}`)
-        .then( (c) => {
-          this.activeCard = c.data;
+        .then( ({ data }) => {
+          this.activeCard = data;
           this.cardModule = true
         })
         .catch(() => {
           router.push(router.currentRoute.value.path)
           this.activeCard = {}
           this.cardModule = false
-          this.showNotification('Card was not found', true);
+          this.showNotification(`Card with id: ${cardId} was not found`, true);
         });
       } else {
         router.push(router.currentRoute.value.path)

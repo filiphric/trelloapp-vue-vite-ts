@@ -13,6 +13,7 @@
     "pinia": "^2.0.0-alpha.16",
     "prettier": "^1.19.1",
     "test-exclude": "^6.0.0",
+    "v-calendar": "^3.0.0-alpha.5",
     "vite-svg-loader": "^1.5.1",
     "vue": "^3.0.5",
     "vue-router": "^4.0.0-0"
@@ -59,7 +60,6 @@
     "vite-plugin-istanbul": "^2.2.0",
     "vue-cli-plugin-ts-paths": "~0.0.4",
     "vue-tsc": "^0.0.15",
-    "vue2-dropzone": "^3.6.0",
     "vue3-click-away": "^1.1.0",
     "vue3-dropzone": "^0.0.7"
   }

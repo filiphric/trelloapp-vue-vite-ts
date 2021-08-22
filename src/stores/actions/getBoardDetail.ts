@@ -1,8 +1,10 @@
 import axios from "axios";
-import { PiniaCustomStateProperties } from "pinia";
+import { useRoute } from 'vue-router';
 
-export const getBoardDetail =  async function(this: PiniaCustomStateProperties, id: string) {
-
+export const getBoardDetail =  async function(this: any, id: string) {
+  
+  const route = useRoute();
+  
   this.loading = true;
 
   const board = await axios.get(`/api/boards/${id}`);
@@ -16,6 +18,11 @@ export const getBoardDetail =  async function(this: PiniaCustomStateProperties, 
     const cards = await axios.get(`/api/cards?boardId=${id}`);
     this.cards = cards.data;
   }
+
+  const qs: any = route.query?.card
+    if (qs !== undefined) {
+      this.showCardModule(qs, true)
+    }
 
   this.loading = false;
 }

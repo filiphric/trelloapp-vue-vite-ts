@@ -2,7 +2,7 @@
   <div
     data-cy="card"
     class="card grid bg-white relative px-2 py-1.5 rounded border-b border-gray7 cursor-pointer hover:bg-gray1 my-1.5"
-    @click="showCardModule(card.id, true)"
+    @click="state.showCardModule(card.id, true)"
   >
   <div class="flex pl-0.5">
     <Checkbox :card="card" />
@@ -17,7 +17,7 @@
     />
   </div>
   <div class="date max-w-min text-xs py-1 px-1 rounded-sm mt-1" :class="card.completed ? 'bg-green5 text-white' : 'text-gray9'">
-    <Clock class="clock fill-current inline-block" />
+    <Clock class="clock w-3 h-3 fill-current inline-block" />
     <span class="ml-2">{{ new Date(card.deadline).toDateString().substring(4) }}</span>
   </div>
   </div>
@@ -28,20 +28,13 @@ import { defineComponent } from 'vue';
 import Pen from '@/assets/icons/pen.svg';
 import Clock from '@/assets/icons/clock.svg';
 import { store } from '@/stores/store';
-import route from '@/router'
 import Checkbox from '@/components/Checkbox.vue'
 
 export default defineComponent({
   props: ['card'],
   setup() {
     const state = store();
-    const showCardModule = state.showCardModule;
-    const cardId = route.currentRoute.value.query.card as string
-    const cardFlag = cardId ? true : false
-    if (cardFlag) {
-      state.showCardModule(cardId, true)
-    }
-    return { state, showCardModule };
+    return { state };
   },
   components: {
     Pen,
