@@ -73,7 +73,7 @@ export default defineComponent({
           this.$router.push(`/board/${data.id}`);
         })
         .catch(() => {
-          this.state.showError('There was an error creating board');
+          this.state.showNotification('There was an error creating board', true);
         });
       this.newBoardTitle = '';
     },

@@ -36,7 +36,7 @@ export default defineComponent({
   setup() {
     const state = store();
     const showCardModule = state.showCardModule;
-    const cardId = route.currentRoute.value.query.card
+    const cardId = route.currentRoute.value.query.card as string
     const cardFlag = cardId ? true : false
     if (cardFlag) {
       state.showCardModule(cardId, true)

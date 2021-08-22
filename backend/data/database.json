@@ -16,8 +16,20 @@
       "description": "",
       "created": "2021-08-21",
       "deadline": "2021-08-24",
+      "completed": true,
+      "id": 65377145972,
+      "image": "/data/uploaded/65377145972_20181119-it-konferencia-kroneit-5876.jpg"
+    },
+    {
+      "boardId": 34804951459,
+      "listId": 40458985280,
+      "name": "jgkj",
+      "description": "",
+      "created": "2021-08-22",
+      "deadline": "2021-08-25",
       "completed": false,
-      "id": 65377145972
+      "id": 21843029823,
+      "image": "/data/uploaded/21843029823_DSC06713.jpg"
     }
   ],
   "users": [],

@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import svgLoader from "vite-svg-loader";
 import vue from "@vitejs/plugin-vue";
-import { createServer } from "./api/index";
+import { createServer } from "./backend/index";
 import path from "path";
 import istanbul from 'vite-plugin-istanbul';
 

@@ -1,4 +1,6 @@
 const moment = require('moment');
+const Busboy = require('busboy')
+const os = require('os');
 const sendmail = require('sendmail')();
 const path = require('path'); // used for file path
 const fs = require('fs-extra');
@@ -42,7 +44,7 @@ module.exports = (req, res, next) => {
   const userData = parseJWT();
   const userId = parseInt(userData.sub);
 
-  db.assign(require('require-uncached')('./data/database.json')).write();
+  db.assign(require('require-uncached')('./backend/data/database.json')).write();
 
   // create board
   if (req.method === 'POST' && req.path === '/boards') {
@@ -138,15 +140,15 @@ module.exports = (req, res, next) => {
   }
 
   if (req.method === 'POST' && req.path === '/upload') {
-    const name = req.headers.cardid;
+    const cardid = req.headers.cardid;
 
     let fstream;
     req.pipe(req.busboy);
     req.busboy.on('file', (fieldname, file, filename) => {
-      fstream = fs.createWriteStream(`${__dirname}/data/uploaded/${name}_${filename}`);
+      fstream = fs.createWriteStream(`${__dirname}/data/uploaded/${cardid}_${filename}`);
       file.pipe(fstream);
       fstream.on('close', () => {
-        res.status(201).jsonp({ path: `/data/uploaded/${name}_${filename}` });
+        res.status(201).jsonp({ path: `/data/uploaded/${cardid}_${filename}` });
       });
     });
 

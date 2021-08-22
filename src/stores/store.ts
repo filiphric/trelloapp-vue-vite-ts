@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { getBoardDetail } from "./actions/getBoardDetail";
 import { patchCard } from "./actions/patchCard";
+import { uploadFile } from "./actions/uploadFile";
 import axios from "axios";
 import Board from "@/typings/board";
 import List from "@/typings/list";
@@ -33,6 +34,7 @@ export const store = defineStore({
 
     // card actions
     patchCard,
+    uploadFile,
 
     // to refactor
     async getBoardList() {
@@ -66,7 +68,6 @@ export const store = defineStore({
         name
       });
     },
-    
     async createCard(card: Card) {
       const createdCard = await axios.post(
         `/api/cards`, card 
@@ -85,7 +86,7 @@ export const store = defineStore({
           router.push(router.currentRoute.value.path)
           this.activeCard = {}
           this.cardModule = false
-          this.showError('Card was not found');
+          this.showNotification('Card was not found', true);
         });
       } else {
         router.push(router.currentRoute.value.path)
@@ -93,15 +94,16 @@ export const store = defineStore({
         this.cardModule = false
       }
     },
-    async showError(message: string) {
+    async showNotification(message: string, isError: boolean) {
       this.notification.message = message;
-      this.notification.error = true;
+      this.notification.error = isError;
       this.notification.show = true;
       setTimeout(() => {
         // hide error message after 4 seconds
         this.notification.show = false;
       }, 4000);
-    }
+    },
+    
   },
   getters: {
     starred: state => {
