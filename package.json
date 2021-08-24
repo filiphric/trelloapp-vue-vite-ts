@@ -17,7 +17,8 @@
     "v-calendar": "^3.0.0-alpha.5",
     "vite-svg-loader": "^1.5.1",
     "vue": "^3.0.5",
-    "vue-router": "^4.0.0-0"
+    "vue-router": "^4.0.0-0",
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@4tw/cypress-drag-drop": "^1.8.0",

@@ -1,3 +1,4 @@
+import List from "@/typings/list";
 import axios from "axios";
 import { useRoute } from 'vue-router';
 
@@ -11,12 +12,15 @@ export const getBoardDetail =  async function(this: any, id: string) {
   this.board = board.data;
 
   const lists = await axios.get(`/api/lists?boardId=${id}`);
+  lists.data.sort((a: List, b: List) => {
+    return a.order - b.order;
+  });
   this.lists = lists.data;
 
   // if there are no lists, don’t fetch cards
   if (lists.data.length) {
-    const cards = await axios.get(`/api/cards?boardId=${id}`);
-    this.cards = cards.data;
+    const { data } = await axios.get(`/api/cards?boardId=${id}`);
+    this.cards = data;
   }
 
   const qs: any = route.query?.card

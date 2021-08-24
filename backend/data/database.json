@@ -3,33 +3,33 @@
     {
       "name": "new board",
       "user": 0,
-      "id": 52848452560,
+      "id": 54767374336,
       "starred": false,
       "created": "2021-08-24"
     }
   ],
-  "cards": [
-    {
-      "name": "new card",
-      "boardId": 52848452560,
-      "listId": 48719725284,
-      "id": 75960961485,
-      "created": "2021-08-24",
-      "deadline": "2021-08-27"
-    }
-  ],
+  "cards": [],
   "users": [],
   "lists": [
     {
-      "boardId": 52848452560,
-      "name": "new list",
-      "id": 48719725284,
+      "name": "two",
+      "boardId": 54767374336,
+      "order": 1,
+      "id": 73580269728,
       "created": "2021-08-24"
     },
     {
-      "name": "other list",
-      "boardId": 52848452560,
-      "id": 84743550947,
+      "name": "two",
+      "boardId": 54767374336,
+      "order": 2,
+      "id": 62806941255,
+      "created": "2021-08-24"
+    },
+    {
+      "name": "one",
+      "boardId": 54767374336,
+      "order": 0,
+      "id": 9319806758,
       "created": "2021-08-24"
     }
   ]

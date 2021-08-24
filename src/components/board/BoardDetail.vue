@@ -60,14 +60,14 @@
           <Star class="place-self-center m-2" />
         </div>
       </div>
-      <div
-        class="inline-block h-full align-top"
-        v-for="list in state.lists"
-        :key="list.id"
-      >
-        <ListItem :list="list" />
-      </div>
-      <div class="inline-block h-full">
+      <draggable animation="150" group="lists" v-model="state.lists" item-key="order" class="inline-block" @end="sortList">
+        <template #item="{element}">
+          <div class="inline-block h-full align-top">
+            <ListItem :list="element"/>  
+          </div>
+        </template>
+      </draggable>
+      <div class="inline-block h-full align-top">
         <ListCreate :board="state.board.id" />
       </div>
     </div>
@@ -82,6 +82,9 @@ import ListItem from '@/components/list/ListItem.vue';
 import ListCreate from '@/components/list/ListCreate.vue';
 import Loading from '@/assets/icons/loading.svg';
 import Star from '@/assets/icons/star.svg';
+import draggable from 'vuedraggable';
+import axios from 'axios';
+import List from '@/typings/list';
 
 export default defineComponent({
   setup() {
@@ -94,17 +97,27 @@ export default defineComponent({
     ListItem,
     ListCreate,
     Loading,
-    Star
+    Star,
+    draggable
   },
   data() {
     return {
-      inputActive: false
+      inputActive: false,
+      drag: false
     };
   },
   methods: {
     onClickAway() {
       this.inputActive = false;
-    }
+    },
+    sortList() {
+
+      this.state.lists.forEach((list: List, index) => {
+
+        this.state.patchList(list, { order: index })
+        
+      });
+    },
   }
 });
 </script>

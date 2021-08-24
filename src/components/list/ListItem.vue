@@ -1,18 +1,17 @@
 <template>
   <div
-    class="bg-gray2 relative w-list p-1.5 rounded ml-3 shadow-md mb-8"
+    class="bg-gray2 relative w-list p-1.5 rounded ml-3 shadow-md mb-32"
     data-cy="list"
   >
     <div class="flex mb-1">
       <input
-        class="text-gray-900 text-sm px-1 py-0.5 flex-grow inline-block font-semibold border-2 border-transparent outline-none focus:border-blue6 rounded-sm cursor-pointer h-8"
-        :class="[inputActive ? 'bg-gray1' : 'bg-gray2']"
+        class="text-gray-900 text-sm px-1 py-0.5 flex-grow inline-block font-semibold border-2 border-transparent outline-none focus:border-blue6 rounded-sm cursor-pointer h-8 bg-gray2 focus:bg-gray1"
         data-cy="list-name"
         @focus="
           $event.target.select();
           inputActive = true;
         "
-        @change="renameList(list)"
+        @change="state.patchList(list, {name: list.name})"
         @keyup.enter="
           $event.target.blur();
           inputActive = false;
@@ -21,6 +20,7 @@
           $event.target.blur();
           inputActive = false;
         "
+        @blur="inputActive = false;"
         v-model="list.name"
         v-click-away="onClickAway"
       />
@@ -63,8 +63,7 @@ export default defineComponent({
   },
   setup() {
     const state = store();
-    const renameList = state.renameList;
-    return { state, renameList };
+    return { state };
   },
   data() {
     return {

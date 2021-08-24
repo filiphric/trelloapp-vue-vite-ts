@@ -3,6 +3,8 @@ import { getBoardDetail } from "./actions/getBoardDetail";
 import { patchCard } from "./actions/patchCard";
 import { uploadFile } from "./actions/uploadFile";
 import { deleteCard } from "./actions/deleteCard";
+import { deleteList } from "./actions/deleteList";
+import { patchList } from "./actions/patchList";
 import axios from "axios";
 import Board from "@/typings/board";
 import List from "@/typings/list";
@@ -33,6 +35,10 @@ export const store = defineStore({
     // board actions
     getBoardDetail,
 
+    // list actions
+    deleteList,
+    patchList,
+
     // card actions
     patchCard,
     deleteCard,
@@ -54,21 +60,9 @@ export const store = defineStore({
     async createList(boardId: Board, name: string) {
       const { data } = await axios.post(
         `/api/lists`,
-        { name, boardId }
+        { name, boardId, order: this.lists.length }
       );
       this.lists.push(data);
-    },
-    async deleteList(listId: List['id']) {
-      await axios.delete(
-        `/api/lists/${listId}`
-      );
-      this.lists = this.lists.filter(item => item.id !== listId)
-    },
-    async renameList(list: List) {
-      const { id, name } = list
-      await axios.patch(`/api/lists/${id}`, {
-        name
-      });
     },
     async createCard(card: Card) {
       const { data } = await axios.post(
