@@ -57,7 +57,7 @@ describe('lists', () => {
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
     cy.get('[data-cy=options]').click();
     cy.get('[data-cy=dropdown]').should('be.visible');
-    cy.get('[data-cy=board-detail]').click();
+    cy.get('[data-cy=board-detail]').click('bottomRight');
     cy.get('[data-cy=dropdown]').should('not.exist');
     cy.get('[data-cy=options]').click();
     cy.get('[data-cy="delete-list"]').click();

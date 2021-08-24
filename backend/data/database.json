@@ -3,34 +3,74 @@
     {
       "name": "new board",
       "user": 0,
-      "id": 54767374336,
+      "id": 63665185373,
       "starred": false,
-      "created": "2021-08-24"
+      "created": "2021-08-25"
     }
   ],
-  "cards": [],
+  "cards": [
+    {
+      "order": 0,
+      "boardId": 63665185373,
+      "listId": 1246954690,
+      "name": "one",
+      "id": 28983262834,
+      "created": "2021-08-25",
+      "deadline": "2021-08-28",
+      "description": "",
+      "completed": false
+    },
+    {
+      "order": 1,
+      "boardId": 63665185373,
+      "listId": 1246954690,
+      "name": "two",
+      "id": 14419957700,
+      "created": "2021-08-25",
+      "deadline": "2021-08-28",
+      "description": "",
+      "completed": false
+    },
+    {
+      "order": 0,
+      "boardId": 63665185373,
+      "listId": 34235116144,
+      "name": "one",
+      "id": 84613144989,
+      "created": "2021-08-25",
+      "deadline": "2021-08-28",
+      "description": "",
+      "completed": false
+    },
+    {
+      "order": 1,
+      "boardId": 63665185373,
+      "listId": 34235116144,
+      "name": "two",
+      "id": 60581598480,
+      "created": "2021-08-25",
+      "deadline": "2021-08-28",
+      "description": "",
+      "completed": false
+    }
+  ],
   "users": [],
   "lists": [
     {
-      "name": "two",
-      "boardId": 54767374336,
-      "order": 1,
-      "id": 73580269728,
-      "created": "2021-08-24"
-    },
-    {
-      "name": "two",
-      "boardId": 54767374336,
-      "order": 2,
-      "id": 62806941255,
-      "created": "2021-08-24"
-    },
-    {
-      "name": "one",
-      "boardId": 54767374336,
+      "name": "new list",
+      "boardId": 63665185373,
       "order": 0,
-      "id": 9319806758,
-      "created": "2021-08-24"
+      "id": 1246954690,
+      "created": "2021-08-25",
+      "cards": []
+    },
+    {
+      "name": "list 2",
+      "boardId": 63665185373,
+      "order": 1,
+      "id": 34235116144,
+      "created": "2021-08-25",
+      "cards": []
     }
   ]
 }

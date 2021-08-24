@@ -26,7 +26,7 @@ describe('creating a card', () => {
     cy.get('[data-cy=new-list-input]').should('be.visible').should('be.focused');
     cy.get('[data-cy=new-list-input]').type('new card{enter}');
     cy.wait('@createCard').its('request.body.name').should('eq', 'new card')
-    cy.get('[data-cy=card').should('be.visible');
+    cy.get('[data-cy=card]').should('be.visible');
   });
 
   it('cancels creating a card', () => {
@@ -36,7 +36,7 @@ describe('creating a card', () => {
     cy.get('[data-cy=new-card]').click();
     cy.get('[data-cy=new-list-input]').type('new card{esc}');
     cy.get('[data-cy=new-list-input]').should('not.exist');
-    cy.get('[data-cy=card').should('not.exist');
+    cy.get('[data-cy=card]').should('not.exist');
     // click away
     cy.get('[data-cy=new-card]').click();
     cy.get('[data-cy=board-detail]').click();

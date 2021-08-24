@@ -24,7 +24,7 @@ export default {
   setup(props) {
     const state = store()
     function onDrop(acceptFiles) {
-    state.uploadFile(acceptFiles, props.card.id)
+    state.uploadFile(acceptFiles, props.card)
   }
 
     const { getRootProps, getInputProps, ...rest } = useDropzone({ onDrop })

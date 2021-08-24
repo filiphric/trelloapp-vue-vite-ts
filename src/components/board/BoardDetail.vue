@@ -83,7 +83,6 @@ import ListCreate from '@/components/list/ListCreate.vue';
 import Loading from '@/assets/icons/loading.svg';
 import Star from '@/assets/icons/star.svg';
 import draggable from 'vuedraggable';
-import axios from 'axios';
 import List from '@/typings/list';
 
 export default defineComponent({

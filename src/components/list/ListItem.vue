@@ -7,7 +7,7 @@
       <input
         class="text-gray-900 text-sm px-1 py-0.5 flex-grow inline-block font-semibold border-2 border-transparent outline-none focus:border-blue6 rounded-sm cursor-pointer h-8 bg-gray2 focus:bg-gray1"
         data-cy="list-name"
-        @focus="
+        @mouseup="
           $event.target.select();
           inputActive = true;
         "
@@ -27,13 +27,13 @@
       <Dropdown @toggleInput="showCardCreate" :list="list" />
     </div>
     <div>
-      <CardItem
-        v-for="card in state.cards.filter(
-          item => item.listId === list.id
-        )"
-        :key="card.id"
-        :card="card"
-      />
+      <draggable :list="list.cards" animation="150" group="cards" >
+        <template #item="{element}">
+          <CardItem 
+            :card="element"
+          />
+        </template>
+      </draggable>
       <div
         v-if="!cardCreate"
         @click="showCardCreate(true)"
@@ -54,21 +54,30 @@ import Plus from '@/assets/icons/plus.svg';
 import CardItem from '@/components/card/CardItem.vue';
 import CardCreateInput from '@/components/card/CardCreateInput.vue';
 import Dropdown from '@/components/list/Dropdown.vue';
+import draggable from 'vuedraggable';
 export default defineComponent({
   components: {
     CardItem,
     CardCreateInput,
     Dropdown,
-    Plus
+    Plus,
+    draggable
   },
-  setup() {
+  setup(props) {
     const state = store();
+    // const currentList = reactive(state)
+    // const cardList = computed(() => currentList.cards.filter((card: Card) => card.listId === props.list.id))
+    // cardList.value.sort((a: Card, b: Card) => {
+    //   return a.order - b.order;
+    // });
+
     return { state };
   },
   data() {
     return {
       inputActive: false,
-      cardCreate: false
+      cardCreate: false,
+      drag: false
     };
   },
   methods: {

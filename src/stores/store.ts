@@ -5,9 +5,9 @@ import { uploadFile } from "./actions/uploadFile";
 import { deleteCard } from "./actions/deleteCard";
 import { deleteList } from "./actions/deleteList";
 import { patchList } from "./actions/patchList";
+import { createCard } from "./actions/createCard";
 import axios from "axios";
 import Board from "@/typings/board";
-import List from "@/typings/list";
 import Card from "@/typings/card";
 import router from '@/router'
 
@@ -17,7 +17,6 @@ export const store = defineStore({
     return {
       board: {},
       lists: [],
-      cards: [],
       loading: true,
       cardModule: false,
       activeCard: {},
@@ -26,6 +25,7 @@ export const store = defineStore({
         show: false,
         message: ""
       },
+      activeLists: {},
       boardList: {
         all: []
       }
@@ -40,6 +40,7 @@ export const store = defineStore({
     patchList,
 
     // card actions
+    createCard,
     patchCard,
     deleteCard,
     uploadFile,
@@ -63,12 +64,6 @@ export const store = defineStore({
         { name, boardId, order: this.lists.length }
       );
       this.lists.push(data);
-    },
-    async createCard(card: Card) {
-      const { data } = await axios.post(
-        `/api/cards`, card 
-      );
-      this.cards.push(data);
     },
     async showCardModule(cardId: Card['id'], flag: boolean) {
       if (flag) {
@@ -99,11 +94,11 @@ export const store = defineStore({
         this.notification.show = false;
       }, 4000);
     },
-    
   },
   getters: {
-    starred: state => {
+    starred: (state) => {
       return state.boardList.all.filter((board: Board) => board.starred === true);
-    }
+    },
+
   }
 });

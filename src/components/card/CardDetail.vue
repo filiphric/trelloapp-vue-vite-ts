@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-backdrop flex justify-center items-center fixed top-0 left-0 h-full w-full z-40" data-cy="card-detail-backdrop" @click.self="showCardModule(state.activeCard.id, false)">
+  <div class="bg-backdrop flex justify-center items-center fixed top-0 left-0 h-full w-full z-40" data-cy="card-detail-backdrop" @click.self="state.showCardModule(state.activeCard.id, false)">
     <div class="bg-gray2 w-cardDetail h-5/6 p-8 grid grid-cols-8 gap-x-2 overflow-scroll" data-cy="card-detail">
       <div class="col-span-6 text-gray-800">
         <div class="ml-9 mb-4">
@@ -69,11 +69,11 @@
       </div>
       <div class="col-span-2 grid content-start gap-y-2">
         <div class="self-end cursor-pointer place-self-end hover:bg-gray5 w-8 h-8 grid place-content-center">
-          <Cross class="w-6 h-6 fill-current text-gray-600" @click="showCardModule(state.activeCard.id, false)"/>
+          <Cross class="w-6 h-6 fill-current text-gray-600" @click="state.showCardModule(state.activeCard.id, false)"/>
         </div>
         <div class="bg-gray3 px-2 py-0.5 text-sm rounded-sm text-gray-600 cursor-pointer hover:bg-gray5" data-cy="calendar-button" @click="showDate = true"><Clock class="w-4 inline-block mr-2 mb-0.5"/>Due date</div>
         <div class="bg-gray3 px-2 py-0.5 text-sm rounded-sm text-gray-600 cursor-pointer hover:bg-gray5" data-cy="copy-properties" @click="copyProperties(state.activeCard)"><Copy class="w-4 inline-block mr-2 mb-0.5"/>Copy attributes</div>
-        <div class="bg-gray3 px-2 py-0.5 text-sm rounded-sm text-gray-600 cursor-pointer hover:bg-gray5" data-cy="card-delete" @click="state.deleteCard(state.activeCard.id)"><Trash class="w-4 inline-block mr-2 mb-0.5"/>Delete card</div>
+        <div class="bg-gray3 px-2 py-0.5 text-sm rounded-sm text-gray-600 cursor-pointer hover:bg-gray5" data-cy="card-delete" @click="state.deleteCard(state.activeCard)"><Trash class="w-4 inline-block mr-2 mb-0.5"/>Delete card</div>
       </div>
     </div>
   </div>
@@ -98,9 +98,8 @@ import { DatePicker } from 'v-calendar';
 export default defineComponent({
   setup() {
     const state = store();
-    const showCardModule = state.showCardModule;
     const cardListName = state.lists.find((c: Card) => c.id === state.activeCard.listId)!['name'];
-    return { state, showCardModule, cardListName };
+    return { state, cardListName };
   },
   methods: {
     clickAwayDate() {

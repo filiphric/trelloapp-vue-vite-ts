@@ -10,6 +10,7 @@ interface Card {
   created: Moment | string;
   deadline: Moment | string;
   completed: boolean;
+  order: number;
 }
 
 export default Card;

@@ -64,18 +64,12 @@ export default defineComponent({
       if (!this.cardTitle) {
         return;
       }
-      const data: Card = {
+            
+      this.createCard({
         boardId: this.state.board.id,
         listId: this.list.id,
         name: this.cardTitle,
-        description: '',
-        created: moment().format('YYYY-MM-DD'),
-        deadline: moment()
-          .add(3, 'days')
-          .format('YYYY-MM-DD'),
-        completed: false
-      };
-      this.createCard(data);
+      });
       this.cardTitle = '';
     }
   }
