@@ -3,19 +3,28 @@
     {
       "name": "new board",
       "user": 0,
-      "id": 19990926813,
+      "id": 54808681485,
       "starred": false,
-      "created": "2021-08-22"
+      "created": "2021-08-24"
     }
   ],
-  "cards": [],
+  "cards": [
+    {
+      "name": "new card",
+      "boardId": 54808681485,
+      "listId": 35120971147,
+      "id": 74035697576,
+      "created": "2021-08-24",
+      "deadline": "2021-08-29"
+    }
+  ],
   "users": [],
   "lists": [
     {
-      "name": "fgwedfgaagfd",
-      "boardId": 19990926813,
-      "id": 75923472129,
-      "created": "2021-08-22"
+      "boardId": 54808681485,
+      "name": "new list",
+      "id": 35120971147,
+      "created": "2021-08-24"
     }
   ]
 }

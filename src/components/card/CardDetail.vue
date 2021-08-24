@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-backdrop flex justify-center items-center fixed top-0 left-0 h-full w-full z-40" @click.self="showCardModule(state.activeCard.id, false)">
-    <div class="bg-gray2 w-cardDetail h-5/6 p-8 grid grid-cols-8 gap-x-2 overflow-scroll">
+  <div class="bg-backdrop flex justify-center items-center fixed top-0 left-0 h-full w-full z-40" data-cy="card-detail-backdrop" @click.self="showCardModule(state.activeCard.id, false)">
+    <div class="bg-gray2 w-cardDetail h-5/6 p-8 grid grid-cols-8 gap-x-2 overflow-scroll" data-cy="card-detail">
       <div class="col-span-6 text-gray-800">
         <div class="ml-9 mb-4">
           <div class="inline-block">
@@ -26,7 +26,7 @@
                 inputActive = false;
               "
               v-model="state.activeCard.name"
-              v-click-away="onClickAway"
+              v-click-away="clickAwayCardName"
               data-cy="card-title"
             />
           <h2 class="text-sm text-gray10">in list <span class="underline">{{ cardListName }}</span></h2>
@@ -37,10 +37,12 @@
             <Checkbox :card="state.activeCard" />
             <h2 class="inline-block px-4 py-1 rounded-sm font-light text-gray-800 bg-gray3 hover:bg-gray5 cursor-default">{{ new Date(state.activeCard.deadline).toDateString() }}
               <div v-show="state.activeCard.completed" class="text-sm bg-green5 inline-block text-white px-2 mx-1 rounded-sm">COMPLETED</div>
-                <Downarrow class="stroke-current fill-current text-gray-800 w-5 py-2 pl-2 inline-block cursor-pointer" @click="showDate = true"/>
+                <button data-cy="calendar-dropdown" @click="showDate = true" >
+                  <Downarrow class="stroke-current fill-current text-gray-800 w-5 py-2 pl-2 inline-block cursor-pointer" />
+                </button>
             </h2>
             <div v-if="showDate" class="w-full absolute">
-              <DatePicker v-click-away="onClickAway" class="shadow-lg" data-cy="card-deadline" v-model="state.activeCard.deadline" @dayclick="state.patchCard(state.activeCard, { deadline: state.activeCard.deadline }); showDate = false" />
+              <DatePicker v-click-away="clickAwayDate" :model-config="modelConfig" class="shadow-lg" data-cy="card-deadline" v-model="state.activeCard.deadline" @dayclick="state.patchCard(state.activeCard, { deadline: state.activeCard.deadline }); showDate = false" />
             </div>
           </div>
         </div>
@@ -56,10 +58,10 @@
             <Attachment class="stroke-current fill-current text-gray-800 -ml-8 -mb-1 w-5 h-5" />
           </div>
           <h1 class="text-lg font-semibold mb-4 text-black inline-block">Attachment</h1>
-          <div v-if="state.activeCard.image" class="grid grid-cols-6 gap-x-4">
+          <div v-if="state.activeCard.image" class="grid grid-cols-6 gap-x-4" data-cy="image-attachment">
             <div class="col-span-2 row-span-2"><img :src="'/backend' + state.activeCard.image"></div>
             <div class="font-bold col-span-4">{{ state.activeCard.image.replace(`/data/uploaded/${state.activeCard.id}_`, '') }}
-              <div class="block underline cursor-pointer font-normal" @click="state.patchCard(state.activeCard, { image: null })"><Cross class="inline-block w-4 mb-1"/>Delete</div>
+              <div class="block underline cursor-pointer font-normal" data-cy="image-delete" @click="state.patchCard(state.activeCard, { image: null })"><Cross class="inline-block w-4 mb-1"/>Delete</div>
             </div>
           </div>
           <Dropzone :card="state.activeCard" v-else/>
@@ -69,9 +71,9 @@
         <div class="self-end cursor-pointer place-self-end hover:bg-gray5 w-8 h-8 grid place-content-center">
           <Cross class="w-6 h-6 fill-current text-gray-600" @click="showCardModule(state.activeCard.id, false)"/>
         </div>
-        <div class="bg-gray3 px-2 py-0.5 text-sm rounded-sm text-gray-600 cursor-pointer hover:bg-gray5" @click="showDate = true"><Clock class="w-4 inline-block mr-2 mb-0.5"/>Due date</div>
-        <div class="bg-gray3 px-2 py-0.5 text-sm rounded-sm text-gray-600 cursor-pointer hover:bg-gray5" @click="copyProperties(state.activeCard)"><Copy class="w-4 inline-block mr-2 mb-0.5"/>Copy attributes</div>
-        <div class="bg-gray3 px-2 py-0.5 text-sm rounded-sm text-gray-600 cursor-pointer hover:bg-gray5" @click="state.deleteCard(state.activeCard.id)"><Trash class="w-4 inline-block mr-2 mb-0.5"/>Delete card</div>
+        <div class="bg-gray3 px-2 py-0.5 text-sm rounded-sm text-gray-600 cursor-pointer hover:bg-gray5" data-cy="calendar-button" @click="showDate = true"><Clock class="w-4 inline-block mr-2 mb-0.5"/>Due date</div>
+        <div class="bg-gray3 px-2 py-0.5 text-sm rounded-sm text-gray-600 cursor-pointer hover:bg-gray5" data-cy="copy-properties" @click="copyProperties(state.activeCard)"><Copy class="w-4 inline-block mr-2 mb-0.5"/>Copy attributes</div>
+        <div class="bg-gray3 px-2 py-0.5 text-sm rounded-sm text-gray-600 cursor-pointer hover:bg-gray5" data-cy="card-delete" @click="state.deleteCard(state.activeCard.id)"><Trash class="w-4 inline-block mr-2 mb-0.5"/>Delete card</div>
       </div>
     </div>
   </div>
@@ -101,34 +103,15 @@ export default defineComponent({
     return { state, showCardModule, cardListName };
   },
   methods: {
-    onClickAway() {
+    clickAwayDate() {
       this.showDate = false;
     },
-    copyProperties(content)  {
+    clickAwayCardName() {
+      this.inputActive = false;
+    },
+    copyProperties(content: Card)  {
       const clipBoardValue = JSON.stringify(content, null, 2);
       const clipboard = window.navigator.clipboard;
-      /*
-        * fallback to older browsers (including Safari)
-        * if clipboard API not supported
-        */
-      if (!clipboard || typeof clipboard.writeText !== 'function') {
-        const textarea = document.createElement('textarea');
-        textarea.value = clipBoardValue;
-        textarea.setAttribute('readonly', true);
-        textarea.setAttribute('contenteditable', true);
-        textarea.style.position = 'absolute';
-        textarea.style.left = '-9999px';
-        document.body.appendChild(textarea);
-        textarea.select();
-        const range = document.createRange();
-        const sel = window.getSelection();
-        sel.removeAllRanges();
-        sel.addRange(range);
-        textarea.setSelectionRange(0, textarea.value.length);
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
-        return Promise.resolve(true);
-      }
       this.state.showNotification('Card info copied to clipboard', false)
       return clipboard.writeText(clipBoardValue);
     },
@@ -136,7 +119,11 @@ export default defineComponent({
   data() {
     return {
       showDate: false,
-      inputActive: false
+      inputActive: false,
+      modelConfig: {
+        type: 'string',
+        mask: 'YYYY-MM-DD',
+      },
     }
   },
   components: {

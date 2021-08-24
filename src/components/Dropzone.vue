@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-32 border-dashed border-4 border-gray-400 flex cursor-pointer" :class="isDragActive && 'border-gray-800'">
+  <div class="w-full h-32 border-dashed border-4 border-gray-400 flex cursor-pointer" data-cy="upload-image" :class="isDragActive && 'border-gray-800'">
     <div v-bind="getRootProps()" class="w-full h-full">
       <input v-bind="getInputProps()" >
       <div class="flex justify-center items-center w-full min-h-full h-32">

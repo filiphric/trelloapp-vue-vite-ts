@@ -58,4 +58,12 @@ describe('creating a card', () => {
     cy.get('[data-cy=card]').realHover();
     cy.get('[data-cy="card-edit"]').should('be.visible');
   });
+
+  it('complete card', () => {
+    cy.intercept('PATCH', '/api/cards/*').as('patchCard')
+    cy.addListApi({name: 'new list'}).addCardApi({name: 'new card'});
+    cy.visit(`/board/${Cypress.env('boards')[0].id}`);
+    cy.get('[data-cy="card-checkbox"]').check();
+    cy.wait('@patchCard').its('request.body.completed').should('be.true')
+  });
 });

@@ -54,9 +54,9 @@ describe('creating board', () => {
     cy.visit('/');
     cy.get('[data-cy="create-board"]').click();
     cy.get('[data-cy="new-board-input"]').type('new{enter}');
-    cy.get('[data-cy="error-message"]').should('be.visible');
+    cy.get('[data-cy="notification-message"]').should('be.visible');
     cy.tick(4000);
-    cy.get('[data-cy="error-message"]').should('not.exist');
+    cy.get('[data-cy="notification-message"]').should('not.exist');
     cy.location('href').should('eq', `${Cypress.config('baseUrl')}/`)
     cy.get('[data-cy="board-item"]').should('not.exist')
     cy.get('[data-cy="new-board-input"]').should('be.visible');

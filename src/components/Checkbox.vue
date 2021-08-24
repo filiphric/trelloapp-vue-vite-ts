@@ -1,6 +1,6 @@
 <template>
   <div class="container w-5 h-5 relative inline-block">
-    <input type="checkbox" v-model="card.completed" @click.stop="state.patchCard(card, { completed: !card.completed })" class="checked:bg-blue5 checkmark">
+    <input type="checkbox" data-cy="card-checkbox" v-model="card.completed" @click.stop="state.patchCard(card, { completed: !card.completed })" class="checked:bg-blue5 checkmark">
   </div>
 </template>
 

@@ -2,7 +2,7 @@
   <div
     v-if="state.notification.show"
     class="h-14 min-w-min text-base shadow-xl absolute bottom-5 left-5 rounded-sm z-50 bg-white"
-    data-cy="error-message"
+    data-cy="notification-message"
   >
       <Error class="text-red-500 fill-current inline-block ml-4" v-if="state.notification.error" />
       <Info class="text-blue-500 fill-current inline-block ml-4 w-4 h-4" v-else />
