@@ -88,7 +88,6 @@ module.exports = (req, res, next) => {
     // data generation
     req.body.id = randomId();
     req.body.created = moment().format('YYYY-MM-DD');
-    req.body.cards = []
 
     // stream message
     socket.emit('listCreated', req.body.boardId, req.body);

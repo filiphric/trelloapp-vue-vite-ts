@@ -23,6 +23,10 @@ export const getBoardDetail =  async function(this: any, id: string) {
 
     axios.get(`/api/cards?listId=${list.id}`)
     .then( ({data}) => {
+      data.sort((a: Card, b: Card) => {
+        return a.order - b.order;
+      });
+      this.lists[index].cards = []
       this.lists[index].cards.push(...data)
     })
 

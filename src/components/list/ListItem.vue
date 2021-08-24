@@ -11,7 +11,7 @@
           $event.target.select();
           inputActive = true;
         "
-        @change="state.patchList(list, {name: list.name})"
+        @change="state.patchList(list, { name: list.name })"
         @keyup.enter="
           $event.target.blur();
           inputActive = false;
@@ -27,7 +27,7 @@
       <Dropdown @toggleInput="showCardCreate" :list="list" />
     </div>
     <div>
-      <draggable :list="list.cards" animation="150" group="cards" >
+      <draggable :list="list.cards" animation="150" group="cards" @change="sortTask" >
         <template #item="{element}">
           <CardItem 
             :card="element"
@@ -55,6 +55,8 @@ import CardItem from '@/components/card/CardItem.vue';
 import CardCreateInput from '@/components/card/CardCreateInput.vue';
 import Dropdown from '@/components/list/Dropdown.vue';
 import draggable from 'vuedraggable';
+import Card from '@/typings/card';
+import List from '@/typings/list';
 export default defineComponent({
   components: {
     CardItem,
@@ -63,14 +65,8 @@ export default defineComponent({
     Plus,
     draggable
   },
-  setup(props) {
+  setup() {
     const state = store();
-    // const currentList = reactive(state)
-    // const cardList = computed(() => currentList.cards.filter((card: Card) => card.listId === props.list.id))
-    // cardList.value.sort((a: Card, b: Card) => {
-    //   return a.order - b.order;
-    // });
-
     return { state };
   },
   data() {
@@ -86,7 +82,13 @@ export default defineComponent({
     },
     showCardCreate(flag: boolean) {
       this.cardCreate = flag;
-    }
+    },
+    sortTask() {
+      const listIndex = this.state.lists.findIndex( (l: List) => l.id === this.list.id )
+      this.state.lists[listIndex].cards.forEach((card: Card, order: number) => {
+        this.state.patchCard(card, { order, listId: this.list.id })
+      })
+    },
   },
   props: ['list']
 });

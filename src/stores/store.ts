@@ -58,11 +58,12 @@ export const store = defineStore({
       );
       this.board = patchedBoard.data;
     },
-    async createList(boardId: Board, name: string) {
+    async createList(boardId: Board['id'], name: string) {
       const { data } = await axios.post(
         `/api/lists`,
         { name, boardId, order: this.lists.length }
       );
+      data.cards = [];
       this.lists.push(data);
     },
     async showCardModule(cardId: Card['id'], flag: boolean) {
