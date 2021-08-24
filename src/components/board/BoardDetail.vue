@@ -1,7 +1,9 @@
 <template>
-  <div class="bg-blue6 h-screen grid">
-    <div class="loading place-self-center" v-if="state.loading">
-      <Loading class="inline-block"/>&nbsp;&nbsp;Loading data ...
+  <div class="bg-blue6 grid">
+    <div class="loading h-screen grid content-center justify-center" v-if="state.loading">
+      <div class="">
+        <Loading class="inline-block"/>&nbsp;&nbsp;Loading data ...
+      </div> 
     </div>
     <div
       v-else

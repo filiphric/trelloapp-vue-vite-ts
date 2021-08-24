@@ -47,7 +47,7 @@ describe('card detail', () => {
 
   })
 
-  it.only('changes card date', () => {
+  it('changes card date', () => {
 
     cy.intercept('PATCH', '/api/cards/*').as('updateCard')
     cy.visit(`/board/${Cypress.env('boards')[0].id}?card=${Cypress.env('cards')[0].id}`);

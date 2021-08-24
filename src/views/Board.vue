@@ -1,7 +1,9 @@
 <template>
-  <CardDetail v-if="state.cardModule" />
-  <Navbar />
-  <BoardDetail />
+  <div class="h-screen bg-blue6">
+    <CardDetail v-if="state.cardModule" />
+    <Navbar />
+    <BoardDetail />
+  </div>
 </template>
 
 <script lang="ts">

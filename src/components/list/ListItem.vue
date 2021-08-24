@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-gray2 relative w-list p-1.5 rounded ml-3 shadow-md"
+    class="bg-gray2 relative w-list p-1.5 rounded ml-3 shadow-md mb-8"
     data-cy="list"
   >
     <div class="flex mb-1">
