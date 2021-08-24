@@ -37,6 +37,7 @@
             <Checkbox :card="state.activeCard" />
             <h2 class="inline-block px-4 py-1 rounded-sm font-light text-gray-800 bg-gray3 hover:bg-gray5 cursor-default">{{ new Date(state.activeCard.deadline).toDateString() }}
               <div v-show="state.activeCard.completed" class="text-sm bg-green5 inline-block text-white px-2 mx-1 rounded-sm">COMPLETED</div>
+              <div v-show="overdue(state.activeCard) && !state.activeCard.completed" class="text-sm bg-red-500 inline-block text-white px-2 mx-1 rounded-sm">OVERDUE</div>
                 <button data-cy="calendar-dropdown" @click="showDate = true" >
                   <Downarrow class="stroke-current fill-current text-gray-800 w-5 py-2 pl-2 inline-block cursor-pointer" />
                 </button>
@@ -94,6 +95,7 @@ import Checkbox from '@/components/Checkbox.vue'
 import Card from '@/typings/card';
 import Dropzone from '../Dropzone.vue';
 import { DatePicker } from 'v-calendar';
+import moment from 'moment';
 
 export default defineComponent({
   setup() {
@@ -114,6 +116,9 @@ export default defineComponent({
       this.state.showNotification('Card info copied to clipboard', false)
       return clipboard.writeText(clipBoardValue);
     },
+    overdue: (card: Card) => {
+      return card.deadline && moment(card.deadline).diff(moment().startOf('day'), 'days') < 1
+  }
   },
   data() {
     return {

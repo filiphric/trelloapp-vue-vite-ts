@@ -27,7 +27,7 @@
       <Dropdown @toggleInput="showCardCreate" :list="list" />
     </div>
     <div>
-      <draggable :list="list.cards" animation="150" group="cards" @change="sortTask" >
+      <draggable :list="list.cards" animation="150" group="cards" @change="sortCards" >
         <template #item="{element}">
           <CardItem 
             :card="element"
@@ -83,7 +83,7 @@ export default defineComponent({
     showCardCreate(flag: boolean) {
       this.cardCreate = flag;
     },
-    sortTask() {
+    sortCards() {
       const listIndex = this.state.lists.findIndex( (l: List) => l.id === this.list.id )
       this.state.lists[listIndex].cards.forEach((card: Card, order: number) => {
         this.state.patchCard(card, { order, listId: this.list.id })

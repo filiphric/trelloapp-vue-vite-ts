@@ -16,7 +16,7 @@
       class="pen absolute right-2 top-2 hidden p-1 w-5 h-5 text-gray-700 bg-gray1 bg-opacity-60"
     />
   </div>
-  <div class="date max-w-min text-xs py-1 px-1 rounded-sm mt-1" :class="card.completed ? 'bg-green5 text-white' : 'text-gray9'">
+  <div class="date max-w-min text-xs py-1 px-1.5 rounded-sm mt-1" :class="card.completed ? 'bg-green5 text-white' : overdue(card) ? 'overdue' : 'text-gray9'">
     <Clock class="clock w-3 h-3 fill-current inline-block" />
     <span class="ml-2">{{ new Date(card.deadline).toDateString().substring(4) }}</span>
   </div>
@@ -29,6 +29,8 @@ import Pen from '@/assets/icons/pen.svg';
 import Clock from '@/assets/icons/clock.svg';
 import { store } from '@/stores/store';
 import Checkbox from '@/components/Checkbox.vue'
+import moment from 'moment';
+import Card from '@/typings/card';
 
 export default defineComponent({
   props: ['card'],
@@ -41,12 +43,21 @@ export default defineComponent({
     Clock,
     Checkbox
   },
+  methods: {
+    overdue: (card: Card) => {
+      return card.deadline && moment(card.deadline).diff(moment().startOf('day'), 'days') < 1
+    }
+  }
 });
 </script>
 
 <style lang="postcss" scoped>
 .card:hover .pen {
   display: inline-block;
+}
+
+.overdue {
+  @apply bg-red-500 text-white
 }
 
 </style>
