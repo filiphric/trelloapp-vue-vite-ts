@@ -18,6 +18,7 @@
     "vite-svg-loader": "^1.5.1",
     "vue": "^3.0.5",
     "vue-router": "^4.0.0-0",
+    "vue3-keypress": "^4.0.1",
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {

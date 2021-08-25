@@ -6,6 +6,11 @@ import { deleteCard } from "./actions/deleteCard";
 import { deleteList } from "./actions/deleteList";
 import { patchList } from "./actions/patchList";
 import { createCard } from "./actions/createCard";
+import { reset } from "./actions/reset";
+import { resetBoards } from "./actions/resetBoards";
+import { resetLists } from "./actions/resetLists";
+import { resetCards } from "./actions/resetCards";
+import { resetUsers } from "./actions/resetUsers";
 import axios from "axios";
 import Board from "@/typings/board";
 import Card from "@/typings/card";
@@ -25,10 +30,10 @@ export const store = defineStore({
         show: false,
         message: ""
       },
-      activeLists: {},
       boardList: {
         all: []
-      }
+      },
+      showTools: false
     };
   },
   actions: {
@@ -44,6 +49,13 @@ export const store = defineStore({
     patchCard,
     deleteCard,
     uploadFile,
+
+    // reset actions
+    reset,
+    resetBoards,
+    resetLists,
+    resetCards,
+    resetUsers,
 
     // to refactor
     async getBoardList() {
