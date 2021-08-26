@@ -5,5 +5,5 @@
   "singleQuote": true,
   "overrides": [],
   "printWidth": 160,
-  "bracketSpacing": false
+  "bracketSpacing": true
 }

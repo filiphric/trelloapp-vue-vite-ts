@@ -16,19 +16,9 @@
       v-if="newBoardInputActive"
       ref="boardCreate"
     />
-    <div
-      class="flex flex-row-reverse items-end justify-items-end"
-      v-if="newBoardInputActive"
-    >
-      <Cross
-        class="w-9 h-9 px-2 mx-1 fill-current text-gray-600 order-last"
-        @click.stop="newBoardInputActive = false"
-      />
-      <SaveButton
-        data-cy="new-board-create"
-        @click.stop="createNewBoard()"
-        buttonText="Create board"
-      />
+    <div class="flex flex-row-reverse items-end justify-items-end" v-if="newBoardInputActive">
+      <Cross class="w-9 h-9 px-2 mx-1 fill-current text-gray-600 order-last" @click.stop="newBoardInputActive = false" />
+      <SaveButton data-cy="new-board-create" @click.stop="createNewBoard()" buttonText="Create board" />
     </div>
   </div>
 </template>

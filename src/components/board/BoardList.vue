@@ -1,24 +1,14 @@
 <template>
   <div class="background bg-white h-screen grid" data-cy="board-list">
-    <div class="loading place-self-center" v-if="state.loading">
-      <Loading class="inline-block"/>&nbsp;&nbsp;Loading data ...
-    </div>
+    <div class="loading place-self-center" v-if="state.loading"><Loading class="inline-block" />&nbsp;&nbsp;Loading data ...</div>
 
     <div v-cloak class="container mx-auto" v-else>
       <!-- STARRED BOARDS -->
-      <h1
-        class="text-3xl py-5 font-semibold inline-block"
-        data-cy="starred-boards"
-        v-if="state.starred.length"
-      >
+      <h1 class="text-3xl py-5 font-semibold inline-block" data-cy="starred-boards" v-if="state.starred.length">
         Starred
       </h1>
       <div class="flex flex-cols-3 gap-8 flex-wrap">
-        <BoardItem
-          v-for="board in state.starred"
-          :key="board.id"
-          :board="board"
-        />
+        <BoardItem v-for="board in state.starred" :key="board.id" :board="board" />
       </div>
 
       <!-- ALL BOARDS -->

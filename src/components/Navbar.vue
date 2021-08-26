@@ -25,8 +25,8 @@ import axios from 'axios';
 export default defineComponent({
   name: 'Navbar',
   setup() {
-    const router = useRouter()
-    const state = store()
+    const router = useRouter();
+    const state = store();
     let parsedCookies = document.cookie.split('; ').reduce((prev, current) => {
       const [name, value] = current.split('=');
       prev[name] = value;
@@ -35,14 +35,14 @@ export default defineComponent({
 
     if (parsedCookies['trello_token']) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${parsedCookies['trello_token']}`;
-      state.user()
+      state.user();
     }
-    return { router, trelloLogo }
+    return { router, trelloLogo };
   },
   components: {
     Home,
     Login
-  },
+  }
 });
 </script>
 

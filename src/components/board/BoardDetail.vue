@@ -1,15 +1,9 @@
 <template>
   <div class="bg-blue6 grid">
     <div class="loading h-screen grid content-center justify-center" v-if="state.loading">
-      <div class="">
-        <Loading class="inline-block"/>&nbsp;&nbsp;Loading data ...
-      </div> 
+      <div class=""><Loading class="inline-block" />&nbsp;&nbsp;Loading data ...</div>
     </div>
-    <div
-      v-else
-      class="overflow-x-auto overflow-y-hidden h-full whitespace-nowrap"
-      data-cy="board-detail"
-    >
+    <div v-else class="overflow-x-auto overflow-y-hidden h-full whitespace-nowrap" data-cy="board-detail">
       <div class="py-2.5">
         <div class="relative inline-block ml-3 mr-0 py-1.5 h-8">
           <div class="invisible font-bold px-3 inline-block">
@@ -17,11 +11,7 @@
           </div>
           <input
             class="absolute outline-none font-bold top-0 bottom-0 right-0 left-0 w-full pl-3 rounded-sm cursor-pointer"
-            :class="[
-              inputActive
-                ? 'bg-gray1 bg-opacity-100 hover:bg-opacity-100 text-black'
-                : 'bg-white bg-opacity-20 hover:bg-opacity-30 text-white'
-            ]"
+            :class="[inputActive ? 'bg-gray1 bg-opacity-100 hover:bg-opacity-100 text-black' : 'bg-white bg-opacity-20 hover:bg-opacity-30 text-white']"
             @focus="
               $event.target.select();
               inputActive = true;
@@ -51,11 +41,7 @@
             })
           "
           class="relative bg-white bg-opacity-20 hover:bg-opacity-30 self-center rounded-sm ml-2 w-8 h-8 cursor-pointer inline-grid"
-          :class="[
-            state.board.starred
-              ? 'fill-current text-yellow-300'
-              : 'stroke-current text-white'
-          ]"
+          :class="[state.board.starred ? 'fill-current text-yellow-300' : 'stroke-current text-white']"
         >
           <Star class="place-self-center m-2" />
         </div>
@@ -63,7 +49,7 @@
       <draggable animation="150" group="lists" v-model="state.lists" item-key="order" class="inline-block" @end="sortList">
         <template #item="{element}">
           <div class="inline-block h-full align-top">
-            <ListItem :list="element"/>  
+            <ListItem :list="element" />
           </div>
         </template>
       </draggable>
@@ -110,13 +96,10 @@ export default defineComponent({
       this.inputActive = false;
     },
     sortList() {
-
       this.state.lists.forEach((list: List, index) => {
-
-        this.state.patchList(list, { order: index })
-        
+        this.state.patchList(list, { order: index });
       });
-    },
+    }
   }
 });
 </script>

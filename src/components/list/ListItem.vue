@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="bg-gray2 relative w-list p-1.5 rounded ml-3 shadow-md mb-32"
-    data-cy="list"
-  >
+  <div class="bg-gray2 relative w-list p-1.5 rounded ml-3 shadow-md mb-32" data-cy="list">
     <div class="flex mb-1">
       <input
         class="text-gray-900 text-sm px-1 py-0.5 flex-grow inline-block font-semibold border-2 border-transparent outline-none focus:border-blue6 rounded-sm cursor-pointer h-8 bg-gray2 focus:bg-gray1"
@@ -20,18 +17,16 @@
           $event.target.blur();
           inputActive = false;
         "
-        @blur="inputActive = false;"
+        @blur="inputActive = false"
         v-model="list.name"
         v-click-away="onClickAway"
       />
       <Dropdown @toggleInput="showCardCreate" :list="list" />
     </div>
     <div>
-      <draggable :list="list.cards" animation="150" group="cards" @change="sortCards" >
+      <draggable :list="list.cards" animation="150" group="cards" @change="sortCards">
         <template #item="{element}">
-          <CardItem 
-            :card="element"
-          />
+          <CardItem :card="element" />
         </template>
       </draggable>
       <div
@@ -84,11 +79,11 @@ export default defineComponent({
       this.cardCreate = flag;
     },
     sortCards() {
-      const listIndex = this.state.lists.findIndex( (l: List) => l.id === this.list.id )
+      const listIndex = this.state.lists.findIndex((l: List) => l.id === this.list.id);
       this.state.lists[listIndex].cards.forEach((card: Card, order: number) => {
-        this.state.patchCard(card, { order, listId: this.list.id })
-      })
-    },
+        this.state.patchCard(card, { order, listId: this.list.id });
+      });
+    }
   },
   props: ['list']
 });

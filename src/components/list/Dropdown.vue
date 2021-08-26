@@ -7,10 +7,7 @@
     v-click-away="onClickAway"
   >
     <div class="text-gray-600 text-sm h-7 mt-0.5 text-center">List actions</div>
-    <Cross
-      class="w-8 h-8 px-2 text-gray-600 absolute top-1 right-1 cursor-pointer"
-      @click="dropdown = false"
-    />
+    <Cross class="w-8 h-8 px-2 text-gray-600 absolute top-1 right-1 cursor-pointer" @click="dropdown = false" />
     <hr />
     <div class="pt-2">
       <div

@@ -64,11 +64,11 @@ export default defineComponent({
       if (!this.cardTitle) {
         return;
       }
-            
+
       this.createCard({
         boardId: this.state.board.id,
         listId: this.list.id,
-        name: this.cardTitle,
+        name: this.cardTitle
       });
       this.cardTitle = '';
     }

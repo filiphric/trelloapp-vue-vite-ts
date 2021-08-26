@@ -1,9 +1,5 @@
 <template>
-  <div
-    v-if="inputActive"
-    class="bg-gray2 w-list px-1.5 py-1 cursor-pointer grid rounded-sm ml-3 shadow-md"
-    v-click-away="onClickAway"
-  >
+  <div v-if="inputActive" class="bg-gray2 w-list px-1.5 py-1 cursor-pointer grid rounded-sm ml-3 shadow-md" v-click-away="onClickAway">
     <input
       class="w-full h-9 px-2 py-2 text-sm border-2 border-transparent outline-none focus:border-blue6 rounded-sm"
       data-cy="add-list-input"
@@ -34,7 +30,7 @@
     v-else
     @click="enableInput()"
   >
-    <Plus class="w-3 h-3 inline-block" /> {{(!this.state.lists.length) ? 'Add a list' : 'Add another list'}}
+    <Plus class="w-3 h-3 inline-block" /> {{ !this.state.lists.length ? 'Add a list' : 'Add another list' }}
   </div>
 </template>
 
