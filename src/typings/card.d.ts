@@ -1,4 +1,4 @@
-import { Moment } from "moment";
+import { Moment } from 'moment';
 
 interface Card {
   boardId: number;

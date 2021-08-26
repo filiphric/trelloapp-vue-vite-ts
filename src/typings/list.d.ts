@@ -1,4 +1,4 @@
-import Card from "./card";
+import Card from './card';
 
 interface List {
   boardId: number;
@@ -6,7 +6,7 @@ interface List {
   id: number;
   order: number;
   created: string;
-  cards: Card[]
+  cards: Card[];
 }
 
 export default List;
