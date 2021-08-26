@@ -9,5 +9,6 @@ export const resetBoards =  async function(this: any) {
   this.boardList.all = []
   this.cardModule = false
   this.lists = []
+  this.showTools = false
   this.showNotification('All boards were deleted', false)
 }

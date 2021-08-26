@@ -31,7 +31,7 @@ module.exports = (req, res, next) => {
   };
 
   const parseJWT = function () {
-    if (req.headers.hasOwnProperty('authorization')) {
+    if (req.headers.hasOwnProperty('authorization') && req.headers['authorization'].length) {
       const base64Url = req.headers.authorization.split('.')[1];
       const base64 = base64Url.replace('-', '+').replace('_', '/');
       return JSON.parse(Buffer.from(base64, 'base64'));

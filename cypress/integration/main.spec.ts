@@ -1,4 +1,4 @@
-import '../support/commands/addBoardApi'
+import '../support/commands/addBoardApi';
 
 describe('main page', () => {
   it('page opens main', () => {
@@ -12,11 +12,8 @@ describe('main page', () => {
   });
 
   it('shows error when openin non existing card is opened', () => {
-
-    cy.addBoardApi('new board').then( () => {
+    cy.addBoardApi('new board').then(() => {
       cy.visit(`/board/${Cypress.env('boards')[0].id}?card=1`);
-    })
-
-  })
-
+    });
+  });
 });

@@ -6,6 +6,9 @@ import { deleteCard } from "./actions/deleteCard";
 import { deleteList } from "./actions/deleteList";
 import { patchList } from "./actions/patchList";
 import { createCard } from "./actions/createCard";
+import { signup } from "./actions/signup";
+import { login } from "./actions/login";
+import { user } from "./actions/user";
 import { reset } from "./actions/reset";
 import { resetBoards } from "./actions/resetBoards";
 import { resetLists } from "./actions/resetLists";
@@ -33,6 +36,19 @@ export const store = defineStore({
       boardList: {
         all: []
       },
+      activeUser: {
+        loggedIn: false,
+        email: ''
+      },
+      signupForm: {
+        email: '',
+        password: '',
+        welcomeEmail: false
+      },
+      loginForm: {
+        email: '',
+        password: ''
+      },
       showTools: false
     };
   },
@@ -49,6 +65,11 @@ export const store = defineStore({
     patchCard,
     deleteCard,
     uploadFile,
+
+    // user actions
+    signup,
+    login,
+    user,
 
     // reset actions
     reset,
@@ -106,6 +127,7 @@ export const store = defineStore({
         // hide error message after 4 seconds
         this.notification.show = false;
       }, 4000);
+
     },
   },
   getters: {

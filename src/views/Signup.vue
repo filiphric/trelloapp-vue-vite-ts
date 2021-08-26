@@ -1,19 +1,19 @@
 <template>
   <div>
     <Navbar />
-    <BoardList />
+    <Signup />
   </div>
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue';
 import Navbar from '@/components/Navbar.vue';
-import BoardList from '@/components/board/BoardList.vue';
+import Signup from '@/components/Signup.vue'
 
-export default {
-  name: 'Home',
+export default defineComponent({
   components: {
     Navbar,
-    BoardList
+    Signup
   }
-};
+});
 </script>

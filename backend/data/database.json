@@ -1,6 +1,21 @@
 {
-  "boards": [],
+  "boards": [
+    {
+      "name": "hf",
+      "user": 0,
+      "id": 85102938184,
+      "starred": false,
+      "created": "2021-08-26"
+    }
+  ],
   "cards": [],
-  "users": [],
+  "users": [
+    {
+      "email": "filip@filiphric.sk",
+      "password": "$2a$10$fxQmYUNuZ8WCKk9jsii.LOOGWarJZUro9OeWaDwdIO/cfSASiNBe2",
+      "welcomeEmail": true,
+      "id": 1
+    }
+  ],
   "lists": []
 }

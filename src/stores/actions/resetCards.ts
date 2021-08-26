@@ -5,6 +5,7 @@ export const resetCards =  async function(this: any) {
   await axios.delete('/api/cards');
   this.activeCard = {}
   this.cardModule = false
+  this.showTools = false
   this.lists.forEach( (list: List) => {
     list.cards = []
   })
