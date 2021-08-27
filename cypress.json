@@ -3,6 +3,14 @@
   "env": {
     "coverage": true
   },
+  "testFiles": "**/*.spec.ts",
+  "component": {
+    "componentFolder": "src",
+    "testFiles": "**/*.spec.ts",
+    "env": {
+      "coverage": false
+    }
+  },
   "pluginsFile": "cypress/plugins/index.ts",
   "retries": {
     "openMode": 0,
