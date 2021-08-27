@@ -45,7 +45,7 @@
         >
           <Star class="place-self-center m-2" />
         </div>
-        <Dropdown @toggleInput="showCardCreate" :board="state.board" />
+        <Dropdown :board="state.board" />
       </div>
       <draggable animation="150" group="lists" v-model="state.lists" item-key="order" class="inline-block" @end="sortList">
         <template #item="{element}">

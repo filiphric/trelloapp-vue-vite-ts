@@ -12,7 +12,7 @@
     <Cross class="w-8 h-8 px-2 text-gray-600 absolute top-1 right-1 cursor-pointer" @click="dropdown = false" />
     <hr />
     <div class="pt-2">
-      <div
+      <!-- <div
         class="text-gray-700 text-sm py-1 block cursor-pointer hover:bg-gray1 px-2 active:bg-gray2"
         data-cy="card-list"
         @click="
@@ -21,7 +21,7 @@
         "
       >
         Add list...
-      </div>
+      </div> -->
       <div
         class="text-red-600 text-sm py-1 block cursor-pointer hover:bg-gray1 px-2 active:bg-gray2"
         @click="
