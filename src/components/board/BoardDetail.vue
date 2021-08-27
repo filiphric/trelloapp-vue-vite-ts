@@ -45,6 +45,7 @@
         >
           <Star class="place-self-center m-2" />
         </div>
+        <Dropdown @toggleInput="showCardCreate" :board="state.board" />
       </div>
       <draggable animation="150" group="lists" v-model="state.lists" item-key="order" class="inline-block" @end="sortList">
         <template #item="{element}">
@@ -66,6 +67,7 @@ import { store } from '@/stores/store';
 import { useRoute } from 'vue-router';
 import ListItem from '@/components/list/ListItem.vue';
 import ListCreate from '@/components/list/ListCreate.vue';
+import Dropdown from '@/components/board/Dropdown.vue';
 import Loading from '@/assets/icons/loading.svg';
 import Star from '@/assets/icons/star.svg';
 import draggable from 'vuedraggable';
@@ -83,6 +85,7 @@ export default defineComponent({
     ListCreate,
     Loading,
     Star,
+    Dropdown,
     draggable
   },
   data() {

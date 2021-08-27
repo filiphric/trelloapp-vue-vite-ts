@@ -6,6 +6,7 @@ import { deleteCard } from './actions/deleteCard';
 import { deleteList } from './actions/deleteList';
 import { patchList } from './actions/patchList';
 import { createCard } from './actions/createCard';
+import { deleteBoard } from './actions/deleteBoard';
 import { signup } from './actions/signup';
 import { login } from './actions/login';
 import { user } from './actions/user';
@@ -55,6 +56,7 @@ export const store = defineStore({
   actions: {
     // board actions
     getBoardDetail,
+    deleteBoard,
 
     // list actions
     deleteList,

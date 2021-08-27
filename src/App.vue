@@ -9,7 +9,7 @@ import { defineComponent } from 'vue';
 import Notification from '@/components/Notification.vue';
 import { useKeypress } from 'vue3-keypress';
 import { store } from './stores/store';
-import Tools from './components/tools.vue';
+import Tools from './components/Tools.vue';
 
 export default defineComponent({
   name: 'App',

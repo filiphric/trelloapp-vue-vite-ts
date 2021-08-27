@@ -5,6 +5,10 @@ import App from './App.vue';
 import VueClickAway from 'vue3-click-away';
 import './index.css';
 import axios from 'axios';
+import VueSocketIOExt from 'vue-socket.io-extended';
+import { io } from 'socket.io-client';
+
+const socket = io('http://localhost:3000');
 
 // redirect on non-existing board
 axios.interceptors.response.use(
@@ -22,7 +26,9 @@ axios.interceptors.response.use(
 const app = createApp(App)
   .use(createPinia())
   .use(router)
-  .use(VueClickAway);
+  .use(VueClickAway)
+  .use(VueSocketIOExt, socket);
+
 
 // make axios available to the whole app by accessing this.axios
 app.config.globalProperties.axios = axios;

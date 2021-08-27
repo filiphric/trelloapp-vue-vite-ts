@@ -23,7 +23,7 @@ describe('creating a card', () => {
     cy.intercept('POST', '/api/cards').as('createCard');
     cy.addListApi({name: 'new list'});
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
-    cy.get('[data-cy=options]').click();
+    cy.get('[data-cy=list-options]').click();
     cy.get('[data-cy=card-add]').click();
     cy.get('[data-cy=new-list-input]')
       .should('be.visible')
