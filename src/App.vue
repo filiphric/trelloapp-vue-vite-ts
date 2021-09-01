@@ -1,6 +1,6 @@
 <template>
   <Notification />
-  <Tools v-if="state.showTools" />
+  <Tools v-show="state.showTools" />
   <router-view />
 </template>
 

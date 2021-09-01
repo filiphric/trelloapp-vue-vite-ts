@@ -13,7 +13,7 @@
       v-model="newBoardTitle"
       v-on:keyup.enter.prevent="createNewBoard()"
       placeholder="Add board title"
-      v-if="newBoardInputActive"
+      v-show="newBoardInputActive"
       ref="boardCreate"
     />
     <div class="flex flex-row-reverse items-end justify-items-end" v-if="newBoardInputActive">

@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed bottom-0 right-0 p-5 rounded-sm m-3" style="background: rgb(0 0 0 / 0.1);">
+  <div class="fixed bottom-0 right-0 p-5 rounded-sm m-3" style="background: rgb(0 0 0 / 0.1);" data-cy="api-tools">
     Reset application:
     <button class="m-1 px-1 bg-white border border-black" @click="state.reset()">All</button>
     <button class="m-1 px-1 bg-white border border-black" @click="state.resetBoards()">Boards</button>
