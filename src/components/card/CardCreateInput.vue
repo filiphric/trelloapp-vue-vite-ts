@@ -2,7 +2,7 @@
   <div class="w-full cursor-pointer grid" v-click-away="onClickAway">
     <textarea
       class="resize-none w-full h-16 px-2 py-1 text-sm outline-none rounded border-b border-gray7"
-      data-cy="new-list-input"
+      data-cy="new-card-input"
       v-model="cardTitle"
       v-on:keydown.enter.prevent="addCard"
       v-on:keyup.esc.prevent="

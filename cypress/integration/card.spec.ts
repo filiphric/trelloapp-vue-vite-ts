@@ -12,7 +12,7 @@ describe('creating a card', () => {
     cy.addListApi({name: 'new list'});
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
     cy.get('[data-cy=new-card]').click();
-    cy.get('[data-cy=new-list-input]').type('new card{enter}');
+    cy.get('[data-cy=new-card-input]').type('new card{enter}');
     cy.wait('@createCard')
       .its('request.body.name')
       .should('eq', 'new card');
@@ -25,10 +25,10 @@ describe('creating a card', () => {
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
     cy.get('[data-cy=list-options]').click();
     cy.get('[data-cy=card-add]').click();
-    cy.get('[data-cy=new-list-input]')
+    cy.get('[data-cy=new-card-input]')
       .should('be.visible')
       .should('be.focused');
-    cy.get('[data-cy=new-list-input]').type('new card{enter}');
+    cy.get('[data-cy=new-card-input]').type('new card{enter}');
     cy.wait('@createCard')
       .its('request.body.name')
       .should('eq', 'new card');
@@ -40,21 +40,21 @@ describe('creating a card', () => {
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
     // esc key
     cy.get('[data-cy=new-card]').click();
-    cy.get('[data-cy=new-list-input]').type('new card{esc}');
-    cy.get('[data-cy=new-list-input]').should('not.exist');
+    cy.get('[data-cy=new-card-input]').type('new card{esc}');
+    cy.get('[data-cy=new-card-input]').should('not.exist');
     cy.get('[data-cy=card]').should('not.exist');
     // click away
     cy.get('[data-cy=new-card]').click();
     cy.get('[data-cy=board-detail]').click();
-    cy.get('[data-cy=new-list-input]').should('not.exist');
+    cy.get('[data-cy=new-card-input]').should('not.exist');
     cy.get('[data-cy=card').should('not.exist');
     // enter no input
     cy.get('[data-cy=new-card]').click();
-    cy.get('[data-cy=new-list-input]').type('{enter}');
+    cy.get('[data-cy=new-card-input]').type('{enter}');
     cy.get('[data-cy=card').should('not.exist');
     // cancel button
     cy.get('[data-cy="cancel"]').click();
-    cy.get('[data-cy=new-list-input]').should('not.exist');
+    cy.get('[data-cy=new-card-input]').should('not.exist');
     cy.get('[data-cy=card').should('not.exist');
   });
 
