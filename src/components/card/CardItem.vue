@@ -6,12 +6,12 @@
   >
     <div class="flex pl-0.5">
       <Checkbox :card="card" />
-      <div class="select-none text-sm text-gray-800 flex-grow pl-2 pt-1" style="white-space: break-spaces">
+      <div class="select-none text-sm text-gray-800 flex-grow pl-2 pt-1" style="white-space: break-spaces" data-cy="card-title">
         {{ card.name }}
       </div>
       <Pen class="pen absolute right-2 top-2 hidden p-1 w-5 h-5 text-gray-700 bg-gray1 bg-opacity-60" />
     </div>
-    <div class="date max-w-min text-xs py-1 px-1.5 rounded-sm mt-1" :class="card.completed ? 'bg-green5 text-white' : overdue(card) ? 'overdue' : 'text-gray9'">
+    <div class="date max-w-min text-xs py-1 px-1.5 rounded-sm mt-1" :class="card.completed ? 'completed' : overdue(card) ? 'overdue' : 'text-gray9'" data-cy="card-date">
       <Clock class="clock w-3 h-3 fill-current inline-block" />
       <span class="ml-2">{{ new Date(card.deadline).toDateString().substring(4) }}</span>
     </div>
@@ -53,5 +53,9 @@ export default defineComponent({
 
 .overdue {
   @apply bg-red-500 text-white;
+}
+
+.completed {
+  @apply bg-green5 text-white;
 }
 </style>
