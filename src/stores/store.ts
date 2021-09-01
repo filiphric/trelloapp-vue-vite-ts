@@ -97,3 +97,7 @@ export const store = defineStore({
     }
   }
 });
+
+if (window.Cypress) {
+  window.store = store;
+}
