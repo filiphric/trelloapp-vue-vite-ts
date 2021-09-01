@@ -7,6 +7,11 @@ export const createCard = async function(this: any, card: Partial<Card>) {
   const cardsInList = this.lists[listIndex].cards;
   const order = cardsInList.length;
 
-  const { data } = await axios.post(`/api/cards`, { order, ...card });
-  this.lists[listIndex].cards.push(data);
+ axios.post(`/api/cards`, { order, ...card })
+  .then(({ data }) => {
+    this.lists[listIndex].cards.push(data);
+  })
+  .catch(e => {
+    this.showNotification('Card was not created', true);
+  });
 };
