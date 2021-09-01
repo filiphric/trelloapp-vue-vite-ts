@@ -1,6 +1,69 @@
 {
-  "boards": [],
-  "cards": [],
-  "users": [],
-  "lists": []
+  "boards": [
+    {
+      "name": "a",
+      "user": 0,
+      "id": 7748678297,
+      "starred": false,
+      "created": "2021-09-01"
+    },
+    {
+      "name": "new board",
+      "user": 0,
+      "id": 71830163060,
+      "starred": false,
+      "created": "2021-09-01"
+    },
+    {
+      "name": "new board",
+      "user": 0,
+      "id": 46876474248,
+      "starred": false,
+      "created": "2021-09-01"
+    },
+    {
+      "name": "new board",
+      "user": 0,
+      "id": 53897979643,
+      "starred": false,
+      "created": "2021-09-01"
+    }
+  ],
+  "cards": [
+    {
+      "order": 0,
+      "boardId": 7748678297,
+      "listId": 10574984636,
+      "name": "sd",
+      "id": 80351504470,
+      "created": "2021-09-01",
+      "deadline": "2021-09-04",
+      "description": "",
+      "completed": false
+    }
+  ],
+  "users": [
+    {
+      "email": "filip@filiphric.sk",
+      "password": "$2a$10$zQ1mhAQ7FHHTC1WiBJK/HuCQToFdiUBZ17OCkZDFZi3Lhkr8kTa86",
+      "welcomeEmail": false,
+      "id": 1
+    }
+  ],
+  "lists": [
+    {
+      "name": "list 1",
+      "boardId": 7748678297,
+      "order": 0,
+      "id": 80819951853,
+      "created": "2021-09-01"
+    },
+    {
+      "name": "list 2",
+      "boardId": 7748678297,
+      "order": 1,
+      "id": 10574984636,
+      "created": "2021-09-01"
+    }
+  ]
 }

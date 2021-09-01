@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray2 relative w-list p-1.5 rounded ml-3 shadow-md mb-32" data-cy="list">
+  <div class="bg-gray2 relative w-list p-1.5 rounded ml-3 shadow-md mb-32" data-cy="list" @dragenter="isDragging = true" @dragleave="isDragging = false">
     <div class="flex mb-1">
       <input
         class="text-gray-900 text-sm px-1 py-0.5 flex-grow inline-block font-semibold border-2 border-transparent outline-none focus:border-blue6 rounded-sm cursor-pointer h-8 bg-gray2 focus:bg-gray1"
@@ -23,8 +23,8 @@
       />
       <Dropdown @toggleInput="showCardCreate" :list="list" />
     </div>
-    <div>
-      <draggable :list="list.cards" animation="150" group="cards" @change="sortCards">
+    <div data-cy="card-list" :class="isDragging ?? 'min-h-[100px]'">
+      <draggable :list="list.cards" animation="150" group="cards" @change="sortCards" ghost-class="bg-gray2">
         <template #item="{element}">
           <CardItem :card="element" />
         </template>
@@ -68,7 +68,8 @@ export default defineComponent({
     return {
       inputActive: false,
       cardCreate: false,
-      drag: false
+      drag: false,
+      isDragging: false
     };
   },
   methods: {
