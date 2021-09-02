@@ -31,7 +31,7 @@
             "
             v-model="state.activeCard.name"
             v-click-away="clickAwayCardName"
-            data-cy="card-title"
+            data-cy="card-detail-title"
           />
           <h2 class="text-sm text-gray10">
             in list <span class="underline">{{ cardListName }}</span>
@@ -56,7 +56,7 @@
                 v-click-away="clickAwayDate"
                 :model-config="modelConfig"
                 class="shadow-lg"
-                data-cy="card-deadline"
+                data-cy="card-detail-deadline"
                 v-model="state.activeCard.deadline"
                 @dayclick="
                   state.patchCard(state.activeCard, { deadline: state.activeCard.deadline });
@@ -106,7 +106,7 @@
         </div>
         <div
           class="bg-gray3 px-2 py-0.5 text-sm rounded-sm text-gray-600 cursor-pointer hover:bg-gray5"
-          data-cy="card-delete"
+          data-cy="card-detail-delete"
           @click="state.deleteCard(state.activeCard)"
         >
           <Trash class="w-4 inline-block mr-2 mb-0.5" />Delete card

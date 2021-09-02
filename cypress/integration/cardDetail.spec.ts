@@ -62,18 +62,18 @@ describe('card detail', () => {
     cy.visit(`/board/${Cypress.env('boards')[0].id}?card=${Cypress.env('cards')[0].id}`);
     // dropdown
     cy.get('[data-cy=calendar-dropdown]').click();
-    cy.get('[data-cy=card-deadline]').should('be.visible');
+    cy.get('[data-cy=card-detail-deadline]').should('be.visible');
     // dropdown hides
     cy.get('[data-cy=calendar-dropdown]').click();
-    cy.get('[data-cy=card-deadline]').should('not.exist');
+    cy.get('[data-cy=card-detail-deadline]').should('not.exist');
     // calendar buton on side
     cy.get('[data-cy=calendar-button]').click();
-    cy.get('[data-cy=card-deadline]').should('be.visible');
+    cy.get('[data-cy=card-detail-deadline]').should('be.visible');
     cy.get('.vc-title').click();
     cy.get('.vc-nav-title').click();
     cy.contains('.vc-nav-item', '2021').click();
     cy.contains('.vc-nav-item', 'Aug').click();
-    cy.contains('.vc-day.in-month', '29').click();
+    cy.contains('.vc-day.id-2021-08-29', '29').click();
     cy.wait('@updateCard')
       .its('response.body.deadline')
       .should('eq', '2021-08-29');
@@ -95,14 +95,14 @@ describe('card detail', () => {
     cy.intercept('PATCH', '/api/cards/*').as('updateCard');
     cy.clock();
     cy.visit(`/board/${Cypress.env('boards')[0].id}?card=${Cypress.env('cards')[0].id}`);
-    cy.get('[data-cy="card-title"]').click();
-    cy.get('[data-cy="card-title"]').type('new name{enter}');
+    cy.get('[data-cy="card-detail-title"]').click();
+    cy.get('[data-cy="card-detail-title"]').type('new name{enter}');
     cy.wait('@updateCard')
       .its('request.body.name')
       .should('eq', 'new name');
-    cy.get('[data-cy="card-title"]').should('have.value', 'new name');
-    cy.get('[data-cy="card-title"]').type('{esc}');
-    cy.get('[data-cy="card-title"]').should('have.value', 'new name');
+    cy.get('[data-cy="card-detail-title"]').should('have.value', 'new name');
+    cy.get('[data-cy="card-detail-title"]').type('{esc}');
+    cy.get('[data-cy="card-detail-title"]').should('have.value', 'new name');
     cy.get('[data-cy="notification-message"]')
       .should('exist')
       .and('contain.text', 'Card was renamed');
@@ -114,7 +114,7 @@ describe('card detail', () => {
     cy.intercept('DELETE', '/api/cards/*').as('deleteCard');
     cy.clock();
     cy.visit(`/board/${Cypress.env('boards')[0].id}?card=${Cypress.env('cards')[0].id}`);
-    cy.get('[data-cy="card-delete"]').click();
+    cy.get('[data-cy="card-detail-delete"]').click();
     cy.wait('@deleteCard')
       .its('response.statusCode')
       .should('eq', 200);

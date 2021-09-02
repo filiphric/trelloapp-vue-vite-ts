@@ -32,7 +32,7 @@ describe('creating board', () => {
     cy.visit('/');
     cy.get('[data-cy="create-board"]').click();
     cy.get('[data-cy="board-list"]').click('bottomRight');
-    cy.get('[data-cy="new-board-input"]').should('not.exist');
+    cy.get('[data-cy="new-board-input"]').should('not.be.visible');
     cy.get('[data-cy="create-board"]').click();
     cy.get('[data-cy="new-board-input"]').type('{enter}');
     cy.get('[data-cy="create-board"]').click();
