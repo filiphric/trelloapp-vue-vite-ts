@@ -32,7 +32,7 @@ import { store } from '@/stores/store';
 import Card from '@/typings/card';
 import moment from 'moment';
 import SaveButton from '@/components/SaveButton.vue';
-import Cross from '@/assets/icons/Cross.svg';
+import Cross from '@/assets/icons/cross.svg';
 
 export default defineComponent({
   setup() {
