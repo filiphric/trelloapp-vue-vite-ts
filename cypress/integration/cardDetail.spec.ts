@@ -73,10 +73,10 @@ describe('card detail', () => {
     cy.get('.vc-nav-title').click();
     cy.contains('.vc-nav-item', '2021').click();
     cy.contains('.vc-nav-item', 'Aug').click();
-    cy.contains('.vc-day.id-2021-08-29', '29').click();
+    cy.contains('.vc-day.id-2021-08-15', '15').click();
     cy.wait('@updateCard')
       .its('response.body.deadline')
-      .should('eq', '2021-08-29');
+      .should('eq', '2021-08-15');
   });
 
   it('copies card properties', () => {
