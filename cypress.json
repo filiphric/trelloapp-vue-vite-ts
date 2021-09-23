@@ -15,7 +15,7 @@
   "pluginsFile": "cypress/plugins/index.ts",
   "retries": {
     "openMode": 0,
-    "runMode": 1
+    "runMode": 5
   },
   "cypress-watch-and-reload": {
     "watch": ["src/*/*.vue", "src/*/*.ts"]
