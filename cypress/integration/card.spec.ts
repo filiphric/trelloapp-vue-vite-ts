@@ -9,7 +9,7 @@ describe('creating a card', () => {
   });
   it('creates a card', () => {
     cy.intercept('POST', '/api/cards').as('createCard');
-    cy.addListApi({name: 'new list'});
+    cy.addListApi({ name: 'new list' });
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
     cy.get('[data-cy=new-card]').click();
     cy.get('[data-cy=new-card-input]').type('new card{enter}');
@@ -21,7 +21,7 @@ describe('creating a card', () => {
 
   it('creates a card through dropdown', () => {
     cy.intercept('POST', '/api/cards').as('createCard');
-    cy.addListApi({name: 'new list'});
+    cy.addListApi({ name: 'new list' });
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
     cy.get('[data-cy=list-options]').click();
     cy.get('[data-cy=card-add]').click();
@@ -36,7 +36,7 @@ describe('creating a card', () => {
   });
 
   it('cancels creating a card', () => {
-    cy.addListApi({name: 'new list'});
+    cy.addListApi({ name: 'new list' });
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
     // esc key
     cy.get('[data-cy=new-card]').click();
@@ -59,7 +59,7 @@ describe('creating a card', () => {
   });
 
   it('shows edit card icon', () => {
-    cy.addListApi({name: 'new list'}).addCardApi({name: 'new card'});
+    cy.addListApi({ name: 'new list' }).addCardApi({ name: 'new card' });
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
     cy.get('[data-cy=card]').realHover();
     cy.get('[data-cy="card-edit"]').should('be.visible');
@@ -67,7 +67,7 @@ describe('creating a card', () => {
 
   it('complete card', () => {
     cy.intercept('PATCH', '/api/cards/*').as('patchCard');
-    cy.addListApi({name: 'new list'}).addCardApi({name: 'new card'});
+    cy.addListApi({ name: 'new list' }).addCardApi({ name: 'new card' });
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
     cy.get('[data-cy="card-checkbox"]').check();
     cy.wait('@patchCard')

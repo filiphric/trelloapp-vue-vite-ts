@@ -7,7 +7,7 @@ describe('creating board', () => {
     cy.visit('/');
     cy.get('[data-cy="create-board"]').click();
     cy.get('[data-cy="new-board-input"]').type('new board{enter}');
-    cy.wait('@createBoard').then(({response}) => {
+    cy.wait('@createBoard').then(({ response }) => {
       cy.location('href').should('eq', `${Cypress.config('baseUrl')}/board/${response!.body.id}`);
     });
     cy.get('[data-cy=board-detail]').should('be.visible');
@@ -21,7 +21,7 @@ describe('creating board', () => {
     cy.get('[data-cy="new-board-input"]').should('be.focused');
     cy.get('[data-cy="new-board-input"]').type('new board');
     cy.get('[data-cy="new-board-create"]').click();
-    cy.wait('@createBoard').then(({response}) => {
+    cy.wait('@createBoard').then(({ response }) => {
       cy.location('href').should('eq', `${Cypress.config('baseUrl')}/board/${response!.body.id}`);
     });
     cy.get('[data-cy=board-detail]').should('be.visible');

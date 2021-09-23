@@ -14,7 +14,7 @@ describe('lists', () => {
   });
 
   it('creates a second list', () => {
-    cy.addListApi({name: 'new list'});
+    cy.addListApi({ name: 'new list' });
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
     cy.get('[data-cy=create-list]').click();
     cy.get('[data-cy=add-list-input]').should('be.focused');
@@ -41,19 +41,19 @@ describe('lists', () => {
   });
 
   it('renames a list', () => {
-    cy.addListApi({name: 'new list'});
+    cy.addListApi({ name: 'new list' });
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
     cy.get('[data-cy=list-name]').type('renamed list{enter}');
   });
 
   it('cancels renaming a list', () => {
-    cy.addListApi({name: 'new list'});
+    cy.addListApi({ name: 'new list' });
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
     cy.get('[data-cy=list-name]').type('renamed list{esc}');
   });
 
   it('uses dropdown to delete a list', () => {
-    cy.addListApi({name: 'new list'});
+    cy.addListApi({ name: 'new list' });
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
     cy.get('[data-cy=list-options]').click();
     cy.get('[data-cy=dropdown]').should('be.visible');

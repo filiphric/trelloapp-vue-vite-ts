@@ -6,8 +6,8 @@ describe('card detail', () => {
   beforeEach(() => {
     cy.request('POST', '/api/reset');
     cy.addBoardApi('new board')
-      .addListApi({name: 'new list'})
-      .addCardApi({name: 'new card'});
+      .addListApi({ name: 'new list' })
+      .addCardApi({ name: 'new card' });
   });
 
   it('uploads a file', () => {
@@ -15,7 +15,7 @@ describe('card detail', () => {
     cy.intercept('PATCH', '/api/cards/*').as('updateCard');
     cy.clock();
     cy.visit(`/board/${Cypress.env('boards')[0].id}?card=${Cypress.env('cards')[0].id}`);
-    cy.get('[data-cy="upload-image"]').attachFile('cypressLogo.png', {subjectType: 'drag-n-drop'});
+    cy.get('[data-cy="upload-image"]').attachFile('cypressLogo.png', { subjectType: 'drag-n-drop' });
     cy.wait('@imageUpload')
       .its('response.body')
       .should('have.property', 'path')
@@ -49,7 +49,7 @@ describe('card detail', () => {
     ).as('imageUpload');
     cy.clock();
     cy.visit(`/board/${Cypress.env('boards')[0].id}?card=${Cypress.env('cards')[0].id}`);
-    cy.get('[data-cy="upload-image"]').attachFile('cypressLogo.png', {subjectType: 'drag-n-drop'});
+    cy.get('[data-cy="upload-image"]').attachFile('cypressLogo.png', { subjectType: 'drag-n-drop' });
     cy.get('[data-cy="notification-message"]')
       .should('exist')
       .and('contain.text', 'There was an error uploading file');

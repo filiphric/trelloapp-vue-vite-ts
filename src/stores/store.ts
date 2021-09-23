@@ -87,9 +87,7 @@ export const store = defineStore({
     resetBoards,
     resetLists,
     resetCards,
-    resetUsers,
-
-        
+    resetUsers
   },
   getters: {
     starred: state => {

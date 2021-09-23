@@ -29,7 +29,6 @@ const app = createApp(App)
   .use(VueClickAway)
   .use(VueSocketIOExt, socket);
 
-
 // make axios available to the whole app by accessing this.axios
 app.config.globalProperties.axios = axios;
 

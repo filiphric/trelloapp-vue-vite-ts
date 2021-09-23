@@ -6,4 +6,4 @@ export const showNotification = async function(this: any, message: string, isErr
     // hide error message after 4 seconds
     this.notification.show = false;
   }, 4000);
-}
+};
