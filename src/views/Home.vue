@@ -21,10 +21,10 @@ export default defineComponent({
     Navbar,
     BoardList
   },
-  sockets: {
-    boardCreated(message) {
-      this.state.boardList.all.push(message);
-    },
-  },
+  // sockets: {
+  //   boardCreated(message) {
+  //     this.state.boardList.all.push(message);
+  //   },
+  // },
 });
 </script>
