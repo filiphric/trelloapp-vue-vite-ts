@@ -11,17 +11,20 @@
       "coverage": false
     }
   },
-  "projectId": "qmz9cz",
   "pluginsFile": "cypress/plugins/index.ts",
   "retries": {
     "openMode": 0,
     "runMode": 5
   },
   "cypress-watch-and-reload": {
-    "watch": ["src/*/*.vue", "src/*/*.ts"]
+    "watch": [
+      "src/*/*.vue",
+      "src/*/*.ts"
+    ]
   },
   "supportFile": "cypress/support/index.ts",
   "video": true,
   "viewportHeight": 550,
-  "viewportWidth": 700
+  "viewportWidth": 700,
+  "projectId": "7xeadc"
 }
