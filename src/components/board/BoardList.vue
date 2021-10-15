@@ -1,8 +1,8 @@
 <template>
   <div class="background bg-white h-screen grid" data-cy="board-list">
     <div class="loading place-self-center" v-if="state.loading"><Loading class="inline-block" />&nbsp;&nbsp;Loading data ...</div>
-
-    <div v-cloak class="container mx-auto" v-else>
+    <div class="loading place-self-center" v-else-if="state.boardLoading"><Error class="text-red-500 fill-current inline-block mb-1" />Boards could not be loaded<a href="/" class="text-blue8 font-bold block text-center hover:underline">Try again</a></div>
+    <div v-cloak class="container mx-auto" v-else-if="!state.loading">
       <!-- STARRED BOARDS -->
       <h1 class="text-3xl py-5 font-semibold inline-block" data-cy="starred-boards" v-if="state.starred.length">
         Starred
@@ -18,6 +18,7 @@
         <BoardCreate></BoardCreate>
       </div>
     </div>
+    
   </div>
 </template>
 
@@ -27,6 +28,8 @@ import { defineComponent } from 'vue';
 import BoardItem from '@/components/board/BoardItem.vue';
 import BoardCreate from '@/components/board/BoardCreate.vue';
 import Loading from '@/assets/icons/loading.svg';
+import Error from '@/assets/icons/error.svg';
+
 export default defineComponent({
   setup() {
     const state = store();
@@ -35,6 +38,7 @@ export default defineComponent({
   },
   name: 'BoardList',
   components: {
+    Error,
     BoardItem,
     BoardCreate,
     Loading

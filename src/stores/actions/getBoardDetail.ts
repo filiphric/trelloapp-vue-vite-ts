@@ -1,9 +1,10 @@
+import Board from '@/typings/board';
 import Card from '@/typings/card';
 import List from '@/typings/list';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
 
-export const getBoardDetail = async function(this: any, id: string) {
+export const getBoardDetail = async function(this: any, id: Board['id']) {
   const route = useRoute();
 
   this.loading = true;

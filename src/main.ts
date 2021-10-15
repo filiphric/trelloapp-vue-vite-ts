@@ -16,10 +16,10 @@ axios.interceptors.response.use(
     return response;
   },
   function(error) {
-    if (error.response.config.url.match(/\/boards\/\d*/g) && error.response.config.method === 'get' && error.response.status === 404) {
+    if (error.response.config.url.match(/\/boards\/\d+/g) && error.response.config.method === 'get' && error.response.status === 404) {
       router.push('/404');
     }
-    return Promise.reject(error);
+    return;
   }
 );
 

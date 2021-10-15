@@ -1,7 +1,14 @@
 import axios from 'axios';
 
 export const getBoardList = async function(this: any) {
-  const boards = await axios.get(`/api/boards`);
-  this.boardList.all = boards.data;
-  this.loading = false;
+  axios
+    .get('/api/boards')
+    .then(({ data }) => {
+      this.boardList.all = data;
+      this.loading = false;
+    })
+    .catch( () => {
+      this.boardLoading = true;
+      this.loading = false;
+    });
 };
