@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-gray6 w-80 h-36 px-4 py-3 cursor-pointer grid rounded-sm"
+    class="bg-gray6 w-72 h-36 px-4 py-3 cursor-pointer grid rounded-sm"
     data-cy="create-board"
     :class="{ 'hover:bg-gray7': !newBoardInputActive }"
     @click.prevent="toggleNewBoardInput(true)"

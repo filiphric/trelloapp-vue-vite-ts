@@ -10,24 +10,11 @@ import axios from 'axios';
 
 // const socket = io('http://localhost:3000');
 
-// redirect on non-existing board
-axios.interceptors.response.use(
-  function(response) {
-    return response;
-  },
-  function(error) {
-    if (error.response.config.url.match(/\/boards\/\d+/g) && error.response.config.method === 'get' && error.response.status === 404) {
-      router.push('/404');
-    }
-    return;
-  }
-);
-
 const app = createApp(App)
   .use(createPinia())
   .use(router)
-  .use(VueClickAway)
-  // .use(VueSocketIOExt, socket);
+  .use(VueClickAway);
+// .use(VueSocketIOExt, socket);
 
 // make axios available to the whole app by accessing this.axios
 app.config.globalProperties.axios = axios;

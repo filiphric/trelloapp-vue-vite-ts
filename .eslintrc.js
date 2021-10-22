@@ -4,12 +4,19 @@ module.exports = {
     es2021: true,
     node: true
   },
-  extends: ["plugin:vue/vue3-essential"],
+  extends: [
+    'plugin:vue/vue3-essential',
+    'plugin:cypress/recommended'
+  ],
   parserOptions: {
     ecmaVersion: 12,
-    parser: "@typescript-eslint/parser",
-    sourceType: "module"
+    parser: '@typescript-eslint/parser',
+    sourceType: 'module'
   },
-  plugins: ["vue", "@typescript-eslint"],
-  rules: {}
+  plugins: ['vue', '@typescript-eslint'],
+  rules: {
+    'brace-style': ['error', 'stroustrup'],
+    'max-len': ['error', { 'code': 80 }],
+    'quotes': ['error', 'single']
+  }
 };

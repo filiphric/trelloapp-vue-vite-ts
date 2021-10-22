@@ -1,7 +1,7 @@
 <template>
   <router-link custom v-slot="{ navigate }" :to="{ path: '/board/' + board.id }">
     <div
-      class="board bg-blue7 w-80 h-36 px-4 py-3 cursor-pointer grid grid-cols-6 justify-between rounded-sm hover:bg-blue8"
+      class="board bg-blue7 w-72 h-36 px-4 py-3 cursor-pointer grid grid-cols-6 justify-between rounded-sm hover:bg-blue8"
       data-cy="board-item"
       @click="navigate"
       @mouseover="showStar = true"

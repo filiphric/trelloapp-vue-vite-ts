@@ -29,6 +29,11 @@ export const store = defineStore({
       board: {},
       lists: [],
       loading: true,
+      loadingError: {
+        show: false,
+        status: 0,
+        message: ''
+      },
       cardModule: false,
       activeCard: {},
       notification: {
@@ -91,7 +96,14 @@ export const store = defineStore({
   },
   getters: {
     starred: state => {
-      return state.boardList.all.filter((board: Board) => board.starred === true);
+      return state.boardList.all.filter(
+        (board: Board) => board.starred === true
+      );
+    },
+    allBoards: state => {
+      return state.boardList.all.filter(
+        (board: Board) => board.starred === false
+      );
     }
   }
 });
