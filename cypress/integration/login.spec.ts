@@ -1,3 +1,5 @@
+import '../support/commands/signupApi'
+
 describe('Login', () => {
   
   const user = {

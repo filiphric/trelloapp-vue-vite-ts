@@ -1,3 +1,5 @@
+import '../support/commands/addBoardApi'
+
 describe('creating board', () => {
   beforeEach(() => {
     cy.request('POST', '/api/reset');
