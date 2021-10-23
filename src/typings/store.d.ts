@@ -10,6 +10,7 @@ declare module 'pinia' {
     cards: Card[];
     loading: boolean;
     cardModule: boolean;
+    createListInput: boolean;
     activeCard: Card | {};
     notification: {
       show: boolean;

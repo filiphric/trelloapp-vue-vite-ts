@@ -16,7 +16,6 @@ module.exports = {
   plugins: ['vue', '@typescript-eslint'],
   rules: {
     'brace-style': ['error', 'stroustrup'],
-    'max-len': ['error', { 'code': 80 }],
     'quotes': ['error', 'single']
   }
 };

@@ -1,12 +1,12 @@
 <template>
-  <div v-if="inputActive" class="bg-gray2 w-list px-1.5 py-1 cursor-pointer grid rounded-sm ml-3 shadow-md" v-click-away="onClickAway">
+  <div v-if="state.createListInput" class="bg-gray2 w-list px-1.5 py-1 cursor-pointer grid rounded-sm ml-3 shadow-md" v-click-away="onClickAway">
     <input
       class="w-full h-9 px-2 py-2 text-sm border-2 border-transparent outline-none focus:border-blue6 rounded-sm"
       data-cy="add-list-input"
       v-model="listTitle"
       v-on:keyup.enter.prevent="addList()"
       v-on:keyup.esc.prevent="
-        inputActive = false;
+        state.createListInput = false;
         listTitle = '';
       "
       placeholder="Enter list title..."
@@ -18,7 +18,7 @@
         class="w-8 h-8 p-1 mx-0.5 fill-current text-gray-600 order-last inline-block"
         data-cy="cancel"
         @click.stop="
-          inputActive = false;
+          state.createListInput = false;
           listTitle = '';
         "
       />
@@ -48,13 +48,13 @@ export default defineComponent({
   },
   setup() {
     const state = store();
-    const createList = state.createList;
+    const createList = state.createList
     return { state, createList };
   },
+
   data() {
     return {
       listTitle: '',
-      inputActive: false || this.state.lists.length < 1
     };
   },
   $refs: {
@@ -63,11 +63,11 @@ export default defineComponent({
   props: ['board'],
   methods: {
     onClickAway() {
-      this.inputActive = false;
+      this.state.createListInput = false;
       this.listTitle = '';
     },
     enableInput: function() {
-      this.inputActive = true;
+      this.state.createListInput = true;
       this.$nextTick(() => {
         const listInput = this.$refs.listCreate as HTMLElement;
         listInput.focus();

@@ -60,7 +60,7 @@ module.exports = (req, res, next) => {
   }
 
   if (req.method === 'GET' && req.url === '/boards') {
-    console.log(req);
+
     const publicBoards = db
       .get('boards')
       .filter({ user: 0 })
@@ -78,7 +78,6 @@ module.exports = (req, res, next) => {
   }
 
   if (req.method === 'GET' && req.url === '/boards?starred=true') {
-    console.log(req.path);
 
     const publicBoards = db
       .get('boards')

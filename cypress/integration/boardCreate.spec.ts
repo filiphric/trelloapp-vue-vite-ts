@@ -1,6 +1,7 @@
 describe('creating board', () => {
   beforeEach(() => {
     cy.request('POST', '/api/reset');
+    cy.addBoardApi('first')
   });
   it('creates a board', () => {
     cy.intercept('POST', '/api/boards').as('createBoard');
@@ -8,7 +9,8 @@ describe('creating board', () => {
     cy.get('[data-cy="create-board"]').click();
     cy.get('[data-cy="new-board-input"]').type('new board{enter}');
     cy.wait('@createBoard').then(({ response }) => {
-      cy.location('href').should('eq', `${Cypress.config('baseUrl')}/board/${response!.body.id}`);
+      cy.location('href')
+        .should('eq', `${Cypress.config('baseUrl')}/board/${response!.body.id}`);
     });
     cy.get('[data-cy=board-detail]').should('be.visible');
     cy.get('[data-cy=loading]').should('not.exist');
@@ -38,7 +40,7 @@ describe('creating board', () => {
     cy.get('[data-cy="create-board"]').click();
     cy.get('[data-cy=cancel]').click();
     cy.location('href').should('eq', `${Cypress.config('baseUrl')}/`);
-    cy.get('[data-cy="board-item"]').should('not.exist');
+    cy.get('[data-cy="board-item"]').should('have.length', 1);
     cy.get('[data-cy="create-board"]').should('be.visible');
   });
 
@@ -60,7 +62,7 @@ describe('creating board', () => {
     cy.tick(4000);
     cy.get('[data-cy="notification-message"]').should('not.exist');
     cy.location('href').should('eq', `${Cypress.config('baseUrl')}/`);
-    cy.get('[data-cy="board-item"]').should('not.exist');
+    cy.get('[data-cy="board-item"]').should('have.length', 1);
     cy.get('[data-cy="new-board-input"]').should('be.visible');
   });
 });

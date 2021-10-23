@@ -26,5 +26,6 @@
   "video": true,
   "viewportHeight": 550,
   "viewportWidth": 700,
-  "projectId": "qmz9cz"
+  "projectId": "qmz9cz",
+  "defaultCommandTimeout": 1000
 }

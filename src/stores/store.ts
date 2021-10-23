@@ -34,6 +34,7 @@ export const store = defineStore({
         status: 0,
         message: ''
       },
+      createListInput: true,
       cardModule: false,
       activeCard: {},
       notification: {
@@ -104,6 +105,9 @@ export const store = defineStore({
       return state.boardList.all.filter(
         (board: Board) => board.starred === false
       );
+    },
+    listLength: state => {
+      return state.lists.length < 1
     }
   }
 });

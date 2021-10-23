@@ -1,12 +1,14 @@
 <template>
   <div class="background bg-white h-screen grid" data-cy="board-list">
+    <!-- LOADING -->
     <div class="loading place-self-center" v-if="state.loading">
       <Loading class="mb-1 inline-block" />&nbsp;&nbsp;Loading data
       ...
     </div>
+    <!-- BOARDS NOT LOADED -->
     <div
       class="place-self-center"
-      v-else-if="state.loadingError.show"
+      v-if="state.loadingError.show"
       data-cy="board-list-error-message"
     >
       <span
@@ -25,49 +27,54 @@
         >Try again</router-link
       >
     </div>
+    <!-- BOARDS LOADED -->
     <div
       v-cloak
       class="container mx-auto"
-      v-else-if="!state.loading && state.allBoards.length"
+      v-if="!state.loading"
     >
       <!-- STARRED BOARDS -->
-      <h1
-        class="mx-4 text-3xl py-5 font-semibold inline-block"
-        data-cy="starred-boards"
-        v-if="state.starred.length"
-      >
-        Starred
-      </h1>
-      <div
-        class="flex flex-cols-3 gap-8 flex-wrap flex-grow content-start mx-4"
-      >
-        <BoardItem
-          v-for="board in state.starred"
-          :key="board.id"
-          :board="board"
-        />
+      <div v-if="state.starred.length">
+        <h1
+          class="mx-4 text-3xl py-5 font-semibold inline-block"
+          data-cy="starred-boards"
+        >
+          Starred
+        </h1>
+        <div
+          class="flex flex-cols-3 gap-8 flex-wrap flex-grow content-start mx-4"
+        >
+          <BoardItem
+            v-for="board in state.starred"
+            :key="board.id"
+            :board="board"
+          />
+          <BoardCreate v-if="!state.allBoards.length"></BoardCreate>
+        </div>
       </div>
 
       <!-- ALL BOARDS -->
-      <h1
-        class="mx-4 text-3xl py-5 font-semibold inline-block"
-        data-cy="all-boards"
-      >
-        My Boards
-      </h1>
-      <div
-        class="flex flex-cols-3 gap-8 flex-wrap flex-grow content-start mx-4"
-      >
-        <BoardItem
-          v-for="board in state.allBoards"
-          :key="board.id"
-          :board="board"
-        />
-        <BoardCreate></BoardCreate>
+      <div v-if="state.allBoards.length">
+        <h1
+          class="mx-4 text-3xl py-5 font-semibold inline-block"
+          data-cy="all-boards"
+        >
+          My Boards
+        </h1>
+        <div
+          class="flex flex-cols-3 gap-8 flex-wrap flex-grow content-start mx-4"
+        >
+          <BoardItem
+            v-for="board in state.allBoards"
+            :key="board.id"
+            :board="board"
+          />
+          <BoardCreate></BoardCreate>
+        </div>
       </div>
     </div>
     <Emptylist
-      v-else-if="!state.loading && !state.allBoards.length"
+      v-if="!state.loading && !state.boardList.all.length"
     />
   </div>
 </template>

@@ -6,16 +6,16 @@ export const getBoardList = async function(this: any) {
   this.loadingError.status = '';
   axios
     .get('/api/boards')
-    .then(boardList => {
-      this.boardList.all = boardList.data;
+    .then(({ data }) => {
+      this.boardList.all = data;
       this.loading = false;
     })
-    .catch(e => {
+    .catch(({ response }) => {
       this.loading = false;
       this.loadingError.show = true;
-      if (e.response) {
-        this.loadingError.message = e.response.data.message;
-        this.loadingError.status = e.response.status;
+      if (response) {
+        this.loadingError.message = response.data.message;
+        this.loadingError.status = response.status;
       }
     });
 };

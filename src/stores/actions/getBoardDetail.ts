@@ -22,6 +22,7 @@ export const getBoardDetail = async function(
       return a.order - b.order;
     });
     this.lists = lists.data;
+    if (lists.data.length) this.createListInput = false
 
     // if there are no lists, don’t fetch cards
     this.lists.forEach((list: List, index: number) => {
@@ -40,7 +41,8 @@ export const getBoardDetail = async function(
     }
 
     this.loading = false;
-  } catch (err) {
+  }
+ catch (err) {
     this.loading = false;
     this.loadingError.show = true;
     this.loadingError.message = err.response.data.message;
