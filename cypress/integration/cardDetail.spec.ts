@@ -133,4 +133,14 @@ describe('card detail', () => {
     cy.get('[data-cy="card-detail-backdrop"]').click('topRight');
     cy.get('[data-cy="card-detail"]').should('not.exist');
   });
+
+  it('shows error message when card is not found', () => {
+
+    cy.visit(`/board/${Cypress.env('boards')[0].id}?card=1`);
+
+    cy.get('[data-cy="card-detail"]').should('not.exist');
+    cy.get('[data-cy=notification-message').should('contain.text', 'Card with id: 1 was not found')
+
+    
+  });
 });

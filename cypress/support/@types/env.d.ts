@@ -71,6 +71,7 @@ interface EnvKeys {
   'users': Array<{
     email: string;
     password: string;
+    accessToken: string;
     id: number;
   }>;
 }

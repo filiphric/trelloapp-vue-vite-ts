@@ -7,11 +7,10 @@ export const login = async function(this: any, email: string, password: string) 
     .then(({ data }) => {
       axios.defaults.headers.common['Authorization'] = `Bearer ${data.accessToken}`;
       document.cookie = `trello_token=${data.accessToken}`;
-      this.activeUser.loggedIn = true;
-      this.activeUser.email = email;
       router.push('/');
+      this.user()
     })
-    .catch(e => {
-      this.showNotification(e.response.data, true);
+    .catch(({ response }) => {
+      this.showNotification(response.data, true);
     });
 };

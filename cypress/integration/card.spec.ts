@@ -19,6 +19,15 @@ describe('creating a card', () => {
     cy.get('[data-cy=card').should('be.visible');
   });
 
+  it('shows error when card is not created', () => {
+    cy.intercept('POST', '/api/cards', { forceNetworkError: true }).as('createCard');
+    cy.addListApi({ name: 'new list' });
+    cy.visit(`/board/${Cypress.env('boards')[0].id}`);
+    cy.get('[data-cy=new-card]').click();
+    cy.get('[data-cy=new-card-input]').type('new card{enter}');
+    cy.get('[data-cy=notification-message').should('be.visible').and('contain.text', 'Card was not created')
+  });
+
   it('creates a card through dropdown', () => {
     cy.intercept('POST', '/api/cards').as('createCard');
     cy.addListApi({ name: 'new list' });

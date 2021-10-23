@@ -20,6 +20,7 @@ import { resetLists } from './actions/resetLists';
 import { resetCards } from './actions/resetCards';
 import { resetUsers } from './actions/resetUsers';
 import { patchBoard } from './actions/patchBoard';
+import { toggleTools } from './actions/toggleTools';
 import Board from '@/typings/board';
 
 export const store = defineStore({
@@ -88,6 +89,9 @@ export const store = defineStore({
     showNotification,
     showCardModule,
 
+    // api tools
+    toggleTools,
+
     // reset actions
     reset,
     resetBoards,
@@ -105,9 +109,6 @@ export const store = defineStore({
       return state.boardList.all.filter(
         (board: Board) => board.starred === false
       );
-    },
-    listLength: state => {
-      return state.lists.length < 1
     }
   }
 });

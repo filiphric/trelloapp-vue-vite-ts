@@ -6,9 +6,11 @@ describe('main page', () => {
   });
 
   it('has 404 page', () => {
-    cy.on('uncaught:exception', () => { return false })
+    cy.on('uncaught:exception', () => {
+ return false 
+})
     cy.visit('/board/1');
-    // cy.url().should('contain', '/404');
+    cy.url().should('contain', '/404');
     cy.get('[data-cy="404"]').should('be.visible');
   });
 

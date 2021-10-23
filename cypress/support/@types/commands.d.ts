@@ -63,7 +63,13 @@ declare namespace Cypress {
     signupApi(options: {
       email: string;
       password: string;
+      login: boolean
     }): Chainable<Element>
+
+    /**
+     * Toggles api tools cia app action
+     */
+    toggleTools(): void
 
     /**
      * updtates a board via API

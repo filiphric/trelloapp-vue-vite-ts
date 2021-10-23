@@ -6,9 +6,15 @@ describe('navigation bar', () => {
     cy.addBoardApi('new board');
   });
 
-  it('can navigate back to home page', () => {
+  it('can navigate back to home page via home button', () => {
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
     cy.get('[data-cy=home]').click();
+    cy.location('pathname').should('eq', '/');
+  });
+
+  it('can navigate back to home page via logo', () => {
+    cy.visit(`/board/${Cypress.env('boards')[0].id}`);
+    cy.get('[data-cy=trello-logo]').click();
     cy.location('pathname').should('eq', '/');
   });
 });

@@ -30,4 +30,22 @@ describe('board detail', () => {
       .should('eq', newName);
     cy.get('[data-cy=board-title]').should('have.value', newName);
   });
+
+  it('deletes a board', () => {
+    cy.intercept('DELETE', '/api/boards/*').as('boardDelete');
+    cy.visit(`/board/${Cypress.env('boards')[0].id}`);
+    cy.get('[data-cy=board-options')
+      .click()
+
+    cy.get('[data-cy=board-dropdown]')
+      .should('be.visible')
+
+    cy.get('[data-cy=delete-board]')
+      .click()
+
+    cy.wait('@boardDelete')
+      .its('response.statusCode')
+      .should('eq', 200)
+
+  });
 });

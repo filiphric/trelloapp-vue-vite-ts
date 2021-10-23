@@ -13,6 +13,13 @@ describe('lists', () => {
     cy.get('[data-cy="list"]').should('have.length', 1);
   });
 
+  it('shows error when creating a list fails', () => {
+    cy.intercept('POST', '/api/lists', { forceNetworkError: true }).as('createList');
+    cy.visit(`/board/${Cypress.env('boards')[0].id}`);
+    cy.get('[data-cy=add-list-input]').type('new list{enter}');
+    cy.get('[data-cy=notification-message').should('be.visible').and('contain.text', 'List was not created')
+  });
+
   it('creates a second list', () => {
     cy.addListApi({ name: 'new list' });
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);

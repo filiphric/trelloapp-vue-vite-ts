@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid grid-cols-2 items-stretch -mt-10 h-screen px-20 gap-x-8"
+    class="grid grid-cols-2 items-stretch h-screen px-20 gap-x-8 z-10"
   >
     <div class="grid content-center">
       <h1 class="font-bold text-3xl mb-8">Get started!</h1>
