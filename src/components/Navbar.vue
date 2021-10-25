@@ -3,7 +3,7 @@
     <button
       data-cy="home"
       @click="router.push('/')"
-      :class="[$route.path !== '/' ? 'visible' : 'invisible']"
+      :class="[route.path !== '/' ? 'visible' : 'invisible']"
       class="bg-white bg-opacity-30 hover:bg-opacity-20 self-center text-white rounded-sm ml-3 w-8 h-8 cursor-pointer grid"
     >
       <Home class="place-self-center" />
@@ -16,15 +16,15 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import trelloLogo from '@/assets/trello-logo.gif';
-import Home from '@/assets/icons/home.svg';
+import Home from '@/assets/icons/homeicon.svg';
 import Login from '@/components/LoginButton.vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 
 export default defineComponent({
-  name: 'Navbar',
   setup() {
     const router = useRouter();
-    return { router, trelloLogo };
+    const route = useRoute();
+    return { router, route, trelloLogo };
   },
   components: {
     Home,

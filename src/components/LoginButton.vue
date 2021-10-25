@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-end text-white mr-3" :class="[$route.path === '/login' || $route.path === '/signup' ? 'invisible' : 'visible']">
+  <div class="flex justify-end text-white mr-3" :class="[route.path === '/login' || route.path === '/signup' ? 'invisible' : 'visible']">
     <!-- LOGGED OUT -->
     <div
       class="flex self-center bg-white bg-opacity-30 hover:bg-opacity-20 rounded-sm h-8 cursor-pointer text-sm"
@@ -36,11 +36,12 @@ import { store } from '@/stores/store';
 import User from '@/assets/icons/user.svg';
 import LogoutIcon from '@/assets/icons/logoutIcon.svg';
 import axios from 'axios';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 
 export default defineComponent({
   setup() {
     const router = useRouter();
+    const route = useRoute();
     const state = store();
     const logout = function(this: any) {
       this.state.activeUser.loggedIn = false;
@@ -48,7 +49,7 @@ export default defineComponent({
       document.cookie = 'trello_token=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
       this.state.showNotification('User was logged out', false);
     };
-    return { state, logout, router };
+    return { state, logout, router, route };
   },
   name: 'Login',
   components: {

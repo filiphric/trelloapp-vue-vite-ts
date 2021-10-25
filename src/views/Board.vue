@@ -1,7 +1,6 @@
 <template>
   <div class="h-screen bg-blue6">
     <CardDetail v-if="state.cardModule" />
-    <Navbar />
     <BoardDetail />
   </div>
 </template>
@@ -20,7 +19,6 @@ export default {
   name: 'Board',
   components: {
     CardDetail,
-    Navbar,
     BoardDetail
   }
 };

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Navbar />
     <div class="background bg-white h-screen grid">
       <div class="place-self-center" data-cy="404">
         <span
@@ -21,12 +20,8 @@
 </template>
 
 <script lang="ts">
-import Navbar from '@/components/Navbar.vue';
 
 export default {
   name: 'Board',
-  components: {
-    Navbar
-  }
 };
 </script>
