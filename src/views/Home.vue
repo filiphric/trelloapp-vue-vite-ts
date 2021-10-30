@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import BoardList from '@/components/board/BoardList.vue';
+import BoardList from '@/components/boardList/BoardList.vue';
 import { defineComponent } from 'vue';
 import { store } from '@/stores/store';
 

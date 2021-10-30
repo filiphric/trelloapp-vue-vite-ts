@@ -6,32 +6,11 @@
       ...
     </div>
     <!-- BOARDS NOT LOADED -->
-    <div
-      class="place-self-center"
-      v-if="state.loadingError.show"
-      data-cy="board-list-error-message"
-    >
-      <span
-        class="font-bold text-8xl text-gray-200 text-center block mb-4"
-        >{{ state.loadingError.status }}</span
-      >
-      <p class="text-gray-400 text-center block mb-4">
-        {{
-          state.loadingError.message ||
-            'There was an error loading your boards'
-        }}
-      </p>
-      <router-link
-        to="/"
-        class="text-blue7 font-semibold text-center block"
-        >Try again</router-link
-      >
-    </div>
+    <LoadingError v-if="state.loadingError.show" />
     <!-- BOARDS LOADED -->
     <div
-      v-cloak
       class="container mx-auto"
-      v-if="!state.loading"
+      v-if="!state.loading && !state.loadingError.show"
     >
       <!-- STARRED BOARDS -->
       <div v-if="state.starred.length">
@@ -74,7 +53,7 @@
       </div>
     </div>
     <Emptylist
-      v-if="!state.loading && !state.boardList.all.length"
+      v-if="!state.loading && !state.boardList.all.length && !state.loadingError.show"
     />
   </div>
 </template>
@@ -84,7 +63,8 @@ import { store } from '@/stores/store';
 import { defineComponent } from 'vue';
 import BoardItem from '@/components/board/BoardItem.vue';
 import BoardCreate from '@/components/board/BoardCreate.vue';
-import Emptylist from '@/components/board/Emptylist.vue';
+import Emptylist from '@/components/boardList/Emptylist.vue';
+import LoadingError from '@/components/boardList/LoadingError.vue';
 import Loading from '@/assets/icons/loading.svg';
 
 export default defineComponent({
@@ -98,6 +78,7 @@ export default defineComponent({
     Emptylist,
     BoardItem,
     BoardCreate,
+    LoadingError,
     Loading
   }
 });

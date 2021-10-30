@@ -10,67 +10,45 @@
     <input
       class="w-full h-9 px-2 border-2 border-transparent outline-none focus:border-blue6 rounded-sm"
       data-cy="new-board-input"
-      v-model="newBoardTitle"
-      v-on:keyup.enter.prevent="createNewBoard()"
       placeholder="Add board title"
+      v-model="newBoardTitle"
+      v-on:keyup.enter.prevent="createBoard(newBoardTitle)"
       v-show="newBoardInputActive"
-      ref="boardCreate"
+      ref="boardCreateInput"
     />
     <div class="flex flex-row-reverse items-end justify-items-end" v-if="newBoardInputActive">
       <Cross class="w-9 h-9 px-2 mx-1 fill-current text-gray-600 order-last" @click.stop="newBoardInputActive = false" />
-      <SaveButton data-cy="new-board-create" @click.stop="createNewBoard()" buttonText="Create board" />
+      <SaveButton data-cy="new-board-create" @click.stop="createBoard(newBoardTitle)" buttonText="Create board" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import axios from 'axios';
+import { defineComponent, nextTick, ref } from 'vue';
 import Cross from '@/assets/icons/cross.svg';
 import SaveButton from '../SaveButton.vue';
-import { store } from '@/stores/store';
+import { createBoard } from '@/stores/actions/createBoard';
 export default defineComponent({
+
   setup() {
-    const state = store();
-    return { state };
-  },
-  data: function() {
-    return {
-      newBoardTitle: '',
-      newBoardInputActive: false
-    };
+    const newBoardTitle = ref('')
+    const newBoardInputActive = ref(false)
+    const boardCreateInput = ref()
+    return { createBoard, newBoardTitle, newBoardInputActive, boardCreateInput };
   },
   components: {
     Cross,
     SaveButton
-  },
-  $refs: {
-    boardCreate: HTMLFormElement
   },
   methods: {
     onClickAway() {
       this.newBoardInputActive = false;
       this.newBoardTitle = '';
     },
-    createNewBoard() {
-      if (!this.newBoardTitle) {
-        return;
-      }
-      // send api request to create a board
-      axios
-        .post('/api/boards', { name: this.newBoardTitle })
-        .then(({ data }) => {
-          this.$router.push(`/board/${data.id}`);
-        })
-        .catch(() => {
-          this.state.showNotification('There was an error creating board', true);
-        });
-      this.newBoardTitle = '';
-    },
     toggleNewBoardInput: function(flag: boolean) {
       this.newBoardInputActive = flag;
-      this.$nextTick(() => {
-        const boardInput = this.$refs.boardCreate as HTMLElement;
+      nextTick(() => {
+        const boardInput = this.$refs.boardCreateInput as HTMLElement;
         boardInput.focus();
       });
     }

@@ -82,5 +82,9 @@ describe('creating a card', () => {
     cy.wait('@patchCard')
       .its('request.body.completed')
       .should('be.true');
+    cy.get('[data-cy="card-checkbox"]').uncheck();
+    cy.wait('@patchCard')
+      .its('request.body.completed')
+      .should('be.false');
   });
 });

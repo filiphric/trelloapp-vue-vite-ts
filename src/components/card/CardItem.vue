@@ -1,12 +1,12 @@
 <template>
   <div
     data-cy="card"
-    class="card grid w-full bg-white relative px-2 py-1.5 rounded border-gray1 border border-solid cursor-pointer hover:bg-gray1 drop-shadow-sm my-1.5"
+    class="card grid w-full bg-white relative p-2 rounded border-gray1 border border-solid cursor-pointer hover:bg-gray1 drop-shadow-sm my-1.5"
     @click="state.showCardModule(card.id, true)"
   >
-    <div class="flex pl-0.5">
+    <div class="flex pl-0.5 px-1.5">
       <Checkbox :card="card" />
-      <div class="select-none text-sm text-gray-800 flex-grow pl-2 pt-1" style="white-space: break-spaces" data-cy="card-title">
+      <div class="select-none text-sm text-gray-800 flex-grow pl-2" style="white-space: break-spaces" data-cy="card-title">
         {{ card.name }}
       </div>
       <Pen class="pen absolute right-2 top-2 hidden p-1 w-5 h-5 text-gray-700 bg-gray1 bg-opacity-60" />

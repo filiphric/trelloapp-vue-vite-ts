@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { createBoard } from './actions/createBoard';
 import { getBoardDetail } from './actions/getBoardDetail';
 import { getBoardList } from './actions/getBoardList';
 import { patchCard } from './actions/patchCard';
@@ -59,11 +60,13 @@ export const store = defineStore({
         email: '',
         password: ''
       },
-      showTools: false
+      showTools: false,
+      redirectBoardId: null
     };
   },
   actions: {
     // board actions
+    createBoard,
     getBoardDetail,
     getBoardList,
     patchBoard,

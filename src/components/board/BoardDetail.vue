@@ -3,6 +3,7 @@
     class="grid"
     :class="state.loadingError.show ? 'bg-white' : 'bg-blue6'"
   >
+    <!-- LOADING -->
     <div
       class="loading h-screen grid content-center justify-center"
       v-if="state.loading"
@@ -12,6 +13,7 @@
         ...
       </div>
     </div>
+    <!-- ERROR STATE -->
     <div
       class="h-screen grid content-center justify-center"
       v-if="state.loadingError.show"
@@ -33,8 +35,9 @@
         >Go back home</router-link
       >
     </div>
+    <!-- BOARD DETAIL -->
     <div
-      v-else
+      v-if="!state.loading && !state.loadingError.show"
       class="overflow-x-auto overflow-y-hidden h-full whitespace-nowrap"
       data-cy="board-detail"
     >
