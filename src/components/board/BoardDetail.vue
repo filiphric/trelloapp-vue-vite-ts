@@ -87,7 +87,8 @@ export default defineComponent({
   setup() {
     const route = useRoute();
     const state = store();
-    state.getBoardDetail(route.params.board);
+    const boardId = Number(route.params.board)
+    state.getBoardDetail(boardId);
     return { state, useRoute };
   },
   components: {

@@ -61,7 +61,6 @@ export const store = defineStore({
         password: ''
       },
       showTools: false,
-      redirectBoardId: null
     };
   },
   actions: {

@@ -18,7 +18,7 @@
         placeholder="Password"
         name="password"
         v-model="state.signupForm.password"
-        @keyup.enter="state.signup(state.signupForm.email, state.signupForm.password, state.signupForm.elcomeEmail)"
+        @keyup.enter="state.signup(state.signupForm.email, state.signupForm.password, state.signupForm.welcomeEmail)"
       />
       <div class="mb-4">
         <input type="checkbox" name="welcomeEmail" class="mr-2" v-model="state.signupForm.welcomeEmail" />

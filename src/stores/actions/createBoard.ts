@@ -2,7 +2,7 @@ import Board from '@/typings/board';
 import axios from 'axios';
 import router from '@/router/index';
 
-export const createBoard = async function(this: any, name: Pick<Board, 'name'>) {
+export const createBoard = async function(this: any, name: Board['name']) {
   if (!name) {
     return;
   }

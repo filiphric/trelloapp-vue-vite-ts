@@ -63,7 +63,7 @@ declare namespace Cypress {
     signupApi(options: {
       email: string;
       password: string;
-      login: boolean
+      login?: boolean
     }): Chainable<Element>
 
     /**
