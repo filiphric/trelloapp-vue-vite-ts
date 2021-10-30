@@ -104,14 +104,10 @@ export const store = defineStore({
   },
   getters: {
     starred: state => {
-      return state.boardList.all.filter(
-        (board: Board) => board.starred === true
-      );
+      return state.boardList.all.filter((board: Board) => board.starred === true);
     },
     allBoards: state => {
-      return state.boardList.all.filter(
-        (board: Board) => board.starred === false
-      );
+      return state.boardList.all.filter((board: Board) => board.starred === false);
     }
   }
 });

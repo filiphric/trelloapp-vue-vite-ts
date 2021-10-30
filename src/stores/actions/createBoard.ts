@@ -1,9 +1,8 @@
 import Board from '@/typings/board';
 import axios from 'axios';
-import router from '@/router/index'
+import router from '@/router/index';
 
 export const createBoard = async function(this: any, name: Pick<Board, 'name'>) {
-
   if (!name) {
     return;
   }
@@ -13,9 +12,8 @@ export const createBoard = async function(this: any, name: Pick<Board, 'name'>) 
       this.redirectBoardId = data.id;
       router.push(`/board/${data.id}`);
     })
-    .catch((e) => {
-      console.log(e)
+    .catch(e => {
+      console.log(e);
       this.showNotification('There was an error creating board', true);
     });
-
 };

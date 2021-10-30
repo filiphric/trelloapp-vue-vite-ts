@@ -12,7 +12,7 @@ import Navbar from '@/components/Navbar.vue';
 import { useKeypress } from 'vue3-keypress';
 import { store } from './stores/store';
 import Tools from './components/Tools.vue';
-import axios from 'axios'
+import axios from 'axios';
 
 export default defineComponent({
   name: 'App',
@@ -23,18 +23,16 @@ export default defineComponent({
   },
   setup() {
     const state = store();
-    const toggleTools = state.toggleTools
-    const getCookieValue = (name: string) => (
-      document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || ''
-    )
+    const toggleTools = state.toggleTools;
+    const getCookieValue = (name: string) => document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
 
-    const token = getCookieValue('trello_token')
+    const token = getCookieValue('trello_token');
 
-    if (token) {      
+    if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       state.user();
     }
-    
+
     useKeypress({
       keyEvent: 'keydown',
       keyBinds: [

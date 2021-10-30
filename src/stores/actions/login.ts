@@ -8,7 +8,7 @@ export const login = async function(this: any, email: string, password: string) 
       axios.defaults.headers.common['Authorization'] = `Bearer ${data.accessToken}`;
       document.cookie = `trello_token=${data.accessToken}`;
       router.push('/');
-      this.user()
+      this.user();
     })
     .catch(({ response }) => {
       this.showNotification(response.data, true);

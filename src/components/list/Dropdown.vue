@@ -1,6 +1,8 @@
 <template>
   <button @click="showDropdown()" data-cy="list-options">
-    <Dots class="text-gray10 flex-grow-0 border-2 border-transparent inline-block place-self-end hover:bg-gray4 bg-transparent active:bg-gray7 rounded-sm h-8 w-8 p-1.5 cursor-pointer" />
+    <Dots
+      class="text-gray10 flex-grow-0 border-2 border-transparent inline-block place-self-end hover:bg-gray4 bg-transparent active:bg-gray7 rounded-sm h-8 w-8 p-1.5 cursor-pointer"
+    />
   </button>
   <div
     v-if="dropdown"

@@ -1,13 +1,12 @@
 <template>
-  <button @click="showDropdown()" data-cy="board-options" class="relative bg-white bg-opacity-20 hover:bg-opacity-30 self-center rounded-sm ml-2 w-8 h-8 cursor-pointer inline-grid text-white">
+  <button
+    @click="showDropdown()"
+    data-cy="board-options"
+    class="relative bg-white bg-opacity-20 hover:bg-opacity-30 self-center rounded-sm ml-2 w-8 h-8 cursor-pointer inline-grid text-white"
+  >
     <Dots class="place-self-center m-2" />
   </button>
-  <div
-    v-if="dropdown"
-    class="bg-white absolute rounded-sm top-20 ml-3 mt-3 shadow-xl z-10 w-dropdown py-2"
-    data-cy="board-dropdown"
-    v-click-away="onClickAway"
-  >
+  <div v-if="dropdown" class="bg-white absolute rounded-sm top-20 ml-3 mt-3 shadow-xl z-10 w-dropdown py-2" data-cy="board-dropdown" v-click-away="onClickAway">
     <div class="text-gray-600 text-sm h-7 mt-0.5 text-center">Board actions</div>
     <Cross class="w-8 h-8 px-2 text-gray-600 absolute top-1 right-1 cursor-pointer" @click="dropdown = false" />
     <hr />

@@ -8,7 +8,15 @@
   >
     <h1 class="text-white" v-show="!newBoardInputActive">Create new board</h1>
     <input
-      class="w-full h-9 px-2 border-2 border-transparent outline-none focus:border-blue6 rounded-sm"
+      class="
+        w-full
+        h-9
+        px-2
+        border-2 border-transparent
+        outline-none
+        focus:border-blue6
+        rounded-sm
+      "
       data-cy="new-board-input"
       placeholder="Add board title"
       v-model="newBoardTitle"
@@ -27,14 +35,19 @@
 import { defineComponent, nextTick, ref } from 'vue';
 import Cross from '@/assets/icons/cross.svg';
 import SaveButton from '../SaveButton.vue';
-import { createBoard } from '@/stores/actions/createBoard';
+import { store } from '@/stores/store';
 export default defineComponent({
-
   setup() {
-    const newBoardTitle = ref('')
-    const newBoardInputActive = ref(false)
-    const boardCreateInput = ref()
-    return { createBoard, newBoardTitle, newBoardInputActive, boardCreateInput };
+    const newBoardTitle = ref('');
+    const newBoardInputActive = ref(false);
+    const boardCreateInput = ref();
+    const createBoard = store().createBoard;
+    return {
+      createBoard,
+      newBoardTitle,
+      newBoardInputActive,
+      boardCreateInput
+    };
   },
   components: {
     Cross,

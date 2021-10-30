@@ -3,7 +3,13 @@
     <div class="grid content-center">
       <h1 class="font-bold text-3xl mb-8">Create a new account</h1>
       <label for="email">Email</label>
-      <input class="h-10 w-full rounded-sm mb-3 px-2 bg-gray3 focus:bg-white" placeholder="Email" name="email" v-model="state.signupForm.email" data-cy="signup-email"/>
+      <input
+        class="h-10 w-full rounded-sm mb-3 px-2 bg-gray3 focus:bg-white"
+        placeholder="Email"
+        name="email"
+        v-model="state.signupForm.email"
+        data-cy="signup-email"
+      />
       <label for="password">Password</label>
       <input
         type="password"
@@ -19,7 +25,8 @@
         <label class="text-sm" for="welcomeEmail">Send me a welcome email</label>
       </div>
       <button
-        class="w-full py-2 text-white bg-green7 hover:bg-green6" data-cy="signup-submit"
+        class="w-full py-2 text-white bg-green7 hover:bg-green6"
+        data-cy="signup-submit"
         @click="state.signup(state.signupForm.email, state.signupForm.password, state.signupForm.welcomeEmail)"
       >
         Create account

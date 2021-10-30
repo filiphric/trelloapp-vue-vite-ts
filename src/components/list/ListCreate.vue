@@ -48,13 +48,13 @@ export default defineComponent({
   },
   setup() {
     const state = store();
-    const createList = state.createList
+    const createList = state.createList;
     return { state, createList };
   },
 
   data() {
     return {
-      listTitle: '',
+      listTitle: ''
     };
   },
   $refs: {
