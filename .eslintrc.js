@@ -13,7 +13,7 @@ module.exports = {
     parser: '@typescript-eslint/parser',
     sourceType: 'module'
   },
-  plugins: ['vue', '@typescript-eslint', 'cypress'],
+  plugins: ['vue', '@typescript-eslint', 'cypress', 'no-only-tests'],
   rules: {
     'brace-style': ['error', 'stroustrup'],
     'quotes': ['error', 'single'],
@@ -22,6 +22,7 @@ module.exports = {
     'cypress/assertion-before-screenshot': 'warn',
     'cypress/no-force': 'warn',
     'cypress/no-async-tests': 'error',
-    'cypress/no-pause': 'error'
+    'cypress/no-pause': 'error',
+    'no-only-tests/no-only-tests': 'error'
   }
 };
