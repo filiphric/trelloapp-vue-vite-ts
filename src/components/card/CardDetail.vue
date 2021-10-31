@@ -82,7 +82,7 @@
             <div class="col-span-2 row-span-2"><img :src="'/backend' + state.activeCard.image" /></div>
             <div class="font-bold col-span-4">
               {{ state.activeCard.image.replace(`/data/uploaded/${state.activeCard.id}_`, '') }}
-              <div class="block underline cursor-pointer font-normal" data-cy="image-delete" @click="state.patchCard(state.activeCard, { image: undefined })">
+              <div class="block underline cursor-pointer font-normal" data-cy="image-delete" @click="state.patchCard(state.activeCard, { image: null })">
                 <Cross class="inline-block w-4 mb-1" />Delete
               </div>
             </div>

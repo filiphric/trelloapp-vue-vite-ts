@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
 import router from './router';
-// import { createPinia } from 'pinia';
+import { createPinia } from 'pinia';
 import App from './App.vue';
 import VueClickAway from 'vue3-click-away';
 import './index.css';
@@ -11,7 +11,7 @@ import axios from 'axios';
 // const socket = io('http://localhost:3000');
 
 const app = createApp(App)
-  // .use(createPinia())
+  .use(createPinia())
   .use(router)
   .use(VueClickAway);
 // .use(VueSocketIOExt, socket);

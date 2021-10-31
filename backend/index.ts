@@ -1,4 +1,4 @@
-import { PluginOption } from "vite";
+import { PluginOption } from 'vite';
 
 export const startServer = (): PluginOption => {
   

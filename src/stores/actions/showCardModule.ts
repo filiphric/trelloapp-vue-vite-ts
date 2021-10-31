@@ -17,7 +17,8 @@ export const showCardModule = async function(this: any, cardId: Card['id'], flag
         this.cardModule = false;
         this.showNotification(`Card with id: ${cardId} was not found`, true);
       });
-  } else {
+  }
+ else {
     router.push(router.currentRoute.value.path);
     this.activeCard = {};
     this.cardModule = false;

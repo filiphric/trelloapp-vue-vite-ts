@@ -2,7 +2,10 @@
   "name": "trelloapp-vue-vite-ts",
   "version": "1.0.0",
   "scripts": {
-    "start": "vite"
+    "start": "vite",
+    "lint": "eslint \"**/*.{ts,vue,js}\"",
+    "typecheck": "tsc --noEmit -p .",
+    "vuecheck": "npx vti diagnostics"
   },
   "dependencies": {
     "@4tw/cypress-drag-drop": "^1.8.0",
@@ -28,7 +31,6 @@
     "cypress-watch-and-reload": "^1.5.0",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.2",
-    "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-import": "^2.23.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.3.1",
@@ -64,6 +66,7 @@
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
+    "eslint-plugin-cypress": "^2.12.1",
     "husky": "^7.0.4"
   }
 }

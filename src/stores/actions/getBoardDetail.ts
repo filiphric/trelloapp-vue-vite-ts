@@ -38,7 +38,7 @@ export const getBoardDetail = async function(this: any, id: Board['id']) {
     }
     this.loading = false;
   }
- catch ({err}) {
+ catch (err) {
    const { response } = err as AxiosError
     this.loading = false;
     this.loadingError.show = true;

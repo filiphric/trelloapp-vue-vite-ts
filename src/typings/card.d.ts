@@ -4,7 +4,7 @@ interface Card {
   name: string;
   description: string;
   id: number;
-  image: string;
+  image: string | null;
   created: string;
   deadline: string;
   completed: boolean;

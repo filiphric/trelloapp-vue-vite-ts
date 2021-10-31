@@ -45,7 +45,7 @@ import Cross from '@/assets/icons/cross.svg';
 import Dots from '@/assets/icons/dots.svg';
 export default defineComponent({
   setup() {
-    const deleteList = store().deleteList;
+    const { deleteList } = store();
     return { deleteList };
   },
   data() {

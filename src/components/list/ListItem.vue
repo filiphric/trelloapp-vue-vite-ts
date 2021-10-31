@@ -8,7 +8,7 @@
           $event.target.select();
           inputActive = true;
         "
-        @change="state.patchList(list, { name: list.name })"
+        @change="state.patchList(list, { name: $event.target.value })"
         @keyup.enter="
           $event.target.blur();
           inputActive = false;
@@ -18,7 +18,8 @@
           inputActive = false;
         "
         @blur="inputActive = false"
-        v-model="list.name"
+        v-bind="list"
+        :value="list.name"
         v-click-away="onClickAway"
       />
       <Dropdown @toggleInput="showCardCreate" :list="list" />
