@@ -13,7 +13,7 @@
       ref="cardCreate"
     />
     <div>
-      <SaveButton buttonText="Add card" @click="addCard" />
+      <SaveButton buttontext="Add card" @click="addCard" />
       <Cross
         data-cy="cancel"
         class="w-8 h-8 p-1 mx-0.5 fill-current text-gray-600 order-last inline-block"

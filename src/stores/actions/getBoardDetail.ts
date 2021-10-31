@@ -1,7 +1,7 @@
 import Board from '@/typings/board';
 import Card from '@/typings/card';
 import List from '@/typings/list';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { useRoute, useRouter } from 'vue-router';
 
 export const getBoardDetail = async function(this: any, id: Board['id']) {
@@ -36,14 +36,15 @@ export const getBoardDetail = async function(this: any, id: Board['id']) {
     if (qs !== undefined) {
       this.showCardModule(qs, true);
     }
-
     this.loading = false;
-  } catch (err) {
+  }
+ catch ({err}) {
+   const { response } = err as AxiosError
     this.loading = false;
     this.loadingError.show = true;
-    this.loadingError.message = err.response.data.message;
-    this.loadingError.status = err.response.status;
-    if (err.response.status === 404) {
+    this.loadingError.message = response?.data.message;
+    this.loadingError.status = response?.status;
+    if (response?.status === 404) {
       router.push('/404');
     }
   }

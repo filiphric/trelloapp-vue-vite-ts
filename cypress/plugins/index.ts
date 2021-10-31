@@ -1,6 +1,6 @@
 const clipboardy = require('clipboardy');
 
-module.exports = (on, config) => {
+module.exports = (on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) => {
   on('task', {
     getClipboard: () => {
       const clipboard: string = clipboardy.readSync();

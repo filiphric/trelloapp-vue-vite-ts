@@ -1,5 +1,3 @@
-import { Moment } from 'moment';
-
 interface Card {
   boardId: number;
   listId: number;
@@ -7,8 +5,8 @@ interface Card {
   description: string;
   id: number;
   image: string;
-  created: Moment | string;
-  deadline: Moment | string;
+  created: string;
+  deadline: string;
   completed: boolean;
   order: number;
 }

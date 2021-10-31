@@ -82,7 +82,7 @@
             <div class="col-span-2 row-span-2"><img :src="'/backend' + state.activeCard.image" /></div>
             <div class="font-bold col-span-4">
               {{ state.activeCard.image.replace(`/data/uploaded/${state.activeCard.id}_`, '') }}
-              <div class="block underline cursor-pointer font-normal" data-cy="image-delete" @click="state.patchCard(state.activeCard, { image: null })">
+              <div class="block underline cursor-pointer font-normal" data-cy="image-delete" @click="state.patchCard(state.activeCard, { image: undefined })">
                 <Cross class="inline-block w-4 mb-1" />Delete
               </div>
             </div>
@@ -132,11 +132,12 @@ import Card from '@/typings/card';
 import Dropzone from '../Dropzone.vue';
 import { DatePicker } from 'v-calendar';
 import moment from 'moment';
+import List from '@/typings/list';
 
 export default defineComponent({
   setup() {
     const state = store();
-    const cardListName = state.lists.find((c: Card) => c.id === state.activeCard.listId)!['name'];
+    const cardListName = state.lists.find((l: List) => l.id === state.activeCard.listId)!['name'];
     return { state, cardListName };
   },
   methods: {
