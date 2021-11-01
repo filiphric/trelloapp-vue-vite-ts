@@ -1,10 +1,10 @@
+import './index.css';
 import { createApp } from 'vue';
-import router from './router';
 import { createPinia } from 'pinia';
 import App from './App.vue';
 import VueClickAway from 'vue3-click-away';
-import './index.css';
 import axios from 'axios';
+import router from './router';
 // import VueSocketIOExt from 'vue-socket.io-extended';
 // import { io } from 'socket.io-client';
 

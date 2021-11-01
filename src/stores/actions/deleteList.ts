@@ -1,5 +1,5 @@
-import axios from 'axios';
 import List from '@/typings/list';
+import axios from 'axios';
 
 export const deleteList = async function(this: any, listId: List['id']) {
   await axios.delete(`/api/lists/${listId}`);

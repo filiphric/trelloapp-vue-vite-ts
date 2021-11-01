@@ -1,113 +1,150 @@
-import { defineStore } from 'pinia';
 import { createBoard } from './actions/createBoard';
-import { getBoardDetail } from './actions/getBoardDetail';
-import { getBoardList } from './actions/getBoardList';
-import { patchCard } from './actions/patchCard';
-import { uploadFile } from './actions/uploadFile';
-import { deleteCard } from './actions/deleteCard';
-import { deleteList } from './actions/deleteList';
-import { patchList } from './actions/patchList';
 import { createCard } from './actions/createCard';
 import { createList } from './actions/createList';
+import { defineStore } from 'pinia';
 import { deleteBoard } from './actions/deleteBoard';
-import { signup } from './actions/signup';
+import { deleteCard } from './actions/deleteCard';
+import { deleteList } from './actions/deleteList';
+import { getBoardDetail } from './actions/getBoardDetail';
+import { getBoardList } from './actions/getBoardList';
 import { login } from './actions/login';
-import { user } from './actions/user';
-import { reset } from './actions/reset';
-import { showNotification } from './actions/showNotification';
-import { showCardModule } from './actions/showCardModule';
-import { resetBoards } from './actions/resetBoards';
-import { resetLists } from './actions/resetLists';
-import { resetCards } from './actions/resetCards';
-import { resetUsers } from './actions/resetUsers';
 import { patchBoard } from './actions/patchBoard';
+import { patchCard } from './actions/patchCard';
+import { patchList } from './actions/patchList';
+import { reset } from './actions/reset';
+import { resetBoards } from './actions/resetBoards';
+import { resetCards } from './actions/resetCards';
+import { resetLists } from './actions/resetLists';
+import { resetUsers } from './actions/resetUsers';
+import { showCardModule } from './actions/showCardModule';
+import { showNotification } from './actions/showNotification';
+import { signup } from './actions/signup';
 import { toggleTools } from './actions/toggleTools';
+import { uploadFile } from './actions/uploadFile';
+import { user } from './actions/user';
 import Board from '@/typings/board';
 
 export const store = defineStore({
+  actions: {
+    // board actions
+    createBoard,
+    
+// card actions
+createCard,
+    
+
+// list actions
+createList,
+    
+
+deleteBoard,
+    
+
+deleteCard,
+
+    
+    
+deleteList,
+    
+getBoardDetail,
+    
+getBoardList,
+
+    
+    login,
+    patchBoard,
+    patchCard,
+    
+patchList,
+
+    
+    
+
+// reset actions
+reset,
+    
+
+
+
+showCardModule,
+    
+
+
+
+resetBoards,
+
+    
+    
+
+// other actions
+showNotification,
+    
+
+resetCards,
+
+    
+    
+// user actions
+signup,
+
+    
+    
+resetLists,
+    
+uploadFile,
+    
+resetUsers,
+    
+// api tools
+toggleTools,
+    
+user
+  },
+  getters: {
+    allBoards: state => {
+      return state.boardList.all.filter((board: Board) => board.starred === false);
+    },
+    starred: state => {
+      return state.boardList.all.filter((board: Board) => board.starred === true);
+    }
+  },
   id: 'store',
   state() {
     return {
-      board: {},
-      lists: [],
-      loading: true,
-      loadingError: {
-        show: false,
-        status: 0,
-        message: ''
-      },
-      createListInput: true,
-      cardModule: false,
       activeCard: {},
-      notification: {
-        error: false,
-        show: false,
-        message: ''
+      board: {},
+      activeUser: {
+        email: '',
+        loggedIn: false
       },
       boardList: {
         all: []
       },
-      activeUser: {
-        loggedIn: false,
-        email: ''
-      },
-      signupForm: {
-        email: '',
-        password: '',
-        welcomeEmail: false
+      cardModule: false,
+      createListInput: true,
+      lists: [],
+      loading: true,
+      loadingError: {
+        message: '',
+        show: false,
+        status: 0
       },
       loginForm: {
         email: '',
         password: ''
       },
+      notification: {
+        error: false,
+        message: '',
+        show: false
+      },
       showTools: false,
+      signupForm: {
+        email: '',
+        password: '',
+        welcomeEmail: false
+      },
     };
-  },
-  actions: {
-    // board actions
-    createBoard,
-    getBoardDetail,
-    getBoardList,
-    patchBoard,
-    deleteBoard,
-
-    // list actions
-    createList,
-    deleteList,
-    patchList,
-
-    // card actions
-    createCard,
-    patchCard,
-    deleteCard,
-    uploadFile,
-
-    // user actions
-    signup,
-    login,
-    user,
-
-    // other actions
-    showNotification,
-    showCardModule,
-
-    // api tools
-    toggleTools,
-
-    // reset actions
-    reset,
-    resetBoards,
-    resetLists,
-    resetCards,
-    resetUsers
-  },
-  getters: {
-    starred: state => {
-      return state.boardList.all.filter((board: Board) => board.starred === true);
-    },
-    allBoards: state => {
-      return state.boardList.all.filter((board: Board) => board.starred === false);
-    }
   }
 });
 

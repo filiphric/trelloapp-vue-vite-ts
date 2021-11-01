@@ -6,20 +6,20 @@
 </template>
 
 <script lang="ts">
-import Navbar from '@/components/Navbar.vue';
+import { store } from '@/stores/store';
 import BoardDetail from '@/components/board/BoardDetail.vue';
 import CardDetail from '@/components/card/CardDetail.vue';
-import { store } from '@/stores/store';
+import Navbar from '@/components/Navbar.vue';
 
 export default {
-  setup() {
-    const state = store();
-    return { state };
-  },
   name: 'Board',
   components: {
     CardDetail,
     BoardDetail
+  },
+  setup() {
+    const state = store();
+    return { state };
   }
 };
 </script>

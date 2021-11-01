@@ -4,9 +4,17 @@
     class="h-14 min-w-min text-base shadow-xl absolute bottom-5 left-5 rounded-sm z-50 bg-white"
     data-cy="notification-message"
   >
-    <Error class="text-red-500 fill-current inline-block ml-4" v-if="state.notification.error" />
-    <Info class="text-blue-500 fill-current inline-block ml-4 w-4 h-4" v-else />
-    <div class="m-4 text-black inline-block">{{ state.notification.message }}</div>
+    <Error
+      v-if="state.notification.error"
+      class="text-red-500 fill-current inline-block ml-4"
+    />
+    <Info
+      v-else
+      class="text-blue-500 fill-current inline-block ml-4 w-4 h-4"
+    />
+    <div class="m-4 text-black inline-block">
+      {{ state.notification.message }}
+    </div>
   </div>
 </template>
 
@@ -17,13 +25,13 @@ import Error from '@/assets/icons/error.svg';
 import Info from '@/assets/icons/info.svg';
 
 export default defineComponent({
-  setup() {
-    const state = store();
-    return { state };
-  },
   components: {
     Error,
     Info
+  },
+  setup() {
+    const state = store();
+    return { state };
   }
 });
 </script>

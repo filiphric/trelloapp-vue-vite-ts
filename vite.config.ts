@@ -1,18 +1,21 @@
+import { createServer } from './backend/index';
 import { defineConfig } from 'vite';
+import istanbul from 'vite-plugin-istanbul';
+import path from 'path';
 import svgLoader from 'vite-svg-loader';
 import vue from '@vitejs/plugin-vue';
-import { createServer } from './backend/index';
-import path from 'path';
-import istanbul from 'vite-plugin-istanbul';
 
 export default defineConfig({
+  define: {
+    'process.env': {}
+  },
   plugins: [
     vue(),
     svgLoader(),
     istanbul({
-      include: 'src/*',
       exclude: ['node_modules', 'test/'],
-      extension: [ '.js', '.ts', '.vue' ]
+      extension: [ '.js', '.ts', '.vue' ],
+      include: 'src/*'
     }),
     createServer()
   ],
@@ -24,17 +27,14 @@ export default defineConfig({
   server: {
     proxy: {
       '^/api/.*': {
-        target: 'http://localhost:3001',
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/api/, '')
+        rewrite: path => path.replace(/^\/api/, ''),
+        target: 'http://localhost:3001'
       },
       '^/socket.io/.*': {
-        target: 'http://localhost:3001',
         changeOrigin: true,
+        target: 'http://localhost:3001',
       }
     }
-  },
-  define: {
-    'process.env': {}
   }
 });

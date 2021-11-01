@@ -4,8 +4,7 @@
   "scripts": {
     "start": "vite",
     "lint": "eslint \"**/*.{ts,vue,js}\"",
-    "typecheck": "tsc --noEmit -p .",
-    "vuecheck": "npx vti diagnostics"
+    "typecheck": "tsc --noEmit -p . && vue-tsc --noEmit"
   },
   "dependencies": {
     "@4tw/cypress-drag-drop": "^1.8.0",
@@ -58,16 +57,16 @@
     "vue-eslint-parser": "^7.10.0",
     "vue-router": "^4.0.0-0",
     "vue-socket.io-extended": "^5.0.0-alpha.5",
-    "vue-tsc": "^0.0.15",
+    "vue-tsc": "^0.28.10",
     "vue3-click-away": "^1.1.0",
     "vue3-dropzone": "^0.0.7",
-    "vue3-keypress": "^4.0.1",
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-no-only-tests": "^2.6.0",
-    "husky": "^7.0.4"
+    "eslint-plugin-sort-imports-es6-autofix": "^0.6.0",
+    "eslint-plugin-sort-keys-fix": "^1.1.2"
   }
 }

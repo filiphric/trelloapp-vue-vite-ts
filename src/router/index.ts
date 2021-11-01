@@ -1,35 +1,35 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import Board from '../views/Board.vue';
 import Home from '../views/Home.vue';
 import Login from '../views/Login.vue';
-import Signup from '../views/Signup.vue';
-import Board from '../views/Board.vue';
 import NotFound from '../views/NotFound.vue';
+import Signup from '../views/Signup.vue';
 
 const routes = [
   {
-    path: '/',
+    component: Home,
     name: 'Home',
-    component: Home
+    path: '/'
   },
   {
-    path: '/login',
+    component: Login,
     name: 'Login',
-    component: Login
+    path: '/login'
   },
   {
-    path: '/signup',
+    component: Signup,
     name: 'Signup',
-    component: Signup
+    path: '/signup'
   },
   {
-    path: '/board/:board',
+    component: Board,
     name: 'Board',
-    component: Board
+    path: '/board/:board'
   },
   {
-    path: '/404',
+    component: NotFound,
     name: 'Page not found',
-    component: NotFound
+    path: '/404'
   }
 ];
 

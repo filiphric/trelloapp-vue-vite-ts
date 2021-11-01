@@ -5,18 +5,18 @@
 </template>
 
 <script lang="ts">
-import BoardList from '@/components/boardList/BoardList.vue';
 import { defineComponent } from 'vue';
 import { store } from '@/stores/store';
+import BoardList from '@/components/boardList/BoardList.vue';
 
 export default defineComponent({
-  setup() {
-    const state = store();
-    return { state };
-  },
   name: 'Home',
   components: {
     BoardList
+  },
+  setup() {
+    const state = store();
+    return { state };
   }
   // sockets: {
   //   boardCreated(message) {

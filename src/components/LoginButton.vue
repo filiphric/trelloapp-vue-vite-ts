@@ -1,10 +1,13 @@
 <template>
-  <div class="flex justify-end text-white mr-3" :class="[route.path === '/login' || route.path === '/signup' ? 'invisible' : 'visible']">
+  <div
+    class="flex justify-end text-white mr-3"
+    :class="[route.path === '/login' || route.path === '/signup' ? 'invisible' : 'visible']"
+  >
     <!-- LOGGED OUT -->
     <div
+      v-show="!state.activeUser.loggedIn"
       class="flex self-center bg-white bg-opacity-30 hover:bg-opacity-20 rounded-sm h-8 cursor-pointer text-sm"
       data-cy="login-menu"
-      v-show="!state.activeUser.loggedIn"
       @click="router.push('/login')"
     >
       <User class="ml-2 self-center w-6 h-6" />
@@ -12,9 +15,9 @@
     </div>
     <!-- LOGGED IN -->
     <div
+      v-show="state.activeUser.loggedIn"
       class="flex self-center bg-white bg-opacity-30 hover:bg-opacity-20 rounded-sm h-8 cursor-pointer text-sm"
       data-cy="logged-user"
-      v-show="state.activeUser.loggedIn"
     >
       <LogoutIcon class="ml-2 self-center w-5 h-5 text-white fill-current" />
       <div
@@ -33,12 +36,17 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { store } from '@/stores/store';
-import User from '@/assets/icons/user.svg';
+import { useRoute, useRouter } from 'vue-router';
 import LogoutIcon from '@/assets/icons/logoutIcon.svg';
+import User from '@/assets/icons/user.svg';
 import axios from 'axios';
-import { useRouter, useRoute } from 'vue-router';
 
 export default defineComponent({
+  name: 'Login',
+  components: {
+    LogoutIcon,
+    User
+  },
   setup() {
     const router = useRouter();
     const route = useRoute();
@@ -49,12 +57,7 @@ export default defineComponent({
       document.cookie = 'trello_token=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
       this.state.showNotification('User was logged out', false);
     };
-    return { state, logout, router, route };
-  },
-  name: 'Login',
-  components: {
-    LogoutIcon,
-    User
+    return { logout, route, router, state };
   }
 });
 </script>

@@ -44,13 +44,13 @@ describe('Tools', () => {
 
     cy
       .request({ 
-        method: 'POST', 
-        url: '/api/login', 
+        body, 
+        failOnStatusCode: false, 
         headers: {
           authorization: `Bearer ${Cypress.env('users')[0].accessToken}`
         },
-        failOnStatusCode: false,
-        body
+        method: 'POST',
+        url: '/api/login'
       }).its('body').should('eq', 'Cannot find user')
 
     // deletes cards
@@ -100,32 +100,32 @@ describe('Tools', () => {
 
     cy
       .request({ 
-        method: 'POST', 
-        url: '/api/login', 
+        body, 
+        failOnStatusCode: false, 
         headers: {
           authorization: `Bearer ${Cypress.env('users')[0].accessToken}`
         },
-        failOnStatusCode: false,
-        body
+        method: 'POST',
+        url: '/api/login'
       }).its('body').should('eq', 'Cannot find user')
 
   
     cy
       .request({ 
-        method: 'GET', 
-        url: '/api/lists', 
         headers: {
           accept: 'application/json'
-        }
+        }, 
+        method: 'GET', 
+        url: '/api/lists'
       }).its('body').should('be.empty')
 
     cy
       .request({ 
-        method: 'GET', 
-        url: '/api/cards', 
         headers: {
           accept: 'application/json'
-        }
+        }, 
+        method: 'GET', 
+        url: '/api/cards'
       }).its('body').should('be.empty')
 
   })

@@ -6,7 +6,11 @@
   >
     <div class="flex pl-0.5 px-1.5">
       <Checkbox :card="card" />
-      <div class="select-none text-sm text-gray-800 flex-grow pl-2" style="white-space: break-spaces" data-cy="card-title">
+      <div
+        class="select-none text-sm text-gray-800 flex-grow pl-2"
+        style="white-space: break-spaces"
+        data-cy="card-title"
+      >
         {{ card.name }}
       </div>
       <Pen class="pen absolute right-2 top-2 hidden p-1 w-5 h-5 text-gray-700 bg-gray1 bg-opacity-60" />
@@ -23,24 +27,29 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import Pen from '@/assets/icons/pen.svg';
-import Clock from '@/assets/icons/clock.svg';
+import { PropType, defineComponent } from 'vue';
 import { store } from '@/stores/store';
-import Checkbox from '@/components/Checkbox.vue';
-import moment from 'moment';
 import Card from '@/typings/card';
+import Checkbox from '@/components/Checkbox.vue';
+import Clock from '@/assets/icons/clock.svg';
+import Pen from '@/assets/icons/pen.svg';
+import moment from 'moment';
 
 export default defineComponent({
-  props: ['card'],
+  components: {
+    Checkbox,
+    Clock,
+    Pen
+  },
+  props: {
+    card: {
+      default: null,
+      type: Object as PropType<Card>
+    }
+  },
   setup() {
     const state = store();
     return { state };
-  },
-  components: {
-    Pen,
-    Clock,
-    Checkbox
   },
   methods: {
     overdue: (card: Card) => {

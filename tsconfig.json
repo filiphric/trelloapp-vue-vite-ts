@@ -7,6 +7,7 @@
     "jsx": "preserve",
     "allowJs": true,
     "baseUrl": "./",
+    "lib": ["esnext", "dom"],
     "allowSyntheticDefaultImports": true,
     "plugins": [
       {
@@ -17,7 +18,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": ["cypress-real-events", "node", "cypress"],
+    "types": ["cypress-real-events", "node", "cypress", "vue3-dropzone"],
   },
   "include": ["cypress/**/*.ts", "src/**/*"]
 }

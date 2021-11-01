@@ -1,6 +1,6 @@
 import '../support/commands/addBoardApi';
-import '../support/commands/addListApi';
 import '../support/commands/addCardApi';
+import '../support/commands/addListApi';
 
 describe('creating a card', () => {
   beforeEach(() => {

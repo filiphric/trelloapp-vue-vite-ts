@@ -1,30 +1,55 @@
 <template>
-  <div class="background bg-white h-screen grid" data-cy="board-list">
+  <div
+    class="background bg-white h-screen grid"
+    data-cy="board-list"
+  >
     <!-- LOADING -->
-    <div class="loading place-self-center" v-if="state.loading"><Loading class="mb-1 inline-block" />&nbsp;&nbsp;Loading data ...</div>
+    <div
+      v-if="state.loading"
+      class="loading place-self-center"
+    >
+      <Loading class="mb-1 inline-block" />&nbsp;&nbsp;Loading data ...
+    </div>
     <!-- BOARDS NOT LOADED -->
     <LoadingError v-if="state.loadingError.show" />
     <!-- BOARDS LOADED -->
-    <div class="container mx-auto" v-if="!state.loading && !state.loadingError.show">
+    <div
+      v-if="!state.loading && !state.loadingError.show"
+      class="container mx-auto"
+    >
       <!-- STARRED BOARDS -->
       <div v-if="state.starred.length">
-        <h1 class="mx-4 text-3xl py-5 font-semibold inline-block" data-cy="starred-boards">
+        <h1
+          class="mx-4 text-3xl py-5 font-semibold inline-block"
+          data-cy="starred-boards"
+        >
           Starred
         </h1>
         <div class="flex flex-cols-3 gap-8 flex-wrap flex-grow content-start mx-4">
-          <BoardItem v-for="board in state.starred" :key="board.id" :board="board" />
-          <BoardCreate v-if="!state.allBoards.length"></BoardCreate>
+          <BoardItem
+            v-for="board in state.starred"
+            :key="board.id"
+            :board="board"
+          />
+          <BoardCreate v-if="!state.allBoards.length" />
         </div>
       </div>
 
       <!-- ALL BOARDS -->
       <div v-if="state.allBoards.length">
-        <h1 class="mx-4 text-3xl py-5 font-semibold inline-block" data-cy="all-boards">
+        <h1
+          class="mx-4 text-3xl py-5 font-semibold inline-block"
+          data-cy="all-boards"
+        >
           My Boards
         </h1>
         <div class="flex flex-cols-3 gap-8 flex-wrap flex-grow content-start mx-4">
-          <BoardItem v-for="board in state.allBoards" :key="board.id" :board="board" />
-          <BoardCreate></BoardCreate>
+          <BoardItem
+            v-for="board in state.allBoards"
+            :key="board.id"
+            :board="board"
+          />
+          <BoardCreate />
         </div>
       </div>
     </div>
@@ -33,20 +58,15 @@
 </template>
 
 <script lang="ts">
-import { store } from '@/stores/store';
 import { defineComponent } from 'vue';
-import BoardItem from '@/components/board/BoardItem.vue';
+import { store } from '@/stores/store';
 import BoardCreate from '@/components/board/BoardCreate.vue';
+import BoardItem from '@/components/board/BoardItem.vue';
 import Emptylist from '@/components/boardList/Emptylist.vue';
-import LoadingError from '@/components/boardList/LoadingError.vue';
 import Loading from '@/assets/icons/loading.svg';
+import LoadingError from '@/components/boardList/LoadingError.vue';
 
 export default defineComponent({
-  setup() {
-    const state = store();
-    state.getBoardList();
-    return { state };
-  },
   name: 'BoardList',
   components: {
     Emptylist,
@@ -54,6 +74,11 @@ export default defineComponent({
     BoardCreate,
     LoadingError,
     Loading
+  },
+  setup() {
+    const state = store();
+    state.getBoardList();
+    return { state };
   }
 });
 </script>

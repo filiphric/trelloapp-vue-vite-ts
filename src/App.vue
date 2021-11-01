@@ -1,16 +1,20 @@
 <template>
-  <Navbar />
-  <Notification />
-  <Tools v-show="state.showTools" />
-  <router-view />
+  <div
+    tabindex="-1"
+    @keyup.f2="toggleTools"
+  >
+    <Navbar />
+    <Notification />
+    <Tools v-show="state.showTools" />
+    <router-view />
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Notification from '@/components/Notification.vue';
-import Navbar from '@/components/Navbar.vue';
-import { useKeypress } from 'vue3-keypress';
 import { store } from './stores/store';
+import Navbar from '@/components/Navbar.vue';
+import Notification from '@/components/Notification.vue';
 import Tools from './components/Tools.vue';
 import axios from 'axios';
 
@@ -33,16 +37,7 @@ export default defineComponent({
       state.user();
     }
 
-    useKeypress({
-      keyEvent: 'keydown',
-      keyBinds: [
-        {
-          keyCode: 113,
-          success: toggleTools
-        }
-      ]
-    });
-    return { state };
+    return { state, toggleTools };
   }
 });
 </script>

@@ -5,7 +5,7 @@ module.exports = {
     node: true
   },
   extends: [
-    'plugin:vue/vue3-essential',
+    'plugin:vue/vue3-recommended',
     'plugin:cypress/recommended'
   ],
   parserOptions: {
@@ -16,13 +16,10 @@ module.exports = {
   plugins: ['vue', '@typescript-eslint', 'cypress', 'no-only-tests'],
   rules: {
     'brace-style': ['error', 'stroustrup'],
-    'quotes': ['error', 'single'],
-    'cypress/no-assigning-return-values': 'error',
-    'cypress/no-unnecessary-waiting': 'error',
     'cypress/assertion-before-screenshot': 'warn',
     'cypress/no-force': 'warn',
-    'cypress/no-async-tests': 'error',
     'cypress/no-pause': 'error',
-    'no-only-tests/no-only-tests': 'error'
+    'no-only-tests/no-only-tests': 'error',
+    'quotes': ['error', 'single']
   }
 };

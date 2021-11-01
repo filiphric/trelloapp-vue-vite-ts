@@ -5,17 +5,22 @@
       type="checkbox"
       data-cy="card-checkbox"
       :checked="card.completed"
-      v-bind="card"
       @click.stop="patchCard(card, { completed: !card.completed })"
-    />
+    >
   </label>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
+<script lang="ts">
+import { PropType, defineComponent } from 'vue';
 import { store } from '@/stores/store';
+import Card from '@/typings/card'
 export default defineComponent({
-  props: ['card'],
+  props: {
+    card: {
+      default: null,
+      type: Object as PropType<Card>
+    }
+  },
   setup() {
     const patchCard = store().patchCard;
     return { patchCard };

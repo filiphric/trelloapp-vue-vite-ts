@@ -5,8 +5,7 @@ declare module '*.vue' {
 }
 
 declare module '*.svg' {
-  import Vue, { DefineComponent } from 'vue';
+  import { DefineComponent } from 'vue';
   const svg: DefineComponent<{}, {}, any>
   export default svg
 }
-

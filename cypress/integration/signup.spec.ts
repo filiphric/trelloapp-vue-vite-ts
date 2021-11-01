@@ -1,4 +1,9 @@
 describe('Signup', () => {
+
+  beforeEach(() => {
+    cy.request('POST', '/api/reset')
+  });
+
   it('sign up a user', () => {
 
     const user = {
@@ -22,7 +27,6 @@ describe('Signup', () => {
 
     cy.getCookie('trello_token')
       .should('exist')
-
 
   });
 });

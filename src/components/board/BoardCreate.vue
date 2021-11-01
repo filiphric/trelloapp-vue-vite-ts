@@ -1,13 +1,21 @@
 <template>
   <div
+    v-click-away="onClickAway"
     class="bg-gray6 w-72 h-36 px-4 py-3 cursor-pointer grid rounded-sm"
     data-cy="create-board"
     :class="{ 'hover:bg-gray7': !newBoardInputActive }"
     @click.prevent="toggleNewBoardInput(true)"
-    v-click-away="onClickAway"
   >
-    <h1 class="text-white" v-show="!newBoardInputActive">Create new board</h1>
+    <h1
+      v-show="!newBoardInputActive"
+      class="text-white"
+    >
+      Create new board
+    </h1>
     <input
+      v-show="newBoardInputActive"
+      ref="boardCreateInput"
+      v-model="newBoardTitle"
       class="
         w-full
         h-9
@@ -19,24 +27,36 @@
       "
       data-cy="new-board-input"
       placeholder="Add board title"
-      v-model="newBoardTitle"
-      v-on:keyup.enter.prevent="createBoard(newBoardTitle)"
-      v-show="newBoardInputActive"
-      ref="boardCreateInput"
-    />
-    <div class="flex flex-row-reverse items-end justify-items-end" v-if="newBoardInputActive">
-      <Cross class="w-9 h-9 px-2 mx-1 fill-current text-gray-600 order-last" @click.stop="newBoardInputActive = false" />
-      <SaveButton data-cy="new-board-create" @click.stop="createBoard(newBoardTitle)" buttontext="Create board" />
+      @keyup.enter.prevent="createBoard(newBoardTitle)"
+    >
+    <div
+      v-if="newBoardInputActive"
+      class="flex flex-row-reverse items-end justify-items-end"
+    >
+      <Cross
+        class="w-9 h-9 px-2 mx-1 fill-current text-gray-600 order-last"
+        @click.stop="newBoardInputActive = false"
+      />
+      <SaveButton
+        data-cy="new-board-create"
+        buttontext="Create board"
+        @click.stop="createBoard(newBoardTitle)"
+      />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, nextTick, ref } from 'vue';
+import { store } from '@/stores/store';
 import Cross from '@/assets/icons/cross.svg';
 import SaveButton from '../SaveButton.vue';
-import { store } from '@/stores/store';
 export default defineComponent({
+  name: 'BoardCreate',
+  components: {
+    Cross,
+    SaveButton
+  },
   setup() {
     const newBoardTitle = ref('');
     const newBoardInputActive = ref(false);
@@ -44,14 +64,10 @@ export default defineComponent({
     const createBoard = store().createBoard;
     return {
       createBoard,
-      newBoardTitle,
       newBoardInputActive,
+      newBoardTitle,
       boardCreateInput
     };
-  },
-  components: {
-    Cross,
-    SaveButton
   },
   methods: {
     onClickAway() {
@@ -65,8 +81,7 @@ export default defineComponent({
         boardInput.focus();
       });
     }
-  },
-  name: 'BoardCreate'
+  }
 });
 </script>
 

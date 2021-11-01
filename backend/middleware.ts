@@ -210,10 +210,10 @@ module.exports = (req, res, next) => {
     sendmail(
       {
         from: 'trelloapp@filiphric.sk',
-        to: req.body.email,
-        subject: 'Welcome to Trello app',
         html:
-          'Your account was successfully created!\nIn the meantime, subscribe to my <a href="https://www.youtube.com/channel/UCDOCAVIhSh5VpJMEfdak1OA">YouTube channel for Cypress tips!</a>'
+          'Your account was successfully created!\nIn the meantime, subscribe to my <a href="https://www.youtube.com/channel/UCDOCAVIhSh5VpJMEfdak1OA">YouTube channel for Cypress tips!</a>',
+        subject: 'Welcome to Trello app',
+        to: req.body.email
       },
       function(err, reply) {
         console.log(err && err.stack);
@@ -230,8 +230,8 @@ module.exports = (req, res, next) => {
     db.setState({
       boards: [],
       cards: [],
-      users: [],
-      lists: []
+      lists: [],
+      users: []
     }).write();
 
     socket.emit('boardsState', []);
