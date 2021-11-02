@@ -1,6 +1,35 @@
 {
-  "boards": [],
-  "cards": [],
+  "boards": [
+    {
+      "name": "a",
+      "user": 0,
+      "id": 36107887087,
+      "starred": false,
+      "created": "2021-11-02"
+    }
+  ],
+  "cards": [
+    {
+      "order": 0,
+      "boardId": 36107887087,
+      "listId": 20832899013,
+      "name": "a",
+      "id": 54994680650,
+      "created": "2021-11-02",
+      "deadline": "2021-11-05",
+      "description": "",
+      "completed": false,
+      "image": null
+    }
+  ],
   "users": [],
-  "lists": []
+  "lists": [
+    {
+      "boardId": 36107887087,
+      "name": "c",
+      "order": 0,
+      "id": 20832899013,
+      "created": "2021-11-02"
+    }
+  ]
 }

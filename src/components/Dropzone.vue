@@ -8,7 +8,10 @@
       v-bind="getRootProps()"
       class="w-full h-full"
     >
-      <input v-bind="getInputProps()">
+      <input
+        v-bind="getInputProps()"
+        accept="{{ accept }}"
+      >
       <div class="flex justify-center items-center w-full min-h-full h-32">
         <Dropicon
           class="fill-current text-gray-400 mr-3"
@@ -34,12 +37,12 @@
 
 <script lang="ts">
 
-import { PropType } from 'vue';
+import { PropType, defineComponent } from 'vue';
 import { store } from '@/stores/store';
 import { useDropzone } from 'vue3-dropzone';
 import Card from '@/typings/card';
 import Dropicon from '@/assets/icons/dropicon.svg';
-export default {
+export default defineComponent({
   name: 'Dropzone',
   components: {
     Dropicon
@@ -55,14 +58,16 @@ export default {
     function onDrop(acceptedFiles: any) {
       state.uploadFile(acceptedFiles, props.card);
     }
-
-    const { getRootProps, getInputProps, ...rest } = useDropzone({ onDrop, accept: 'image/png, image/gif, image/jpeg' });
+    
+    const accept: string = 'image/png, image/gif, image/jpeg'
+    const { getRootProps, getInputProps, ...rest } = useDropzone({ onDrop });
 
     return {
       getInputProps,
       getRootProps,
+      accept,
       ...rest
     };
   }
-};
+});
 </script>
