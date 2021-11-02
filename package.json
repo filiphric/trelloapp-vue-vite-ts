@@ -4,7 +4,10 @@
   "scripts": {
     "start": "vite",
     "lint": "prettier --write \"src/**/*.{ts,vue,js}\" && eslint \"**/*.{ts,vue,js}\" --fix && echo \"✅ All files passed linting!\"",
-    "typecheck": "tsc --noEmit -p . && vue-tsc --noEmit && echo \"✅ All file types passed!\""
+    "typecheck": "tsc --noEmit -p . && vue-tsc --noEmit && echo \"✅ All file types passed!\"",
+    "selectorcheck": "./scripts/getSelectors.sh",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@popperjs/core": "^2.9.3",
@@ -53,8 +56,17 @@
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
+    "cypress": "^9.4.1",
     "esbuild": "^0.14.7",
     "eslint": "^8.5.0",
+    "@applitools/eyes-storybook": "^3.25.1",
+    "@babel/core": "^7.15.8",
+    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-links": "^6.3.12",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/vue3": "^6.3.12",
+    "babel-loader": "^8.2.3",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-no-only-tests": "^2.6.0",
     "eslint-plugin-sort-imports-es6-autofix": "^0.6.0",
@@ -64,6 +76,9 @@
     "prettier": "^2.5.1",
     "tailwindcss": "^3.0.7",
     "vite-plugin-vue-env": "^1.0.6",
-    "vue": "^3.2.26"
+    "vue": "^3.2.26",
+    "storybook-builder-vite": "^0.1.3",
+    "storybook-vue3-router": "^1.0.5",
+    "vue-loader": "^16.8.1"
   }
 }
