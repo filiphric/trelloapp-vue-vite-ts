@@ -44,10 +44,19 @@
             class="absolute outline-none font-bold top-0 bottom-0 right-0 left-0 w-full pl-3 rounded-sm cursor-pointer"
             :class="[inputActive ? 'bg-gray1 bg-opacity-100 hover:bg-opacity-100 text-black' : 'bg-white bg-opacity-20 hover:bg-opacity-30 text-white']"
             data-cy="board-title"
-            @focus="selectInput($event); inputActive = true;"
+            @focus="
+              selectInput($event);
+              inputActive = true;
+            "
             @change="state.patchBoard(state.board, { name: state.board.name })"
-            @keyup.enter="blurInput($event); inputActive = false;"
-            @keyup.esc="blurInput($event); inputActive = false;"
+            @keyup.enter="
+              blurInput($event);
+              inputActive = false;
+            "
+            @keyup.esc="
+              blurInput($event);
+              inputActive = false;
+            "
           >
         </div>
         <div
@@ -85,9 +94,9 @@
 </template>
 
 <script lang="ts">
-import { blurInput } from '@/utils/blurInput'
+import { blurInput } from '@/utils/blurInput';
 import { defineComponent } from 'vue';
-import { selectInput } from '@/utils/selectInput'
+import { selectInput } from '@/utils/selectInput';
 import { store } from '@/stores/store';
 import { useRoute } from 'vue-router';
 import Dropdown from '@/components/board/Dropdown.vue';
@@ -110,7 +119,7 @@ export default defineComponent({
   setup() {
     const route = useRoute();
     const state = store();
-    const boardId = Number(route.params.board)
+    const boardId = Number(route.params.board);
     state.getBoardDetail(boardId);
     return { state, blurInput, selectInput };
   },

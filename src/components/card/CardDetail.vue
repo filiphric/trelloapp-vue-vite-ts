@@ -18,10 +18,19 @@
             v-click-away="clickAwayCardName"
             class="font-bold rounded-sm cursor-pointer bg-gray2 py-1 focus:px-1.5 focus:bg-white w-full"
             data-cy="card-detail-title"
-            @focus="selectInput($event); inputActive = true;"
+            @focus="
+              selectInput($event);
+              inputActive = true;
+            "
             @change="state.patchCard(state.activeCard, { name: state.activeCard.name })"
-            @keyup.enter="blurInput($event); inputActive = false;"
-            @keyup.esc="blurInput($event); inputActive = false;"
+            @keyup.enter="
+              blurInput($event);
+              inputActive = false;
+            "
+            @keyup.esc="
+              blurInput($event);
+              inputActive = false;
+            "
           >
           <h2 class="text-sm text-gray10">
             in list <span class="underline">{{ cardListName }}</span>
@@ -151,9 +160,9 @@
 
 <script lang="ts">
 import { DatePicker } from 'v-calendar';
-import { blurInput } from '@/utils/blurInput'
+import { blurInput } from '@/utils/blurInput';
 import { defineComponent } from 'vue';
-import { selectInput } from '@/utils/selectInput'
+import { selectInput } from '@/utils/selectInput';
 import { store } from '@/stores/store';
 import Attachment from '@/assets/icons/attachment.svg';
 import Board from '@/assets/icons/board.svg';
@@ -218,7 +227,7 @@ export default defineComponent({
 });
 
 function ref(arg0: boolean) {
-throw new Error('Function not implemented.');
+  throw new Error('Function not implemented.');
 }
 </script>
 

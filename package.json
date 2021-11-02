@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "vite",
-    "lint": "eslint \"**/*.{ts,vue,js}\"",
+    "lint": "prettier --write \"src/**/*.{ts,vue,js}\" && eslint \"**/*.{ts,vue,js}\" --fix",
     "typecheck": "tsc --noEmit -p . && vue-tsc --noEmit"
   },
   "dependencies": {

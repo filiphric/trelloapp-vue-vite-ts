@@ -36,7 +36,6 @@
 </template>
 
 <script lang="ts">
-
 import { PropType, defineComponent } from 'vue';
 import { store } from '@/stores/store';
 import { useDropzone } from 'vue3-dropzone';
@@ -58,8 +57,8 @@ export default defineComponent({
     function onDrop(acceptedFiles: any) {
       state.uploadFile(acceptedFiles, props.card);
     }
-    
-    const accept: string = 'image/png, image/gif, image/jpeg'
+
+    const accept: string = 'image/png, image/gif, image/jpeg';
     const { getRootProps, getInputProps, ...rest } = useDropzone({ onDrop });
 
     return {

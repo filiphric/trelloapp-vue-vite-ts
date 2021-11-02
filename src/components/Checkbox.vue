@@ -13,7 +13,7 @@
 <script lang="ts">
 import { PropType, defineComponent } from 'vue';
 import { store } from '@/stores/store';
-import Card from '@/typings/card'
+import Card from '@/typings/card';
 export default defineComponent({
   props: {
     card: {

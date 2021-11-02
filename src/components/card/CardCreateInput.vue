@@ -36,7 +36,7 @@
 import { PropType, defineComponent } from 'vue';
 import { store } from '@/stores/store';
 import Cross from '@/assets/icons/cross.svg';
-import List from '@/typings/list'
+import List from '@/typings/list';
 import SaveButton from '@/components/SaveButton.vue';
 
 export default defineComponent({
@@ -83,7 +83,6 @@ export default defineComponent({
       this.cardTitle = '';
     }
   }
-  
 });
 </script>
 

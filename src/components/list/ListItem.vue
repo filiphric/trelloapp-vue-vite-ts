@@ -11,10 +11,19 @@
         class="text-gray-900 text-sm px-1 py-0.5 flex-grow inline-block font-semibold border-2 border-transparent outline-none focus:border-blue6 rounded-sm cursor-pointer h-8 bg-gray2 focus:bg-gray1"
         data-cy="list-name"
         :value="list.name"
-        @mouseup="selectInput($event); inputActive = true;"
+        @mouseup="
+          selectInput($event);
+          inputActive = true;
+        "
         @change="state.patchList(list, { name: inputValue($event) })"
-        @keyup.enter="blurInput($event); inputActive = false"
-        @keyup.esc="blurInput($event); inputActive = false;"
+        @keyup.enter="
+          blurInput($event);
+          inputActive = false;
+        "
+        @keyup.esc="
+          blurInput($event);
+          inputActive = false;
+        "
         @blur="inputActive = false"
       >
       <Dropdown
@@ -56,9 +65,9 @@
 
 <script lang="ts">
 import { PropType, defineComponent } from 'vue';
-import { blurInput } from '@/utils/blurInput'
-import { inputValue } from '@/utils/inputValue'
-import { selectInput } from '@/utils/selectInput'
+import { blurInput } from '@/utils/blurInput';
+import { inputValue } from '@/utils/inputValue';
+import { selectInput } from '@/utils/selectInput';
 import { store } from '@/stores/store';
 import Card from '@/typings/card';
 import CardCreateInput from '@/components/card/CardCreateInput.vue';
@@ -107,8 +116,7 @@ export default defineComponent({
         this.state.patchCard(card, { listId: this.list.id, order });
       });
     }
-  },
-  
+  }
 });
 </script>
 

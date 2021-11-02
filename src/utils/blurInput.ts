@@ -1,3 +1,3 @@
 export const blurInput = (event: Event) => {
-  (event.target as HTMLInputElement).blur()
-}
+  (event.target as HTMLInputElement).blur();
+};

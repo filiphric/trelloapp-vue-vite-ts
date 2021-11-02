@@ -62,7 +62,7 @@ import { store } from '@/stores/store';
 export default defineComponent({
   setup() {
     const state = store();
-    return {  state };
+    return { state };
   }
 });
 </script>

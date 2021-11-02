@@ -1,3 +1,3 @@
 export const selectInput = (event: Event) => {
-  (event.target as HTMLInputElement).select()
-}
+  (event.target as HTMLInputElement).select();
+};

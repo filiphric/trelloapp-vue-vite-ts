@@ -39,7 +39,7 @@ export default defineComponent({
   components: {
     Star
   },
-   props: {
+  props: {
     board: {
       default: null,
       type: Object as PropType<Board>
@@ -58,8 +58,7 @@ export default defineComponent({
       });
       board.starred = flag;
     }
-  },
- 
+  }
 });
 </script>
 

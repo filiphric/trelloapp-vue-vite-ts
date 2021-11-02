@@ -51,7 +51,7 @@ import { PropType, defineComponent } from 'vue';
 import { store } from '@/stores/store';
 import Cross from '@/assets/icons/cross.svg';
 import Dots from '@/assets/icons/dots.svg';
-import List from '@/typings/list'
+import List from '@/typings/list';
 export default defineComponent({
   components: {
     Cross,
@@ -81,7 +81,7 @@ export default defineComponent({
     showDropdown() {
       this.dropdown = !this.dropdown;
     }
-  }  
+  }
 });
 </script>
 
