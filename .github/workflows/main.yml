@@ -1,6 +1,18 @@
 name: Build
 on: [push]
 jobs:
+  static-checks:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - uses: bahmutov/npm-install@v1
+      - run: npm run selectorcheck
+      - run: npm run typecheck
+      - run: npm run lint
   cypress-run:
     runs-on: ubuntu-latest
     strategy:
