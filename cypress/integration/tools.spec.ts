@@ -29,12 +29,12 @@ describe('Tools', () => {
 
     cy.visit(`/board/${Cypress.env('boards')[0].id}`)
 
-    cy.get('[data-cy=card]').should('be.visible')
-    cy.get('[data-cy=list]').should('be.visible')
+    cy.getDataCy('card').should('be.visible')
+    cy.getDataCy('list').should('be.visible')
   
     cy.toggleTools()
   
-    cy.get('[data-cy=api-tools]')
+    cy.getDataCy('api-tools')
       .should('be.visible')
 
     // deletes a user
@@ -56,14 +56,14 @@ describe('Tools', () => {
     // deletes cards
     cy.toggleTools()
     cy.contains('Cards').click()
-    cy.get('[data-cy=card]').should('not.exist')
+    cy.getDataCy('card').should('not.exist')
 
     cy.wait('@cards')
     
     // deletes lists
     cy.toggleTools()
     cy.contains('Lists').click()
-    cy.get('[data-cy=list]').should('not.exist')
+    cy.getDataCy('list').should('not.exist')
 
     cy.wait('@lists')
 
@@ -74,7 +74,7 @@ describe('Tools', () => {
 
     cy.wait('@boards')
 
-    cy.get('[data-cy=first-board]').should('be.visible')
+    cy.getDataCy('first-board').should('be.visible')
     
   });
 
@@ -86,7 +86,7 @@ describe('Tools', () => {
   
     cy.toggleTools()
   
-    cy.get('[data-cy=api-tools]')
+    cy.getDataCy('api-tools')
       .should('be.visible')
 
     // deletes a user
@@ -96,7 +96,7 @@ describe('Tools', () => {
 
     cy.location('pathname').should('eq', '/')
 
-    cy.get('[data-cy=first-board]').should('be.visible')
+    cy.getDataCy('first-board').should('be.visible')
 
     cy
       .request({ 

@@ -12,35 +12,35 @@ describe('board detail', () => {
 
   it('cancels renaming of a board', () => {
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
-    cy.get('[data-cy=board-title]').should('have.value', oldName);
-    cy.get('[data-cy=board-title]').click();
-    cy.get('[data-cy="board-detail"]').click();
-    cy.get('[data-cy=board-title]').type('{esc}');
-    cy.get('[data-cy=board-title]').should('have.value', oldName);
+    cy.getDataCy('board-title').should('have.value', oldName);
+    cy.getDataCy('board-title').click();
+    cy.getDataCy('board-detail').click();
+    cy.getDataCy('board-title').type('{esc}');
+    cy.getDataCy('board-title').should('have.value', oldName);
   });
 
   it('renames of a board', () => {
     cy.intercept('PATCH', '/api/boards/*').as('boardRename');
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
-    cy.get('[data-cy=board-title]')
+    cy.getDataCy('board-title')
       .clear()
       .type(`${newName}{enter}`);
     cy.wait('@boardRename')
       .its('request.body.name')
       .should('eq', newName);
-    cy.get('[data-cy=board-title]').should('have.value', newName);
+    cy.getDataCy('board-title').should('have.value', newName);
   });
 
   it('deletes a board', () => {
     cy.intercept('DELETE', '/api/boards/*').as('boardDelete');
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
-    cy.get('[data-cy=board-options')
+    cy.getDataCy('board-options')
       .click()
 
-    cy.get('[data-cy=board-dropdown]')
+    cy.getDataCy('board-dropdown')
       .should('be.visible')
 
-    cy.get('[data-cy=delete-board]')
+    cy.getDataCy('delete-board')
       .click()
 
     cy.wait('@boardDelete')

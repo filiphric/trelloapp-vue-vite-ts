@@ -3,6 +3,7 @@ import '@cypress/code-coverage/support';
 import 'cypress-file-upload';
 import 'cypress-real-events/support';
 import 'cypress-watch-and-reload/support'
+import './commands/getDataCy'
 
 beforeEach(() => {
 

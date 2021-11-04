@@ -9,65 +9,65 @@ describe('lists', () => {
 
   it('creates a list', () => {
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
-    cy.get('[data-cy=add-list-input]').type('new list{enter}');
-    cy.get('[data-cy="list"]').should('have.length', 1);
+    cy.getDataCy('add-list-input').type('new list{enter}');
+    cy.getDataCy('list').should('have.length', 1);
   });
 
   it('shows error when creating a list fails', () => {
     cy.intercept('POST', '/api/lists', { forceNetworkError: true }).as('createList');
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
-    cy.get('[data-cy=add-list-input]').type('new list{enter}');
-    cy.get('[data-cy=notification-message').should('be.visible').and('contain.text', 'List was not created')
+    cy.getDataCy('add-list-input').type('new list{enter}');
+    cy.getDataCy('notification-message').should('be.visible').and('contain.text', 'List was not created')
   });
 
   it('creates a second list', () => {
     cy.addListApi({ name: 'new list' });
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
-    cy.get('[data-cy=create-list]').click();
-    cy.get('[data-cy=add-list-input]').should('be.focused');
+    cy.getDataCy('create-list').click();
+    cy.getDataCy('add-list-input').should('be.focused');
   });
 
   it('cancels creating a list', () => {
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
-    cy.get('[data-cy=add-list-input]').type('{enter}');
-    cy.get('[data-cy="list"]').should('have.length', 0);
-    cy.get('[data-cy=add-list-input]').should('be.focused');
-    cy.get('[data-cy=add-list-input]').type('new list{esc}');
-    cy.get('[data-cy="list"]').should('have.length', 0);
-    cy.get('[data-cy=add-list-input]').should('not.exist');
-    cy.get('[data-cy=create-list]').click();
-    cy.get('[data-cy="cancel"]').click();
-    cy.get('[data-cy="list"]').should('have.length', 0);
-    cy.get('[data-cy=add-list-input]').should('not.exist');
+    cy.getDataCy('add-list-input').type('{enter}');
+    cy.getDataCy('list').should('have.length', 0);
+    cy.getDataCy('add-list-input').should('be.focused');
+    cy.getDataCy('add-list-input').type('new list{esc}');
+    cy.getDataCy('list').should('have.length', 0);
+    cy.getDataCy('add-list-input').should('not.exist');
+    cy.getDataCy('create-list').click();
+    cy.getDataCy('cancel').click();
+    cy.getDataCy('list').should('have.length', 0);
+    cy.getDataCy('add-list-input').should('not.exist');
   });
 
   it('clicks away when creating a list', () => {
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
-    cy.get('[data-cy=add-list-input]').click();
-    cy.get('[data-cy=board-detail]').click();
+    cy.getDataCy('add-list-input').click();
+    cy.getDataCy('board-detail').click();
   });
 
   it('renames a list', () => {
     cy.addListApi({ name: 'new list' });
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
-    cy.get('[data-cy=list-name]').type('renamed list{enter}');
+    cy.getDataCy('list-name').type('renamed list{enter}');
   });
 
   it('cancels renaming a list', () => {
     cy.addListApi({ name: 'new list' });
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
-    cy.get('[data-cy=list-name]').type('renamed list{esc}');
+    cy.getDataCy('list-name').type('renamed list{esc}');
   });
 
   it('uses dropdown to delete a list', () => {
     cy.addListApi({ name: 'new list' });
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
-    cy.get('[data-cy=list-options]').click();
-    cy.get('[data-cy=dropdown]').should('be.visible');
-    cy.get('[data-cy=board-detail]').click('bottomRight');
-    cy.get('[data-cy=dropdown]').should('not.exist');
-    cy.get('[data-cy=list-options]').click();
-    cy.get('[data-cy="delete-list"]').click();
-    cy.get('[data-cy="list"]').should('not.exist');
+    cy.getDataCy('list-options').click();
+    cy.getDataCy('dropdown').should('be.visible');
+    cy.getDataCy('board-detail').click('bottomRight');
+    cy.getDataCy('dropdown').should('not.exist');
+    cy.getDataCy('list-options').click();
+    cy.getDataCy('delete-list').click();
+    cy.getDataCy('list').should('not.exist');
   });
 });

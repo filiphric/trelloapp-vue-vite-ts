@@ -13,13 +13,13 @@ describe('Signup', () => {
 
     cy.visit('/signup')
 
-    cy.get('[data-cy=signup-email]')
+    cy.getDataCy('signup-email')
       .type(user.email)
 
-    cy.get('[data-cy=signup-password]')
+    cy.getDataCy('signup-password')
       .type(user.password)
 
-    cy.get('[data-cy=signup-submit]')
+    cy.getDataCy('signup-submit')
       .click()
 
     cy.location('pathname')

@@ -18,20 +18,20 @@ describe('Login', () => {
 
     cy.visit('/')
 
-    cy.get('[data-cy=login-menu]')
+    cy.getDataCy('login-menu')
       .should('be.visible')
       .click()
 
     cy.location('pathname')
       .should('eq', '/login')
 
-    cy.get('[data-cy=login-email]')
+    cy.getDataCy('login-email')
       .type(user.email)
 
-    cy.get('[data-cy=login-password]')
+    cy.getDataCy('login-password')
       .type(user.password)
 
-    cy.get('[data-cy=login-submit]')
+    cy.getDataCy('login-submit')
       .click()
 
     cy.location('pathname')
@@ -40,10 +40,10 @@ describe('Login', () => {
     cy.getCookie('trello_token')
       .should('exist')
 
-    cy.get('[data-cy=logged-user]')
+    cy.getDataCy('logged-user')
       .click()
 
-    cy.get('[data-cy=notification-message]')
+    cy.getDataCy('notification-message')
       .should('contain.text', 'User was logged out')
     
   });
