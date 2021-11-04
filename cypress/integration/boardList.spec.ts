@@ -8,7 +8,7 @@ describe('Board list', () => {
 
     cy.visit('/')
 
-    cy.get('[data-cy=board-list-error-message]')
+    cy.getDataCy('board-list-error-message')
       .should('contain.text', 'There was an error loading your boards')
     
   });

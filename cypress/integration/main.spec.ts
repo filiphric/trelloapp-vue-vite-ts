@@ -11,7 +11,7 @@ describe('main page', () => {
 })
     cy.visit('/board/1');
     cy.url().should('contain', '/404');
-    cy.get('[data-cy="404"]').should('be.visible');
+    cy.getDataCy('404').should('be.visible');
   });
 
   it('shows error when openin non existing card is opened', () => {

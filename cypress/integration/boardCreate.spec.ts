@@ -8,42 +8,42 @@ describe('creating board', () => {
   it('creates a board', () => {
     cy.intercept('POST', '/api/boards').as('createBoard');
     cy.visit('/');
-    cy.get('[data-cy="create-board"]').click();
-    cy.get('[data-cy="new-board-input"]').type('new board{enter}');
+    cy.getDataCy('create-board').click();
+    cy.getDataCy('new-board-input').type('new board{enter}');
     cy.wait('@createBoard').then(({ response }) => {
       cy.location('href')
         .should('eq', `${Cypress.config('baseUrl')}/board/${response!.body.id}`);
     });
-    cy.get('[data-cy=board-detail]').should('be.visible');
-    cy.get('[data-cy=loading]').should('not.exist');
+    cy.getDataCy('board-detail').should('be.visible');
+    cy.getDataCy('loading').should('not.exist');
   });
 
   it('creates a board via create button', () => {
     cy.intercept('POST', '/api/boards').as('createBoard');
     cy.visit('/');
-    cy.get('[data-cy="create-board"]').click();
-    cy.get('[data-cy="new-board-input"]').should('be.focused');
-    cy.get('[data-cy="new-board-input"]').type('new board');
-    cy.get('[data-cy="new-board-create"]').click();
+    cy.getDataCy('create-board').click();
+    cy.getDataCy('new-board-input').should('be.focused');
+    cy.getDataCy('new-board-input').type('new board');
+    cy.getDataCy('new-board-create').click();
     cy.wait('@createBoard').then(({ response }) => {
       cy.location('href').should('eq', `${Cypress.config('baseUrl')}/board/${response!.body.id}`);
     });
-    cy.get('[data-cy=board-detail]').should('be.visible');
-    cy.get('[data-cy=loading]').should('not.exist');
+    cy.getDataCy('board-detail').should('be.visible');
+    cy.getDataCy('loading').should('not.exist');
   });
 
   it('closes create board dialog', () => {
     cy.visit('/');
-    cy.get('[data-cy="create-board"]').click();
-    cy.get('[data-cy="board-list"]').click('bottomRight');
-    cy.get('[data-cy="new-board-input"]').should('not.be.visible');
-    cy.get('[data-cy="create-board"]').click();
-    cy.get('[data-cy="new-board-input"]').type('{enter}');
-    cy.get('[data-cy="create-board"]').click();
-    cy.get('[data-cy=cancel]').click();
+    cy.getDataCy('create-board').click();
+    cy.getDataCy('board-list').click('bottomRight');
+    cy.getDataCy('new-board-input').should('not.be.visible');
+    cy.getDataCy('create-board').click();
+    cy.getDataCy('new-board-input').type('{enter}');
+    cy.getDataCy('create-board').click();
+    cy.getDataCy('cancel').click();
     cy.location('href').should('eq', `${Cypress.config('baseUrl')}/`);
-    cy.get('[data-cy="board-item"]').should('have.length', 1);
-    cy.get('[data-cy="create-board"]').should('be.visible');
+    cy.getDataCy('board-item').should('have.length', 1);
+    cy.getDataCy('create-board').should('be.visible');
   });
 
   it('shows error when not able to create a board', () => {
@@ -58,13 +58,13 @@ describe('creating board', () => {
     ).as('createBoard');
     cy.clock();
     cy.visit('/');
-    cy.get('[data-cy="create-board"]').click();
-    cy.get('[data-cy="new-board-input"]').type('new{enter}');
-    cy.get('[data-cy="notification-message"]').should('be.visible');
+    cy.getDataCy('create-board').click();
+    cy.getDataCy('new-board-input').type('new{enter}');
+    cy.getDataCy('notification-message').should('be.visible');
     cy.tick(4000);
-    cy.get('[data-cy="notification-message"]').should('not.exist');
+    cy.getDataCy('notification-message').should('not.exist');
     cy.location('href').should('eq', `${Cypress.config('baseUrl')}/`);
-    cy.get('[data-cy="board-item"]').should('have.length', 1);
-    cy.get('[data-cy="new-board-input"]').should('be.visible');
+    cy.getDataCy('board-item').should('have.length', 1);
+    cy.getDataCy('new-board-input').should('be.visible');
   });
 });
