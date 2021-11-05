@@ -9,6 +9,7 @@ import { deleteList } from './actions/deleteList';
 import { patchList } from './actions/patchList';
 import { createCard } from './actions/createCard';
 import { createList } from './actions/createList';
+import { sortLists } from './actions/sortLists';
 import { deleteBoard } from './actions/deleteBoard';
 import { signup } from './actions/signup';
 import { login } from './actions/login';
@@ -75,6 +76,7 @@ export const store = defineStore({
     createList,
     deleteList,
     patchList,
+    sortLists,
 
     // card actions
     createCard,
