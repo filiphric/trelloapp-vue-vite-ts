@@ -2,10 +2,9 @@
   "name": "trelloapp-vue-vite-ts",
   "version": "1.0.0",
   "scripts": {
-    "start": "vite",
+    "start": "concurrently \"vite\" \"json-server ./backend/data/database.json --static ./backend/index.ts --port 3001 --middlewares ./backend/middleware.ts ./node_modules/json-server-auth\"",
     "lint": "prettier --write \"src/**/*.{ts,vue,js}\" && eslint \"**/*.{ts,vue,js}\" --fix",
-    "typecheck": "tsc --noEmit -p . && vue-tsc --noEmit",
-    "selectorcheck": "./scripts/getSelectors.sh"
+    "typecheck": "tsc --noEmit -p . && vue-tsc --noEmit"
   },
   "dependencies": {
     "@4tw/cypress-drag-drop": "^1.8.0",

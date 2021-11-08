@@ -5,7 +5,7 @@ Cypress.Commands.add('addBoardUi', (name) => {
     .click();
 
   cy
-    .get('[placeholder="Create a board...')
+    .get('[placeholder="Create a board..."]')
     .type(`${name}{enter}`);
 
 });

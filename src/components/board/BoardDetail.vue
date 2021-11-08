@@ -41,14 +41,22 @@
           <input
             v-model="state.board.name"
             v-click-away="onClickAway"
-            class="board-title bg-white bg-opacity-20 hover:bg-opacity-30 text-white"
+            class="absolute outline-none font-bold top-0 bottom-0 right-0 left-0 w-full pl-3 rounded-sm cursor-pointer"
+            :class="[inputActive ? 'bg-gray1 bg-opacity-100 hover:bg-opacity-100 text-black' : 'bg-white bg-opacity-20 hover:bg-opacity-30 text-white']"
             data-cy="board-title"
-            autocomplete="off"
-            name="board-title"
-            @focus="selectInput($event)"
+            @focus="
+              selectInput($event);
+              inputActive = true;
+            "
             @change="state.patchBoard(state.board, { name: state.board.name })"
-            @keyup.enter="blurInput($event)"
-            @keyup.esc="blurInput($event)"
+            @keyup.enter="
+              blurInput($event);
+              inputActive = false;
+            "
+            @keyup.esc="
+              blurInput($event);
+              inputActive = false;
+            "
           >
         </div>
         <div
@@ -70,7 +78,7 @@
         group="lists"
         item-key="order"
         class="inline-block"
-        @end="state.sortLists"
+        @end="sortList"
       >
         <template #item="{element}">
           <div class="inline-block h-full align-top">
@@ -87,11 +95,12 @@
 
 <script lang="ts">
 import { blurInput } from '@/utils/blurInput';
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 import { selectInput } from '@/utils/selectInput';
 import { store } from '@/stores/store';
 import { useRoute } from 'vue-router';
 import Dropdown from '@/components/board/Dropdown.vue';
+import List from '@/typings/list';
 import ListCreate from '@/components/list/ListCreate.vue';
 import ListItem from '@/components/list/ListItem.vue';
 import LoadingIcon from '@/assets/icons/loadingIcon.svg';
@@ -110,23 +119,27 @@ export default defineComponent({
   setup() {
     const route = useRoute();
     const state = store();
-    const inputActive = ref(false);
     const boardId = Number(route.params.board);
     state.getBoardDetail(boardId);
-    const onClickAway = () => {
-      inputActive.value = false;
+    return { state, blurInput, selectInput };
+  },
+  data() {
+    return {
+      inputActive: false,
+      drag: false
     };
-    return { state, blurInput, selectInput, onClickAway };
+  },
+  methods: {
+    onClickAway() {
+      this.inputActive = false;
+    },
+    sortList() {
+      this.state.lists.forEach((list: List, index) => {
+        this.state.patchList(list, { order: index });
+      });
+    }
   }
 });
 </script>
 
-<style lang="postcss" scoped>
-.board-title:focus {
-  @apply bg-gray1 bg-opacity-100 hover:bg-opacity-100 text-black;
-}
-
-.board-title {
-  @apply absolute outline-none font-bold top-0 bottom-0 right-0 left-0 w-full pl-3 rounded-sm cursor-pointer;
-}
-</style>
+<style lang="postcss" scoped></style>

@@ -46,9 +46,9 @@ module.exports = (req, res, next) => {
   const userData = parseJWT();
   const userId = parseInt(userData.sub);
 
-  db.assign(
-    require('require-uncached')('./backend/data/database.json')
-  ).write();
+  // db.assign(
+  //   require('require-uncached')('./backend/data/database.json')
+  // ).write();
 
   // create board
   if (req.method === 'POST' && req.path === '/boards') {

@@ -15,6 +15,7 @@
       <label for="password">Password</label>
       <input
         v-model="state.loginForm.password"
+        autocomplete="off"
         type="password"
         data-cy="login-password"
         class="h-10 w-full rounded-sm mb-3 px-2 bg-gray3 focus:bg-white"

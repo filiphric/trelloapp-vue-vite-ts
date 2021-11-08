@@ -1,9 +1,9 @@
 {
   "baseUrl": "http://localhost:3000",
-  "env": {
-    "coverage": true
-  },
   "testFiles": "**/*.spec.ts",
+  "env": {
+    "coverage": false
+  },
   "component": {
     "componentFolder": "src",
     "testFiles": "**/*.spec.ts",
@@ -16,16 +16,9 @@
     "openMode": 0,
     "runMode": 5
   },
-  "cypress-watch-and-reload": {
-    "watch": [
-      "src/*/*.vue",
-      "src/*/*.ts"
-    ]
-  },
   "supportFile": "cypress/support/index.ts",
-  "video": false,
+  "video": true,
   "viewportHeight": 550,
-  "viewportWidth": 700,
-  "projectId": "qmz9cz",
-  "defaultCommandTimeout": 2000
+  "viewportWidth": 660,
+  "projectId": "qmz9cz"
 }
