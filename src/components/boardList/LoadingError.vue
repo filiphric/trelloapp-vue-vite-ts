@@ -7,20 +7,21 @@
     <p class="text-gray-400 text-center block mb-4">
       {{ loadingError.message || 'There was an error loading your boards' }}
     </p>
-    <router-link
-      to="/"
+    <a
+      href="/"
       class="text-blue7 font-semibold text-center block"
     >
       Try again
-    </router-link>
+    </a>
   </div>
 </template>
 
 <script lang="ts">
 import { store } from '@/stores/store';
+import { storeToRefs } from 'pinia'
 export default {
   setup() {
-    const loadingError = store().loadingError;
+    const { loadingError } = storeToRefs(store());
     return { loadingError };
   }
 };

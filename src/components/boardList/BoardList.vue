@@ -4,12 +4,7 @@
     data-cy="board-list"
   >
     <!-- LOADING -->
-    <div
-      v-if="state.loading"
-      class="loading place-self-center"
-    >
-      <Loading class="mb-1 inline-block" />&nbsp;&nbsp;Loading data ...
-    </div>
+    <Loading />
     <!-- BOARDS NOT LOADED -->
     <LoadingError v-if="state.loadingError.show" />
     <!-- BOARDS LOADED -->
@@ -63,8 +58,8 @@ import { store } from '@/stores/store';
 import BoardCreate from '@/components/board/BoardCreate.vue';
 import BoardItem from '@/components/board/BoardItem.vue';
 import Emptylist from '@/components/boardList/Emptylist.vue';
-import Loading from '@/assets/icons/loading.svg';
 import LoadingError from '@/components/boardList/LoadingError.vue';
+import Loading from '@/components/Loading.vue';
 
 export default defineComponent({
   name: 'BoardList',

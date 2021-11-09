@@ -35,7 +35,8 @@ export const store = defineStore({
       loadingError: {
         show: false,
         status: 0,
-        message: ''
+        message: '',
+        tooLong: false
       },
       createListInput: true,
       cardModule: false,

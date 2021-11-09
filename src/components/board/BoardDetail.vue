@@ -8,7 +8,7 @@
       v-if="state.loading"
       class="loading h-screen grid content-center justify-center"
     >
-      <div><Loading class="inline-block mb-1" />&nbsp;&nbsp;Loading data ...</div>
+      <div><LoadingIcon class="inline-block mb-1" />&nbsp;&nbsp;Loading data ...</div>
     </div>
     <!-- ERROR STATE -->
     <div
@@ -94,7 +94,7 @@ import { useRoute } from 'vue-router';
 import Dropdown from '@/components/board/Dropdown.vue';
 import ListCreate from '@/components/list/ListCreate.vue';
 import ListItem from '@/components/list/ListItem.vue';
-import Loading from '@/assets/icons/loading.svg';
+import LoadingIcon from '@/assets/icons/loadingIcon.svg';
 import Star from '@/assets/icons/star.svg';
 import draggable from 'vuedraggable';
 
@@ -103,7 +103,7 @@ export default defineComponent({
     Dropdown,
     ListCreate,
     ListItem,
-    Loading,
+    LoadingIcon,
     Star,
     draggable
   },
