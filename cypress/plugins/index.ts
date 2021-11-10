@@ -1,4 +1,6 @@
-const clipboardy = require('clipboardy');
+import * as clipboardy from 'clipboardy';
+import { cypressEsbuildPreprocessor } from 'cypress-esbuild-preprocessor';
+import * as path from 'path';
 
 module.exports = (on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) => {
   on('task', {
@@ -7,10 +9,18 @@ module.exports = (on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions)
       return clipboard;
     },
   })
-  require('@cypress/code-coverage/task')(on, config);
-  require('cypress-watch-and-reload/plugins')(config)
+  
+  on('file:preprocessor',
+    cypressEsbuildPreprocessor({
+        esbuildOptions: {
+            tsconfig: path.resolve(__dirname, '../../tsconfig.json'),
+        },
+    }),
+  );
 
-  const path = require('path')
+  require('cypress-watch-and-reload/plugins')(config)
+  require('@cypress/code-coverage/task')(on, config);
+
   const { startDevServer } = require('@cypress/vite-dev-server')
 
   on('dev-server:start', (options) => {
