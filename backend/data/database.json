@@ -1,13 +1,5 @@
 {
-  "boards": [
-    {
-      "name": "first",
-      "user": 0,
-      "id": 82741469524,
-      "starred": false,
-      "created": "2021-11-05"
-    }
-  ],
+  "boards": [],
   "cards": [],
   "lists": [],
   "users": []
