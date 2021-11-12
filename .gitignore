@@ -12,3 +12,4 @@ cypress/downloads
 backend/data/uploaded/*
 
 !/**/.gitkeep
+cypress/results

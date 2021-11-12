@@ -1,14 +1,26 @@
 {
   "name": "trelloapp-vue-vite-ts",
   "version": "1.0.0",
+  "license": "MIT",
   "scripts": {
     "start": "vite",
     "lint": "prettier --write \"src/**/*.{ts,vue,js}\" && eslint \"**/*.{ts,vue,js}\" --fix",
+    "lint:only:tests": "eslint \"cypress/**/*.js\"",
     "typecheck": "tsc --noEmit -p . && vue-tsc --noEmit",
-    "selectorcheck": "./scripts/getSelectors.sh"
+    "selectorcheck": "./scripts/getSelectors.sh",
+    "open": "cypress open",
+    "run": "cypress run",
+    "run:api": "cypress run --env grepTags=@api",
+    "run:ui": "cypress run --env grepTags=@ui",
+    "start:and:open": "start-server-and-test start http-get://localhost:3000 open",
+    "start:and:run": "start-server-and-test start http-get://localhost:3000 run",
+    "start:and:run:api": "start-server-and-test start http-get://localhost:3000 run:api",
+    "start:and:run:ui": "start-server-and-test start http-get://localhost:3000 run:ui",
+    "empty:db": "cp cypress/fixtures/databases/empty.json backend/data/database.json",
+    "trash:assets": "rm -rf cypress/results && mkdir cypress/results"
   },
   "dependencies": {
-    "@4tw/cypress-drag-drop": "^1.8.0",
+    "@4tw/cypress-drag-drop": "~2.0.0",
     "@cypress/code-coverage": "^3.9.11",
     "@cypress/vite-dev-server": "^2.0.7",
     "@cypress/vue": "^3.0.3",
@@ -32,7 +44,7 @@
     "eslint-plugin-vue": "^7.9.0",
     "json-server": "^0.16.3",
     "json-server-auth": "^1.2.1",
-    "moment": "^2.29.1",
+    "moment": "~2.29.1",
     "nocache": "^3.0.1",
     "pinia": "^2.0.0",
     "postcss": "^8.2.9",
@@ -60,8 +72,17 @@
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
+    "cypress": "~9.0.0",
+    "cypress-grep": "~2.10.2",
+    "cypress-plugin-tab": "~1.0.5",
+    "cypress-real-events": "~1.5.1",
     "eslint": "^7.32.0",
+    "eslint-plugin-cypress": "~2.12.1",
+    "eslint-plugin-no-only-tests": "~2.6.0",
     "eslint-plugin-sort-imports-es6-autofix": "^0.6.0",
-    "eslint-plugin-sort-keys-fix": "^1.1.2"
+    "eslint-plugin-sort-keys-fix": "^1.1.2",
+    "mocha-junit-reporter": "~2.0.2",
+    "start-server-and-test": "~1.14.0",
+    "useful-library": "~1.2.2"
   }
 }

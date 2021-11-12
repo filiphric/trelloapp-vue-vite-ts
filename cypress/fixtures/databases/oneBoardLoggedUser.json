@@ -1,0 +1,21 @@
+{
+  "boards": [
+    {
+      "name": "testing trello app",
+      "user": 1,
+      "id": 14681193342,
+      "starred": false,
+      "created": "2021-11-12"
+    }
+  ],
+  "cards": [],
+  "lists": [],
+  "users": [
+    {
+      "email": "samanpavel@gmail.com",
+      "password": "$2a$10$rwBTeD/YFS0.uCje48ZbIeInb6WMS5XWSopQ2Yt/B5X9OcbXVfKAm",
+      "welcomeEmail": false,
+      "id": 1
+    }
+  ]
+}

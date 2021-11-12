@@ -1,0 +1,13 @@
+{
+  "boards": [],
+  "cards": [],
+  "lists": [],
+  "users": [
+    {
+      "email": "samanpavel@gmail.com",
+      "password": "$2a$10$rwBTeD/YFS0.uCje48ZbIeInb6WMS5XWSopQ2Yt/B5X9OcbXVfKAm",
+      "welcomeEmail": false,
+      "id": 1
+    }
+  ]
+}

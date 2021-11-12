@@ -1,0 +1,74 @@
+{
+  "boards": [
+    {
+      "name": "drag & drop multiple lists",
+      "user": 0,
+      "id": 19763965656,
+      "starred": false,
+      "created": "2021-11-13"
+    }
+  ],
+  "cards": [
+    {
+      "order": 0,
+      "boardId": 19763965656,
+      "listId": 57773460903,
+      "name": "a",
+      "id": 64846999135,
+      "created": "2021-11-13",
+      "deadline": "2021-11-16",
+      "description": "",
+      "completed": false
+    },
+    {
+      "order": 1,
+      "boardId": 19763965656,
+      "listId": 57773460903,
+      "name": "b",
+      "id": 21732512548,
+      "created": "2021-11-13",
+      "deadline": "2021-11-16",
+      "description": "",
+      "completed": false
+    },
+    {
+      "order": 0,
+      "boardId": 19763965656,
+      "listId": 42797551252,
+      "name": "c",
+      "id": 46325472860,
+      "created": "2021-11-13",
+      "deadline": "2021-11-16",
+      "description": "",
+      "completed": false
+    },
+    {
+      "order": 1,
+      "boardId": 19763965656,
+      "listId": 42797551252,
+      "name": "d",
+      "id": 10152693663,
+      "created": "2021-11-13",
+      "deadline": "2021-11-16",
+      "description": "",
+      "completed": false
+    }
+  ],
+  "lists": [
+    {
+      "boardId": 19763965656,
+      "name": "list1",
+      "order": 0,
+      "id": 57773460903,
+      "created": "2021-11-13"
+    },
+    {
+      "boardId": 19763965656,
+      "name": "list2",
+      "order": 1,
+      "id": 42797551252,
+      "created": "2021-11-13"
+    }
+  ],
+  "users": []
+}

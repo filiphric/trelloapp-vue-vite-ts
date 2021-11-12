@@ -54,6 +54,7 @@
         <div
           class="relative bg-white bg-opacity-20 hover:bg-opacity-30 self-center rounded-sm ml-2 w-8 h-8 cursor-pointer inline-grid"
           :class="[state.board.starred ? 'fill-current text-yellow-300' : 'stroke-current text-white']"
+          data-cy="board-star"
           @click="
             state.patchBoard(state.board, {
               starred: !state.board.starred
