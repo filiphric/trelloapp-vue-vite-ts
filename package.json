@@ -4,15 +4,9 @@
   "scripts": {
     "start": "vite",
     "lint": "prettier --write \"src/**/*.{ts,vue,js}\" && eslint \"**/*.{ts,vue,js}\" --fix && echo \"✅ All files passed linting!\"",
-    "typecheck": "tsc --noEmit -p . && vue-tsc --noEmit && echo \"✅ All file types passed!\"",
-    "selectorcheck": "./scripts/getSelectors.sh"
+    "typecheck": "tsc --noEmit -p . && vue-tsc --noEmit && echo \"✅ All file types passed!\""
   },
   "dependencies": {
-    "@4tw/cypress-drag-drop": "^2.1.0",
-    "@bahmutov/cypress-esbuild-preprocessor": "^2.1.2",
-    "@cypress/code-coverage": "^3.9.11",
-    "@cypress/vite-dev-server": "^2.2.1",
-    "@cypress/vue": "^3.0.5",
     "@popperjs/core": "^2.9.3",
     "@tailwindcss/jit": "^0.1.18",
     "@typescript-eslint/eslint-plugin": "^5.8.0",
@@ -25,7 +19,6 @@
     "autoprefixer": "^10.2.5",
     "axios": "^0.24.0",
     "connect-busboy": "^0.0.3",
-    "cypress-real-events": "^1.6.0",
     "dotenv": "^15.0.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.23.2",
@@ -60,8 +53,6 @@
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
-    "@cypress/skip-test": "^2.6.1",
-    "cypress": "^9.4.1",
     "esbuild": "^0.14.7",
     "eslint": "^8.5.0",
     "eslint-plugin-cypress": "^2.12.1",
