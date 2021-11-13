@@ -2,6 +2,7 @@ import '../support/commands/addBoardApi';
 
 describe('board item', () => {
   it('shows a star', () => {
+    cy.request('POST', '/api/reset')
     cy.addBoardApi('new board');
     cy.visit('/');
     cy.getDataCy('board-item').trigger('mouseover');
