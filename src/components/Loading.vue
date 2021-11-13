@@ -23,7 +23,7 @@
 import { defineComponent } from 'vue';
 import LoadingIcon from '@/assets/icons/loadingIcon.svg';
 import { store } from '@/stores/store';
-import { storeToRefs } from 'pinia'
+import { storeToRefs } from 'pinia';
 
 export default defineComponent({
   components: {
@@ -34,9 +34,6 @@ export default defineComponent({
     return { loading, loadingError };
   }
 });
-
 </script>
 
-<style>
-
-</style>
+<style></style>

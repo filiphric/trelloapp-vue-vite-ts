@@ -1,6 +1,14 @@
 import '../support/commands/addBoardApi';
 
 describe('board item', () => {
+  it('shows a star', () => {
+    cy.addBoardApi('new board');
+    cy.visit('/');
+    cy.getDataCy('board-item').trigger('mouseover');
+    cy.getDataCy('star').should('be.visible');
+    cy.getDataCy('board-item').trigger('mouseout');
+    cy.getDataCy('star').should('not.be.visible');
+  })
   it('stars board item', () => {
     cy.intercept('PATCH', '/api/boards/*').as('starBoard');
     cy.request('POST', '/api/reset');

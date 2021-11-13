@@ -14,7 +14,7 @@
   "pluginsFile": "cypress/plugins/index.ts",
   "retries": {
     "openMode": 0,
-    "runMode": 5
+    "runMode": 1
   },
   "cypress-watch-and-reload": {
     "watch": [
