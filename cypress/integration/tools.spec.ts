@@ -32,7 +32,7 @@ describe('Tools', () => {
     cy.getDataCy('card').should('be.visible')
     cy.getDataCy('list').should('be.visible')
   
-    cy.toggleTools()
+    cy.get('body').click().realPress('F2')
   
     cy.getDataCy('api-tools')
       .should('be.visible')

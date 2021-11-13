@@ -12,7 +12,7 @@
         class="h-8 mt-4 w-full rounded-sm px-2 bg-white border-2"
         placeholder="Name of your first board"
         name="newBoard"
-        @keyup.enter.prevent="createNewBoard()"
+        @keyup.enter.prevent="createBoard(newBoardTitle)"
       >
     </div>
     <img
@@ -23,37 +23,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { store } from '@/stores/store';
-import axios from 'axios';
 
 export default defineComponent({
   setup() {
-    const state = store();
-    return { state };
-  },
-  data: function() {
+    const newBoardTitle = ref('');
+    const createBoard = store().createBoard;
     return {
-      newBoardTitle: ''
+      createBoard,
+      newBoardTitle
     };
-  },
-  methods: {
-    createNewBoard() {
-      if (!this.newBoardTitle) {
-        return;
-      }
-      axios
-        .post('/api/boards', { name: this.newBoardTitle })
-        .then(({ data }) => {
-          this.$router.push(`/board/${data.id}`);
-        })
-        .catch(() => {
-          this.state.showNotification('There was an error creating board', true);
-        });
-      this.newBoardTitle = '';
-    }
   }
 });
 </script>
-
-<style></style>

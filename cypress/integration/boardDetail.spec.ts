@@ -48,4 +48,38 @@ describe('board detail', () => {
       .should('eq', 200)
 
   });
+
+  it('stars a board', () => {
+    cy.intercept('PATCH', '/api/boards/*').as('boardStar');
+    cy.visit(`/board/${Cypress.env('boards')[0].id}`);
+    cy.getDataCy('star')
+      .click()
+
+    cy.wait('@boardStar')
+      .its('request.body.starred')
+      .should('be.true')
+
+  });
+
+  it('closes dropdown', () => {
+
+    cy.visit(`/board/${Cypress.env('boards')[0].id}`);
+    cy.getDataCy('board-options')
+      .click()
+
+    cy.getDataCy('board-dropdown')
+      .should('be.visible')
+
+    cy.getDataCy('cancel')
+      .click()
+
+    cy.getDataCy('board-options')
+      .click()
+
+    cy.getDataCy('board-dropdown')
+      .should('be.visible')
+
+    cy.root().click()
+    
+  });
 });

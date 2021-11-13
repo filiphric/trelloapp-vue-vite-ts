@@ -28,7 +28,7 @@ export default defineComponent({
   setup() {
     const state = store();
     const toggleTools = state.toggleTools;
-    const getCookieValue = (name: string) => document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
+    const getCookieValue = (name: string) => document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop();
 
     const token = getCookieValue('trello_token');
 
