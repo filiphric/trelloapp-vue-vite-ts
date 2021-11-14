@@ -5,7 +5,13 @@ import axios from 'axios';
 export const patchCard = async function(this: any, card: Card, changes: Partial<Card>) {
   const { id } = card;
   await axios.patch(`/api/cards/${id}`, changes).then(res => {
-    const listIndex = this.lists.findIndex((list: List) => list.id === card.listId);
+    let listIndex
+    if (changes.hasOwnProperty('listId')) {
+      listIndex = this.lists.findIndex((list: List) => list.id === changes.listId);
+    }
+ else {
+      listIndex = this.lists.findIndex((list: List) => list.id === card.listId);
+    }
     const cardsInList = this.lists[listIndex].cards;
     const patchedCardIndex: number = cardsInList.findIndex((c: Card) => c.id === id);
     this.lists[listIndex].cards[patchedCardIndex] = res.data;
