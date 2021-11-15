@@ -87,4 +87,16 @@ describe('creating a card', () => {
       .its('request.body.completed')
       .should('be.false');
   });
+
+  it('moves a card between lists', () => {
+    cy.addListApi({name: 'list 1'})
+    cy.addListApi({name: 'list 2'})
+    cy.addCardApi({name: 'card 1'})
+
+    cy.visit(`/board/${Cypress.env('boards')[0].id}`);
+
+    cy.getDataCy('card-list').eq(0).as('list1')
+    cy.getDataCy('card-list').eq(1).as('list2')
+    cy.getDataCy('card').drag('@list2')
+  })
 });
