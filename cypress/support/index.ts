@@ -5,6 +5,8 @@ import 'cypress-real-events/support';
 import 'cypress-watch-and-reload/support'
 import './commands/getDataCy'
 
+require('cypress-xpath')
+
 beforeEach(() => {
 
   Cypress.env('boards', []);

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-gray2 relative w-list p-1.5 rounded ml-3 shadow-md mb-32"
+    class="list bg-gray2 relative w-list p-1.5 rounded ml-3 shadow-md mb-32"
     data-cy="list"
     @dragenter="isDragging = true"
     @dragleave="isDragging = false"

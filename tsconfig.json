@@ -18,7 +18,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": ["cypress-real-events", "node", "cypress", "vue3-dropzone"],
+    "types": ["cypress-real-events", "node", "cypress", "vue3-dropzone", "cypress-xpath"],
   },
   "include": ["cypress/**/*.ts", "src/**/*"]
 }

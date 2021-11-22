@@ -1,7 +1,7 @@
 {
   "baseUrl": "http://localhost:3000",
   "env": {
-    "coverage": true
+    "coverage": false
   },
   "testFiles": "**/*.spec.ts",
   "component": {

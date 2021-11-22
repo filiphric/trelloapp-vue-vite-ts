@@ -65,6 +65,7 @@
   "devDependencies": {
     "cypress": "^8.7.0",
     "cypress-esbuild-preprocessor": "^1.0.2",
+    "cypress-xpath": "^1.6.2",
     "esbuild": "^0.13.11",
     "eslint": "^7.32.0",
     "eslint-plugin-cypress": "^2.12.1",

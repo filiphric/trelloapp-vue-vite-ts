@@ -1,6 +1,59 @@
 {
-  "boards": [],
-  "cards": [],
-  "lists": [],
+  "boards": [
+    {
+      "name": "shopping list",
+      "user": 0,
+      "id": 33974184794,
+      "starred": false,
+      "created": "2021-11-22"
+    },
+    {
+      "name": "rocket launch",
+      "user": 0,
+      "id": 32598537564,
+      "starred": false,
+      "created": "2021-11-22"
+    }
+  ],
+  "cards": [
+    {
+      "order": 0,
+      "boardId": 33974184794,
+      "listId": 40533513770,
+      "name": "milk",
+      "id": 34784466871,
+      "created": "2021-11-22",
+      "deadline": "2021-11-25",
+      "description": "",
+      "completed": false
+    },
+    {
+      "order": 1,
+      "boardId": 33974184794,
+      "listId": 40533513770,
+      "name": "bread",
+      "id": 4793108687,
+      "created": "2021-11-22",
+      "deadline": "2021-11-25",
+      "description": "",
+      "completed": false
+    }
+  ],
+  "lists": [
+    {
+      "boardId": 33974184794,
+      "name": "groceries",
+      "order": 0,
+      "id": 40533513770,
+      "created": "2021-11-22"
+    },
+    {
+      "boardId": 33974184794,
+      "name": "Other",
+      "order": 1,
+      "id": 30771226880,
+      "created": "2021-11-22"
+    }
+  ],
   "users": []
 }
