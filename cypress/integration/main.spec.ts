@@ -1,4 +1,4 @@
-import '../support/commands/addBoardApi';
+import '@commands/addBoardApi';
 
 describe('main page', () => {
   it('page opens main', () => {

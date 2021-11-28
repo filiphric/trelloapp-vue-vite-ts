@@ -91,6 +91,7 @@
           <textarea
             v-model="state.activeCard.description"
             class="w-full h-36 p-3 resize-none"
+            data-cy="card-description"
           />
         </div>
         <div class="ml-9 mb-4">
@@ -98,7 +99,7 @@
             <Attachment class="stroke-current fill-current text-gray-800 -ml-8 -mb-1 w-5 h-5" />
           </div>
           <h1 class="text-lg font-semibold mb-4 text-black inline-block">
-            Attachment
+            Image
           </h1>
           <div
             v-if="state.activeCard.image"
@@ -161,7 +162,7 @@
 <script lang="ts">
 import { DatePicker } from 'v-calendar';
 import { blurInput } from '@/utils/blurInput';
-import { defineComponent } from 'vue';
+import { defineComponent, PropType, ref } from 'vue';
 import { selectInput } from '@/utils/selectInput';
 import { store } from '@/stores/store';
 import Attachment from '@/assets/icons/attachment.svg';
@@ -226,9 +227,4 @@ export default defineComponent({
   }
 });
 
-function ref(arg0: boolean) {
-  throw new Error('Function not implemented.');
-}
 </script>
-
-<style></style>

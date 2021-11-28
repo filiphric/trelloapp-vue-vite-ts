@@ -4,7 +4,7 @@
     class="bg-gray6 w-72 h-36 px-4 py-3 cursor-pointer grid rounded-sm"
     data-cy="create-board"
     :class="{ 'hover:bg-gray7': !newBoardInputActive }"
-    @click.prevent="toggleNewBoardInput(true)"
+    @click.prevent="focusNewBoardInput"
   >
     <h1
       v-show="!newBoardInputActive"
@@ -58,31 +58,31 @@ export default defineComponent({
     SaveButton
   },
   setup() {
-    const newBoardTitle = ref('');
-    const newBoardInputActive = ref(false);
+    let newBoardTitle = ref();
+    let newBoardInputActive = ref(false);
     const boardCreateInput = ref();
     const createBoard = store().createBoard;
+    const onClickAway = () => {
+      newBoardInputActive.value = false;
+      newBoardTitle.value = '';
+    }
+    const focusNewBoardInput = () => {
+      newBoardInputActive.value = true;
+      nextTick(() => {
+        boardCreateInput.value.focus();
+      });
+    }
     return {
       createBoard,
       newBoardInputActive,
       newBoardTitle,
-      boardCreateInput
-    };
+      boardCreateInput,
+      onClickAway,
+      focusNewBoardInput
+    }
   },
   methods: {
-    onClickAway() {
-      this.newBoardInputActive = false;
-      this.newBoardTitle = '';
-    },
-    toggleNewBoardInput: function(flag: boolean) {
-      this.newBoardInputActive = flag;
-      nextTick(() => {
-        const boardInput = this.$refs.boardCreateInput as HTMLElement;
-        boardInput.focus();
-      });
-    }
+    
   }
 });
 </script>
-
-<style lang="postcss" scoped></style>

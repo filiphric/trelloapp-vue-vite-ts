@@ -34,7 +34,6 @@
       <div v-if="state.allBoards.length">
         <h1
           class="mx-4 text-3xl py-5 font-semibold inline-block"
-          data-cy="all-boards"
         >
           My Boards
         </h1>

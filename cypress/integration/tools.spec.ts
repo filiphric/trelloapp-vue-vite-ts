@@ -1,8 +1,8 @@
-import '../support/commands/addBoardApi'
-import '../support/commands/addCardApi'
-import '../support/commands/addListApi'
-import '../support/commands/signupApi'
-import '../support/commands/toggleTools'
+import '@commands/addBoardApi'
+import '@commands/addCardApi'
+import '@commands/addListApi'
+import '@commands/signupApi'
+import '@commands/toggleTools'
 
 describe('Tools', () => {
 

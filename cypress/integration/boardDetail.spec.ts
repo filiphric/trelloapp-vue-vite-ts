@@ -1,5 +1,5 @@
-import '../support/commands/addBoardApi';
-import '../support/commands/addListApi';
+import '@commands/addBoardApi';
+import '@commands/addListApi';
 
 const oldName = 'board';
 const newName = 'new board';

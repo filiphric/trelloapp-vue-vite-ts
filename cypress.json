@@ -16,14 +16,8 @@
     "openMode": 0,
     "runMode": 1
   },
-  "cypress-watch-and-reload": {
-    "watch": [
-      "src/*/*.vue",
-      "src/*/*.ts"
-    ]
-  },
   "supportFile": "cypress/support/index.ts",
-  "video": false,
+  "videoUploadOnPasses": false,
   "viewportHeight": 550,
   "viewportWidth": 700,
   "projectId": "qmz9cz",

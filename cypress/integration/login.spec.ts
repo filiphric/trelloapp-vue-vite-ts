@@ -1,4 +1,4 @@
-import '../support/commands/signupApi'
+import '@commands/signupApi'
 
 describe('Login', () => {
   
@@ -29,6 +29,13 @@ describe('Login', () => {
       .type(user.email)
 
     cy.getDataCy('login-password')
+      .type('invalid{enter}')
+
+    cy.getDataCy('notification-message')
+      .should('contain.text', 'Incorrect password')
+
+    cy.getDataCy('login-password')
+      .clear()
       .type(user.password)
 
     cy.getDataCy('login-submit')
@@ -78,5 +85,16 @@ describe('Login', () => {
       .should('contain.text', 'User was logged out')
     
   });
+
+  it('shows error on invalid login', () => {
+
+    cy.setCookie('trello_token', 'invalid')
+
+    cy.visit('/login')
+
+    cy.getDataCy('notification-message')
+      .should('contain.text', 'User is not authorized')
+
+  })
 
 });

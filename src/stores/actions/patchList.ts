@@ -8,7 +8,5 @@ export const patchList = async function(this: any, list: List, changes: Partial<
     data.cards = this.lists[patchedListIndex].cards;
     this.lists[patchedListIndex] = data;
   });
-  if (changes.hasOwnProperty('name')) {
-    this.showNotification('List was renamed', false);
-  }
+  changes.hasOwnProperty('name') && this.showNotification('List was renamed', false);
 };

@@ -74,7 +74,10 @@
         @end="state.sortLists"
       >
         <template #item="{element}">
-          <div class="inline-block h-full align-top">
+          <div
+            class="inline-block h-full align-top"
+            data-cy="list-placeholder"
+          >
             <ListItem :list="element" />
           </div>
         </template>

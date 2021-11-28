@@ -16,10 +16,9 @@
         listTitle = '';
       "
     >
-    <div data-cy="add-list-options">
+    <div>
       <SaveButton
         buttontext="Add list"
-        data-cy="save"
         @click="addList()"
       />
       <Cross
@@ -43,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import { PropType, defineComponent } from 'vue';
+import { PropType, defineComponent, nextTick } from 'vue';
 import { store } from '@/stores/store';
 import Board from '@/typings/board';
 import Cross from '@/assets/icons/cross.svg';
@@ -51,7 +50,7 @@ import Plus from '@/assets/icons/plus.svg';
 import SaveButton from '@/components/SaveButton.vue';
 export default defineComponent({
   $refs: {
-    listCreate: HTMLFormElement
+    listCreate: HTMLElement
   },
   components: {
     Cross,
@@ -89,7 +88,7 @@ export default defineComponent({
     },
     enableInput: function() {
       this.state.createListInput = true;
-      this.$nextTick(() => {
+      nextTick(() => {
         const listInput = this.$refs.listCreate as HTMLElement;
         listInput.focus();
       });

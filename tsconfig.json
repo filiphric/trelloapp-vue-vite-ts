@@ -16,9 +16,11 @@
     ],
     "moduleResolution": "node",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@commands/*": ["cypress/support/commands/*"],
+      "@fixtures/*": ["cypress/fixture/*"]
     },
-    "types": ["cypress-real-events", "node", "cypress", "vue3-dropzone"],
+    "types": ["cypress-real-events", "node", "cypress"],
   },
   "include": ["cypress/**/*.ts", "src/**/*"]
 }
