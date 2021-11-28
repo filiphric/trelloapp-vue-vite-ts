@@ -1,4 +1,4 @@
-import '../support/commands/addBoardApi'
+import '@commands/addBoardApi'
 
 describe('creating board', () => {
   beforeEach(() => {

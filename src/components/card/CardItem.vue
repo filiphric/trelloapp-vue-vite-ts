@@ -9,7 +9,6 @@
       <div
         class="select-none text-sm text-gray-800 flex-grow pl-2"
         style="white-space: break-spaces"
-        data-cy="card-title"
       >
         {{ card.name }}
       </div>
@@ -18,7 +17,6 @@
     <div
       class="date text-xs py-1 px-1.5 rounded-sm mt-1 w-[fit-content]"
       :class="card.completed ? 'completed' : overdue(card) ? 'overdue' : 'text-gray9'"
-      data-cy="card-date"
     >
       <Clock class="clock w-3 h-3 fill-current inline-block" />
       <span class="ml-2">{{ new Date(card.deadline).toDateString().substring(4) }}</span>

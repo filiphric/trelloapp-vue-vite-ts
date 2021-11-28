@@ -114,6 +114,7 @@ export const store = defineStore({
   }
 });
 
+/* istanbul ignore next */
 if (window.Cypress) {
   window.store = store;
 }

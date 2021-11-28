@@ -1,5 +1,5 @@
-import '../support/commands/addBoardApi';
-import '../support/commands/addListApi';
+import '@commands/addBoardApi';
+import '@commands/addListApi';
 
 describe('lists', () => {
   beforeEach(() => {
@@ -24,7 +24,8 @@ describe('lists', () => {
     cy.addListApi({ name: 'new list' });
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
     cy.getDataCy('create-list').click();
-    cy.getDataCy('add-list-input').should('be.focused');
+    cy.getDataCy('add-list-input').should('be.focused').type('other list{enter}');
+    cy.contains('Add list').click();
   });
 
   it('cancels creating a list', () => {
@@ -64,10 +65,29 @@ describe('lists', () => {
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
     cy.getDataCy('list-options').click();
     cy.getDataCy('dropdown').should('be.visible');
+    cy.getDataCy('cancel').click();
+    cy.getDataCy('list-options').click();
     cy.getDataCy('board-detail').click('bottomRight');
     cy.getDataCy('dropdown').should('not.exist');
     cy.getDataCy('list-options').click();
     cy.getDataCy('delete-list').click();
     cy.getDataCy('list').should('not.exist');
   });
+  
+  it('reorders lists', () => {
+    cy.addListApi({name: 'list 1'})
+    cy.addListApi({name: 'list 2'})
+
+    cy.visit(`/board/${Cypress.env('boards')[0].id}`);
+
+    cy.getDataCy('list-name').eq(0).should('have.value', 'list 1');
+    cy.getDataCy('list-name').eq(1).should('have.value', 'list 2');
+
+    cy.getDataCy('list-placeholder').eq(1).as('placeholder')
+    cy.getDataCy('list').eq(0).drag('@placeholder')
+
+    cy.getDataCy('list-name').eq(0).should('have.value', 'list 2');
+    cy.getDataCy('list-name').eq(1).should('have.value', 'list 1');
+
+  })
 });

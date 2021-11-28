@@ -8,7 +8,7 @@
     "selectorcheck": "./scripts/getSelectors.sh"
   },
   "dependencies": {
-    "@4tw/cypress-drag-drop": "^1.8.0",
+    "@4tw/cypress-drag-drop": "^2.1.0",
     "@cypress/code-coverage": "^3.9.11",
     "@cypress/vite-dev-server": "^2.0.7",
     "@cypress/vue": "^3.0.3",
@@ -27,7 +27,6 @@
     "connect-busboy": "^0.0.2",
     "cypress-file-upload": "^5.0.8",
     "cypress-real-events": "^1.5.1",
-    "cypress-watch-and-reload": "^1.5.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.23.2",
     "eslint-plugin-node": "^11.1.0",
@@ -59,7 +58,6 @@
     "vue-socket.io-extended": "^5.0.0-alpha.5",
     "vue-tsc": "^0.28.10",
     "vue3-click-away": "^1.1.0",
-    "vue3-dropzone": "^0.0.7",
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {

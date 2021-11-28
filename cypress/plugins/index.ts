@@ -18,7 +18,6 @@ module.exports = (on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions)
     }),
   );
 
-  require('cypress-watch-and-reload/plugins')(config)
   require('@cypress/code-coverage/task')(on, config);
 
   const { startDevServer } = require('@cypress/vite-dev-server')

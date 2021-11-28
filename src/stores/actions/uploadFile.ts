@@ -1,11 +1,11 @@
 import Card from '@/typings/card';
 import axios from 'axios';
 
-export const uploadFile = async function(this: any, acceptFiles: File[], card: Card) {
+export const uploadFile = async function(this: any, card: Card, acceptFile?: File, ) {
   const formData = new FormData();
-  const file = acceptFiles[0];
+  const file = acceptFile;
   const { id } = card;
-  formData.append('image', file);
+  file && formData.append('image', file);
   axios
     .post('/api/upload', formData, {
       headers: {

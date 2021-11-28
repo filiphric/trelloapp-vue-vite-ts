@@ -1,6 +1,6 @@
-import '../support/commands/addBoardApi';
-import '../support/commands/addCardApi';
-import '../support/commands/addListApi';
+import '@commands/addBoardApi';
+import '@commands/addCardApi';
+import '@commands/addListApi';
 
 describe('creating a card', () => {
   beforeEach(() => {
@@ -92,11 +92,13 @@ describe('creating a card', () => {
     cy.addListApi({name: 'list 1'})
     cy.addListApi({name: 'list 2'})
     cy.addCardApi({name: 'card 1'})
+    cy.addCardApi({name: 'card 2'})
+    cy.addCardApi({name: 'card 3', listIndex: 1})
 
     cy.visit(`/board/${Cypress.env('boards')[0].id}`);
 
     cy.getDataCy('card-list').eq(0).as('list1')
     cy.getDataCy('card-list').eq(1).as('list2')
-    cy.getDataCy('card').drag('@list2')
+    cy.getDataCy('card').eq(0).drag('@list2')
   })
 });

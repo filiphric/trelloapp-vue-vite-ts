@@ -1,6 +1,6 @@
-import '../support/commands/addBoardApi';
-import '../support/commands/addCardApi';
-import '../support/commands/addListApi';
+import '@commands/addBoardApi';
+import '@commands/addCardApi';
+import '@commands/addListApi';
 
 describe('card detail', () => {
   beforeEach(() => {
@@ -79,6 +79,14 @@ describe('card detail', () => {
       .should('eq', '2021-08-15');
   });
 
+  it('changes card description', () => {
+
+    cy.intercept('PATCH', '/api/cards/*').as('updateCard');
+    cy.visit(`/board/${Cypress.env('boards')[0].id}?card=${Cypress.env('cards')[0].id}`);
+    cy.getDataCy('card-description').type('new description{enter}');
+    
+  });
+
   it('copies card properties', () => {
     cy.clock();
     cy.visit(`/board/${Cypress.env('boards')[0].id}?card=${Cypress.env('cards')[0].id}`);
@@ -131,6 +139,10 @@ describe('card detail', () => {
     cy.getDataCy('card').click();
     cy.getDataCy('card-detail').should('be.visible');
     cy.getDataCy('card-detail-backdrop').click('topRight');
+    cy.getDataCy('card-detail').should('not.exist');
+    cy.getDataCy('card').click();
+    cy.getDataCy('card-detail').should('be.visible');
+    cy.getDataCy('cancel').click()
     cy.getDataCy('card-detail').should('not.exist');
   });
 

@@ -1,4 +1,4 @@
-import '../support/commands/addBoardApi';
+import '@commands/addBoardApi';
 
 describe('board item', () => {
   it('shows a star', () => {
