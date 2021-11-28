@@ -69,6 +69,7 @@ export default defineComponent({
       dragInactive()
     };
 
+    /* istanbul ignore next */
     const upload = (e: any) => {
       const acceptedFile = e.target.files[0];
       uploadFile(activeCard, acceptedFile);
