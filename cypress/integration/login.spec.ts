@@ -1,5 +1,3 @@
-import '@commands/signupApi'
-
 describe('Login', () => {
   
   const user = {

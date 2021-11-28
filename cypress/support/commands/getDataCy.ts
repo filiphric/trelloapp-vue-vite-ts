@@ -19,7 +19,7 @@ declare global {
  * </div>
  *
  */
-const getDataCy = function(
+export const getDataCy = function(
   input: Selectors
 ) {
   
@@ -36,5 +36,3 @@ const getDataCy = function(
   return cy.get(`[data-cy='${input}']`);
   
 };
-
-Cypress.Commands.add('getDataCy', getDataCy);

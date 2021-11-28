@@ -1,6 +1,3 @@
-import '@commands/addBoardApi';
-import '@commands/addListApi';
-
 describe('lists', () => {
   beforeEach(() => {
     cy.request('POST', '/api/reset');

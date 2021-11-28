@@ -1,5 +1,3 @@
-import '@commands/addBoardApi';
-
 describe('main page', () => {
   it('page opens main', () => {
     cy.visit('/');

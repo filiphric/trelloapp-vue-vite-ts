@@ -32,9 +32,7 @@
 
       <!-- ALL BOARDS -->
       <div v-if="state.allBoards.length">
-        <h1
-          class="mx-4 text-3xl py-5 font-semibold inline-block"
-        >
+        <h1 class="mx-4 text-3xl py-5 font-semibold inline-block">
           My Boards
         </h1>
         <div class="flex flex-cols-3 gap-8 flex-wrap flex-grow content-start mx-4">

@@ -65,13 +65,13 @@ export default defineComponent({
     const onClickAway = () => {
       newBoardInputActive.value = false;
       newBoardTitle.value = '';
-    }
+    };
     const focusNewBoardInput = () => {
       newBoardInputActive.value = true;
       nextTick(() => {
         boardCreateInput.value.focus();
       });
-    }
+    };
     return {
       createBoard,
       newBoardInputActive,
@@ -79,10 +79,8 @@ export default defineComponent({
       boardCreateInput,
       onClickAway,
       focusNewBoardInput
-    }
+    };
   },
-  methods: {
-    
-  }
+  methods: {}
 });
 </script>

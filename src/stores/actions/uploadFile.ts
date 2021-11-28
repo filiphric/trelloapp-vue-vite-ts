@@ -1,7 +1,7 @@
 import Card from '@/typings/card';
 import axios from 'axios';
 
-export const uploadFile = async function(this: any, card: Card, acceptFile?: File, ) {
+export const uploadFile = async function(this: any, card: Card, acceptFile?: File) {
   const formData = new FormData();
   const file = acceptFile;
   const { id } = card;

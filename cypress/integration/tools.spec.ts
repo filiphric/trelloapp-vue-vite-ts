@@ -1,9 +1,3 @@
-import '@commands/addBoardApi'
-import '@commands/addCardApi'
-import '@commands/addListApi'
-import '@commands/signupApi'
-import '@commands/toggleTools'
-
 describe('Tools', () => {
 
   const body = {
@@ -54,21 +48,21 @@ describe('Tools', () => {
       }).its('body').should('eq', 'Cannot find user')
 
     // deletes cards
-    cy.toggleTools()
+    cy.window().invoke('store').invoke('toggleTools')
     cy.contains('Cards').click()
     cy.getDataCy('card').should('not.exist')
 
     cy.wait('@cards')
     
     // deletes lists
-    cy.toggleTools()
+    cy.window().invoke('store').invoke('toggleTools')
     cy.contains('Lists').click()
     cy.getDataCy('list').should('not.exist')
 
     cy.wait('@lists')
 
     // deletes boards
-    cy.toggleTools()
+    cy.window().invoke('store').invoke('toggleTools')
     cy.contains('Boards').click()
     cy.location('pathname').should('eq', '/')
 
@@ -84,7 +78,7 @@ describe('Tools', () => {
 
     cy.visit(`/board/${Cypress.env('boards')[0].id}`)
   
-    cy.toggleTools()
+    cy.window().invoke('store').invoke('toggleTools')
   
     cy.getDataCy('api-tools')
       .should('be.visible')
