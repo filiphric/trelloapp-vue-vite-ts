@@ -1,7 +1,3 @@
-import '@commands/addBoardApi';
-import '@commands/addCardApi';
-import '@commands/addListApi';
-
 describe('creating a card', () => {
   beforeEach(() => {
     cy.request('POST', '/api/reset');

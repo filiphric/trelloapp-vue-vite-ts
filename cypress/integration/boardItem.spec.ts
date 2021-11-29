@@ -1,5 +1,3 @@
-import '@commands/addBoardApi';
-
 describe('board item', () => {
   it('shows a star', () => {
     cy.request('POST', '/api/reset')

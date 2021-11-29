@@ -1,5 +1,3 @@
-import '@commands/addBoardApi'
-
 describe('Board list', () => {
 
   beforeEach(() => {

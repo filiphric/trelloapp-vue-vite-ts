@@ -57,23 +57,23 @@ export default defineComponent({
     const isDragActive = ref(false);
 
     const dragActive = () => {
-      isDragActive.value = true
+      isDragActive.value = true;
     };
 
     const dragInactive = () => {
-      isDragActive.value = false
+      isDragActive.value = false;
     };
     const drop = (e: any) => {
       const acceptedFile = e.dataTransfer.files[0];
       uploadFile(activeCard, acceptedFile);
-      dragInactive()
+      dragInactive();
     };
 
     /* istanbul ignore next */
     const upload = (e: any) => {
       const acceptedFile = e.target.files[0];
       uploadFile(activeCard, acceptedFile);
-    }
+    };
 
     return { isDragActive, dragActive, dragInactive, drop, upload };
   }

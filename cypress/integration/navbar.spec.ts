@@ -1,5 +1,3 @@
-import '@commands/addBoardApi';
-
 describe('navigation bar', () => {
   beforeEach(() => {
     cy.request('POST', '/api/reset');
