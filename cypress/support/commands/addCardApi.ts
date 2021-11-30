@@ -10,24 +10,20 @@ declare global {
 /**
  * Creates a new card using the API. By default, the card is added to the first list of the first board.
  * @param name name of the card
- * @param boardIndex index number from Cypress.env('boards')
- * @param listIndex index number from Cypress.env('lists')
+ * @param boardIndex index number from this.boards
+ * @param listIndex index number from this.lists
  * @example
  * cy.addCardApi({ name: 'new card', boardIndex: 0, listIndex: 0 })
  */
-export const addCardApi = ({ name, boardIndex = 0, listIndex = 0 }: { name: string, boardIndex?: number, listIndex?: number  }): Cypress.Chainable<any> => {
+export const addCardApi = function(this: any, { name, boardAlias = 'board', listAlias = 'list', cardAlias = 'card' }: { name: string, boardAlias?: string, listAlias?: string, cardAlias?: string  }): Cypress.Chainable<any> {
 
   return cy
     .request('POST', '/api/cards', {
-      boardId: Cypress.env('boards')[boardIndex].id,
-      listId: Cypress.env('lists')[listIndex].id,
+      boardId: this[boardAlias].id,
+      listId: this[listAlias].id,
       name,
       order: 0
     })
-    .then(({ body }) => {
-
-      Cypress.env('cards').push(body);
-
-    });
+    .its('body', { log: false }).as(cardAlias);
 
 }
