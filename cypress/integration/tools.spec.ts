@@ -14,14 +14,17 @@ describe('Tools', () => {
   
   });
 
-  it('show tools', () => {
+  it('show tools', function() {
+
+    const boardId = this.board.id
+    const { accessToken } = this.user
 
     cy.intercept('DELETE', '/api/boards').as('boards')
     cy.intercept('DELETE', '/api/lists').as('lists')
     cy.intercept('DELETE', '/api/cards').as('cards')
     cy.intercept('DELETE', '/api/users').as('users')
 
-    cy.visit(`/board/${Cypress.env('boards')[0].id}`)
+    cy.visit(`/board/${boardId}`)
 
     cy.getDataCy('card').should('be.visible')
     cy.getDataCy('list').should('be.visible')
@@ -41,28 +44,25 @@ describe('Tools', () => {
         body, 
         failOnStatusCode: false, 
         headers: {
-          authorization: `Bearer ${Cypress.env('users')[0].accessToken}`
+          authorization: `Bearer ${accessToken}`
         },
         method: 'POST',
         url: '/api/login'
       }).its('body').should('eq', 'Cannot find user')
 
     // deletes cards
-    cy.window().invoke('store').invoke('toggleTools')
     cy.contains('Cards').click()
     cy.getDataCy('card').should('not.exist')
 
     cy.wait('@cards')
     
     // deletes lists
-    cy.window().invoke('store').invoke('toggleTools')
     cy.contains('Lists').click()
     cy.getDataCy('list').should('not.exist')
 
     cy.wait('@lists')
 
     // deletes boards
-    cy.window().invoke('store').invoke('toggleTools')
     cy.contains('Boards').click()
     cy.location('pathname').should('eq', '/')
 
@@ -72,11 +72,14 @@ describe('Tools', () => {
     
   });
 
-  it('resets all', () => {
+  it('resets all', function() {
+
+    const boardId = this.board.id
+    const { accessToken } = this.user
 
     cy.intercept('POST', '/api/reset').as('reset')
 
-    cy.visit(`/board/${Cypress.env('boards')[0].id}`)
+    cy.visit(`/board/${boardId}`)
   
     cy.window().invoke('store').invoke('toggleTools')
   
@@ -97,7 +100,7 @@ describe('Tools', () => {
         body, 
         failOnStatusCode: false, 
         headers: {
-          authorization: `Bearer ${Cypress.env('users')[0].accessToken}`
+          authorization: `Bearer ${accessToken}`
         },
         method: 'POST',
         url: '/api/login'

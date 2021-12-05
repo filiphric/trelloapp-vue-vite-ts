@@ -2,7 +2,6 @@ import axios from 'axios';
 
 export const resetUsers = async function(this: any) {
   await axios.delete('/api/users');
-  this.showTools = false;
   this.activeUser.loggedIn = false;
   this.activeUser.email = '';
   axios.defaults.headers.common['Authorization'] = '';

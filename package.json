@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@4tw/cypress-drag-drop": "^2.1.0",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.1.2",
     "@cypress/code-coverage": "^3.9.11",
     "@cypress/vite-dev-server": "^2.2.1",
     "@cypress/vue": "^3.0.5",
@@ -62,7 +63,6 @@
   },
   "devDependencies": {
     "cypress": "^9.1.0",
-    "cypress-esbuild-preprocessor": "^1.0.2",
     "esbuild": "^0.13.11",
     "eslint": "^7.32.0",
     "eslint-plugin-cypress": "^2.12.1",

@@ -15,14 +15,10 @@ declare global {
  *
  */
 
-export const addBoardApi = (name: string): Cypress.Chainable<any> => {
+export const addBoardApi = function(this: any, name: string): Cypress.Chainable<any> {
 
   return cy
     .request('POST', '/api/boards', { name })
-    .then(({ body }) => {
-
-      Cypress.env('boards').push(body);
-
-    });
+    .its('body', { log: false }).as('board');
     
 };

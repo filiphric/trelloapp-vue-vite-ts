@@ -20,10 +20,6 @@
           blurInput($event);
           inputActive = false;
         "
-        @keyup.esc="
-          blurInput($event);
-          inputActive = false;
-        "
         @blur="inputActive = false"
       >
       <Dropdown

@@ -15,14 +15,14 @@ declare global {
  * @example
  * cy.signupApi({ email: 'filip@example.com', password: 'nbusr123', login: false })
  */
-export const signupApi = ({ email, password, login = true }: { email: string, password: string, login?: boolean }) => {
+export const signupApi = function(this: any, { email, password, login = true }: { email: string, password: string, login?: boolean }) {
 
   cy
     .request('POST', '/api/signup', {
       email, password
     }).then(({ body }) => {
       if (login) cy.setCookie('trello_token', body.accessToken)
-      Cypress.env('users').push(body);
+      cy.wrap(body).as('user');
     });
 
 };

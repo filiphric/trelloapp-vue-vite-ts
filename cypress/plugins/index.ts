@@ -1,5 +1,5 @@
 import * as clipboardy from 'clipboardy';
-import { cypressEsbuildPreprocessor } from 'cypress-esbuild-preprocessor';
+const createBundler = require('@bahmutov/cypress-esbuild-preprocessor')
 import * as path from 'path';
 
 module.exports = (on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) => {
@@ -11,10 +11,8 @@ module.exports = (on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions)
   })
   
   on('file:preprocessor',
-    cypressEsbuildPreprocessor({
-        esbuildOptions: {
-            tsconfig: path.resolve(__dirname, '../../tsconfig.json'),
-        },
+    createBundler({
+      tsconfig: path.resolve(__dirname, '../../tsconfig.json'),
     }),
   );
 
