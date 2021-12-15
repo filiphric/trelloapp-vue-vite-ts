@@ -1,7 +1,8 @@
 <template>
   <div
     tabindex="-1"
-    @keyup.f2="toggleTools"
+    @keyup.f2="toggleTools(!state.showTools)"
+    @keyup.esc="toggleTools(false)"
   >
     <Navbar />
     <Notification />
@@ -11,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { store } from './stores/store';
 import Navbar from '@/components/Navbar.vue';
 import Notification from '@/components/Notification.vue';
