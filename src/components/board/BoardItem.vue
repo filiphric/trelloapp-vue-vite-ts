@@ -5,19 +5,19 @@
     :to="{ path: '/board/' + board.id }"
   >
     <div
-      class="board bg-blue7 w-72 h-36 px-4 py-3 cursor-pointer grid grid-cols-6 justify-between rounded-sm hover:bg-blue8"
+      class="board"
       data-cy="board-item"
       @click="navigate"
       @mouseover="showStar = true"
       @mouseout="showStar = false"
     >
-      <h1 class="text-white font-bold col-span-5">
+      <h1>
         {{ board.name }}
       </h1>
       <div
         v-show="showStar"
         data-cy="star"
-        class="justify-self-end self-start"
+        class="star"
         @click.stop="updateBoardStarred(board)"
       >
         <Star
@@ -62,4 +62,14 @@ export default defineComponent({
 });
 </script>
 
-<style lang="postcss" scoped></style>
+<style lang="postcss" scoped>
+.board {
+  @apply bg-blue7 w-72 h-36 px-4 py-3 cursor-pointer grid grid-cols-6 justify-between rounded-sm hover:bg-blue8
+}
+.star {
+  @apply justify-self-end self-start
+}
+h1 {
+  @apply text-white font-bold col-span-5
+}
+</style>

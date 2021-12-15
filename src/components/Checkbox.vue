@@ -1,7 +1,6 @@
 <template>
   <label class="inline-flex items-center">
     <input
-      class="text-blue5 w-4 h-4 outline-none"
       type="checkbox"
       data-cy="card-checkbox"
       :checked="card.completed"
@@ -27,3 +26,12 @@ export default defineComponent({
   }
 });
 </script>
+
+<style lang="postcss" scoped>
+  input {
+    @apply text-blue5 w-4 h-4 outline-none
+  }
+  label {
+    @apply inline-flex items-center
+  }
+</style>

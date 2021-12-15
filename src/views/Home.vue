@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <BoardList />
-  </div>
+  <BoardList />
 </template>
 
 <script lang="ts">

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid"
+    class="grid pt-10"
     :class="state.loadingError.show ? 'bg-white' : 'bg-blue6'"
   >
     <!-- LOADING -->

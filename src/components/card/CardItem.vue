@@ -18,7 +18,7 @@
       class="date text-xs py-1 px-1.5 rounded-sm mt-1 w-[fit-content]"
       :class="card.completed ? 'completed' : overdue(card) ? 'overdue' : 'text-gray9'"
     >
-      <Clock class="clock w-3 h-3 fill-current inline-block" />
+      <Clock class="w-4 h-4 fill-current inline-block" />
       <span class="ml-2">{{ new Date(card.deadline).toDateString().substring(4) }}</span>
     </div>
   </div>

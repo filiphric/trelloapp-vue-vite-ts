@@ -9,7 +9,6 @@
 import { store } from '@/stores/store';
 import BoardDetail from '@/components/board/BoardDetail.vue';
 import CardDetail from '@/components/card/CardDetail.vue';
-import Navbar from '@/components/Navbar.vue';
 
 export default {
   name: 'Board',
