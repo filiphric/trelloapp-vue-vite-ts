@@ -81,7 +81,7 @@ describe('Tools', () => {
 
     cy.visit(`/board/${boardId}`)
   
-    cy.window().invoke('store').invoke('toggleTools')
+    cy.window().invoke('store').invoke('toggleTools', true)
   
     cy.getDataCy('api-tools')
       .should('be.visible')

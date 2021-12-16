@@ -6,7 +6,7 @@
   >
     <Error
       v-if="state.notification.error"
-      class="text-red-500 fill-current inline-block ml-4"
+      class="text-red-500 fill-current inline-block ml-4 w-6 h-6"
     />
     <Info
       v-else

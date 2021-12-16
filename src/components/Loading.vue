@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="loading"
-    class="loading place-self-center text-center block"
+    class="loading"
   >
     <LoadingIcon class="mb-1 inline-block" />&nbsp;&nbsp;Loading data ...
     <div
@@ -11,7 +11,6 @@
       This is taking too long.
       <a
         href="/"
-        class="text-blue7 font-semibold text-center"
       >
         Reload?
       </a>
@@ -36,4 +35,12 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style lang="postcss" scoped>
+.loading {
+  @apply place-self-center text-center block
+}
+
+a {
+  @apply text-blue7 font-semibold text-center
+}
+</style>

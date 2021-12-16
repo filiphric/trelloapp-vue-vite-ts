@@ -1,6 +1,6 @@
 <template>
   <div
-    class="background bg-white h-screen grid"
+    class="background bg-white h-screen grid pt-10"
     data-cy="board-list"
   >
     <!-- LOADING -->

@@ -1,3 +1,3 @@
-export const toggleTools = async function(this: any) {
-  this.showTools = !this.showTools;
+export const toggleTools = async function(this: any, flag: boolean) {
+  this.showTools = flag;
 };
