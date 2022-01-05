@@ -1,9 +1,7 @@
 module.exports = {
-  darkMode: false,
   mode: 'jit',
   plugins: [], 
-  purge: ['./src/**/*.vue', './src/**/*.html'],
-  // or 'media' or 'class'
+  content: ['./src/**/*.vue', './src/**/*.html'],
 theme: {
     extend: {
       colors: {

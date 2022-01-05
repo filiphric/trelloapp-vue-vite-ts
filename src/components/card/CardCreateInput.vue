@@ -1,12 +1,12 @@
 <template>
   <div
     v-click-away="onClickAway"
-    class="w-full cursor-pointer grid"
+    class="grid w-full cursor-pointer"
   >
     <textarea
       ref="cardCreate"
       v-model="cardTitle"
-      class="resize-none w-full h-16 px-2 py-1 text-sm outline-none rounded border-b border-gray7"
+      class="py-1 px-2 w-full h-16 text-sm rounded border-b border-gray7 outline-none resize-none"
       data-cy="new-card-input"
       placeholder="Enter a title for this card..."
       @keydown.enter.prevent="addCard"
@@ -22,7 +22,7 @@
       />
       <Cross
         data-cy="cancel"
-        class="w-8 h-8 p-1 mx-0.5 fill-current text-gray-600 order-last inline-block"
+        class="inline-block order-last p-1 mx-0.5 w-8 h-8 text-gray-600 fill-current"
         @click.stop="
           $emit('toggleInput', false);
           cardTitle = '';
@@ -42,13 +42,13 @@ import SaveButton from '@/components/SaveButton.vue';
 export default defineComponent({
   components: {
     Cross,
-    SaveButton
+    SaveButton,
   },
   props: {
     list: {
       default: null,
-      type: Object as PropType<List>
-    }
+      type: Object as PropType<List>,
+    },
   },
   emits: ['toggleInput'],
   setup() {
@@ -58,7 +58,7 @@ export default defineComponent({
   },
   data() {
     return {
-      cardTitle: ''
+      cardTitle: '',
     };
   },
   mounted() {
@@ -74,15 +74,15 @@ export default defineComponent({
       this.createCard({
         boardId: this.state.board.id,
         listId: this.list.id,
-        name: this.cardTitle
+        name: this.cardTitle,
       });
       this.cardTitle = '';
     },
     onClickAway() {
       this.$emit('toggleInput', false);
       this.cardTitle = '';
-    }
-  }
+    },
+  },
 });
 </script>
 

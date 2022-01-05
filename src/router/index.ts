@@ -9,33 +9,33 @@ const routes = [
   {
     component: Home,
     name: 'Home',
-    path: '/'
+    path: '/',
   },
   {
     component: Login,
     name: 'Login',
-    path: '/login'
+    path: '/login',
   },
   {
     component: Signup,
     name: 'Signup',
-    path: '/signup'
+    path: '/signup',
   },
   {
     component: Board,
     name: 'Board',
-    path: '/board/:board'
+    path: '/board/:board',
   },
   {
     component: NotFound,
     name: 'Page not found',
-    path: '/404'
-  }
+    path: '/404',
+  },
 ];
 
 const router = createRouter({
   history: createWebHistory('/'),
-  routes
+  routes,
 });
 
 export default router;

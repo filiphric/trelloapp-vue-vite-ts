@@ -4,36 +4,36 @@
     @click="showDropdown()"
   >
     <Dots
-      class="text-gray10 flex-grow-0 border-2 border-transparent inline-block place-self-end hover:bg-gray4 bg-transparent active:bg-gray7 rounded-sm h-8 w-8 p-1.5 cursor-pointer"
+      class="inline-block place-self-end p-1.5 w-8 h-8 text-gray10 bg-transparent hover:bg-gray4 active:bg-gray7 rounded-sm border-2 border-transparent cursor-pointer flex-grow-0"
     />
   </button>
   <div
     v-if="dropdown"
     v-click-away="onClickAway"
-    class="bg-white absolute rounded-sm top-11 shadow-xl z-10 w-dropdown left-dropdown right-8 py-2"
+    class="absolute top-11 right-8 left-dropdown z-10 py-2 w-dropdown bg-white rounded-sm shadow-xl"
     data-cy="dropdown"
   >
-    <div class="text-gray-600 text-sm h-7 mt-0.5 text-center">
+    <div class="mt-0.5 h-7 text-sm text-center text-gray-600">
       List actions
     </div>
     <Cross
-      class="w-8 h-8 px-2 text-gray-600 absolute top-1 right-1 cursor-pointer"
+      class="absolute top-1 right-1 px-2 w-8 h-8 text-gray-600 cursor-pointer"
       @click="dropdown = false"
     />
     <hr>
     <div class="pt-2">
       <div
-        class="text-gray-700 text-sm py-1 block cursor-pointer hover:bg-gray1 px-2 active:bg-gray2"
+        class="block py-1 px-2 text-sm text-gray-700 hover:bg-gray1 active:bg-gray2 cursor-pointer"
         data-cy="card-add"
         @click="
-          $emit('toggleInput', true);
+          $emit('toggle-input', true);
           dropdown = false;
         "
       >
         Add card...
       </div>
       <div
-        class="text-red-600 text-sm py-1 block cursor-pointer hover:bg-gray1 px-2 active:bg-gray2"
+        class="block py-1 px-2 text-sm text-red-600 hover:bg-gray1 active:bg-gray2 cursor-pointer"
         data-cy="delete-list"
         @click="
           deleteList(list.id);
@@ -55,15 +55,15 @@ import List from '@/typings/list';
 export default defineComponent({
   components: {
     Cross,
-    Dots
+    Dots,
   },
   props: {
     list: {
       default: null,
-      type: Object as PropType<List>
-    }
+      type: Object as PropType<List>,
+    },
   },
-  emits: ['toggleInput'],
+  emits: ['toggle-input'],
   setup() {
     const { deleteList } = store();
     return { deleteList };
@@ -71,7 +71,7 @@ export default defineComponent({
   data() {
     return {
       dropdown: false,
-      id: this.list.id
+      id: this.list.id,
     };
   },
   methods: {
@@ -80,8 +80,8 @@ export default defineComponent({
     },
     showDropdown() {
       this.dropdown = !this.dropdown;
-    }
-  }
+    },
+  },
 });
 </script>
 

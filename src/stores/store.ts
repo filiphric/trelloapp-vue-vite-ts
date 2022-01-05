@@ -36,7 +36,7 @@ export const store = defineStore({
         show: false,
         status: 0,
         message: '',
-        tooLong: false
+        tooLong: false,
       },
       createListInput: true,
       cardModule: false,
@@ -44,25 +44,25 @@ export const store = defineStore({
       notification: {
         error: false,
         show: false,
-        message: ''
+        message: '',
       },
       boardList: {
-        all: []
+        all: [],
       },
       activeUser: {
         loggedIn: false,
-        email: ''
+        email: '',
       },
       signupForm: {
         email: '',
         password: '',
-        welcomeEmail: false
+        welcomeEmail: false,
       },
       loginForm: {
         email: '',
-        password: ''
+        password: '',
       },
-      showTools: false
+      showTools: false,
     };
   },
   actions: {
@@ -102,16 +102,16 @@ export const store = defineStore({
     resetBoards,
     resetLists,
     resetCards,
-    resetUsers
+    resetUsers,
   },
   getters: {
-    starred: state => {
+    starred: (state) => {
       return state.boardList.all.filter((board: Board) => board.starred === true);
     },
-    allBoards: state => {
+    allBoards: (state) => {
       return state.boardList.all.filter((board: Board) => board.starred === false);
-    }
-  }
+    },
+  },
 });
 
 /* istanbul ignore next */

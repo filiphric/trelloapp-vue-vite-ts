@@ -1,27 +1,27 @@
 <template>
   <div
-    class="flex justify-end text-white mr-3"
+    class="flex justify-end mr-3 text-white"
     :class="[route.path === '/login' || route.path === '/signup' ? 'invisible' : 'visible']"
   >
     <!-- LOGGED OUT -->
     <div
       v-show="!state.activeUser.loggedIn"
-      class="flex self-center bg-white bg-opacity-30 hover:bg-opacity-20 rounded-sm h-8 cursor-pointer text-sm"
+      class="flex self-center h-8 text-sm bg-white rounded-sm cursor-pointer bg-opacity-30 hover:bg-opacity-20"
       data-cy="login-menu"
       @click="router.push('/login')"
     >
-      <User class="ml-2 self-center w-6 h-6" />
+      <User class="self-center ml-2 w-6 h-6" />
       <span class="self-center pr-2 pl-1">Log&nbsp;in</span>
     </div>
     <!-- LOGGED IN -->
     <div
       v-show="state.activeUser.loggedIn"
-      class="flex self-center bg-white bg-opacity-30 hover:bg-opacity-20 rounded-sm h-8 cursor-pointer text-sm"
+      class="flex self-center h-8 text-sm bg-white rounded-sm cursor-pointer bg-opacity-30 hover:bg-opacity-20"
       data-cy="logged-user"
     >
-      <LogoutIcon class="ml-2 self-center w-5 h-5 text-white fill-current" />
+      <LogoutIcon class="self-center ml-2 w-5 h-5 text-white fill-current" />
       <div
-        class="self-center pr-2 pl-1 inline-block"
+        class="inline-block self-center pr-2 pl-1"
         @click="
           logout();
           state.getBoardList();
@@ -45,20 +45,20 @@ export default defineComponent({
   name: 'Login',
   components: {
     LogoutIcon,
-    User
+    User,
   },
   setup() {
     const router = useRouter();
     const route = useRoute();
     const state = store();
-    const logout = function(this: any) {
+    const logout = function (this: any) {
       this.state.activeUser.loggedIn = false;
       axios.defaults.headers.common['Authorization'] = '';
       document.cookie = 'trello_token=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
       this.state.showNotification('User was logged out', false);
     };
     return { logout, route, router, state };
-  }
+  },
 });
 </script>
 

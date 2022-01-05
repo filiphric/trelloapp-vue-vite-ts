@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const resetUsers = async function(this: any) {
+export const resetUsers = async function (this: any) {
   await axios.delete('/api/users');
   this.activeUser.loggedIn = false;
   this.activeUser.email = '';

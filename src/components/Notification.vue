@@ -1,18 +1,18 @@
 <template>
   <div
     v-if="state.notification.show"
-    class="h-14 min-w-min text-base shadow-xl absolute bottom-5 left-5 rounded-sm z-50 bg-white"
+    class="absolute bottom-5 left-5 z-50 min-w-min h-14 text-base bg-white rounded-sm shadow-xl"
     data-cy="notification-message"
   >
     <Error
       v-if="state.notification.error"
-      class="text-red-500 fill-current inline-block ml-4 w-6 h-6"
+      class="inline-block ml-4 w-6 h-6 text-red-500 fill-current"
     />
     <Info
       v-else
-      class="text-blue-500 fill-current inline-block ml-4 w-4 h-4"
+      class="inline-block ml-4 w-4 h-4 text-blue-500 fill-current"
     />
-    <div class="m-4 text-black inline-block">
+    <div class="inline-block m-4 text-black">
       {{ state.notification.message }}
     </div>
   </div>
@@ -27,12 +27,12 @@ import Info from '@/assets/icons/info.svg';
 export default defineComponent({
   components: {
     Error,
-    Info
+    Info,
   },
   setup() {
     const state = store();
     return { state };
-  }
+  },
 });
 </script>
 

@@ -36,7 +36,7 @@ module.exports = (req, res, next) => {
     ) {
       const base64Url = req.headers.authorization.split('.')[1];
       const base64 = base64Url.replace('-', '+').replace('_', '/');
-      return JSON.parse(Buffer.from(base64, 'base64'));
+      return JSON.parse(Buffer.from(base64, 'base64') as unknown as string);
     }
 
     return false;
@@ -171,6 +171,8 @@ module.exports = (req, res, next) => {
 
   if (req.method === 'POST' && req.path === '/upload') {
     const cardid = req.headers.cardid;
+
+    console.log(cardid)
 
     let fstream;
     req.pipe(req.busboy);

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="background bg-white h-screen grid pt-10"
+    class="grid pt-10 h-screen bg-white background"
     data-cy="board-list"
   >
     <!-- LOADING -->
@@ -15,12 +15,12 @@
       <!-- STARRED BOARDS -->
       <div v-if="state.starred.length">
         <h1
-          class="mx-4 text-3xl py-5 font-semibold inline-block"
+          class="inline-block py-5 mx-4 text-3xl font-semibold"
           data-cy="starred-boards"
         >
           Starred
         </h1>
-        <div class="flex flex-cols-3 gap-8 flex-wrap flex-grow content-start mx-4">
+        <div class="flex flex-wrap gap-8 content-start mx-4 flex-cols-3 flex-grow">
           <BoardItem
             v-for="board in state.starred"
             :key="board.id"
@@ -32,10 +32,10 @@
 
       <!-- ALL BOARDS -->
       <div v-if="state.allBoards.length">
-        <h1 class="mx-4 text-3xl py-5 font-semibold inline-block">
+        <h1 class="inline-block py-5 mx-4 text-3xl font-semibold">
           My Boards
         </h1>
-        <div class="flex flex-cols-3 gap-8 flex-wrap flex-grow content-start mx-4">
+        <div class="flex flex-wrap gap-8 content-start mx-4 flex-cols-3 flex-grow">
           <BoardItem
             v-for="board in state.allBoards"
             :key="board.id"
@@ -65,13 +65,13 @@ export default defineComponent({
     BoardItem,
     BoardCreate,
     LoadingError,
-    Loading
+    Loading,
   },
   setup() {
     const state = store();
     state.getBoardList();
     return { state };
-  }
+  },
 });
 </script>
 

@@ -6,23 +6,23 @@
     <!-- LOADING -->
     <div
       v-if="state.loading"
-      class="loading h-screen grid content-center justify-center"
+      class="grid justify-center content-center h-screen loading"
     >
       <div><LoadingIcon class="inline-block mb-1" />&nbsp;&nbsp;Loading data ...</div>
     </div>
     <!-- ERROR STATE -->
     <div
       v-if="state.loadingError.show"
-      class="h-screen grid content-center justify-center"
+      class="grid justify-center content-center h-screen"
       data-cy="board-list-error-message"
     >
-      <span class="font-bold text-8xl text-gray-200 text-center block mb-4">{{ state.loadingError.status }}</span>
-      <p class="text-gray-400 text-center block mb-4">
+      <span class="block mb-4 text-8xl font-bold text-center text-gray-200">{{ state.loadingError.status }}</span>
+      <p class="block mb-4 text-center text-gray-400">
         {{ state.loadingError.message || 'There was an error loading board' }}
       </p>
       <router-link
         to="/"
-        class="text-blue7 font-semibold text-center block"
+        class="block font-semibold text-center text-blue7"
       >
         Go back home
       </router-link>
@@ -34,14 +34,14 @@
       data-cy="board-detail"
     >
       <div class="py-2.5">
-        <div class="relative inline-block ml-3 mr-0 py-1.5 h-8">
-          <div class="invisible font-bold px-3 inline-block">
+        <div class="inline-block relative py-1.5 mr-0 ml-3 h-8">
+          <div class="inline-block invisible px-3 font-bold">
             {{ state.board.name }}
           </div>
           <input
             v-model="state.board.name"
             v-click-away="onClickAway"
-            class="board-title bg-white bg-opacity-20 hover:bg-opacity-30 text-white"
+            class="text-white bg-white board-title bg-opacity-20 hover:bg-opacity-30"
             data-cy="board-title"
             autocomplete="off"
             name="board-title"
@@ -52,12 +52,12 @@
           >
         </div>
         <div
-          class="relative bg-white bg-opacity-20 hover:bg-opacity-30 self-center rounded-sm ml-2 w-8 h-8 cursor-pointer inline-grid"
+          class="inline-grid relative self-center ml-2 w-8 h-8 bg-white rounded-sm cursor-pointer bg-opacity-20 hover:bg-opacity-30"
           :class="[state.board.starred ? 'fill-current text-yellow-300' : 'stroke-current text-white']"
           data-cy="star"
           @click="
             state.patchBoard(state.board, {
-              starred: !state.board.starred
+              starred: !state.board.starred,
             })
           "
         >
@@ -73,7 +73,7 @@
         class="inline-block"
         @end="state.sortLists"
       >
-        <template #item="{element}">
+        <template #item="{ element }">
           <div
             class="inline-block h-full align-top"
             data-cy="list-placeholder"
@@ -109,7 +109,7 @@ export default defineComponent({
     ListItem,
     LoadingIcon,
     Star,
-    draggable
+    draggable,
   },
   setup() {
     const route = useRoute();
@@ -121,7 +121,7 @@ export default defineComponent({
       inputActive.value = false;
     };
     return { state, blurInput, selectInput, onClickAway };
-  }
+  },
 });
 </script>
 

@@ -3,17 +3,13 @@
     v-if="loading"
     class="loading"
   >
-    <LoadingIcon class="mb-1 inline-block" />&nbsp;&nbsp;Loading data ...
+    <LoadingIcon class="inline-block mb-1" />&nbsp;&nbsp;Loading data ...
     <div
       v-if="loadingError.tooLong"
       class="block mt-4"
     >
       This is taking too long.
-      <a
-        href="/"
-      >
-        Reload?
-      </a>
+      <a href="/"> Reload? </a>
     </div>
   </div>
 </template>
@@ -26,21 +22,21 @@ import { storeToRefs } from 'pinia';
 
 export default defineComponent({
   components: {
-    LoadingIcon
+    LoadingIcon,
   },
   setup() {
     const { loading, loadingError } = storeToRefs(store());
     return { loading, loadingError };
-  }
+  },
 });
 </script>
 
 <style lang="postcss" scoped>
 .loading {
-  @apply place-self-center text-center block
+  @apply place-self-center text-center block;
 }
 
 a {
-  @apply text-blue7 font-semibold text-center
+  @apply text-blue7 font-semibold text-center;
 }
 </style>

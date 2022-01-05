@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full h-40 border-dashed border-4 border-gray-400"
+    class="w-full h-40 border-4 border-gray-400 border-dashed"
     data-cy="upload-image"
     :class="isDragActive && 'border-gray-800'"
     accept="image/png, image/gif, image/jpeg"
@@ -9,9 +9,9 @@
     @dragover.prevent
     @drop.prevent="drop"
   >
-    <div class="grid justify-center items-center w-full min-h-full h-32">
+    <div class="grid justify-center items-center w-full h-32 min-h-full">
       <Dropicon
-        class="fill-current text-gray-400 place-self-end w-48"
+        class="place-self-end w-48 text-gray-400 fill-current"
         :class="isDragActive && 'fill-current text-gray-800'"
       />
       <div
@@ -22,7 +22,7 @@
       </div>
       <label
         for="dropzoneFile"
-        class="cursor-pointer bg-gray-400 text-gray1 px-3 py-1.5 mt-2 place-self-center self-start"
+        class="self-start place-self-center py-1.5 px-3 mt-2 text-gray1 bg-gray-400 cursor-pointer"
         :class="isDragActive && 'bg-gray-800'"
       >select image</label>
     </div>
@@ -30,6 +30,7 @@
       id="dropzoneFile"
       type="file"
       class="hidden"
+      accept="image/png, image/jpeg"
       @input="upload"
     >
   </div>
@@ -43,13 +44,13 @@ import Dropicon from '@/assets/icons/dropicon.svg';
 export default defineComponent({
   name: 'Dropzone',
   components: {
-    Dropicon
+    Dropicon,
   },
   props: {
     card: {
       default: null,
-      type: Object as PropType<Card>
-    }
+      type: Object as PropType<Card>,
+    },
   },
   setup() {
     const uploadFile = store().uploadFile;
@@ -76,6 +77,6 @@ export default defineComponent({
     };
 
     return { isDragActive, dragActive, dragInactive, drop, upload };
-  }
+  },
 });
 </script>

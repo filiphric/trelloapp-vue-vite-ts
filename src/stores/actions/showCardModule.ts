@@ -2,7 +2,7 @@ import Card from '@/typings/card';
 import axios from 'axios';
 import router from '@/router';
 
-export const showCardModule = async function(this: any, cardId: Card['id'], flag: boolean) {
+export const showCardModule = async function (this: any, cardId: Card['id'], flag: boolean) {
   if (flag) {
     router.push(`${router.currentRoute.value.path}?card=${cardId}`);
     await axios

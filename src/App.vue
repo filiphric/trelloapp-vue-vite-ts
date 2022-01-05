@@ -24,7 +24,7 @@ export default defineComponent({
   components: {
     Navbar,
     Notification,
-    Tools
+    Tools,
   },
   setup() {
     const state = store();
@@ -39,7 +39,7 @@ export default defineComponent({
     }
 
     return { state, toggleTools };
-  }
+  },
 });
 </script>
 

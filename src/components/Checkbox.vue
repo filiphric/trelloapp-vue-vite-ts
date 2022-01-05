@@ -17,21 +17,21 @@ export default defineComponent({
   props: {
     card: {
       default: null,
-      type: Object as PropType<Card>
-    }
+      type: Object as PropType<Card>,
+    },
   },
   setup() {
     const patchCard = store().patchCard;
     return { patchCard };
-  }
+  },
 });
 </script>
 
 <style lang="postcss" scoped>
-  input {
-    @apply text-blue5 w-4 h-4 outline-none
-  }
-  label {
-    @apply inline-flex items-center
-  }
+input {
+  @apply text-blue5 w-4 h-4 outline-none;
+}
+label {
+  @apply inline-flex items-center;
+}
 </style>
