@@ -1,36 +1,36 @@
 <template>
   <div
-    class="fixed bottom-0 right-0 p-5 rounded-sm m-3"
-    style="background: rgb(0 0 0 / 0.1);"
+    class="fixed right-0 bottom-0 p-5 m-3 rounded-sm"
+    style="background: rgb(0 0 0 / 0.1)"
     data-cy="api-tools"
   >
     Reset application:
     <button
-      class="m-1 px-1 bg-white border border-black"
+      class="px-1 m-1 bg-white border border-black"
       @click="state.reset()"
     >
       All
     </button>
     <button
-      class="m-1 px-1 bg-white border border-black"
+      class="px-1 m-1 bg-white border border-black"
       @click="state.resetBoards()"
     >
       Boards
     </button>
     <button
-      class="m-1 px-1 bg-white border border-black"
+      class="px-1 m-1 bg-white border border-black"
       @click="state.resetLists()"
     >
       Lists
     </button>
     <button
-      class="m-1 px-1 bg-white border border-black"
+      class="px-1 m-1 bg-white border border-black"
       @click="state.resetCards()"
     >
       Cards
     </button>
     <button
-      class="m-1 px-1 bg-white border border-black"
+      class="px-1 m-1 bg-white border border-black"
       @click="state.resetUsers()"
     >
       Users
@@ -46,7 +46,7 @@ export default defineComponent({
   setup() {
     const state = store();
     return { state };
-  }
+  },
 });
 </script>
 

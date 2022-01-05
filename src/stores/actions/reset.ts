@@ -1,7 +1,7 @@
 import axios from 'axios';
 import router from '@/router';
 
-export const reset = async function(this: any) {
+export const reset = async function (this: any) {
   await axios.post('/api/reset');
   router.push('/');
   this.activeCard = {};

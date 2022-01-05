@@ -39,12 +39,12 @@
 import { defineComponent, nextTick, ref } from 'vue';
 import { store } from '@/stores/store';
 import Cross from '@/assets/icons/cross.svg';
-import SaveButton from '../SaveButton.vue';
+import SaveButton from '@/components/SaveButton.vue';
 export default defineComponent({
   name: 'BoardCreate',
   components: {
     Cross,
-    SaveButton
+    SaveButton,
   },
   setup() {
     let newBoardTitle = ref();
@@ -67,56 +67,51 @@ export default defineComponent({
       newBoardTitle,
       boardCreateInput,
       onClickAway,
-      focusNewBoardInput
+      focusNewBoardInput,
     };
   },
-  methods: {}
 });
 </script>
 <style lang="postcss" scoped>
 h1 {
-  @apply text-white
+  @apply text-white;
 }
 
 .active {
-  @apply
-    flex
+  @apply flex
     flex-row-reverse
     items-end
-    justify-items-end
+    justify-items-end;
 }
 
 .new-board-input {
-  @apply 
-    border-2 border-transparent
+  @apply border-2 border-transparent
     focus:border-blue6
     h-9
     outline-none
     px-2
     rounded-sm
-    w-full
+    w-full;
 }
 
 .create-board {
-  @apply 
-    bg-gray6 
+  @apply bg-gray6
     cursor-pointer 
     grid 
     h-36 
     px-4 
     py-3 
     rounded-sm
-    w-72 
+    w-72;
 }
 
 .icon {
-  @apply
-    fill-current
+  @apply fill-current
     h-9
     mx-1
     order-last
     px-2
     text-gray-600
-    w-9
+    w-9;
 }
 </style>

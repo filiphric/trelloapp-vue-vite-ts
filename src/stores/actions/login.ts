@@ -1,7 +1,7 @@
 import axios from 'axios';
 import router from '@/router';
 
-export const login = async function(this: any, email: string, password: string) {
+export const login = async function (this: any, email: string, password: string) {
   await axios
     .post('/api/login', { email, password })
     .then(({ data }) => {

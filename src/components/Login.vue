@@ -1,13 +1,13 @@
 <template>
-  <div class="grid grid-cols-2 items-stretch -mt-10 h-screen px-28 gap-x-8">
+  <div class="grid grid-cols-2 gap-x-8 items-stretch px-28 -mt-10 h-screen">
     <div class="grid content-center">
-      <h1 class="font-bold text-3xl mb-8">
+      <h1 class="mb-8 text-3xl font-bold">
         Welcome back!
       </h1>
       <label for="email">Email</label>
       <input
         v-model="state.loginForm.email"
-        class="h-10 w-full rounded-sm mb-3 px-2 bg-gray3 focus:bg-white"
+        class="px-2 mb-3 w-full h-10 bg-gray3 focus:bg-white rounded-sm"
         placeholder="Email"
         data-cy="login-email"
         name="email"
@@ -17,14 +17,14 @@
         v-model="state.loginForm.password"
         type="password"
         data-cy="login-password"
-        class="h-10 w-full rounded-sm mb-3 px-2 bg-gray3 focus:bg-white"
+        class="px-2 mb-3 w-full h-10 bg-gray3 focus:bg-white rounded-sm"
         placeholder="Password"
         name="password"
         @keyup.enter="state.login(state.loginForm.email, state.loginForm.password)"
       >
       <button
         data-cy="login-submit"
-        class="w-full py-2 text-white bg-green7 hover:bg-green6"
+        class="py-2 w-full text-white bg-green7 hover:bg-green6"
         @click="state.login(state.loginForm.email, state.loginForm.password)"
       >
         Log in
@@ -37,7 +37,7 @@
       </router-link>
     </div>
     <img
-      class="place-self-center self-center gap-x-5"
+      class="gap-x-5 self-center place-self-center"
       src="@/assets/login.png"
     >
   </div>
@@ -51,7 +51,7 @@ export default defineComponent({
   setup() {
     const state = store();
     return { state };
-  }
+  },
 });
 </script>
 

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const getBoardList = async function(this: any) {
+export const getBoardList = async function (this: any) {
   this.loadingError.show = false;
   this.loadingError.message = '';
   this.loadingError.status = '';

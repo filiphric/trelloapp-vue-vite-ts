@@ -1,6 +1,6 @@
 <template>
   <button
-    class="inline-block text-center rounded-sm text-white font-normal text-sm mt-1 px-3 py-1 h-8 focus:outline-none bg-green7 hover:bg-green6"
+    class="inline-block py-1 px-3 mt-1 h-8 text-sm font-normal text-center text-white bg-green7 hover:bg-green6 rounded-sm focus:outline-none"
     style="width: fit-content"
   >
     {{ buttontext }}
@@ -13,9 +13,9 @@ export default defineComponent({
   props: {
     buttontext: {
       default: 'Save',
-      type: String
-    }
-  }
+      type: String,
+    },
+  },
 });
 </script>
 

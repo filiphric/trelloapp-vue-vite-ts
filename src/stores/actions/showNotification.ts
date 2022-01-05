@@ -1,4 +1,4 @@
-export const showNotification = async function(this: any, message: string, isError: boolean) {
+export const showNotification = async function (this: any, message: string, isError: boolean) {
   this.notification.message = message;
   this.notification.error = isError;
   this.notification.show = true;

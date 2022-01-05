@@ -8,7 +8,7 @@ import Signup from '@/components/Signup.vue';
 
 export default defineComponent({
   components: {
-    Signup
-  }
+    Signup,
+  },
 });
 </script>

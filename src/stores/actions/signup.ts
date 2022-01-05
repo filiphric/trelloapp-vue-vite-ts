@@ -1,7 +1,7 @@
 import axios from 'axios';
 import router from '@/router';
 
-export const signup = async function(this: any, email: string, password: string, welcomeEmail: boolean) {
+export const signup = async function (this: any, email: string, password: string, welcomeEmail: boolean) {
   await axios
     .post('/api/signup', { email, password, welcomeEmail })
     .then(({ data }) => {
@@ -14,10 +14,10 @@ export const signup = async function(this: any, email: string, password: string,
 
       welcomeEmail &&
         axios.post('/api/welcomeemail', {
-          email
+          email,
         });
     })
-    .catch(e => {
+    .catch((e) => {
       this.showNotification(e.response.data, true);
     });
 };

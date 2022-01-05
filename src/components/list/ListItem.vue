@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-gray2 relative w-list p-1.5 rounded ml-3 shadow-md mb-32"
+    class="relative p-1.5 mb-32 ml-3 w-list bg-gray2 rounded shadow-md"
     data-cy="list"
     @dragenter="isDragging = true"
     @dragleave="isDragging = false"
@@ -8,7 +8,7 @@
     <div class="flex mb-1">
       <input
         v-click-away="onClickAway"
-        class="text-gray-900 text-sm px-1 py-0.5 flex-grow inline-block font-semibold border-2 border-transparent outline-none focus:border-blue6 rounded-sm cursor-pointer h-8 bg-gray2 focus:bg-gray1"
+        class="inline-block py-0.5 px-1 h-8 text-sm font-semibold text-gray-900 bg-gray2 focus:bg-gray1 rounded-sm border-2 border-transparent focus:border-blue6 outline-none cursor-pointer flex-grow"
         data-cy="list-name"
         :value="list.name"
         @mouseup="
@@ -24,7 +24,7 @@
       >
       <Dropdown
         :list="list"
-        @toggleInput="showCardCreate"
+        @toggle-input="showCardCreate"
       />
     </div>
     <div
@@ -38,22 +38,22 @@
         ghost-class="bg-gray2"
         @change="sortCards"
       >
-        <template #item="{element}">
+        <template #item="{ element }">
           <CardItem :card="element" />
         </template>
       </draggable>
       <div
         v-if="!cardCreate"
-        class="text-gray-500 hover:text-gray-600 hover:bg-gray4 px-2 py-1.5 cursor-pointer font-normal text-sm rounded-md"
+        class="py-1.5 px-2 text-sm font-normal text-gray-500 hover:text-gray-600 hover:bg-gray4 rounded-md cursor-pointer"
         data-cy="new-card"
         @click="showCardCreate(true)"
       >
-        <Plus class="w-3 h-3 inline-block" />Add another card
+        <Plus class="inline-block w-3 h-3" />Add another card
       </div>
       <CardCreateInput
         v-else
         :list="list"
-        @toggleInput="showCardCreate"
+        @toggle-input="showCardCreate"
       />
     </div>
   </div>
@@ -79,13 +79,13 @@ export default defineComponent({
     CardItem,
     Dropdown,
     Plus,
-    draggable
+    draggable,
   },
   props: {
     list: {
       default: null,
-      type: Object as PropType<List>
-    }
+      type: Object as PropType<List>,
+    },
   },
   setup() {
     const state = store();
@@ -96,7 +96,7 @@ export default defineComponent({
       cardCreate: false,
       drag: false,
       inputActive: false,
-      isDragging: false
+      isDragging: false,
     };
   },
   methods: {
@@ -111,8 +111,8 @@ export default defineComponent({
       this.state.lists[listIndex].cards.forEach((card: Card, order: number) => {
         this.state.patchCard(card, { listId: this.list.id, order });
       });
-    }
-  }
+    },
+  },
 });
 </script>
 

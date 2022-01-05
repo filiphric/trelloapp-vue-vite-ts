@@ -1,22 +1,22 @@
 <template>
   <div
-    class="bg-backdrop flex justify-center items-center fixed top-0 left-0 h-full w-full z-40"
+    class="flex fixed top-0 left-0 z-40 justify-center items-center w-full h-full bg-backdrop"
     data-cy="card-detail-backdrop"
     @click.self="state.showCardModule(state.activeCard.id, false)"
   >
     <div
-      class="bg-gray2 w-cardDetail h-5/6 p-8 grid grid-cols-8 gap-x-2 overflow-scroll"
+      class="grid overflow-scroll grid-cols-8 gap-x-2 p-8 w-cardDetail h-5/6 bg-gray2"
       data-cy="card-detail"
     >
       <div class="col-span-6 text-gray-800">
-        <div class="ml-9 mb-4">
+        <div class="mb-4 ml-9">
           <div class="inline-block">
-            <Board class="stroke-current fill-current text-gray-800 -ml-8 -mb-1 w-5 h-5" />
+            <Board class="-mb-1 -ml-8 w-5 h-5 text-gray-800 fill-current stroke-current" />
           </div>
           <input
             v-model="state.activeCard.name"
             v-click-away="clickAwayCardName"
-            class="font-bold rounded-sm cursor-pointer bg-gray2 py-1 focus:px-1.5 focus:bg-white w-full"
+            class="py-1 focus:px-1.5 w-full font-bold bg-gray2 focus:bg-white rounded-sm cursor-pointer"
             data-cy="card-detail-title"
             @focus="
               selectInput($event);
@@ -36,23 +36,23 @@
             in list <span class="underline">{{ cardListName }}</span>
           </h2>
         </div>
-        <div class="ml-9 mb-4">
-          <h2 class="text-sm block text-gray10 cursor-default">
+        <div class="mb-4 ml-9">
+          <h2 class="block text-sm text-gray10 cursor-default">
             DUE DATE
           </h2>
           <div class="inline-block mt-2">
             <Checkbox :card="state.activeCard" />
-            <h2 class="inline-block px-4 py-1 rounded-sm font-light text-gray-800 bg-gray3 hover:bg-gray5 cursor-default">
+            <h2 class="inline-block py-1 px-4 font-light text-gray-800 bg-gray3 hover:bg-gray5 rounded-sm cursor-default">
               {{ new Date(state.activeCard.deadline).toDateString() }}
               <div
                 v-show="state.activeCard.completed"
-                class="text-sm bg-green5 inline-block text-white px-2 mx-1 rounded-sm"
+                class="inline-block px-2 mx-1 text-sm text-white bg-green5 rounded-sm"
               >
                 COMPLETED
               </div>
               <div
                 v-show="overdue(state.activeCard) && !state.activeCard.completed"
-                class="text-sm bg-red-500 inline-block text-white px-2 mx-1 rounded-sm"
+                class="inline-block px-2 mx-1 text-sm text-white bg-red-500 rounded-sm"
               >
                 OVERDUE
               </div>
@@ -60,12 +60,12 @@
                 data-cy="calendar-dropdown"
                 @click="showDate = true"
               >
-                <Downarrow class="stroke-current fill-current text-gray-800 w-5 py-2 pl-2 inline-block cursor-pointer" />
+                <Downarrow class="inline-block py-2 pl-2 w-5 text-gray-800 cursor-pointer fill-current stroke-current" />
               </button>
             </h2>
             <div
               v-if="showDate"
-              class="w-full absolute"
+              class="absolute w-full"
             >
               <DatePicker
                 v-model="state.activeCard.deadline"
@@ -81,24 +81,24 @@
             </div>
           </div>
         </div>
-        <div class="ml-9 mb-4">
+        <div class="mb-4 ml-9">
           <div class="inline-block">
-            <Description class="stroke-current fill-current text-gray-800 -ml-8 -mb-1 w-5 h-5" />
+            <Description class="-mb-1 -ml-8 w-5 h-5 text-gray-800 fill-current stroke-current" />
           </div>
-          <h1 class="text-lg font-semibold mb-4 text-black inline-block">
+          <h1 class="inline-block mb-4 text-lg font-semibold text-black">
             Description
           </h1>
           <textarea
             v-model="state.activeCard.description"
-            class="w-full h-36 p-3 resize-none"
+            class="p-3 w-full h-36 resize-none"
             data-cy="card-description"
           />
         </div>
-        <div class="ml-9 mb-4">
+        <div class="mb-4 ml-9">
           <div class="inline-block">
-            <Attachment class="stroke-current fill-current text-gray-800 -ml-8 -mb-1 w-5 h-5" />
+            <Attachment class="-mb-1 -ml-8 w-5 h-5 text-gray-800 fill-current stroke-current" />
           </div>
-          <h1 class="text-lg font-semibold mb-4 text-black inline-block">
+          <h1 class="inline-block mb-4 text-lg font-semibold text-black">
             Image
           </h1>
           <div
@@ -109,14 +109,14 @@
             <div class="col-span-2 row-span-2">
               <img :src="'/backend' + state.activeCard.image">
             </div>
-            <div class="font-bold col-span-4">
+            <div class="col-span-4 font-bold">
               {{ state.activeCard.image.replace(`/data/uploaded/${state.activeCard.id}_`, '') }}
               <div
-                class="block underline cursor-pointer font-normal"
+                class="block font-normal underline cursor-pointer"
                 data-cy="image-delete"
                 @click="state.patchCard(state.activeCard, { image: null })"
               >
-                <Cross class="inline-block w-4 mb-1" />Delete
+                <Cross class="inline-block mb-1 w-4" />Delete
               </div>
             </div>
           </div>
@@ -126,33 +126,33 @@
           />
         </div>
       </div>
-      <div class="col-span-2 grid content-start gap-y-2">
-        <div class="self-end cursor-pointer place-self-end hover:bg-gray5 w-8 h-8 grid place-content-center">
+      <div class="grid col-span-2 gap-y-2 content-start">
+        <div class="grid self-end place-content-center place-self-end w-8 h-8 hover:bg-gray5 cursor-pointer">
           <Cross
-            class="w-6 h-6 fill-current text-gray-600"
+            class="w-6 h-6 text-gray-600 fill-current"
             @click="state.showCardModule(state.activeCard.id, false)"
           />
         </div>
         <div
-          class="bg-gray3 px-2 py-0.5 text-sm rounded-sm text-gray-600 cursor-pointer hover:bg-gray5"
+          class="py-0.5 px-2 text-sm text-gray-600 bg-gray3 hover:bg-gray5 rounded-sm cursor-pointer"
           data-cy="calendar-button"
           @click="showDate = true"
         >
-          <Clock class="w-4 inline-block mr-2 mb-0.5" />Due date
+          <Clock class="inline-block mr-2 mb-0.5 w-4" />Due date
         </div>
         <div
-          class="bg-gray3 px-2 py-0.5 text-sm rounded-sm text-gray-600 cursor-pointer hover:bg-gray5"
+          class="py-0.5 px-2 text-sm text-gray-600 bg-gray3 hover:bg-gray5 rounded-sm cursor-pointer"
           data-cy="copy-properties"
           @click="copyProperties(state.activeCard)"
         >
-          <Copy class="w-4 inline-block mr-2 mb-0.5" />Copy attributes
+          <Copy class="inline-block mr-2 mb-0.5 w-4" />Copy attributes
         </div>
         <div
-          class="bg-gray3 px-2 py-0.5 text-sm rounded-sm text-gray-600 cursor-pointer hover:bg-gray5"
+          class="py-0.5 px-2 text-sm text-gray-600 bg-gray3 hover:bg-gray5 rounded-sm cursor-pointer"
           data-cy="card-detail-delete"
           @click="state.deleteCard(state.activeCard)"
         >
-          <Trash class="w-4 inline-block mr-2 mb-0.5" />Delete card
+          <Trash class="inline-block mr-2 mb-0.5 w-4" />Delete card
         </div>
       </div>
     </div>
@@ -191,7 +191,7 @@ export default defineComponent({
     Description,
     Downarrow,
     Dropzone,
-    Trash
+    Trash,
   },
   setup() {
     const state = store();
@@ -204,8 +204,8 @@ export default defineComponent({
       inputActive: false,
       modelConfig: {
         type: 'string',
-        mask: 'YYYY-MM-DD'
-      }
+        mask: 'YYYY-MM-DD',
+      },
     };
   },
   methods: {
@@ -223,7 +223,7 @@ export default defineComponent({
     },
     overdue: (card: Card) => {
       return card.deadline && moment(card.deadline).diff(moment().startOf('day'), 'days') < 1;
-    }
-  }
+    },
+  },
 });
 </script>

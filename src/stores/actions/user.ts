@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const user = async function(this: any) {
+export const user = async function (this: any) {
   await axios
     .get('/api/users')
     .then(({ data }) => {

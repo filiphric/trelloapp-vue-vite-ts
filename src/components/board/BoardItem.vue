@@ -21,7 +21,7 @@
         @click.stop="updateBoardStarred(board)"
       >
         <Star
-          class="w-5 h-5 col-span-1"
+          class="col-span-1 w-5 h-5"
           :class="[board.starred ? 'fill-current text-yellow-300' : 'stroke-current text-white']"
         />
       </div>
@@ -37,39 +37,39 @@ import axios from 'axios';
 export default defineComponent({
   name: 'Board',
   components: {
-    Star
+    Star,
   },
   props: {
     board: {
       default: null,
-      type: Object as PropType<Board>
-    }
+      type: Object as PropType<Board>,
+    },
   },
-  data: function() {
+  data: function () {
     return {
-      showStar: false
+      showStar: false,
     };
   },
   methods: {
-    updateBoardStarred: function(board: Board) {
+    updateBoardStarred: function (board: Board) {
       let flag = !board.starred;
       axios.patch(`/api/boards/${board.id}`, {
-        starred: flag
+        starred: flag,
       });
       board.starred = flag;
-    }
-  }
+    },
+  },
 });
 </script>
 
 <style lang="postcss" scoped>
 .board {
-  @apply bg-blue7 w-72 h-36 px-4 py-3 cursor-pointer grid grid-cols-6 justify-between rounded-sm hover:bg-blue8
+  @apply bg-blue7 w-72 h-36 px-4 py-3 cursor-pointer grid grid-cols-6 justify-between rounded-sm hover:bg-blue8;
 }
 .star {
-  @apply justify-self-end self-start
+  @apply justify-self-end self-start;
 }
 h1 {
-  @apply text-white font-bold col-span-5
+  @apply text-white font-bold col-span-5;
 }
 </style>
