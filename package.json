@@ -38,7 +38,6 @@
     "nocache": "^3.0.1",
     "pinia": "^2.0.0",
     "postcss": "^8.2.9",
-    "require-uncached": "^2.0.0",
     "sendmail": "^1.6.1",
     "socket.io": "^4.0.1",
     "socket.io-client": "^4.1.2",

@@ -3,12 +3,9 @@ import { PluginOption } from 'vite';
 export const startServer = (): PluginOption => {
   
   const jsonServer = require('json-server');
+  const server = jsonServer.create();
   const auth = require('json-server-auth');
   const nocache = require('nocache')
-
-  const server = jsonServer.create();
-
-  const defaults = jsonServer.defaults({ static: '.' });
   const busboy = require('connect-busboy');
   const history = require('connect-history-api-fallback');
   const middleware = require('./middleware');
@@ -17,7 +14,7 @@ export const startServer = (): PluginOption => {
 
   server.db = router.db;
   server.use(history());
-  server.use(defaults);
+  server.use(jsonServer.defaults({ static: '.' }));
   server.use(nocache());
   server.use(busboy());
   server.use(jsonServer.rewriter({
@@ -28,8 +25,8 @@ export const startServer = (): PluginOption => {
   server.use(middleware);
 
   server.use(router);
+  
   const app = server.listen(3001);
-
   const io = require('socket.io')(app);
 
   io.on('connection', (socket) => {

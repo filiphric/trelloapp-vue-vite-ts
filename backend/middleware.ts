@@ -6,6 +6,8 @@ const path = require('path'); // used for file path
 const fs = require('fs-extra');
 const socket = require('socket.io-client')('http://localhost:3001');
 
+import { badRequest } from './api/badRequest'
+
 function randomId() {
   return Math.floor(100000 * Math.random() * 900000);
 }
@@ -20,12 +22,6 @@ module.exports = (req, res, next) => {
   const userNotFound = function() {
     return res.status(404).jsonp({
       error: 'User not found'
-    });
-  };
-
-  const badRequest = function(param) {
-    return res.status(400).jsonp({
-      error: `Bad request. ${param} is required.`
     });
   };
 
@@ -46,14 +42,10 @@ module.exports = (req, res, next) => {
   const userData = parseJWT();
   const userId = parseInt(userData.sub);
 
-  db.assign(
-    require('require-uncached')('./backend/data/database.json')
-  ).write();
-
   // create board
   if (req.method === 'POST' && req.path === '/boards') {
     req.body.user = userId || 0;
-    req.body.id = randomId();
+    req.body.id = randomId()
     req.body.starred = false;
     req.body.created = moment().format('YYYY-MM-DD');
     socket.emit('boardCreated', req.body);
@@ -111,7 +103,7 @@ module.exports = (req, res, next) => {
 
   if (req.method === 'POST' && req.path === '/lists') {
     // validation
-    if (req.body.boardId === undefined) return badRequest('boardId');
+    if (req.body.boardId === undefined) return badRequest(res, 'boardId');
 
     // data generation
     req.body.id = randomId();
@@ -133,8 +125,8 @@ module.exports = (req, res, next) => {
 
   if (req.method === 'POST' && req.path === '/cards') {
     // validation
-    if (req.body.boardId === undefined) return badRequest('boardId');
-    if (req.body.listId === undefined) return badRequest('listId');
+    if (req.body.boardId === undefined) return badRequest(res, 'boardId');
+    if (req.body.listId === undefined) return badRequest(res, 'listId');
 
     // data generation
     req.body.id = randomId();
@@ -171,8 +163,6 @@ module.exports = (req, res, next) => {
 
   if (req.method === 'POST' && req.path === '/upload') {
     const cardid = req.headers.cardid;
-
-    console.log(cardid)
 
     let fstream;
     req.pipe(req.busboy);
