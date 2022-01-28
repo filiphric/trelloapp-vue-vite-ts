@@ -1,32 +1,6 @@
 {
-  "boards": [
-    {
-      "name": "list",
-      "user": 0,
-      "id": 70718730483,
-      "starred": false,
-      "created": "2022-01-26"
-    },
-    {
-      "name": "aa",
-      "user": 0,
-      "id": 43841809921,
-      "starred": false,
-      "created": "2022-01-26"
-    }
-  ],
-  "cards": [
-    {
-      "name": "list",
-      "boardId": 712576,
-      "listId": 16872,
-      "id": 37213217907,
-      "created": "2022-01-26",
-      "deadline": "2022-01-29",
-      "description": "",
-      "completed": false
-    }
-  ],
+  "boards": [],
+  "cards": [],
   "lists": [],
   "users": []
 }
