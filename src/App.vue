@@ -31,11 +31,19 @@ export default defineComponent({
     const toggleTools = state.toggleTools;
     const getCookieValue = (name: string) => document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop();
 
-    const token = getCookieValue('trello_token');
+    const trelloToken = getCookieValue('trello_token');
+    const trelloTokenValid = trelloToken?.split('.')[1]
 
-    if (token) {
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      state.user();
+    if (trelloToken && !trelloTokenValid) {
+      state.showNotification('Invalid authorization', true);
+      document.cookie = 'trello_token=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    }
+
+    if (trelloToken && trelloTokenValid) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${trelloToken}`;
+      const userData = window.atob(trelloTokenValid);
+      const userId = JSON.parse(userData).sub
+      state.user(userId);
     }
 
     return { state, toggleTools };
