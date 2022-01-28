@@ -1,6 +1,9 @@
 import { PluginOption } from 'vite';
+import boardRoutes from './api/board-routes';
 import cardRoutes from './api/card-routes';
 import listRoutes from './api/list-routes';
+import resetRoutes from './api/reset-routes';
+import userRoutes from './api/user-routes';
 
 export const startServer = (): PluginOption => {
   
@@ -23,9 +26,12 @@ export const startServer = (): PluginOption => {
     '/users/*': '/600/users/$1',
   }));
   app.use(auth);
+  app.use(jsonServer.bodyParser);
+  app.use('/boards', boardRoutes)
   app.use('/lists', listRoutes)
   app.use('/cards', cardRoutes)
-  app.use(jsonServer.bodyParser);
+  app.use('/users', userRoutes)
+  app.use('/reset', resetRoutes)
   app.use(middleware);
 
   app.use(router);

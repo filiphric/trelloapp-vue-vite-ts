@@ -1,12 +1,14 @@
 import axios from 'axios';
 
-export const user = async function (this: any) {
+export const user = async function (this: any, id: number) {
+
   await axios
-    .get('/api/users')
+    .get(`/api/users/${id}`)
     .then(({ data }) => {
       this.showNotification('User is logged in', false);
       this.activeUser.loggedIn = true;
-      this.activeUser.email = data.user.email;
+      this.activeUser.email = data.email;
+      this.activeUser.id = data.id;
     })
     .catch(() => {
       this.showNotification('User is not authorized', true);

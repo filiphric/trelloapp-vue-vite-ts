@@ -27,6 +27,8 @@ declare module 'pinia' {
     activeUser: {
       loggedIn: boolean;
       email: string;
+      id: number;
+      accessToken: string;
     };
     signupForm: {
       email: string;

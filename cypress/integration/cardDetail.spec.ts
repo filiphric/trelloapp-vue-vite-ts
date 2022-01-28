@@ -11,8 +11,6 @@ it('card detail actions', function() {
   const cardId = this.card.id
   const card = this.card
 
-  console.log(card)
-
   cy.intercept('PATCH', '/api/cards/*').as('updateCard');
   cy.intercept('DELETE', '/api/cards/*').as('deleteCard');
   cy.visit(`/board/${boardId}?card=${cardId}`);

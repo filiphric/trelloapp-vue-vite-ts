@@ -5,11 +5,16 @@ export const signup = async function (this: any, email: string, password: string
   await axios
     .post('/api/signup', { email, password, welcomeEmail })
     .then(({ data }) => {
+      const token = data.accessToken
+      const email = data.user.email
+      const id = data.user.id
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      document.cookie = `trello_token=${token}`;
       router.push('/');
-      axios.defaults.headers.common['Authorization'] = `Bearer ${data.accessToken}`;
-      document.cookie = `trello_token=${data.accessToken}`;
-      this.activeUser.loggedIn = true;
-      this.activeUser.email = email;
+      this.activeUser.id = id
+      this.activeUser.email = email
+      this.activeUser.accessToken = token
+      this.user(this.activeUser.id);
       this.showNotification('User was successfully created', false);
 
       welcomeEmail &&

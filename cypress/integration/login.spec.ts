@@ -91,7 +91,7 @@ describe('Login', () => {
     cy.visit('/login')
 
     cy.getDataCy('notification-message')
-      .should('contain.text', 'User is not authorized')
+      .should('contain.text', 'Invalid authorization')
 
   })
 

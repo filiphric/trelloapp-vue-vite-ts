@@ -50,8 +50,10 @@ export const store = defineStore({
         all: [],
       },
       activeUser: {
-        loggedIn: false,
+        accessToken: '',
         email: '',
+        id: 0,
+        loggedIn: false,
       },
       signupForm: {
         email: '',

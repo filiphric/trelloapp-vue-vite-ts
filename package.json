@@ -32,6 +32,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-vue": "^8.2.0",
+    "import-fresh": "^3.3.0",
     "json-server": "^0.17.0",
     "json-server-auth": "^2.1.0",
     "moment": "^2.29.1",
