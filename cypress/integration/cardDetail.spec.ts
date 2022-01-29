@@ -63,7 +63,7 @@ it('card detail actions', function() {
 
   cy.step('card description')
   cy.getDataCy('card-description').type('new description{enter}');
-  // cy.wait('@updateCard').its('request.body').should('have.property', 'description', 'new description');
+  cy.wait('@updateCard').its('request.body').should('have.property', 'description', 'new description');
   
   cy.step('image upload')
   cy.intercept({

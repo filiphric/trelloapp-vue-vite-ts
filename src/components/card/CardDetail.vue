@@ -97,7 +97,7 @@
               descriptionInputActive = true;
             "
             @change="state.patchCard(state.activeCard, { description: state.activeCard.description })"
-            @keyup.enter="
+            @keydown.enter="
               blurInput($event);
               descriptionInputActive = false;
             "
