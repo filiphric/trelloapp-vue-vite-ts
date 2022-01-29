@@ -14,4 +14,7 @@ export const patchCard = async function (this: any, card: Card, changes: Partial
   if (changes.hasOwnProperty('name')) {
     this.showNotification('Card was renamed', false);
   }
+  if (changes.hasOwnProperty('description')) {
+    this.showNotification('Description was changed', false);
+  }
 };
