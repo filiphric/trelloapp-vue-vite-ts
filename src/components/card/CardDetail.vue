@@ -20,16 +20,16 @@
             data-cy="card-detail-title"
             @focus="
               selectInput($event);
-              inputActive = true;
+              cardNameInputActive = true;
             "
             @change="state.patchCard(state.activeCard, { name: state.activeCard.name })"
             @keyup.enter="
               blurInput($event);
-              inputActive = false;
+              cardNameInputActive = false;
             "
             @keyup.esc="
               blurInput($event);
-              inputActive = false;
+              cardNameInputActive = false;
             "
           >
           <h2 class="text-sm text-gray10">
@@ -92,6 +92,19 @@
             v-model="state.activeCard.description"
             class="p-3 w-full h-36 resize-none"
             data-cy="card-description"
+            @focus="
+              selectInput($event);
+              descriptionInputActive = true;
+            "
+            @change="state.patchCard(state.activeCard, { description: state.activeCard.description })"
+            @keyup.enter="
+              blurInput($event);
+              descriptionInputActive = false;
+            "
+            @keyup.esc="
+              blurInput($event);
+              descriptionInputActive = false;
+            "
           />
         </div>
         <div class="mb-4 ml-9">
@@ -201,7 +214,8 @@ export default defineComponent({
   data() {
     return {
       showDate: false,
-      inputActive: false,
+      cardNameInputActive: false,
+      descriptionInputActive: false,
       modelConfig: {
         type: 'string',
         mask: 'YYYY-MM-DD',
@@ -210,7 +224,7 @@ export default defineComponent({
   },
   methods: {
     clickAwayCardName() {
-      this.inputActive = false;
+      this.cardNameInputActive = false;
     },
     clickAwayDate() {
       this.showDate = false;
