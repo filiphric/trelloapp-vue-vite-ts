@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 import { store } from './stores/store';
 import Navbar from '@/components/Navbar.vue';
 import Notification from '@/components/Notification.vue';
@@ -32,7 +32,7 @@ export default defineComponent({
     const getCookieValue = (name: string) => document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop();
 
     const trelloToken = getCookieValue('trello_token');
-    const trelloTokenValid = trelloToken?.split('.')[1]
+    const trelloTokenValid = trelloToken?.split('.')[1];
 
     if (trelloToken && !trelloTokenValid) {
       state.showNotification('Invalid authorization', true);
@@ -42,7 +42,7 @@ export default defineComponent({
     if (trelloToken && trelloTokenValid) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${trelloToken}`;
       const userData = window.atob(trelloTokenValid);
-      const userId = JSON.parse(userData).sub
+      const userId = JSON.parse(userData).sub;
       state.user(userId);
     }
 

@@ -29,6 +29,12 @@
       >
         Log in
       </button>
+      <GoogleSignIn
+        v-if="googleEnabled === 'true'"
+        @on-submit="handleResponse"
+      >
+        <GoogleButton :log-sign="'Log in'" />
+      </GoogleSignIn>
       <router-link
         class="mt-4 text-sm text-center underline"
         to="/signup"
@@ -46,11 +52,20 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { store } from '@/stores/store';
+import GoogleSignIn from './GoogleSignIn.vue';
+import GoogleButton from './GoogleButton.vue';
 
 export default defineComponent({
+  components: { GoogleSignIn, GoogleButton },
   setup() {
     const state = store();
-    return { state };
+    const googleEnabled = process.env.VUE_APP_GOOGLE_ENABLED;
+
+    function handleResponse(value: any): void {
+      console.log(value);
+      state.oauthLogin(value.googleUser.wc.id_token);
+    }
+    return { state, handleResponse, googleEnabled };
   },
 });
 </script>

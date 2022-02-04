@@ -1,6 +1,21 @@
 {
-  "boards": [],
+  "boards": [
+    {
+      "name": "new board",
+      "user": 0,
+      "id": 5831972353,
+      "starred": false,
+      "created": "2022-02-05"
+    }
+  ],
   "cards": [],
-  "lists": [],
+  "lists": [
+    {
+      "boardId": 5831972353,
+      "name": "new list",
+      "id": 81507307439,
+      "created": "2022-02-05"
+    }
+  ],
   "users": []
 }

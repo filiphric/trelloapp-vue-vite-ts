@@ -1,6 +1,7 @@
 import * as clipboardy from 'clipboardy';
 const createBundler = require('@bahmutov/cypress-esbuild-preprocessor')
 import * as path from 'path';
+import 'dotenv/config' 
 
 module.exports = (on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) => {
   on('task', {
@@ -28,6 +29,11 @@ module.exports = (on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions)
       },
     })
   })
+
+  config.env.googleEnabled = process.env.VUE_APP_GOOGLE_ENABLED
+  config.env.googleRefreshToken = process.env.GOOGLE_REFRESH_TOKEN
+  config.env.googleClientId = process.env.VUE_APP_GOOGLE_CLIENT_ID
+  config.env.googleClientSecret = process.env.VUE_APP_GOOGLE_CLIENT_SECRET
 
   return config;
 };

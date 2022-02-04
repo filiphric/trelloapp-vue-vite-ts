@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 export const user = async function (this: any, id: number) {
-
   await axios
     .get(`/api/users/${id}`)
     .then(({ data }) => {

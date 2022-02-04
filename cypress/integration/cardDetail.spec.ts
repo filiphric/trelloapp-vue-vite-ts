@@ -71,7 +71,7 @@ it('card detail actions', function() {
     url: '/api/upload',
     times: 2
   }).as('imageUpload');
-  cy.getDataCy('upload-image').attachFile('cypressLogo.png', { subjectType: 'drag-n-drop' });
+  cy.getDataCy('upload-image').selectFile('cypress/fixtures/cypressLogo.png', { action: 'drag-drop' });
   cy.wait('@imageUpload').its('response.body').should('have.property', 'path').and('not.be.empty');
   cy.wait('@updateCard').its('response.body.image').should('not.be.empty');
   cy.getDataCy('image-attachment').should('exist');
@@ -88,7 +88,7 @@ it('card detail actions', function() {
   }, {
     statusCode: 400
   }).as('imageUpload');
-  cy.getDataCy('upload-image').attachFile('cypressLogo.png', { subjectType: 'drag-n-drop' });
+  cy.getDataCy('upload-image').selectFile('cypress/fixtures/cypressLogo.png', { action: 'drag-drop' });
   cy.getDataCy('notification-message').should('exist').and('contain.text', 'There was an error uploading file');
 
   cy.step('delete a card')
