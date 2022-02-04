@@ -50,7 +50,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted } from 'vue';
 import { store } from '@/stores/store';
 import BoardCreate from '@/components/board/BoardCreate.vue';
 import BoardItem from '@/components/board/BoardItem.vue';
@@ -69,7 +69,9 @@ export default defineComponent({
   },
   setup() {
     const state = store();
-    state.getBoardList();
+    onMounted(() => {
+      state.getBoardList();
+    });
     return { state };
   },
 });

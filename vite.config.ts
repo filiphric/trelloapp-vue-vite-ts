@@ -4,6 +4,7 @@ import istanbul from 'vite-plugin-istanbul';
 import path from 'path';
 import svgLoader from 'vite-svg-loader';
 import vue from '@vitejs/plugin-vue';
+import pluginEnv from 'vite-plugin-vue-env';
 
 export default defineConfig({
   define: {
@@ -12,6 +13,7 @@ export default defineConfig({
   plugins: [
     vue(),
     svgLoader(),
+    pluginEnv(),
     istanbul({
       exclude: ['node_modules', 'test/'],
       extension: [ '.js', '.ts', '.vue' ],

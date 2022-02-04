@@ -1,9 +1,9 @@
 import axios from 'axios';
 import router from '@/router';
 
-export const signup = async function (this: any, email: string, password: string, welcomeEmail: boolean) {
+export const oauthLogin = async function (this: any, jwt: string) {
   await axios
-    .post('/api/signup', { email, password, welcomeEmail })
+    .post('/api/login', { jwt })
     .then(({ data }) => {
       const token = data.accessToken;
       const email = data.user.email;
@@ -15,14 +15,9 @@ export const signup = async function (this: any, email: string, password: string
       this.activeUser.email = email;
       this.activeUser.accessToken = token;
       this.user(this.activeUser.id);
-      this.showNotification('User was successfully created', false);
-
-      welcomeEmail &&
-        axios.post('/api/welcomeemail', {
-          email,
-        });
     })
-    .catch((e) => {
-      this.showNotification(e.response.data, true);
+    .catch(({ response }) => {
+      document.cookie = 'trello_token=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+      this.showNotification(response.data, true);
     });
 };

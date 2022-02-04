@@ -18,16 +18,15 @@
       v-show="state.activeUser.loggedIn"
       class="flex self-center h-8 text-sm bg-white rounded-sm cursor-pointer bg-opacity-30 hover:bg-opacity-20"
       data-cy="logged-user"
+      @click="
+        logout();
+        state.getBoardList();
+        router.push('/');
+      "
     >
       <LogoutIcon class="self-center ml-2 w-5 h-5 text-white fill-current" />
-      <div
-        class="inline-block self-center pr-2 pl-1"
-        @click="
-          logout();
-          state.getBoardList();
-        "
-      >
-        Log out
+      <div class="inline-block self-center pr-2 pl-1">
+        {{ state.activeUser.email }}
       </div>
     </div>
   </div>

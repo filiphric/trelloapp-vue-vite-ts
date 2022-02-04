@@ -23,6 +23,8 @@ import { resetCards } from './actions/resetCards';
 import { resetUsers } from './actions/resetUsers';
 import { patchBoard } from './actions/patchBoard';
 import { toggleTools } from './actions/toggleTools';
+import { oauthLogin } from './actions/oauthLogin';
+import { oauthSignup } from './actions/oauthSignup';
 import Board from '@/typings/board';
 
 export const store = defineStore({
@@ -90,6 +92,8 @@ export const store = defineStore({
     // user actions
     signup,
     login,
+    oauthLogin,
+    oauthSignup,
     user,
 
     // other actions

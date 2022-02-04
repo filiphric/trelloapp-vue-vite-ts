@@ -4,6 +4,8 @@ import cardRoutes from './api/card-routes';
 import listRoutes from './api/list-routes';
 import resetRoutes from './api/reset-routes';
 import userRoutes from './api/user-routes';
+import loginRoutes from './api/login-routes';
+import signupRoutes from './api/signup-routes';
 
 export const startServer = (): PluginOption => {
   
@@ -22,11 +24,13 @@ export const startServer = (): PluginOption => {
   app.use(jsonServer.defaults({ static: '.' }));
   app.use(nocache());
   app.use(busboy());
+  app.use(jsonServer.bodyParser);
+  app.use('/login', loginRoutes)
+  app.use('/signup', signupRoutes)
   app.use(jsonServer.rewriter({
     '/users/*': '/600/users/$1',
   }));
   app.use(auth);
-  app.use(jsonServer.bodyParser);
   app.use('/boards', boardRoutes)
   app.use('/lists', listRoutes)
   app.use('/cards', cardRoutes)
