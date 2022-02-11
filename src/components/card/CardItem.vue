@@ -9,6 +9,7 @@
       <div
         class="pl-2 text-sm text-gray-800 select-none flex-grow"
         style="white-space: break-spaces"
+        data-cy="card-text"
       >
         {{ card.name }}
       </div>
