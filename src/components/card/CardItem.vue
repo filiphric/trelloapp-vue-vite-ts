@@ -15,7 +15,8 @@
       <Pen class="hidden absolute top-2 right-2 p-1 w-5 h-5 text-gray-700 bg-gray1 pen bg-opacity-60" />
     </div>
     <div
-      class="py-1 px-1.5 mt-1 w-[fit-content] text-xs rounded-sm date"
+      class="py-1 px-1.5 mt-1 w-[fit-content] text-xs rounded-sm"
+      data-cy="due-date"
       :class="card.completed ? 'completed' : overdue(card) ? 'overdue' : 'text-gray9'"
     >
       <Clock class="inline-block w-4 h-4 fill-current" />

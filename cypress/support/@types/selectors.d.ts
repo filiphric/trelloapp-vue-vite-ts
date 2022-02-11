@@ -29,6 +29,7 @@ export type Selectors =
 | 'delete-board'
 | 'delete-list'
 | 'dropdown'
+| 'due-date'
 | 'first-board'
 | 'home'
 | 'image-attachment'
