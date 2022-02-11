@@ -23,12 +23,14 @@ export const getBoardDetail = async function (this: any, id: Board['id']) {
 
     // if there are no lists, don’t fetch cards
     this.lists.forEach((list: List, index: number) => {
+      this.loadingListCards[this.lists[index].id] = true
       axios.get(`/api/cards?listId=${list.id}`).then(({ data }) => {
         data.sort((a: Card, b: Card) => {
           return a.order - b.order;
         });
         this.lists[index].cards = [];
         this.lists[index].cards.push(...data);
+        this.loadingListCards[this.lists[index].id] = false
       });
     });
 

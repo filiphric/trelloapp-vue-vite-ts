@@ -31,6 +31,12 @@
       data-cy="card-list"
       :class="isDragging ?? 'min-h-[100px]'"
     >
+      <div
+        v-if="state.loadingListCards[list.id]"
+        class="block place-self-center text-xs text-center"
+      >
+        <LoadingIcon class="inline-block mb-1" />&nbsp;&nbsp;Loading cards ...
+      </div>
       <draggable
         :list="list.cards"
         animation="150"
@@ -72,6 +78,7 @@ import Dropdown from '@/components/list/Dropdown.vue';
 import List from '@/typings/list';
 import Plus from '@/assets/icons/plus.svg';
 import draggable from 'vuedraggable';
+import LoadingIcon from '@/assets/icons/loadingIcon.svg';
 
 export default defineComponent({
   components: {
@@ -80,7 +87,8 @@ export default defineComponent({
     Dropdown,
     Plus,
     draggable,
-  },
+    LoadingIcon
+},
   props: {
     list: {
       default: null,

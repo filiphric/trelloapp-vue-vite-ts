@@ -8,6 +8,7 @@ declare module 'pinia' {
     board: Board;
     lists: List[];
     loading: boolean;
+    loadingListCards: Record<any, string>;
     loadingError: {
       show: boolean;
       status: number;

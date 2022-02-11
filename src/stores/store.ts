@@ -34,6 +34,7 @@ export const store = defineStore({
       board: {},
       lists: [],
       loading: true,
+      loadingListCards: {},
       loadingError: {
         show: false,
         status: 0,
