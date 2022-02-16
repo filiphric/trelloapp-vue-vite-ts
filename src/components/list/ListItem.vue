@@ -87,8 +87,8 @@ export default defineComponent({
     Dropdown,
     Plus,
     draggable,
-    LoadingIcon
-},
+    LoadingIcon,
+  },
   props: {
     list: {
       default: null,

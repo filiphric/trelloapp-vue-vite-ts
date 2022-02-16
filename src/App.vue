@@ -8,6 +8,7 @@
     <Notification />
     <Tools v-show="state.showTools" />
     <router-view />
+    <Footer />
   </div>
 </template>
 
@@ -17,6 +18,7 @@ import { store } from './stores/store';
 import Navbar from '@/components/Navbar.vue';
 import Notification from '@/components/Notification.vue';
 import Tools from './components/Tools.vue';
+import Footer from '@/components/footer.vue';
 import axios from 'axios';
 
 export default defineComponent({
@@ -25,6 +27,7 @@ export default defineComponent({
     Navbar,
     Notification,
     Tools,
+    Footer,
   },
   setup() {
     const state = store();
