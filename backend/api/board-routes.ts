@@ -4,18 +4,25 @@ const moment = require('moment');
 import { getUserId } from '../utils/getUserId'
 import { randomId } from '../utils/randomId'
 
-app.get('/', ({ app: { parent: { db } }, headers, body }, res) => { 
+app.get('/', ({ app: { parent: { db } }, headers, query }, res) => { 
+
+  if (query?.starred === 'true') {
+    query.starred = true
+  }
+  if (query?.starred === 'false') {
+    query.starred = false
+  }
 
   const publicBoards = db
     .get('boards')
-    .filter({ user: 0 })
+    .filter({ user: 0, ...query })
     .value();
-  const boards = db
+  const privateBoards = db
     .get('boards')
-    .filter({ user: getUserId(headers) })
+    .filter({ user: getUserId(headers), ...query })
     .value();
 
-  const result = [...publicBoards, ...boards];
+  const result = [...publicBoards, ...privateBoards];
 
   const response = res.status(200).jsonp(result);
 
