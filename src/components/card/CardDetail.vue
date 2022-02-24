@@ -33,7 +33,10 @@
             "
           >
           <h2 class="text-sm text-gray10">
-            in list <span class="underline">{{ cardListName }}</span>
+            in list <span
+              class="underline"
+              data-cy="card-list-name"
+            >{{ cardListName }}</span>
           </h2>
         </div>
         <div class="mb-4 ml-9">
