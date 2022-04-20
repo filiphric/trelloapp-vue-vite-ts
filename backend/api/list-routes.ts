@@ -1,5 +1,4 @@
 import { validate } from '../utils/validate';
-import { randomId } from '../utils/randomId'
 
 const moment = require('moment');
 
@@ -11,7 +10,6 @@ app.post('/', ({ body }, res, next) => {
   validate(['boardId'], body, res)
 
   // data generation
-  body.id = randomId();
   body.created = moment().format('YYYY-MM-DD');
 
   // stream message

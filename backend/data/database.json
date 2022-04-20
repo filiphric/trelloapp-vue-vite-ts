@@ -1,20 +1,44 @@
 {
   "boards": [
     {
-      "name": "new board",
+      "name": "hello",
       "user": 0,
-      "id": 5831972353,
       "starred": false,
-      "created": "2022-02-05"
+      "created": "2022-04-20",
+      "id": 1
     }
   ],
-  "cards": [],
+  "cards": [
+    {
+      "order": 0,
+      "boardId": 1,
+      "listId": 1,
+      "name": "hadfhad",
+      "created": "2022-04-20",
+      "deadline": "2022-04-23",
+      "description": "",
+      "completed": false,
+      "id": 1
+    },
+    {
+      "order": 1,
+      "boardId": 1,
+      "listId": 1,
+      "name": "dfsdg",
+      "created": "2022-04-20",
+      "deadline": "2022-04-23",
+      "description": "",
+      "completed": false,
+      "id": 2
+    }
+  ],
   "lists": [
     {
-      "boardId": 5831972353,
-      "name": "new list",
-      "id": 81507307439,
-      "created": "2022-02-05"
+      "boardId": 1,
+      "name": "dasfa",
+      "order": 0,
+      "created": "2022-04-20",
+      "id": 1
     }
   ],
   "users": []

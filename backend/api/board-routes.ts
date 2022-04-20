@@ -2,7 +2,6 @@ const jsonServer = require('json-server');
 const app = jsonServer.create();
 const moment = require('moment');
 import { getUserId } from '../utils/getUserId'
-import { randomId } from '../utils/randomId'
 
 app.get('/', ({ app: { parent: { db } }, headers, query }, res) => { 
 
@@ -33,7 +32,6 @@ app.get('/', ({ app: { parent: { db } }, headers, query }, res) => {
 app.post('/', ({ headers, body }, res, next) => {
 
   body.user = getUserId(headers) || 0;
-  body.id = randomId();
   body.starred = false;
   body.created = moment().format('YYYY-MM-DD');
   
