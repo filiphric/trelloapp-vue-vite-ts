@@ -8,7 +8,7 @@ describe('main page', () => {
 
     const boardId = this.board.id
 
-    cy.visit('/board/1');
+    cy.visit('/board/9999999999');
     cy.url().should('contain', '/404');
     cy.getDataCy('404').should('be.visible');
 
