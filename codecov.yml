@@ -1,6 +1,0 @@
-coverage:
-  status:
-    patch: false
-  range: 70..100
-  round: down
-  precision: 2
