@@ -18,11 +18,9 @@
     ],
     "moduleResolution": "node",
     "paths": {
-      "@/*": ["src/*"],
-      "@commands/*": ["cypress/support/commands/*"],
-      "@fixtures/*": ["cypress/fixture/*"]
+      "@/*": ["src/*"]
     },
-    "types": ["cypress-real-events", "node", "cypress"],
+    "types": ["node"]
   },
-  "include": ["cypress/**/*.ts", "src/**/*"]
+  "include": ["src/**/*"]
 }
