@@ -1,6 +1,33 @@
 {
-  "boards": [],
-  "cards": [],
-  "lists": [],
+  "boards": [
+    {
+      "name": "board",
+      "user": 0,
+      "starred": false,
+      "created": "2022-05-05",
+      "id": 1
+    }
+  ],
+  "cards": [
+    {
+      "boardId": 1,
+      "listId": 1,
+      "name": "card",
+      "order": 0,
+      "created": "2022-05-05",
+      "deadline": "2022-05-08",
+      "description": "",
+      "completed": false,
+      "id": 1
+    }
+  ],
+  "lists": [
+    {
+      "boardId": 1,
+      "name": "list",
+      "created": "2022-05-05",
+      "id": 1
+    }
+  ],
   "users": []
 }

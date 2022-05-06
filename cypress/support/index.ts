@@ -10,6 +10,8 @@ import { googleLogin } from '@commands/googleLogin'
 import { googleSignup } from '@commands/googleSignup'
 import { signupApi } from '@commands/signupApi'
 import { step } from '@commands/step'
+import '@commands/mark'
+import '@commands/measure'
 
 Cypress.Commands.add('addBoardApi', addBoardApi);
 Cypress.Commands.add('addCardApi', addCardApi);

@@ -69,12 +69,11 @@ import GoogleButton from './GoogleButton.vue';
 
 export default defineComponent({
   components: { GoogleSignIn, GoogleButton },
-
   setup() {
-    const googleEnabled = process.env.VUE_APP_GOOGLE_ENABLED;
     const state = store();
+    const googleEnabled = process.env.VUE_APP_GOOGLE_ENABLED;
     function handleResponse(value: any): void {
-      state.oauthSignup(value.googleUser.wc.id_token);
+      state.oauthSignup(value.googleUser.xc.id_token);
     }
     return { state, handleResponse, googleEnabled };
   },

@@ -60,10 +60,8 @@ export default defineComponent({
   setup() {
     const state = store();
     const googleEnabled = process.env.VUE_APP_GOOGLE_ENABLED;
-
     function handleResponse(value: any): void {
-      console.log(value);
-      state.oauthLogin(value.googleUser.wc.id_token);
+      state.oauthLogin(value.googleUser.xc.id_token);
     }
     return { state, handleResponse, googleEnabled };
   },
