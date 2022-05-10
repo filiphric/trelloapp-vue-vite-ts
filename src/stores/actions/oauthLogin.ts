@@ -1,5 +1,5 @@
 import axios from 'axios';
-import router from '@/router';
+import { router } from '@/router/index';
 
 export const oauthLogin = async function (this: any, jwt: string) {
   await axios

@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="state.createListInput"
+    v-if="createListInput"
     v-click-away="onClickAway"
     class="grid py-1 px-1.5 ml-3 w-list bg-gray2 rounded-sm shadow-md cursor-pointer"
   >
@@ -12,7 +12,7 @@
       placeholder="Enter list title..."
       @keyup.enter.prevent="addList()"
       @keyup.esc.prevent="
-        state.createListInput = false;
+        createListInput = false;
         listTitle = '';
       "
     >
@@ -25,7 +25,7 @@
         class="inline-block order-last p-1 mx-0.5 w-8 h-8 text-gray-600 fill-current"
         data-cy="cancel"
         @click.stop="
-          state.createListInput = false;
+          createListInput = false;
           listTitle = '';
         "
       />
@@ -37,68 +37,54 @@
     data-cy="create-list"
     @click="enableInput()"
   >
-    <Plus class="inline-block w-3 h-3" /> {{ !state.lists.length ? 'Add a list' : 'Add another list' }}
+    <Plus class="inline-block w-3 h-3" /> {{ !lists.length ? 'Add a list' : 'Add another list' }}
   </div>
 </template>
 
-<script lang="ts">
-import { PropType, defineComponent, nextTick } from 'vue';
+<script setup lang="ts">
+import { PropType, ref, nextTick } from 'vue';
 import { store } from '@/stores/store';
 import Board from '@/typings/board';
 import Cross from '@/assets/icons/cross.svg';
 import Plus from '@/assets/icons/plus.svg';
 import SaveButton from '@/components/SaveButton.vue';
-export default defineComponent({
-  $refs: {
-    listCreate: HTMLElement,
-  },
-  components: {
-    Cross,
-    Plus,
-    SaveButton,
-  },
-  props: {
-    board: {
-      default: null,
-      type: Number as PropType<Board['id']>,
-    },
-  },
-  setup() {
-    const state = store();
-    const createList = state.createList;
-    return { createList, state };
-  },
-  data() {
-    return {
-      listTitle: '',
-    };
-  },
-  methods: {
-    addList() {
-      if (!this.listTitle) {
-        return;
-      }
+import { storeToRefs } from 'pinia';
 
-      const boardId = this.state.board.id;
-      const name = this.listTitle;
-
-      this.createList(boardId, name);
-
-      this.listTitle = '';
-    },
-    enableInput: function () {
-      this.state.createListInput = true;
-      nextTick(() => {
-        const listInput = this.$refs.listCreate as HTMLElement;
-        listInput.focus();
-      });
-    },
-    onClickAway() {
-      this.state.createListInput = false;
-      this.listTitle = '';
-    },
+defineProps({
+  board: {
+    default: null,
+    type: Number as PropType<Board['id']>,
   },
 });
+
+const { board, createListInput, lists } = storeToRefs(store());
+const { createList } = store();
+const listTitle = ref('');
+const listCreate = ref();
+
+const addList = () => {
+  if (!listTitle.value) {
+    return;
+  }
+
+  const boardId = board.value.id;
+  const name = listTitle.value;
+
+  createList(boardId, name);
+
+  listTitle.value = '';
+};
+
+const enableInput = () => {
+  createListInput.value = true;
+  nextTick(() => {
+    listCreate.value.focus();
+  });
+};
+const onClickAway = () => {
+  createListInput.value = false;
+  listTitle.value = '';
+};
 </script>
 
 <style></style>

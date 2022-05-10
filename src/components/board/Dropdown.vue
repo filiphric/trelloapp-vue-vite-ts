@@ -24,7 +24,7 @@
       class="block py-1 px-2 pt-2 text-sm text-red-600 hover:bg-gray1 active:bg-gray2 cursor-pointer"
       data-cy="delete-board"
       @click="
-        state.deleteBoard(board.id);
+        deleteBoard(board.id);
         showDropdown();
       "
     >
@@ -33,43 +33,28 @@
   </div>
 </template>
 
-<script lang="ts">
-import { PropType, defineComponent } from 'vue';
+<script setup lang="ts">
+import { PropType, ref } from 'vue';
 import { store } from '@/stores/store';
 import Board from '@/typings/board';
 import Cross from '@/assets/icons/cross.svg';
 import Dots from '@/assets/icons/dots.svg';
-export default defineComponent({
-  components: {
-    Cross,
-    Dots,
-  },
-  props: {
-    board: {
-      default: null,
-      type: Object as PropType<Board>,
-    },
-  },
-  emits: ['toggleInput'],
-  setup() {
-    const state = store();
-    return { state };
-  },
-  data() {
-    return {
-      dropdown: false,
-      id: this.board.id,
-    };
-  },
-  methods: {
-    onClickAway() {
-      this.dropdown = false;
-    },
-    showDropdown() {
-      this.dropdown = !this.dropdown;
-    },
+
+defineProps({
+  board: {
+    default: null,
+    type: Object as PropType<Board>,
   },
 });
+
+const dropdown = ref(false);
+const { deleteBoard } = store();
+const onClickAway = () => {
+  dropdown.value = false;
+};
+const showDropdown = () => {
+  dropdown.value = !dropdown.value;
+};
 </script>
 
 <style></style>

@@ -2,7 +2,7 @@
   <div
     data-cy="card"
     class="grid relative p-2 my-1.5 w-full bg-white hover:bg-gray1 rounded border border-gray1 border-solid drop-shadow-sm cursor-pointer card"
-    @click="state.showCardModule(card.id, true)"
+    @click="showCardModule(card.id, true)"
   >
     <div class="flex px-1.5 pl-0.5">
       <Checkbox :card="card" />
@@ -26,8 +26,8 @@
   </div>
 </template>
 
-<script lang="ts">
-import { PropType, defineComponent } from 'vue';
+<script setup lang="ts">
+import { PropType } from 'vue';
 import { store } from '@/stores/store';
 import Card from '@/typings/card';
 import Checkbox from '@/components/Checkbox.vue';
@@ -35,28 +35,18 @@ import Clock from '@/assets/icons/clock.svg';
 import Pen from '@/assets/icons/pen.svg';
 import moment from 'moment';
 
-export default defineComponent({
-  components: {
-    Checkbox,
-    Clock,
-    Pen,
-  },
-  props: {
-    card: {
-      default: null,
-      type: Object as PropType<Card>,
-    },
-  },
-  setup() {
-    const state = store();
-    return { state };
-  },
-  methods: {
-    overdue: (card: Card) => {
-      return card.deadline && moment(card.deadline).diff(moment().startOf('day'), 'days') < 1;
-    },
+defineProps({
+  card: {
+    default: null,
+    type: Object as PropType<Card>,
   },
 });
+
+const { showCardModule } = store();
+
+const overdue = (card: Card) => {
+  return card.deadline && moment(card.deadline).diff(moment().startOf('day'), 'days') < 1;
+};
 </script>
 
 <style lang="postcss" scoped>

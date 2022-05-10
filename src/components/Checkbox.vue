@@ -9,22 +9,17 @@
   </label>
 </template>
 
-<script lang="ts">
-import { PropType, defineComponent } from 'vue';
+<script setup lang="ts">
 import { store } from '@/stores/store';
 import Card from '@/typings/card';
-export default defineComponent({
-  props: {
-    card: {
-      default: null,
-      type: Object as PropType<Card>,
-    },
-  },
-  setup() {
-    const patchCard = store().patchCard;
-    return { patchCard };
+import { PropType } from 'vue';
+defineProps({
+  card: {
+    default: null,
+    type: Object as PropType<Card>,
   },
 });
+const { patchCard } = store();
 </script>
 
 <style lang="postcss" scoped>

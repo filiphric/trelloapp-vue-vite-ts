@@ -6,7 +6,7 @@
       </h1>
       <label for="email">Email</label>
       <input
-        v-model="state.signupForm.email"
+        v-model="signupForm.email"
         class="px-2 mb-3 w-full h-10 bg-gray3 focus:bg-white rounded-sm"
         placeholder="Email"
         name="email"
@@ -14,17 +14,17 @@
       >
       <label for="password">Password</label>
       <input
-        v-model="state.signupForm.password"
+        v-model="signupForm.password"
         type="password"
         class="px-2 mb-3 w-full h-10 bg-gray3 focus:bg-white rounded-sm"
         data-cy="signup-password"
         placeholder="Password"
         name="password"
-        @keyup.enter="state.signup(state.signupForm.email, state.signupForm.password, state.signupForm.welcomeEmail)"
+        @keyup.enter="signup(signupForm.email, signupForm.password, signupForm.welcomeEmail)"
       >
       <div class="mb-4">
         <input
-          v-model="state.signupForm.welcomeEmail"
+          v-model="signupForm.welcomeEmail"
           type="checkbox"
           name="welcomeEmail"
           class="mr-2"
@@ -37,7 +37,7 @@
       <button
         class="py-2 w-full text-white bg-green7 hover:bg-green6"
         data-cy="signup-submit"
-        @click="state.signup(state.signupForm.email, state.signupForm.password, state.signupForm.welcomeEmail)"
+        @click="signup(signupForm.email, signupForm.password, signupForm.welcomeEmail)"
       >
         Create account
       </button>
@@ -61,24 +61,17 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import { store } from '@/stores/store';
+import { storeToRefs } from 'pinia';
 import GoogleSignIn from './GoogleSignIn.vue';
 import GoogleButton from './GoogleButton.vue';
-
-export default defineComponent({
-  components: { GoogleSignIn, GoogleButton },
-
-  setup() {
-    const googleEnabled = process.env.VUE_APP_GOOGLE_ENABLED;
-    const state = store();
-    function handleResponse(value: any): void {
-      state.oauthSignup(value.googleUser.wc.id_token);
-    }
-    return { state, handleResponse, googleEnabled };
-  },
-});
+const googleEnabled = process.env.VUE_APP_GOOGLE_ENABLED;
+const { oauthSignup, signup } = store();
+const { signupForm } = storeToRefs(store());
+function handleResponse(value: any): void {
+  oauthSignup(value.googleUser.wc.id_token);
+}
 </script>
 
 <style></style>

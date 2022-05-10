@@ -1,7 +1,7 @@
 import Card from '@/typings/card';
 import List from '@/typings/list';
 import axios from 'axios';
-import router from '@/router';
+import { router } from '@/router/index';
 
 export const deleteCard = async function (this: any, card: Card) {
   const { id, listId } = card;

@@ -18,7 +18,7 @@
         v-show="showStar"
         data-cy="star"
         class="star"
-        @click.stop="updateBoardStarred(board)"
+        @click.stop="patchBoard(board, { starred: !board.starred })"
       >
         <Star
           class="col-span-1 w-5 h-5"
@@ -29,37 +29,21 @@
   </router-link>
 </template>
 
-<script lang="ts">
-import { PropType, defineComponent } from 'vue';
+<script setup lang="ts">
+import { PropType, ref } from 'vue';
 import Board from '@/typings/board';
 import Star from '@/assets/icons/star.svg';
-import axios from 'axios';
-export default defineComponent({
-  name: 'Board',
-  components: {
-    Star,
-  },
-  props: {
-    board: {
-      default: null,
-      type: Object as PropType<Board>,
-    },
-  },
-  data: function () {
-    return {
-      showStar: false,
-    };
-  },
-  methods: {
-    updateBoardStarred: function (board: Board) {
-      let flag = !board.starred;
-      axios.patch(`/api/boards/${board.id}`, {
-        starred: flag,
-      });
-      board.starred = flag;
-    },
+import { store } from '@/stores/store';
+
+const { patchBoard } = store();
+defineProps({
+  board: {
+    default: null,
+    type: Object as PropType<Board>,
   },
 });
+
+let showStar = ref(false);
 </script>
 
 <style lang="postcss" scoped>

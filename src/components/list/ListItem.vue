@@ -15,7 +15,7 @@
           selectInput($event);
           inputActive = true;
         "
-        @change="state.patchList(list, { name: inputValue($event) })"
+        @change="patchList(list, { name: inputValue($event) })"
         @keyup.enter="
           blurInput($event);
           inputActive = false;
@@ -32,7 +32,7 @@
       :class="isDragging ?? 'min-h-[100px]'"
     >
       <div
-        v-if="state.loadingListCards[list.id]"
+        v-if="loadingListCards[list.id]"
         class="block place-self-center text-xs text-center"
       >
         <LoadingIcon class="inline-block mb-1" />&nbsp;&nbsp;Loading cards ...
@@ -42,6 +42,7 @@
         animation="150"
         group="cards"
         ghost-class="bg-gray2"
+        :item-key="list.name"
         @change="sortCards"
       >
         <template #item="{ element }">
@@ -65,8 +66,8 @@
   </div>
 </template>
 
-<script lang="ts">
-import { PropType, defineComponent } from 'vue';
+<script setup lang="ts">
+import { PropType, ref } from 'vue';
 import { blurInput } from '@/utils/blurInput';
 import { inputValue } from '@/utils/inputValue';
 import { selectInput } from '@/utils/selectInput';
@@ -79,49 +80,32 @@ import List from '@/typings/list';
 import Plus from '@/assets/icons/plus.svg';
 import draggable from 'vuedraggable';
 import LoadingIcon from '@/assets/icons/loadingIcon.svg';
+import { storeToRefs } from 'pinia';
 
-export default defineComponent({
-  components: {
-    CardCreateInput,
-    CardItem,
-    Dropdown,
-    Plus,
-    draggable,
-    LoadingIcon,
-  },
-  props: {
-    list: {
-      default: null,
-      type: Object as PropType<List>,
-    },
-  },
-  setup() {
-    const state = store();
-    return { blurInput, inputValue, selectInput, state };
-  },
-  data() {
-    return {
-      cardCreate: false,
-      drag: false,
-      inputActive: false,
-      isDragging: false,
-    };
-  },
-  methods: {
-    onClickAway() {
-      this.inputActive = false;
-    },
-    showCardCreate(flag: boolean) {
-      this.cardCreate = flag;
-    },
-    sortCards() {
-      const listIndex = this.state.lists.findIndex((l: List) => l.id === this.list.id);
-      this.state.lists[listIndex].cards.forEach((card: Card, order: number) => {
-        this.state.patchCard(card, { listId: this.list.id, order });
-      });
-    },
+const props = defineProps({
+  list: {
+    default: null,
+    type: Object as PropType<List>,
   },
 });
-</script>
 
-<style lang="postcss" scoped></style>
+const cardCreate = ref(false);
+const inputActive = ref(false);
+const isDragging = ref(false);
+
+const { lists, loadingListCards } = storeToRefs(store());
+const { patchCard, patchList } = store();
+
+const onClickAway = () => {
+  inputActive.value = false;
+};
+const showCardCreate = (flag: boolean) => {
+  cardCreate.value = flag;
+};
+const sortCards = () => {
+  const listIndex = lists.value.findIndex((l: List) => l.id === props.list.id);
+  lists.value[listIndex].cards.forEach((card: Card, order: number) => {
+    patchCard(card, { listId: props.list.id, order });
+  });
+};
+</script>

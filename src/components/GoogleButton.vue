@@ -33,14 +33,11 @@
     <span class="ml-4 text-base text-gray-700">{{ logSign }} with Google</span>
   </button>
 </template>
-<script lang="ts">
-import { PropType, defineComponent } from 'vue';
-export default defineComponent({
-  props: {
-    logSign: {
-      default: 'Sign up',
-      type: String,
-    },
+<script setup lang="ts">
+defineProps({
+  logSign: {
+    default: 'Sign up',
+    type: String,
   },
 });
 </script>

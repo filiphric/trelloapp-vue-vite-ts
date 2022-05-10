@@ -33,6 +33,11 @@ beforeEach(function () {
 });
 
 Cypress.on('fail', (err) => {
-  err.message += `${'\n\n' + 'Test steps were:\n\n'}${window.testFlow.join('\n')}`;
+  if (window.testFlow.length) {
+    err.message += `${'\n\n' + 'Test steps were:\n\n'}${window.testFlow.join('\n')}`;
+  }
   throw err;
 });
+
+import '@/index.css';
+

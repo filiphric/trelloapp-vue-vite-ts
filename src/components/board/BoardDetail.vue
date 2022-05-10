@@ -89,9 +89,9 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { blurInput } from '@/utils/blurInput';
-import { defineComponent, ref } from 'vue';
+import { ref } from 'vue';
 import { selectInput } from '@/utils/selectInput';
 import { store } from '@/stores/store';
 import { useRoute } from 'vue-router';
@@ -102,27 +102,14 @@ import LoadingIcon from '@/assets/icons/loadingIcon.svg';
 import Star from '@/assets/icons/star.svg';
 import draggable from 'vuedraggable';
 
-export default defineComponent({
-  components: {
-    Dropdown,
-    ListCreate,
-    ListItem,
-    LoadingIcon,
-    Star,
-    draggable,
-  },
-  setup() {
-    const route = useRoute();
-    const state = store();
-    const inputActive = ref(false);
-    const boardId = Number(route.params.board);
-    state.getBoardDetail(boardId);
-    const onClickAway = () => {
-      inputActive.value = false;
-    };
-    return { state, blurInput, selectInput, onClickAway };
-  },
-});
+const route = useRoute();
+const state = store();
+const inputActive = ref(false);
+const boardId = Number(route.params.board);
+state.getBoardDetail(boardId);
+const onClickAway = () => {
+  inputActive.value = false;
+};
 </script>
 
 <style lang="postcss" scoped>

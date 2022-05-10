@@ -5,21 +5,11 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import { store } from '@/stores/store';
 import BoardDetail from '@/components/board/BoardDetail.vue';
 import CardDetail from '@/components/card/CardDetail.vue';
 import { storeToRefs } from 'pinia';
 
-export default defineComponent({
-  components: {
-    CardDetail,
-    BoardDetail,
-  },
-  setup() {
-    const { cardModule } = storeToRefs(store());
-    return { cardModule };
-  },
-});
+const { cardModule } = storeToRefs(store());
 </script>

@@ -49,8 +49,7 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, onMounted } from 'vue';
+<script setup lang="ts">
 import { store } from '@/stores/store';
 import BoardCreate from '@/components/board/BoardCreate.vue';
 import BoardItem from '@/components/board/BoardItem.vue';
@@ -58,23 +57,8 @@ import Emptylist from '@/components/boardList/Emptylist.vue';
 import LoadingError from '@/components/boardList/LoadingError.vue';
 import Loading from '@/components/Loading.vue';
 
-export default defineComponent({
-  name: 'BoardList',
-  components: {
-    Emptylist,
-    BoardItem,
-    BoardCreate,
-    LoadingError,
-    Loading,
-  },
-  setup() {
-    const state = store();
-    onMounted(() => {
-      state.getBoardList();
-    });
-    return { state };
-  },
-});
+const state = store();
+state.getBoardList();
 </script>
 
 <style lang="postcss" scoped></style>

@@ -14,21 +14,11 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import LoadingIcon from '@/assets/icons/loadingIcon.svg';
 import { store } from '@/stores/store';
 import { storeToRefs } from 'pinia';
-
-export default defineComponent({
-  components: {
-    LoadingIcon,
-  },
-  setup() {
-    const { loading, loadingError } = storeToRefs(store());
-    return { loading, loadingError };
-  },
-});
+const { loading, loadingError } = storeToRefs(store());
 </script>
 
 <style lang="postcss" scoped>

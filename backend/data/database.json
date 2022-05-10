@@ -1,5 +1,20 @@
 {
-  "boards": [],
+  "boards": [
+    {
+      "name": "das",
+      "user": 0,
+      "starred": false,
+      "created": "2022-05-09",
+      "id": 1
+    },
+    {
+      "name": "ghj3",
+      "user": 0,
+      "starred": false,
+      "created": "2022-05-09",
+      "id": 2
+    }
+  ],
   "cards": [],
   "lists": [],
   "users": []

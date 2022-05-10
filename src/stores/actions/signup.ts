@@ -1,5 +1,5 @@
 import axios from 'axios';
-import router from '@/router';
+import { router } from '@/router/index';
 
 export const signup = async function (this: any, email: string, password: string, welcomeEmail: boolean) {
   await axios

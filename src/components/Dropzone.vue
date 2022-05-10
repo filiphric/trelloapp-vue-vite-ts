@@ -36,47 +36,37 @@
   </div>
 </template>
 
-<script lang="ts">
-import { PropType, defineComponent, ref } from 'vue';
+<script setup lang="ts">
+import { PropType, ref } from 'vue';
 import { store } from '@/stores/store';
 import Card from '@/typings/card';
 import Dropicon from '@/assets/icons/dropicon.svg';
-export default defineComponent({
-  name: 'Dropzone',
-  components: {
-    Dropicon,
-  },
-  props: {
-    card: {
-      default: null,
-      type: Object as PropType<Card>,
-    },
-  },
-  setup() {
-    const uploadFile = store().uploadFile;
-    const activeCard = store().activeCard;
-    const isDragActive = ref(false);
-
-    const dragActive = () => {
-      isDragActive.value = true;
-    };
-
-    const dragInactive = () => {
-      isDragActive.value = false;
-    };
-    const drop = (e: any) => {
-      const acceptedFile = e.dataTransfer.files[0];
-      uploadFile(activeCard, acceptedFile);
-      dragInactive();
-    };
-
-    /* istanbul ignore next */
-    const upload = (e: any) => {
-      const acceptedFile = e.target.files[0];
-      uploadFile(activeCard, acceptedFile);
-    };
-
-    return { isDragActive, dragActive, dragInactive, drop, upload };
+defineProps({
+  card: {
+    default: null,
+    type: Object as PropType<Card>,
   },
 });
+const { uploadFile } = store();
+const activeCard = store().activeCard;
+const isDragActive = ref(false);
+
+const dragActive = () => {
+  isDragActive.value = true;
+};
+
+const dragInactive = () => {
+  isDragActive.value = false;
+};
+const drop = (e: any) => {
+  const acceptedFile = e.dataTransfer.files[0];
+  uploadFile(activeCard, acceptedFile);
+  dragInactive();
+};
+
+/* istanbul ignore next */
+const upload = (e: any) => {
+  const acceptedFile = e.target.files[0];
+  uploadFile(activeCard, acceptedFile);
+};
 </script>

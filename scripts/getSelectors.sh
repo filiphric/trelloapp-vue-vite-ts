@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #         find all data-cy attribute in src | select values |
 SRC_SELECTORS=$(grep -hro 'data-cy="[^"]*"' src | cut -d \" -f2 | sort | uniq)
-TEST_SELECTORS=$(grep -hro '.getDataCy([^"]*' cypress | cut -d \' -f2 | sort | uniq)
+TEST_SELECTORS=$(grep -hro '.getDataCy([^"]*' cypress src | cut -d \' -f2 | sort | uniq)
 
 UNUSED_SELECTORS=$(comm -23 <(echo "$SRC_SELECTORS") <(echo "$TEST_SELECTORS"))
 

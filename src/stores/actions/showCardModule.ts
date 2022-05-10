@@ -1,6 +1,6 @@
 import Card from '@/typings/card';
 import axios from 'axios';
-import router from '@/router';
+import { router } from '@/router/index';
 
 export const showCardModule = async function (this: any, cardId: Card['id'], flag: boolean) {
   if (flag) {

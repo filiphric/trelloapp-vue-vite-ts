@@ -1,10 +1,10 @@
 import { createServer } from './backend/index';
 import { defineConfig } from 'vite';
 import istanbul from 'vite-plugin-istanbul';
-import path from 'path';
 import svgLoader from 'vite-svg-loader';
 import vue from '@vitejs/plugin-vue';
 import pluginEnv from 'vite-plugin-vue-env';
+import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
   define: {
@@ -17,15 +17,12 @@ export default defineConfig({
     istanbul({
       exclude: ['node_modules', 'test/'],
       extension: [ '.js', '.ts', '.vue' ],
-      include: 'src/*'
+      include: 'src/*',
+      cypress: true
     }),
-    createServer()
+    createServer(),
+    tsconfigPaths({extensions: ['.ts', '.d.ts']})
   ],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src') // map '@' to './src'
-    }
-  },
   server: {
     proxy: {
       '^/api/.*': {

@@ -46,43 +46,29 @@
   </div>
 </template>
 
-<script lang="ts">
-import { PropType, defineComponent } from 'vue';
+<script setup lang="ts">
+import { PropType, ref } from 'vue';
 import { store } from '@/stores/store';
 import Cross from '@/assets/icons/cross.svg';
 import Dots from '@/assets/icons/dots.svg';
 import List from '@/typings/list';
-export default defineComponent({
-  components: {
-    Cross,
-    Dots,
-  },
-  props: {
-    list: {
-      default: null,
-      type: Object as PropType<List>,
-    },
-  },
-  emits: ['toggle-input'],
-  setup() {
-    const { deleteList } = store();
-    return { deleteList };
-  },
-  data() {
-    return {
-      dropdown: false,
-      id: this.list.id,
-    };
-  },
-  methods: {
-    onClickAway() {
-      this.dropdown = false;
-    },
-    showDropdown() {
-      this.dropdown = !this.dropdown;
-    },
+
+defineProps({
+  list: {
+    default: null,
+    type: Object as PropType<List>,
   },
 });
+
+defineEmits(['toggle-input']);
+const { deleteList } = store();
+const dropdown = ref(false);
+const onClickAway = () => {
+  dropdown.value = false;
+};
+const showDropdown = () => {
+  dropdown.value = !dropdown.value;
+};
 </script>
 
 <style></style>

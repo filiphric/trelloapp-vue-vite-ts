@@ -9,6 +9,8 @@
     "baseUrl": "./",
     "lib": ["esnext", "dom"],
     "allowSyntheticDefaultImports": true,
+    "noUnusedLocals": true,
+    "skipLibCheck": true,
     "plugins": [
       {
         "name": "@vuedx/typescript-plugin-vue"

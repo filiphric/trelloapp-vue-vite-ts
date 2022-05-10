@@ -1,3 +1,4 @@
+import { AxiosResponse } from 'axios';
 import 'pinia';
 import Board from './board';
 import Card from './card';
@@ -13,6 +14,7 @@ declare module 'pinia' {
       show: boolean;
       status: number;
       message: string;
+      tooLong: boolean;
     };
     createListInput: boolean;
     cardModule: boolean;

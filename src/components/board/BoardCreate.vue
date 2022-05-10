@@ -19,12 +19,12 @@
       @keyup.enter.prevent="createBoard(newBoardTitle)"
     >
     <div
-      v-if="newBoardInputActive"
+      v-show="newBoardInputActive"
       class="active"
     >
       <Cross
         class="icon"
-        @click.stop="newBoardInputActive = false"
+        @click.stop="inputVisible(false)"
       />
       <SaveButton
         data-cy="new-board-create"
@@ -35,42 +35,29 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, nextTick, ref } from 'vue';
+<script setup lang="ts">
+import { nextTick, ref } from 'vue';
 import { store } from '@/stores/store';
 import Cross from '@/assets/icons/cross.svg';
 import SaveButton from '@/components/SaveButton.vue';
-export default defineComponent({
-  name: 'BoardCreate',
-  components: {
-    Cross,
-    SaveButton,
-  },
-  setup() {
-    let newBoardTitle = ref();
-    let newBoardInputActive = ref(false);
-    const boardCreateInput = ref();
-    const createBoard = store().createBoard;
-    const onClickAway = () => {
-      newBoardInputActive.value = false;
-      newBoardTitle.value = '';
-    };
-    const focusNewBoardInput = () => {
-      newBoardInputActive.value = true;
-      nextTick(() => {
-        boardCreateInput.value.focus();
-      });
-    };
-    return {
-      createBoard,
-      newBoardInputActive,
-      newBoardTitle,
-      boardCreateInput,
-      onClickAway,
-      focusNewBoardInput,
-    };
-  },
-});
+
+let newBoardTitle = ref();
+let newBoardInputActive = ref(false);
+const boardCreateInput = ref();
+const createBoard = store().createBoard;
+const inputVisible = (flag: boolean) => {
+  newBoardInputActive.value = flag;
+};
+const onClickAway = () => {
+  inputVisible(false);
+  newBoardTitle.value = '';
+};
+const focusNewBoardInput = () => {
+  inputVisible(true);
+  nextTick(() => {
+    boardCreateInput.value.focus();
+  });
+};
 </script>
 <style lang="postcss" scoped>
 h1 {

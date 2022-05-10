@@ -7,16 +7,11 @@
   </button>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-export default defineComponent({
-  props: {
-    buttontext: {
-      default: 'Save',
-      type: String,
-    },
+<script setup lang="ts">
+defineProps({
+  buttontext: {
+    default: 'Save',
+    type: String,
   },
 });
 </script>
-
-<style lang="postcss" scoped></style>

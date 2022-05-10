@@ -32,33 +32,20 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import { store } from '@/stores/store';
 import { useRoute, useRouter } from 'vue-router';
 import LogoutIcon from '@/assets/icons/logoutIcon.svg';
 import User from '@/assets/icons/user.svg';
 import axios from 'axios';
 
-export default defineComponent({
-  name: 'Login',
-  components: {
-    LogoutIcon,
-    User,
-  },
-  setup() {
-    const router = useRouter();
-    const route = useRoute();
-    const state = store();
-    const logout = function (this: any) {
-      this.state.activeUser.loggedIn = false;
-      axios.defaults.headers.common['Authorization'] = '';
-      document.cookie = 'trello_token=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
-      this.state.showNotification('User was logged out', false);
-    };
-    return { logout, route, router, state };
-  },
-});
+const router = useRouter();
+const route = useRoute();
+const state = store();
+const logout = function (this: any) {
+  this.state.activeUser.loggedIn = false;
+  axios.defaults.headers.common['Authorization'] = '';
+  document.cookie = 'trello_token=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+  this.state.showNotification('User was logged out', false);
+};
 </script>
-
-<style></style>

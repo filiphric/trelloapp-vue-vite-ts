@@ -23,7 +23,9 @@ module.exports = {
     'no-only-tests/no-only-tests': 'error',
     'quotes': ['error', 'single'],
     'vue/multi-word-component-names': 'off',
+    'vue/script-setup-uses-vars': 'error',
+    '@typescript-eslint/no-unused-vars': 'off',
     'tailwindcss/classnames-order': 'error',
-    'tailwindcss/no-contradicting-classname': 'error'
+    'tailwindcss/no-contradicting-classname': 'error',
   }
 };

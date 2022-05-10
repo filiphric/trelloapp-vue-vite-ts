@@ -22,18 +22,10 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script setup lang="ts">
+import { ref } from 'vue';
 import { store } from '@/stores/store';
 
-export default defineComponent({
-  setup() {
-    const newBoardTitle = ref('');
-    const createBoard = store().createBoard;
-    return {
-      createBoard,
-      newBoardTitle,
-    };
-  },
-});
+const newBoardTitle = ref('');
+const { createBoard } = store();
 </script>
