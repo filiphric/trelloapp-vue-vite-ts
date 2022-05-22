@@ -45,9 +45,6 @@ describe('Signup', () => {
     cy.getDataCy('signup-password')
       .type(`${user.password}{enter}`)
 
-    cy.getDataCy('signup-submit')
-      .click()
-
     cy.location('pathname')
       .should('eq', '/')
 
