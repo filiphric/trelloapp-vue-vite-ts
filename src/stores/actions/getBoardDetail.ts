@@ -1,4 +1,5 @@
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
+
 import Board from '@/typings/board';
 import Card from '@/typings/card';
 import List from '@/typings/list';
@@ -6,7 +7,6 @@ import axios, { AxiosError } from 'axios';
 
 export const getBoardDetail = async function (this: any, id: Board['id']) {
   const route = useRoute();
-  const router = useRouter();
 
   this.loading = true;
 
@@ -46,8 +46,5 @@ export const getBoardDetail = async function (this: any, id: Board['id']) {
     this.loadingError.show = true;
     this.loadingError.message = response?.data.message;
     this.loadingError.status = response?.status;
-    if (response?.status === 404) {
-      router.push('/404');
-    }
   }
 };

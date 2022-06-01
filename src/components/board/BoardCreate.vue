@@ -16,7 +16,7 @@
       class="new-board-input"
       data-cy="new-board-input"
       placeholder="Add board title"
-      @keyup.enter.prevent="createBoard(newBoardTitle)"
+      @keyup.enter.prevent="redirectToNewBoard()"
     >
     <div
       v-show="newBoardInputActive"
@@ -29,7 +29,7 @@
       <SaveButton
         data-cy="new-board-create"
         buttontext="Create board"
-        @click.stop="createBoard(newBoardTitle)"
+        @click.stop="redirectToNewBoard()"
       />
     </div>
   </div>
@@ -38,13 +38,15 @@
 <script setup lang="ts">
 import { nextTick, ref } from 'vue';
 import { store } from '@/stores/store';
+import { useRouter } from 'vue-router';
 import Cross from '@/assets/icons/cross.svg';
 import SaveButton from '@/components/SaveButton.vue';
 
 let newBoardTitle = ref();
 let newBoardInputActive = ref(false);
 const boardCreateInput = ref();
-const createBoard = store().createBoard;
+const router = useRouter()
+const { createBoard } = store()
 const inputVisible = (flag: boolean) => {
   newBoardInputActive.value = flag;
 };
@@ -58,6 +60,12 @@ const focusNewBoardInput = () => {
     boardCreateInput.value.focus();
   });
 };
+
+const redirectToNewBoard = async () => {
+  const board = await createBoard(newBoardTitle.value)
+  board?.id && router.push(`/board/${board.id}`)  
+}
+
 </script>
 <style lang="postcss" scoped>
 h1 {

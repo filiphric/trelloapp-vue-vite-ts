@@ -7,6 +7,7 @@ import List from './list';
 declare module 'pinia' {
   export interface PiniaCustomStateProperties<S> {
     board: Board;
+    redirectBoardId: Board['id']
     lists: List[];
     loading: boolean;
     loadingListCards: Record<any, string>;

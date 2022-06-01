@@ -1,10 +1,9 @@
-import { mount } from '@cypress/vue';
 import SaveButton from '@/components/SaveButton.vue';
 
 it('renders a message', () => {
   const buttontext = 'Add list';
 
-  mount(SaveButton, {
+  cy.mount(SaveButton, {
     props: {
       buttontext,
     },

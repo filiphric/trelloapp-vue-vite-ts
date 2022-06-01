@@ -12,7 +12,7 @@
         class="px-2 mt-4 w-full h-8 bg-white rounded-sm border-2"
         placeholder="Name of your first board"
         name="newBoard"
-        @keyup.enter.prevent="createBoard(newBoardTitle)"
+        @keyup.enter.prevent="redirectToNewBoard()"
       >
     </div>
     <img
@@ -25,7 +25,13 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { store } from '@/stores/store';
+import { useRouter } from 'vue-router';
+const router = useRouter()
 
 const newBoardTitle = ref('');
 const { createBoard } = store();
+const redirectToNewBoard = async () => {
+  const { id } = await createBoard(newBoardTitle.value)
+  router.push(`/board/${id}`)  
+}
 </script>

@@ -1,9 +1,12 @@
 import Board from '@/typings/board';
 import axios from 'axios';
-import { router } from '@/router/index';
 
 export const deleteBoard = async function (this: any, boardId: Board['id']) {
-  await axios.delete(`/api/boards/${boardId}`);
-  router.push('/');
-  this.showNotification('Board was deleted', false);
+  axios.delete(`/api/boards/${boardId}`)
+    .then(() => {
+      this.showNotification('Board was deleted', false);
+    }).catch((e) => {
+      console.log(e);
+      this.showNotification('Board could not be deleted', true);
+    });
 };

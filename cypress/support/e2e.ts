@@ -39,5 +39,3 @@ Cypress.on('fail', (err) => {
   throw err;
 });
 
-import '@/index.css';
-

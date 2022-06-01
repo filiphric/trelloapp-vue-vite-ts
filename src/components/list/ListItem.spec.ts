@@ -1,11 +1,5 @@
-import { mount } from '@cypress/vue';
+
 import ListItem from '@/components/list/ListItem.vue';
-
-import { setActivePinia, createPinia } from 'pinia';
-
-beforeEach(() => {
-  setActivePinia(createPinia());
-});
 
 it('hello', () => {
   const list = {
@@ -17,7 +11,7 @@ it('hello', () => {
     cards: [],
   };
 
-  mount(ListItem, {
+  cy.mount(ListItem, {
     props: {
       list,
     },

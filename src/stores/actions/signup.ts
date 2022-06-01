@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { router } from '@/router/index';
+
 
 export const signup = async function (this: any, email: string, password: string, welcomeEmail: boolean) {
   await axios
@@ -10,7 +10,6 @@ export const signup = async function (this: any, email: string, password: string
       const id = data.user.id;
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       document.cookie = `trello_token=${token}`;
-      router.push('/');
       this.activeUser.id = id;
       this.activeUser.email = email;
       this.activeUser.accessToken = token;

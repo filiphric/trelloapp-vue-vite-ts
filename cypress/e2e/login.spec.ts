@@ -32,6 +32,11 @@ describe('Login', () => {
     cy.getDataCy('notification-message')
       .should('contain.text', 'Incorrect password')
 
+    cy.location('pathname')
+      .should('eq', '/')
+
+    cy.go('back')
+
     cy.getDataCy('login-password')
       .clear()
       .type(user.password)

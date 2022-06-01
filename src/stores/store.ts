@@ -32,6 +32,7 @@ export const store = defineStore({
   state() {
     return {
       board: {},
+      redirectBoardId: 0,
       lists: [],
       loading: true,
       loadingListCards: {},

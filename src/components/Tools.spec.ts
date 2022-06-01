@@ -1,17 +1,10 @@
-import { mount } from '@cypress/vue';
-import { setActivePinia, createPinia } from 'pinia';
-
 
 import Tools from './Tools.vue';
-
-beforeEach(() => {
-  setActivePinia(createPinia());
-});
 
 it('renders a message', () => {
   cy.intercept('/api/*').as('api');
 
-  mount(Tools);
+  cy.mount(Tools);
 
   cy.contains('All').click();
   cy.wait('@api').its('request.url').should('contain', '/api/reset');

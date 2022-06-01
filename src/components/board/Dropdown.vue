@@ -25,6 +25,7 @@
       data-cy="delete-board"
       @click="
         deleteBoard(board.id);
+        router.push('/');
         showDropdown();
       "
     >
@@ -36,6 +37,7 @@
 <script setup lang="ts">
 import { PropType, ref } from 'vue';
 import { store } from '@/stores/store';
+import { useRouter } from 'vue-router';
 import Board from '@/typings/board';
 import Cross from '@/assets/icons/cross.svg';
 import Dots from '@/assets/icons/dots.svg';
@@ -47,6 +49,7 @@ defineProps({
   },
 });
 
+const router = useRouter()
 const dropdown = ref(false);
 const { deleteBoard } = store();
 const onClickAway = () => {

@@ -25,9 +25,9 @@ export const routes = [
     name: 'Board',
     path: '/board/:board',
   },
-  {
+  { 
     component: NotFound,
-    name: 'Page not found',
-    path: '/404',
-  },
+    path: '/:pathMatch(.*)*', 
+    name: 'Page not found'
+  } 
 ];

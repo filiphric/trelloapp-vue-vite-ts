@@ -20,7 +20,9 @@
         data-cy="signup-password"
         placeholder="Password"
         name="password"
-        @keyup.enter="signup(signupForm.email, signupForm.password, signupForm.welcomeEmail)"
+        @keyup.enter="signup(signupForm.email, signupForm.password, signupForm.welcomeEmail).then( () => {
+          router.push('/')  
+        })"
       >
       <div class="mb-4">
         <input
@@ -37,7 +39,9 @@
       <button
         class="py-2 w-full text-white bg-green7 hover:bg-green6"
         data-cy="signup-submit"
-        @click="signup(signupForm.email, signupForm.password, signupForm.welcomeEmail)"
+        @click="signup(signupForm.email, signupForm.password, signupForm.welcomeEmail).then( () => {
+          router.push('/')  
+        })"
       >
         Create account
       </button>
@@ -66,6 +70,8 @@ import { store } from '@/stores/store';
 import { storeToRefs } from 'pinia';
 import GoogleSignIn from './GoogleSignIn.vue';
 import GoogleButton from './GoogleButton.vue';
+import { useRouter } from 'vue-router';
+const router = useRouter()
 const googleEnabled = process.env.VUE_APP_GOOGLE_ENABLED;
 const { oauthSignup, signup } = store();
 const { signupForm } = storeToRefs(store());

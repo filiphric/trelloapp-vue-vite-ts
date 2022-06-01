@@ -2,7 +2,7 @@
   <div
     class="flex fixed top-0 left-0 z-40 justify-center items-center w-full h-full bg-backdrop"
     data-cy="card-detail-backdrop"
-    @click.self="showCardModule(activeCard.id, false)"
+    @click.self="showCardModule(activeCard.id, false); router.push(router.currentRoute.value.path);"
   >
     <div
       class="grid overflow-scroll grid-cols-8 gap-x-2 p-8 w-cardDetail h-5/6 bg-gray2"
@@ -146,7 +146,7 @@
         <div class="grid self-end place-content-center place-self-end w-8 h-8 hover:bg-gray5 cursor-pointer">
           <Cross
             class="w-6 h-6 text-gray-600 fill-current"
-            @click="showCardModule(activeCard.id, false)"
+            @click="showCardModule(activeCard.id, false); router.push(router.currentRoute.value.path);"
           />
         </div>
         <div
@@ -166,7 +166,7 @@
         <div
           class="py-0.5 px-2 text-sm text-gray-600 bg-gray3 hover:bg-gray5 rounded-sm cursor-pointer"
           data-cy="card-detail-delete"
-          @click="deleteCard(activeCard)"
+          @click="deleteCard(activeCard); router.push(router.currentRoute.value.path);"
         >
           <Trash class="inline-block mr-2 mb-0.5 w-4" />Delete card
         </div>
@@ -178,7 +178,7 @@
 <script setup lang="ts">
 import { DatePicker } from 'v-calendar';
 import { blurInput } from '@/utils/blurInput';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { selectInput } from '@/utils/selectInput';
 import { store } from '@/stores/store';
 import Attachment from '@/assets/icons/attachment.svg';
@@ -195,7 +195,9 @@ import List from '@/typings/list';
 import Trash from '@/assets/icons/trash.svg';
 import moment from 'moment';
 import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
 
+const router = useRouter()
 const { showNotification, showCardModule, patchCard, deleteCard } = store();
 const { lists, activeCard } = storeToRefs(store());
 const cardListName = lists.value.find((l: List) => l.id === activeCard.value.listId)!['name'];
@@ -225,4 +227,8 @@ const copyProperties = (content: Card) => {
 const overdue = (card: Card) => {
   return card.deadline && moment(card.deadline).diff(moment().startOf('day'), 'days') < 1;
 };
+
+onMounted( () => {
+  router.push(`${router.currentRoute.value.path}?card=${activeCard.value.id}`);
+})
 </script>
