@@ -13,14 +13,14 @@
 </template>
 
 <script setup lang="ts">
-import { store } from './stores/store';
+import { useStore } from './stores/store';
 import Navbar from '@/components/Navbar.vue';
 import Notification from '@/components/Notification.vue';
 import Tools from './components/Tools.vue';
 import Footer from '@/components/Footer.vue';
 import axios from 'axios';
 
-const state = store();
+const state = useStore();
 const toggleTools = state.toggleTools;
 const getCookieValue = (name: string) => document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop();
 

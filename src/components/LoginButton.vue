@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { store } from '@/stores/store';
+import { useStore } from '@/stores/store';
 import { useRoute, useRouter } from 'vue-router';
 import LogoutIcon from '@/assets/icons/logoutIcon.svg';
 import User from '@/assets/icons/user.svg';
@@ -42,8 +42,8 @@ import { storeToRefs } from 'pinia'
 
 const router = useRouter();
 const route = useRoute();
-const { showNotification, getBoardList } = store();
-const { activeUser } = storeToRefs(store())
+const { showNotification, getBoardList } = useStore();
+const { activeUser } = storeToRefs(useStore())
 const logout = function (this: any) {
   activeUser.value.loggedIn = false;
   axios.defaults.headers.common['Authorization'] = '';

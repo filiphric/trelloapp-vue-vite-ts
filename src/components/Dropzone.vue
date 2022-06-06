@@ -38,7 +38,7 @@
 
 <script setup lang="ts">
 import { PropType, ref } from 'vue';
-import { store } from '@/stores/store';
+import { useStore } from '@/stores/store';
 import Card from '@/typings/card';
 import Dropicon from '@/assets/icons/dropicon.svg';
 defineProps({
@@ -47,8 +47,8 @@ defineProps({
     type: Object as PropType<Card>,
   },
 });
-const { uploadFile } = store();
-const activeCard = store().activeCard;
+const { uploadFile } = useStore();
+const activeCard = useStore().activeCard;
 const isDragActive = ref(false);
 
 const dragActive = () => {

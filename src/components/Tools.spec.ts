@@ -1,4 +1,3 @@
-
 import Tools from './Tools.vue';
 
 it('renders a message', () => {

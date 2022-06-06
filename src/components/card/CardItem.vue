@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import { PropType } from 'vue';
-import { store } from '@/stores/store';
+import { useStore } from '@/stores/store';
 import Card from '@/typings/card';
 import Checkbox from '@/components/Checkbox.vue';
 import Clock from '@/assets/icons/clock.svg';
@@ -42,7 +42,7 @@ defineProps({
   },
 });
 
-const { showCardModule } = store();
+const { showCardModule } = useStore();
 
 const overdue = (card: Card) => {
   return card.deadline && moment(card.deadline).diff(moment().startOf('day'), 'days') < 1;

@@ -71,7 +71,7 @@ import { PropType, ref } from 'vue';
 import { blurInput } from '@/utils/blurInput';
 import { inputValue } from '@/utils/inputValue';
 import { selectInput } from '@/utils/selectInput';
-import { store } from '@/stores/store';
+import { useStore } from '@/stores/store';
 import Card from '@/typings/card';
 import CardCreateInput from '@/components/card/CardCreateInput.vue';
 import CardItem from '@/components/card/CardItem.vue';
@@ -93,8 +93,8 @@ const cardCreate = ref(false);
 const inputActive = ref(false);
 const isDragging = ref(false);
 
-const { lists, loadingListCards } = storeToRefs(store());
-const { patchCard, patchList } = store();
+const { lists, loadingListCards } = storeToRefs(useStore());
+const { patchCard, patchList } = useStore();
 
 const onClickAway = () => {
   inputActive.value = false;

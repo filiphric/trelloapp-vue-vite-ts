@@ -48,7 +48,7 @@
 
 <script setup lang="ts">
 import { PropType, ref } from 'vue';
-import { store } from '@/stores/store';
+import { useStore } from '@/stores/store';
 import Cross from '@/assets/icons/cross.svg';
 import Dots from '@/assets/icons/dots.svg';
 import List from '@/typings/list';
@@ -61,7 +61,7 @@ defineProps({
 });
 
 defineEmits(['toggle-input']);
-const { deleteList } = store();
+const { deleteList } = useStore();
 const dropdown = ref(false);
 const onClickAway = () => {
   dropdown.value = false;

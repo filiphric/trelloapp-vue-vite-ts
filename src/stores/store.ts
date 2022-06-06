@@ -27,7 +27,7 @@ import { oauthLogin } from './actions/oauthLogin';
 import { oauthSignup } from './actions/oauthSignup';
 import Board from '@/typings/board';
 
-export const store = defineStore({
+export const useStore = defineStore({
   id: 'store',
   state() {
     return {
@@ -38,7 +38,7 @@ export const store = defineStore({
       loadingListCards: {},
       loadingError: {
         show: false,
-        status: 0,
+        status: -1,
         message: '',
         tooLong: false,
       },
@@ -47,7 +47,7 @@ export const store = defineStore({
       activeCard: {},
       notification: {
         error: false,
-        show: false,
+        show: true,
         message: '',
       },
       boardList: {
@@ -124,5 +124,5 @@ export const store = defineStore({
 
 /* istanbul ignore next */
 if (window.Cypress) {
-  window.store = store;
+  window.store = useStore;
 }

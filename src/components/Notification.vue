@@ -21,10 +21,9 @@
 </template>
 
 <script setup lang="ts">
-import { store } from '@/stores/store';
+import { useStore } from '@/stores/store';
 import Error from '@/assets/icons/error.svg';
 import Info from '@/assets/icons/info.svg';
 import { storeToRefs } from 'pinia'
-
-const { notification } = storeToRefs(store());
+const { notification } = storeToRefs(useStore());
 </script>

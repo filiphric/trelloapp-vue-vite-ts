@@ -63,7 +63,7 @@
   },
   "devDependencies": {
     "@cypress/skip-test": "^2.6.1",
-    "cypress": "https://cdn.cypress.io/beta/npm/10.0.0/darwin-x64/develop-2af1ad03bb3b23402650dd7f68a9e68ba2008431/cypress.tgz",
+    "cypress": "^10.0.2",
     "esbuild": "^0.14.7",
     "eslint": "^8.5.0",
     "eslint-plugin-cypress": "^2.12.1",

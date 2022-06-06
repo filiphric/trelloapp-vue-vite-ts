@@ -66,15 +66,15 @@
 </template>
 
 <script setup lang="ts">
-import { store } from '@/stores/store';
+import { useStore } from '@/stores/store';
 import { storeToRefs } from 'pinia';
 import GoogleSignIn from './GoogleSignIn.vue';
 import GoogleButton from './GoogleButton.vue';
 import { useRouter } from 'vue-router';
 const router = useRouter()
 const googleEnabled = process.env.VUE_APP_GOOGLE_ENABLED;
-const { oauthSignup, signup } = store();
-const { signupForm } = storeToRefs(store());
+const { oauthSignup, signup } = useStore();
+const { signupForm } = storeToRefs(useStore());
 function handleResponse(value: any): void {
   oauthSignup(value.googleUser.wc.id_token);
 }

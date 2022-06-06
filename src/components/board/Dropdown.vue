@@ -36,7 +36,7 @@
 
 <script setup lang="ts">
 import { PropType, ref } from 'vue';
-import { store } from '@/stores/store';
+import { useStore } from '@/stores/store';
 import { useRouter } from 'vue-router';
 import Board from '@/typings/board';
 import Cross from '@/assets/icons/cross.svg';
@@ -51,7 +51,7 @@ defineProps({
 
 const router = useRouter()
 const dropdown = ref(false);
-const { deleteBoard } = store();
+const { deleteBoard } = useStore();
 const onClickAway = () => {
   dropdown.value = false;
 };

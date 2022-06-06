@@ -50,14 +50,14 @@
 </template>
 
 <script setup lang="ts">
-import { store } from '@/stores/store';
+import { useStore } from '@/stores/store';
 import BoardCreate from '@/components/board/BoardCreate.vue';
 import BoardItem from '@/components/board/BoardItem.vue';
 import Emptylist from '@/components/boardList/Emptylist.vue';
 import LoadingError from '@/components/boardList/LoadingError.vue';
 import Loading from '@/components/Loading.vue';
 
-const state = store();
+const state = useStore();
 state.getBoardList();
 </script>
 

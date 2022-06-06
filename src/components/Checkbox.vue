@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { store } from '@/stores/store';
+import { useStore } from '@/stores/store';
 import Card from '@/typings/card';
 import { PropType } from 'vue';
 defineProps({
@@ -19,7 +19,7 @@ defineProps({
     type: Object as PropType<Card>,
   },
 });
-const { patchCard } = store();
+const { patchCard } = useStore();
 </script>
 
 <style lang="postcss" scoped>

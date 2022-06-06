@@ -180,7 +180,7 @@ import { DatePicker } from 'v-calendar';
 import { blurInput } from '@/utils/blurInput';
 import { ref, onMounted } from 'vue';
 import { selectInput } from '@/utils/selectInput';
-import { store } from '@/stores/store';
+import { useStore } from '@/stores/store';
 import Attachment from '@/assets/icons/attachment.svg';
 import Board from '@/assets/icons/board.svg';
 import Card from '@/typings/card';
@@ -198,8 +198,8 @@ import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
-const { showNotification, showCardModule, patchCard, deleteCard } = store();
-const { lists, activeCard } = storeToRefs(store());
+const { showNotification, showCardModule, patchCard, deleteCard } = useStore();
+const { lists, activeCard } = storeToRefs(useStore());
 const cardListName = lists.value.find((l: List) => l.id === activeCard.value.listId)!['name'];
 
 const showDate = ref(false);

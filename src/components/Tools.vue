@@ -39,10 +39,10 @@
 </template>
 
 <script setup lang="ts">
-import { store } from '@/stores/store';
+import { useStore } from '@/stores/store';
 import { useRouter } from 'vue-router';
 
-const { reset, resetBoards, resetLists, resetCards, resetUsers } = store();
+const { reset, resetBoards, resetLists, resetCards, resetUsers } = useStore();
 
 const router = useRouter()
 

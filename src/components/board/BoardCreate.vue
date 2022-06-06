@@ -37,7 +37,7 @@
 
 <script setup lang="ts">
 import { nextTick, ref } from 'vue';
-import { store } from '@/stores/store';
+import { useStore } from '@/stores/store';
 import { useRouter } from 'vue-router';
 import Cross from '@/assets/icons/cross.svg';
 import SaveButton from '@/components/SaveButton.vue';
@@ -46,7 +46,7 @@ let newBoardTitle = ref();
 let newBoardInputActive = ref(false);
 const boardCreateInput = ref();
 const router = useRouter()
-const { createBoard } = store()
+const { createBoard } = useStore()
 const inputVisible = (flag: boolean) => {
   newBoardInputActive.value = flag;
 };

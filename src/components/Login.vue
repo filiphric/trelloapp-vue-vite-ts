@@ -54,15 +54,15 @@
 </template>
 
 <script setup lang="ts">
-import { store } from '@/stores/store';
+import { useStore } from '@/stores/store';
 import { storeToRefs } from 'pinia';
 import GoogleSignIn from './GoogleSignIn.vue';
 import GoogleButton from './GoogleButton.vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
-const { oauthLogin, login } = store();
-const { loginForm } = storeToRefs(store());
+const { oauthLogin, login } = useStore();
+const { loginForm } = storeToRefs(useStore());
 const googleEnabled = process.env.VUE_APP_GOOGLE_ENABLED;
 
 function handleResponse(value: any): void {

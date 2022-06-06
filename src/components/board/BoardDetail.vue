@@ -93,7 +93,7 @@
 import { blurInput } from '@/utils/blurInput';
 import { ref } from 'vue';
 import { selectInput } from '@/utils/selectInput';
-import { store } from '@/stores/store';
+import { useStore } from '@/stores/store';
 import { useRoute } from 'vue-router';
 import Dropdown from '@/components/board/Dropdown.vue';
 import ListCreate from '@/components/list/ListCreate.vue';
@@ -103,7 +103,7 @@ import Star from '@/assets/icons/star.svg';
 import draggable from 'vuedraggable';
 
 const route = useRoute();
-const state = store();
+const state = useStore();
 const inputActive = ref(false);
 const boardId = Number(route.params.board);
 state.getBoardDetail(boardId);

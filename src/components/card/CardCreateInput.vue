@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 import { PropType, ref, onMounted } from 'vue';
-import { store } from '@/stores/store';
+import { useStore } from '@/stores/store';
 import Cross from '@/assets/icons/cross.svg';
 import List from '@/typings/list';
 import SaveButton from '@/components/SaveButton.vue';
@@ -49,9 +49,9 @@ const props = defineProps({
 
 const emit = defineEmits(['toggleInput']);
 
-const { board } = storeToRefs(store());
+const { board } = storeToRefs(useStore());
 const cardCreate = ref();
-const { createCard } = store();
+const { createCard } = useStore();
 let cardTitle = ref('');
 
 const addCard = () => {

@@ -6,10 +6,10 @@
 </template>
 
 <script setup lang="ts">
-import { store } from '@/stores/store';
+import { useStore } from '@/stores/store';
 import BoardDetail from '@/components/board/BoardDetail.vue';
 import CardDetail from '@/components/card/CardDetail.vue';
 import { storeToRefs } from 'pinia';
 
-const { cardModule } = storeToRefs(store());
+const { cardModule } = storeToRefs(useStore());
 </script>

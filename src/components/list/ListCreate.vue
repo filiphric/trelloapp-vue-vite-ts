@@ -43,7 +43,7 @@
 
 <script setup lang="ts">
 import { PropType, ref, nextTick } from 'vue';
-import { store } from '@/stores/store';
+import { useStore } from '@/stores/store';
 import Board from '@/typings/board';
 import Cross from '@/assets/icons/cross.svg';
 import Plus from '@/assets/icons/plus.svg';
@@ -57,8 +57,8 @@ defineProps({
   },
 });
 
-const { board, createListInput, lists } = storeToRefs(store());
-const { createList } = store();
+const { board, createListInput, lists } = storeToRefs(useStore());
+const { createList } = useStore();
 const listTitle = ref('');
 const listCreate = ref();
 

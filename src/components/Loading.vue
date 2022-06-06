@@ -16,9 +16,9 @@
 
 <script setup lang="ts">
 import LoadingIcon from '@/assets/icons/loadingIcon.svg';
-import { store } from '@/stores/store';
+import { useStore } from '@/stores/store';
 import { storeToRefs } from 'pinia';
-const { loading, loadingError } = storeToRefs(store());
+const { loading, loadingError } = storeToRefs(useStore());
 </script>
 
 <style lang="postcss" scoped>
