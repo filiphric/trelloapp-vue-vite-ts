@@ -67,7 +67,7 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, ref } from 'vue';
+import { ref } from 'vue';
 import { blurInput } from '@/utils/blurInput';
 import { inputValue } from '@/utils/inputValue';
 import { selectInput } from '@/utils/selectInput';
@@ -82,12 +82,9 @@ import draggable from 'vuedraggable';
 import LoadingIcon from '@/assets/icons/loadingIcon.svg';
 import { storeToRefs } from 'pinia';
 
-const props = defineProps({
-  list: {
-    default: null,
-    type: Object as PropType<List>,
-  },
-});
+const props = defineProps<{
+  list: List;
+}>();
 
 const cardCreate = ref(false);
 const inputActive = ref(false);
@@ -103,8 +100,10 @@ const showCardCreate = (flag: boolean) => {
   cardCreate.value = flag;
 };
 const sortCards = () => {
+  // find list index of dragged card(s)
   const listIndex = lists.value.findIndex((l: List) => l.id === props.list.id);
-  lists.value[listIndex].cards.forEach((card: Card, order: number) => {
+  // trigget PATCH request for every car that was dragged
+  lists.value[listIndex].cards.forEach((card: Card, order: Card['order']) => {
     patchCard(card, { listId: props.list.id, order });
   });
 };

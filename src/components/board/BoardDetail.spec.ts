@@ -1,4 +1,3 @@
-
 import BoardDetail from '@/components/board/BoardDetail.vue';
 
 it('shows BoardDetail', () => {

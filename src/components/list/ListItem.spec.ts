@@ -1,8 +1,8 @@
-
 import ListItem from '@/components/list/ListItem.vue';
+import List from '@/typings/list';
 
-it('hello', () => {
-  const list = {
+it('mounts component', () => {
+  const list: List = {
     boardId: 1,
     name: 'list',
     order: 0,
@@ -14,6 +14,6 @@ it('hello', () => {
   cy.mount(ListItem, {
     props: {
       list,
-    },
+    } as any,
   });
 });

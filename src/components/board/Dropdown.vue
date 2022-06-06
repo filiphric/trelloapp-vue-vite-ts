@@ -49,7 +49,7 @@ defineProps({
   },
 });
 
-const router = useRouter()
+const router = useRouter();
 const dropdown = ref(false);
 const { deleteBoard } = useStore();
 const onClickAway = () => {

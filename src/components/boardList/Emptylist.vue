@@ -26,12 +26,12 @@
 import { ref } from 'vue';
 import { useStore } from '@/stores/store';
 import { useRouter } from 'vue-router';
-const router = useRouter()
+const router = useRouter();
 
 const newBoardTitle = ref('');
 const { createBoard } = useStore();
 const redirectToNewBoard = async () => {
-  const { id } = await createBoard(newBoardTitle.value)
-  router.push(`/board/${id}`)  
-}
+  const { id } = await createBoard(newBoardTitle.value);
+  router.push(`/board/${id}`);
+};
 </script>

@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 export const signup = async function (this: any, email: string, password: string, welcomeEmail: boolean) {
   await axios
     .post('/api/signup', { email, password, welcomeEmail })

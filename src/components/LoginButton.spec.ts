@@ -1,4 +1,3 @@
-
 import LoginButton from '@/components/LoginButton.vue';
 
 it('shows login button', () => {

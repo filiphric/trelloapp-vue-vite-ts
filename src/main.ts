@@ -10,11 +10,11 @@ import { router } from '@/router/index';
 
 // const socket = io('http://localhost:3000');
 
-const pinia = createPinia()
+const pinia = createPinia();
 
 const app = createApp(App).use(pinia).use(VueClickAway);
 
-app.use(router)
+app.use(router);
 // .use(VueSocketIOExt, socket);
 
 // make axios available to the whole app by accessing this.axios

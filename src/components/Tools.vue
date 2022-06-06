@@ -7,13 +7,19 @@
     Reset application:
     <button
       class="px-1 m-1 bg-white border border-black"
-      @click="reset(); router.push('/')"
+      @click="
+        reset();
+        router.push('/');
+      "
     >
       All
     </button>
     <button
       class="px-1 m-1 bg-white border border-black"
-      @click="resetBoards(); router.push('/')"
+      @click="
+        resetBoards();
+        router.push('/');
+      "
     >
       Boards
     </button>
@@ -44,6 +50,5 @@ import { useRouter } from 'vue-router';
 
 const { reset, resetBoards, resetLists, resetCards, resetUsers } = useStore();
 
-const router = useRouter()
-
+const router = useRouter();
 </script>

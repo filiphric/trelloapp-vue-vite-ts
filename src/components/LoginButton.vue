@@ -38,12 +38,12 @@ import { useRoute, useRouter } from 'vue-router';
 import LogoutIcon from '@/assets/icons/logoutIcon.svg';
 import User from '@/assets/icons/user.svg';
 import axios from 'axios';
-import { storeToRefs } from 'pinia'
+import { storeToRefs } from 'pinia';
 
 const router = useRouter();
 const route = useRoute();
 const { showNotification, getBoardList } = useStore();
-const { activeUser } = storeToRefs(useStore())
+const { activeUser } = storeToRefs(useStore());
 const logout = function (this: any) {
   activeUser.value.loggedIn = false;
   axios.defaults.headers.common['Authorization'] = '';

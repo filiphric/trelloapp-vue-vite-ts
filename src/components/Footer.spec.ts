@@ -1,4 +1,3 @@
-
 import Footer from '@/components/Footer.vue';
 
 it('shows footer', () => {

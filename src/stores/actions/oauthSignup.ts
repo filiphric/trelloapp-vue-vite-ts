@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 export const oauthSignup = async function (this: any, jwt: string) {
   await axios
     .post('/api/signup', { jwt })

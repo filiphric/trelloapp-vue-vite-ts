@@ -45,8 +45,8 @@ import SaveButton from '@/components/SaveButton.vue';
 let newBoardTitle = ref();
 let newBoardInputActive = ref(false);
 const boardCreateInput = ref();
-const router = useRouter()
-const { createBoard } = useStore()
+const router = useRouter();
+const { createBoard } = useStore();
 const inputVisible = (flag: boolean) => {
   newBoardInputActive.value = flag;
 };
@@ -62,10 +62,9 @@ const focusNewBoardInput = () => {
 };
 
 const redirectToNewBoard = async () => {
-  const board = await createBoard(newBoardTitle.value)
-  board?.id && router.push(`/board/${board.id}`)  
-}
-
+  const board = await createBoard(newBoardTitle.value);
+  board?.id && router.push(`/board/${board.id}`);
+};
 </script>
 <style lang="postcss" scoped>
 h1 {

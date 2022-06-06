@@ -1,17 +1,16 @@
-
 import Notification from '@/components/Notification.vue';
 import { useStore } from '@/stores/store';
-import { createPinia } from 'pinia'
+import { createPinia } from 'pinia';
 
-const pinia = createPinia()
-const store = useStore(pinia)
+const pinia = createPinia();
+const store = useStore(pinia);
 const { showNotification } = useStore();
 
 it('renders a info message', () => {
   const message = 'This is an info message';
-  
+
   cy.mount(Notification, { store });
-  
+
   showNotification(message, false);
 
   cy.getDataCy('notification-message').should('be.visible').should('contain', message);
@@ -21,7 +20,7 @@ it('renders a info message', () => {
 
 it('renders a error message', () => {
   const message = 'This is an error message';
-  
+
   cy.mount(Notification, { store });
 
   showNotification(message, true);
@@ -30,4 +29,3 @@ it('renders a error message', () => {
 
   cy.getDataCy('error-icon').should('be.visible');
 });
-

@@ -1,8 +1,7 @@
-
 import Navbar from '@/components/Navbar.vue';
 
 beforeEach(() => {
-  cy.mount(Navbar)
+  cy.mount(Navbar);
 });
 
 it('shows a navbar on home page', () => {

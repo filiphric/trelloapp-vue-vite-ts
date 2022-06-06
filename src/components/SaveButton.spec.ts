@@ -6,7 +6,7 @@ it('renders a message', () => {
   cy.mount(SaveButton, {
     props: {
       buttontext,
-    },
+    } as any,
   });
 
   cy.get('button').should('have.text', buttontext);

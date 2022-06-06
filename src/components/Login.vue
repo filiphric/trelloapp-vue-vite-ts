@@ -20,16 +20,20 @@
         class="px-2 mb-3 w-full h-10 bg-gray3 focus:bg-white rounded-sm"
         placeholder="Password"
         name="password"
-        @keyup.enter="login(loginForm.email, loginForm.password).then( () => {
-          router.push('/')  
-        })"
+        @keyup.enter="
+          login(loginForm.email, loginForm.password).then(() => {
+            router.push('/');
+          })
+        "
       >
       <button
         data-cy="login-submit"
         class="py-2 w-full text-white bg-green7 hover:bg-green6"
-        @click="login(loginForm.email, loginForm.password).then( () => {
-          router.push('/')  
-        })"
+        @click="
+          login(loginForm.email, loginForm.password).then(() => {
+            router.push('/');
+          })
+        "
       >
         Log in
       </button>
@@ -60,7 +64,7 @@ import GoogleSignIn from './GoogleSignIn.vue';
 import GoogleButton from './GoogleButton.vue';
 import { useRouter } from 'vue-router';
 
-const router = useRouter()
+const router = useRouter();
 const { oauthLogin, login } = useStore();
 const { loginForm } = storeToRefs(useStore());
 const googleEnabled = process.env.VUE_APP_GOOGLE_ENABLED;

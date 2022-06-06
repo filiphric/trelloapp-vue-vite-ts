@@ -1,4 +1,3 @@
-
 import GoogleButton from '@/components/GoogleButton.vue';
 
 it('shows google button', () => {
