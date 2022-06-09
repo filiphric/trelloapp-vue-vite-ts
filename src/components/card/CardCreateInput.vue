@@ -75,5 +75,3 @@ onMounted(() => {
   cardCreate.value.focus();
 });
 </script>
-
-<style></style>

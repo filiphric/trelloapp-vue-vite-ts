@@ -19,5 +19,3 @@ import { useStore } from '@/store/store';
 import { storeToRefs } from 'pinia';
 const { loadingError } = storeToRefs(useStore());
 </script>
-
-<style></style>

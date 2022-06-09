@@ -86,5 +86,3 @@ const onClickAway = () => {
   listTitle.value = '';
 };
 </script>
-
-<style></style>

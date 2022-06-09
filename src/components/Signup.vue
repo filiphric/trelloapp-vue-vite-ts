@@ -83,5 +83,3 @@ function handleResponse(value: any): void {
   oauthSignup(value.googleUser.wc.id_token);
 }
 </script>
-
-<style></style>

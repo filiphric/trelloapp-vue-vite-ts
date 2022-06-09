@@ -59,5 +59,3 @@ const showDropdown = () => {
   dropdown.value = !dropdown.value;
 };
 </script>
-
-<style></style>

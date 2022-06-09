@@ -14,5 +14,3 @@
 import Plus from '@/assets/icons/Plus.svg';
 defineEmits(['toggleInput']);
 </script>
-
-<style></style>
