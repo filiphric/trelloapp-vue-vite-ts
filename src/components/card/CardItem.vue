@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import { PropType } from 'vue';
-import { useStore } from '@/stores/store';
+import { useStore } from '@/store/store';
 import Card from '@/typings/card';
 import Checkbox from '@/components/Checkbox.vue';
 import Clock from '@/assets/icons/clock.svg';

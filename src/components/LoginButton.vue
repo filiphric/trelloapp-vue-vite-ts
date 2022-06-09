@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from '@/stores/store';
+import { useStore } from '@/store/store';
 import { useRoute, useRouter } from 'vue-router';
 import LogoutIcon from '@/assets/icons/logoutIcon.svg';
 import User from '@/assets/icons/user.svg';

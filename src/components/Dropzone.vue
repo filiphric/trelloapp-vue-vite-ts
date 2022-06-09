@@ -38,7 +38,7 @@
 
 <script setup lang="ts">
 import { PropType, ref } from 'vue';
-import { useStore } from '@/stores/store';
+import { useStore } from '@/store/store';
 import Card from '@/typings/card';
 import Dropicon from '@/assets/icons/dropicon.svg';
 defineProps({

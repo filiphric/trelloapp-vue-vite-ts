@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from '@/stores/store';
+import { useStore } from '@/store/store';
 import BoardDetail from '@/components/board/BoardDetail.vue';
 import CardDetail from '@/components/card/CardDetail.vue';
 import { storeToRefs } from 'pinia';

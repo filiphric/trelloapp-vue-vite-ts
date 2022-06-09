@@ -47,7 +47,7 @@ export const useStore = defineStore({
       activeCard: {},
       notification: {
         error: false,
-        show: true,
+        show: false,
         message: '',
       },
       boardList: {

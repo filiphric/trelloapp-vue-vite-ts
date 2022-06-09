@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from '@/stores/store';
+import { useStore } from '@/store/store';
 import Card from '@/typings/card';
 import { PropType } from 'vue';
 defineProps({

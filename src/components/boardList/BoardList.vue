@@ -50,7 +50,7 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from '@/stores/store';
+import { useStore } from '@/store/store';
 import BoardCreate from '@/components/board/BoardCreate.vue';
 import BoardItem from '@/components/board/BoardItem.vue';
 import Emptylist from '@/components/boardList/Emptylist.vue';

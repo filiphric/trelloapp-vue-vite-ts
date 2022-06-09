@@ -189,7 +189,7 @@ import { DatePicker } from 'v-calendar';
 import { blurInput } from '@/utils/blurInput';
 import { ref, onMounted } from 'vue';
 import { selectInput } from '@/utils/selectInput';
-import { useStore } from '@/stores/store';
+import { useStore } from '@/store/store';
 import Attachment from '@/assets/icons/attachment.svg';
 import Board from '@/assets/icons/board.svg';
 import Card from '@/typings/card';

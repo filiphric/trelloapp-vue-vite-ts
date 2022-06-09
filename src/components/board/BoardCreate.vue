@@ -37,7 +37,7 @@
 
 <script setup lang="ts">
 import { nextTick, ref } from 'vue';
-import { useStore } from '@/stores/store';
+import { useStore } from '@/store/store';
 import { useRouter } from 'vue-router';
 import Cross from '@/assets/icons/cross.svg';
 import SaveButton from '@/components/SaveButton.vue';

@@ -36,7 +36,7 @@
 
 <script setup lang="ts">
 import { PropType, ref } from 'vue';
-import { useStore } from '@/stores/store';
+import { useStore } from '@/store/store';
 import { useRouter } from 'vue-router';
 import Board from '@/typings/board';
 import Cross from '@/assets/icons/cross.svg';

@@ -70,7 +70,7 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from '@/stores/store';
+import { useStore } from '@/store/store';
 import { storeToRefs } from 'pinia';
 import GoogleSignIn from './GoogleSignIn.vue';
 import GoogleButton from './GoogleButton.vue';

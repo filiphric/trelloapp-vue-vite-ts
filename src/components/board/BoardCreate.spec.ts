@@ -1,5 +1,5 @@
 import BoardCreate from '@/components/board/BoardCreate.vue';
-import { useStore } from '@/stores/store';
+import { useStore } from '@/store/store';
 import { createPinia } from 'pinia';
 
 const pinia = createPinia();

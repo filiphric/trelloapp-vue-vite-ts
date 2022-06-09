@@ -43,7 +43,7 @@
 
 <script setup lang="ts">
 import { PropType, ref, nextTick } from 'vue';
-import { useStore } from '@/stores/store';
+import { useStore } from '@/store/store';
 import Board from '@/typings/board';
 import Cross from '@/assets/icons/cross.svg';
 import Plus from '@/assets/icons/plus.svg';

@@ -1,5 +1,5 @@
 import Notification from '@/components/Notification.vue';
-import { useStore } from '@/stores/store';
+import { useStore } from '@/store/store';
 import { createPinia } from 'pinia';
 
 const pinia = createPinia();
@@ -9,7 +9,7 @@ const { showNotification } = useStore();
 it('renders a info message', () => {
   const message = 'This is an info message';
 
-  cy.mount(Notification, { store });
+  cy.mount(Notification);
 
   showNotification(message, false);
 

@@ -71,7 +71,7 @@ import { ref } from 'vue';
 import { blurInput } from '@/utils/blurInput';
 import { inputValue } from '@/utils/inputValue';
 import { selectInput } from '@/utils/selectInput';
-import { useStore } from '@/stores/store';
+import { useStore } from '@/store/store';
 import Card from '@/typings/card';
 import CardCreateInput from '@/components/card/CardCreateInput.vue';
 import CardItem from '@/components/card/CardItem.vue';

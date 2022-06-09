@@ -1,10 +1,10 @@
 import { mount } from 'cypress/vue'
-import { getDataCy } from '@commands/getDataCy'
 import { createPinia } from 'pinia'
 import { createMemoryHistory, createRouter } from 'vue-router'
 import { routes } from '@/router/routes';
-import { useStore } from '@/stores/store';
+import { useStore } from '@/store/store';
 import VueClickAway from 'vue3-click-away';
+import './common'
 import '@/index.css';
 
 type MountParams = Parameters<typeof mount>
@@ -45,4 +45,3 @@ Cypress.Commands.add('mount', (component, options = {}) => {
   return mount(component, options)
 })
 
-Cypress.Commands.add('getDataCy', getDataCy);

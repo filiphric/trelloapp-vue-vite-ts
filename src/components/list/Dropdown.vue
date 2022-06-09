@@ -48,7 +48,7 @@
 
 <script setup lang="ts">
 import { PropType, ref } from 'vue';
-import { useStore } from '@/stores/store';
+import { useStore } from '@/store/store';
 import Cross from '@/assets/icons/cross.svg';
 import Dots from '@/assets/icons/dots.svg';
 import List from '@/typings/list';

@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from '@/stores/store';
+import { useStore } from '@/store/store';
 import { storeToRefs } from 'pinia';
 const { loadingError } = storeToRefs(useStore());
 </script>

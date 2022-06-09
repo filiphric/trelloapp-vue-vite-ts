@@ -93,7 +93,7 @@
 import { blurInput } from '@/utils/blurInput';
 import { ref } from 'vue';
 import { selectInput } from '@/utils/selectInput';
-import { useStore } from '@/stores/store';
+import { useStore } from '@/store/store';
 import { useRoute } from 'vue-router';
 import Dropdown from '@/components/board/Dropdown.vue';
 import ListCreate from '@/components/list/ListCreate.vue';

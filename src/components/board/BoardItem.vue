@@ -33,7 +33,7 @@
 import { PropType, ref } from 'vue';
 import Board from '@/typings/board';
 import Star from '@/assets/icons/star.svg';
-import { useStore } from '@/stores/store';
+import { useStore } from '@/store/store';
 
 const { patchBoard } = useStore();
 defineProps({

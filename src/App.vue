@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from './stores/store';
+import { useStore } from '@/store/store';
 import Navbar from '@/components/Navbar.vue';
 import Notification from '@/components/Notification.vue';
 import Tools from './components/Tools.vue';

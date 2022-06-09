@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import LoadingIcon from '@/assets/icons/loadingIcon.svg';
-import { useStore } from '@/stores/store';
+import { useStore } from '@/store/store';
 import { storeToRefs } from 'pinia';
 const { loading, loadingError } = storeToRefs(useStore());
 </script>
