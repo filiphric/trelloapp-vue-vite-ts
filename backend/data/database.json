@@ -8,20 +8,7 @@
       "id": 1
     }
   ],
-  "cards": [
-    {
-      "boardId": 1,
-      "listId": 1,
-      "name": "new name",
-      "order": 0,
-      "created": "2022-06-11",
-      "deadline": "2021-08-15",
-      "description": "new description",
-      "completed": false,
-      "id": 1,
-      "image": null
-    }
-  ],
+  "cards": [],
   "lists": [
     {
       "boardId": 1,
