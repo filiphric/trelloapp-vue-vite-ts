@@ -52,11 +52,11 @@ it('card detail actions', function() {
   cy.step('card deadline hide')
   cy.getDataCy('calendar-button').click();
   cy.getDataCy('card-detail-deadline').should('be.visible');
-  cy.get('.vc-title').click();
-  cy.get('.vc-nav-title').click();
-  cy.contains('.vc-nav-item', '2021').click();
-  cy.contains('.vc-nav-item', 'Aug').click();
-  cy.contains('.vc-day.id-2021-08-15', '15').click();
+  cy.getDataCy('header-year').click();
+  cy.contains('[data-cy=year]', '2021').click();
+  cy.getDataCy('header-month').click();
+  cy.contains('[data-cy=month]', 'Aug').click();
+  cy.contains('[data-cy=day]', '15').click();
   cy.wait('@updateCard')
     .its('response.body.deadline')
     .should('eq', '2021-08-15');

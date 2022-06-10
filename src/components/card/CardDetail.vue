@@ -79,8 +79,35 @@
                 inline
                 auto-apply
                 :enable-time-picker="false"
+                data-cy="card-detail-deadline"
                 @update:model-value="updateDate"
-              />
+              >
+                <template #day="{ day }">
+                  <div data-cy="day">
+                    {{ day }}
+                  </div>
+                </template>
+                <template #month="{ text }">
+                  <div data-cy="header-month">
+                    {{ text }}
+                  </div>
+                </template>
+                <template #month-overlay="{ text }">
+                  <div data-cy="month">
+                    {{ text }}
+                  </div>
+                </template>
+                <template #year="{ year }">
+                  <div data-cy="header-year">
+                    {{ year }}
+                  </div>
+                </template>
+                <template #year-overlay="{ text }">
+                  <div data-cy="year">
+                    {{ text }}
+                  </div>
+                </template>
+              </Datepicker>
             </div>
           </div>
         </div>
@@ -212,7 +239,7 @@ const cardListName = lists.value.find((l: List) => l.id === activeCard.value.lis
 const showDate = ref(false);
 const cardNameInputActive = ref(false);
 const descriptionInputActive = ref(false);
-const date = ref();
+const date = ref(new Date());
 
 const clickAwayCardName = () => {
   cardNameInputActive.value = false;
