@@ -41,10 +41,10 @@ export const getBoardDetail = async function (this: any, id: Board['id']) {
     this.loading = false;
   }
  catch (err) {
-    const { response } = err as AxiosError;
+    const { response } = err as AxiosError<any>;
     this.loading = false;
     this.loadingError.show = true;
-    this.loadingError.message = response?.data.message;
+    this.loadingError.message = response?.data?.message;
     this.loadingError.status = response?.status;
   }
 };
