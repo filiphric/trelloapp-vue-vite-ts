@@ -33,7 +33,7 @@
   </div>
   <div
     v-else
-    class="p-2.5 ml-3 w-list text-sm text-gray-50 bg-white rounded cursor-pointer bg-opacity-20 hover:bg-opacity-30 flex-no-shrink"
+    class="p-2.5 ml-3 w-list text-sm text-gray-50 bg-white bg-opacity-20 hover:bg-opacity-30 rounded cursor-pointer flex-no-shrink"
     data-cy="create-list"
     @click="enableInput()"
   >

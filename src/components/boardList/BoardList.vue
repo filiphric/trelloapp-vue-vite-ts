@@ -20,7 +20,7 @@
         >
           Starred
         </h1>
-        <div class="flex flex-wrap gap-8 content-start mx-4 flex-cols-3 flex-grow">
+        <div class="flex flex-wrap flex-grow gap-8 content-start mx-4 flex-cols-3">
           <BoardItem
             v-for="board in state.starred"
             :key="board.id"
@@ -35,7 +35,7 @@
         <h1 class="inline-block py-5 mx-4 text-3xl font-semibold">
           My Boards
         </h1>
-        <div class="flex flex-wrap gap-8 content-start mx-4 flex-cols-3 flex-grow">
+        <div class="flex flex-wrap flex-grow gap-8 content-start mx-4 flex-cols-3">
           <BoardItem
             v-for="board in state.allBoards"
             :key="board.id"

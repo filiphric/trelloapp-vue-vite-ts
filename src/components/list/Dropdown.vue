@@ -4,7 +4,7 @@
     @click="showDropdown()"
   >
     <Dots
-      class="inline-block place-self-end p-1.5 w-8 h-8 text-gray10 bg-transparent hover:bg-gray4 active:bg-gray7 rounded-sm border-2 border-transparent cursor-pointer flex-grow-0"
+      class="inline-block flex-grow-0 place-self-end p-1.5 w-8 h-8 text-gray10 bg-transparent hover:bg-gray4 active:bg-gray7 rounded-sm border-2 border-transparent cursor-pointer"
     />
   </button>
   <div

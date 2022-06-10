@@ -41,7 +41,7 @@
           <input
             v-model="state.board.name"
             v-click-away="onClickAway"
-            class="text-white bg-white board-title bg-opacity-20 hover:bg-opacity-30"
+            class="text-white bg-white bg-opacity-20 hover:bg-opacity-30 board-title"
             data-cy="board-title"
             autocomplete="off"
             name="board-title"
@@ -52,7 +52,7 @@
           >
         </div>
         <div
-          class="inline-grid relative self-center ml-2 w-8 h-8 bg-white rounded-sm cursor-pointer bg-opacity-20 hover:bg-opacity-30"
+          class="inline-grid relative self-center ml-2 w-8 h-8 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-sm cursor-pointer"
           :class="[state.board.starred ? 'fill-current text-yellow-300' : 'stroke-current text-white']"
           data-cy="star"
           @click="

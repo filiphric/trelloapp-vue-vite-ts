@@ -8,7 +8,7 @@
     <div class="flex mb-1">
       <input
         v-click-away="onClickAway"
-        class="inline-block py-0.5 px-1 h-8 text-sm font-semibold text-gray-900 bg-gray2 focus:bg-gray1 rounded-sm border-2 border-transparent focus:border-blue6 outline-none cursor-pointer flex-grow"
+        class="inline-block flex-grow py-0.5 px-1 h-8 text-sm font-semibold text-gray-900 bg-gray2 focus:bg-gray1 rounded-sm border-2 border-transparent focus:border-blue6 outline-none cursor-pointer"
         data-cy="list-name"
         :value="list.name"
         @mouseup="

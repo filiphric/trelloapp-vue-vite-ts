@@ -6,7 +6,7 @@
     <!-- LOGGED OUT -->
     <div
       v-show="!activeUser.loggedIn"
-      class="flex self-center h-8 text-sm bg-white rounded-sm cursor-pointer bg-opacity-30 hover:bg-opacity-20"
+      class="flex self-center h-8 text-sm bg-white bg-opacity-30 hover:bg-opacity-20 rounded-sm cursor-pointer"
       data-cy="login-menu"
       @click="router.push('/login')"
     >
@@ -16,7 +16,7 @@
     <!-- LOGGED IN -->
     <div
       v-show="activeUser.loggedIn"
-      class="flex self-center h-8 text-sm bg-white rounded-sm cursor-pointer bg-opacity-30 hover:bg-opacity-20"
+      class="flex self-center h-8 text-sm bg-white bg-opacity-30 hover:bg-opacity-20 rounded-sm cursor-pointer"
       data-cy="logged-user"
       @click="
         logout();
