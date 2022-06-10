@@ -60,5 +60,3 @@ import Loading from '@/components/Loading.vue';
 const state = useStore();
 state.getBoardList();
 </script>
-
-<style lang="postcss" scoped></style>

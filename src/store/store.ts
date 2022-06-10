@@ -113,10 +113,10 @@ export const useStore = defineStore({
     resetUsers,
   },
   getters: {
-    starred: (state) => {
+    starred: (state): Board[] => {
       return state.boardList.all.filter((board: Board) => board.starred === true);
     },
-    allBoards: (state) => {
+    allBoards: (state): Board[] => {
       return state.boardList.all.filter((board: Board) => board.starred === false);
     },
   },

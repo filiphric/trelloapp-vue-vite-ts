@@ -8,7 +8,7 @@ declare module 'pinia' {
   export interface PiniaCustomStateProperties<S> {
     board: Board;
     redirectBoardId: Board['id'];
-    lists: List[];
+    lists: List[] | any;
     loading: boolean;
     loadingListCards: Record<any, string>;
     loadingError: {

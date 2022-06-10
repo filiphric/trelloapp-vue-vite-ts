@@ -71,18 +71,15 @@
             </h2>
             <div
               v-if="showDate"
-              class="absolute w-full"
+              class="absolute"
             >
-              <DatePicker
-                v-model="activeCard.deadline"
+              <Datepicker
+                v-model="date"
                 v-click-away="clickAwayDate"
-                :model-config="modelConfig"
-                class="shadow-lg"
-                data-cy="card-detail-deadline"
-                @dayclick="
-                  patchCard(activeCard, { deadline: activeCard.deadline });
-                  showDate = false;
-                "
+                inline
+                auto-apply
+                :enable-time-picker="false"
+                @update:model-value="updateDate"
               />
             </div>
           </div>
@@ -185,7 +182,8 @@
 </template>
 
 <script setup lang="ts">
-import { DatePicker } from 'v-calendar';
+import Datepicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
 import { blurInput } from '@/utils/blurInput';
 import { ref, onMounted } from 'vue';
 import { selectInput } from '@/utils/selectInput';
@@ -214,15 +212,18 @@ const cardListName = lists.value.find((l: List) => l.id === activeCard.value.lis
 const showDate = ref(false);
 const cardNameInputActive = ref(false);
 const descriptionInputActive = ref(false);
-const modelConfig = ref({
-  type: 'string',
-  mask: 'YYYY-MM-DD',
-});
+const date = ref();
 
 const clickAwayCardName = () => {
   cardNameInputActive.value = false;
 };
 const clickAwayDate = () => {
+  showDate.value = false;
+};
+
+const updateDate = (data: string) => {
+  const formattedDate = moment(data).format('YYYY-MM-DD');
+  patchCard(activeCard.value, { deadline: formattedDate });
   showDate.value = false;
 };
 
