@@ -8,14 +8,14 @@
     <div class="flex mb-1">
       <input
         v-click-away="onClickAway"
-        class="inline-block py-0.5 px-1 h-8 text-sm font-semibold text-gray-900 bg-gray2 focus:bg-gray1 rounded-sm border-2 border-transparent focus:border-blue6 outline-none cursor-pointer flex-grow"
+        class="inline-block flex-grow py-0.5 px-1 h-8 text-sm font-semibold text-gray-900 bg-gray2 focus:bg-gray1 rounded-sm border-2 border-transparent focus:border-blue6 outline-none cursor-pointer"
         data-cy="list-name"
         :value="list.name"
         @mouseup="
           selectInput($event);
           inputActive = true;
         "
-        @change="state.patchList(list, { name: inputValue($event) })"
+        @change="patchList(list, { name: inputValue($event) })"
         @keyup.enter="
           blurInput($event);
           inputActive = false;
@@ -32,7 +32,7 @@
       :class="isDragging ?? 'min-h-[100px]'"
     >
       <div
-        v-if="state.loadingListCards[list.id]"
+        v-if="loadingListCards[list.id]"
         class="block place-self-center text-xs text-center"
       >
         <LoadingIcon class="inline-block mb-1" />&nbsp;&nbsp;Loading cards ...
@@ -42,6 +42,7 @@
         animation="150"
         group="cards"
         ghost-class="bg-gray2"
+        :item-key="list.name"
         @change="sortCards"
       >
         <template #item="{ element }">
@@ -65,12 +66,12 @@
   </div>
 </template>
 
-<script lang="ts">
-import { PropType, defineComponent } from 'vue';
+<script setup lang="ts">
+import { ref } from 'vue';
 import { blurInput } from '@/utils/blurInput';
 import { inputValue } from '@/utils/inputValue';
 import { selectInput } from '@/utils/selectInput';
-import { store } from '@/stores/store';
+import { useStore } from '@/store/store';
 import Card from '@/typings/card';
 import CardCreateInput from '@/components/card/CardCreateInput.vue';
 import CardItem from '@/components/card/CardItem.vue';
@@ -79,49 +80,31 @@ import List from '@/typings/list';
 import Plus from '@/assets/icons/plus.svg';
 import draggable from 'vuedraggable';
 import LoadingIcon from '@/assets/icons/loadingIcon.svg';
+import { storeToRefs } from 'pinia';
 
-export default defineComponent({
-  components: {
-    CardCreateInput,
-    CardItem,
-    Dropdown,
-    Plus,
-    draggable,
-    LoadingIcon,
-  },
-  props: {
-    list: {
-      default: null,
-      type: Object as PropType<List>,
-    },
-  },
-  setup() {
-    const state = store();
-    return { blurInput, inputValue, selectInput, state };
-  },
-  data() {
-    return {
-      cardCreate: false,
-      drag: false,
-      inputActive: false,
-      isDragging: false,
-    };
-  },
-  methods: {
-    onClickAway() {
-      this.inputActive = false;
-    },
-    showCardCreate(flag: boolean) {
-      this.cardCreate = flag;
-    },
-    sortCards() {
-      const listIndex = this.state.lists.findIndex((l: List) => l.id === this.list.id);
-      this.state.lists[listIndex].cards.forEach((card: Card, order: number) => {
-        this.state.patchCard(card, { listId: this.list.id, order });
-      });
-    },
-  },
-});
+const props = defineProps<{
+  list: List;
+}>();
+
+const cardCreate = ref(false);
+const inputActive = ref(false);
+const isDragging = ref(false);
+
+const { lists, loadingListCards } = storeToRefs(useStore());
+const { patchCard, patchList } = useStore();
+
+const onClickAway = () => {
+  inputActive.value = false;
+};
+const showCardCreate = (flag: boolean) => {
+  cardCreate.value = flag;
+};
+const sortCards = () => {
+  // find list index of dragged card(s)
+  const listIndex = lists.value.findIndex((l: List) => l.id === props.list.id);
+  // trigget PATCH request for every car that was dragged
+  lists.value[listIndex].cards.forEach((card: Card, order: Card['order']) => {
+    patchCard(card, { listId: props.list.id, order });
+  });
+};
 </script>
-
-<style lang="postcss" scoped></style>

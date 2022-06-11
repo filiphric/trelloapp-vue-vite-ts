@@ -7,9 +7,3 @@
     ...powered by coffee and love ❤️&nbsp;&nbsp;Filip Hric
   </a>
 </template>
-
-<script>
-export default {};
-</script>
-
-<style></style>

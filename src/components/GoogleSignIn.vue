@@ -6,55 +6,46 @@
     <slot />
   </span>
 </template>
-<script lang="ts">
+<script setup lang="ts">
 import { installGoogleAuth } from '../GoogleAuth';
-import { defineComponent, onMounted } from 'vue';
+import { onMounted } from 'vue';
 const googleClientId = process.env.VUE_APP_GOOGLE_CLIENT_ID;
 
-export default defineComponent({
-  name: 'GoogleAuth',
-  props: {
-    // eslint-disable-next-line vue/require-default-prop
-    clientId: String,
-  },
-  emits: ['on-submit'],
-  setup(props, { emit }) {
-    let gAuth: any = null;
+defineProps({
+  // eslint-disable-next-line vue/require-default-prop
+  clientId: String,
+});
 
-    function signIn() {
-      if (!gAuth) return;
-      gAuth
-        .signIn()
-        .then((googleUser: any) => {
-          const user = {
-            id: googleUser?.getBasicProfile()?.getId(),
-            email: googleUser?.getBasicProfile()?.getEmail(),
-            name: googleUser?.getBasicProfile()?.getName(),
-            picture: googleUser?.getBasicProfile()?.getImageUrl(),
-            googleUser: googleUser,
-          };
-          emit('on-submit', user);
-        })
-        .catch((e: any) => {
-          console.log('error', e);
-          emit('on-submit', e);
-        });
-    }
+const emit = defineEmits(['on-submit']);
 
-    function signOut() {
-      gAuth.signOut();
-    }
+let gAuth: any = null;
 
-    const options = {
-      clientId: googleClientId,
-      scope: 'profile email',
-      prompt: 'select_account',
-    };
-    onMounted(async () => {
-      gAuth = await installGoogleAuth(options);
+function signIn() {
+  if (!gAuth) return;
+  gAuth
+    .signIn()
+    .then((googleUser: any) => {
+      const user = {
+        id: googleUser?.getBasicProfile()?.getId(),
+        email: googleUser?.getBasicProfile()?.getEmail(),
+        name: googleUser?.getBasicProfile()?.getName(),
+        picture: googleUser?.getBasicProfile()?.getImageUrl(),
+        googleUser: googleUser,
+      };
+      emit('on-submit', user);
+    })
+    .catch((e: any) => {
+      console.log('error', e);
+      emit('on-submit', e);
     });
+}
 
-    return { signIn, signOut };
-  },
+const options = {
+  clientId: googleClientId,
+  scope: 'profile email',
+  prompt: 'select_account',
+};
+onMounted(async () => {
+  gAuth = await installGoogleAuth(options);
 });
 </script>

@@ -2,7 +2,10 @@
   <div
     class="flex fixed top-0 left-0 z-40 justify-center items-center w-full h-full bg-backdrop"
     data-cy="card-detail-backdrop"
-    @click.self="state.showCardModule(state.activeCard.id, false)"
+    @click.self="
+      showCardModule(activeCard.id, false);
+      router.push(router.currentRoute.value.path);
+    "
   >
     <div
       class="grid overflow-scroll grid-cols-8 gap-x-2 p-8 w-cardDetail h-5/6 bg-gray2"
@@ -14,7 +17,7 @@
             <Board class="-mb-1 -ml-8 w-5 h-5 text-gray-800 fill-current stroke-current" />
           </div>
           <input
-            v-model="state.activeCard.name"
+            v-model="activeCard.name"
             v-click-away="clickAwayCardName"
             class="py-1 focus:px-1.5 w-full font-bold bg-gray2 focus:bg-white rounded-sm cursor-pointer"
             data-cy="card-detail-title"
@@ -22,7 +25,7 @@
               selectInput($event);
               cardNameInputActive = true;
             "
-            @change="state.patchCard(state.activeCard, { name: state.activeCard.name })"
+            @change="patchCard(activeCard, { name: activeCard.name })"
             @keyup.enter="
               blurInput($event);
               cardNameInputActive = false;
@@ -44,17 +47,17 @@
             DUE DATE
           </h2>
           <div class="inline-block mt-2">
-            <Checkbox :card="state.activeCard" />
+            <Checkbox :card="activeCard" />
             <h2 class="inline-block py-1 px-4 font-light text-gray-800 bg-gray3 hover:bg-gray5 rounded-sm cursor-default">
-              {{ new Date(state.activeCard.deadline).toDateString() }}
+              {{ new Date(activeCard.deadline).toDateString() }}
               <div
-                v-show="state.activeCard.completed"
+                v-show="activeCard.completed"
                 class="inline-block px-2 mx-1 text-sm text-white bg-green5 rounded-sm"
               >
                 COMPLETED
               </div>
               <div
-                v-show="overdue(state.activeCard) && !state.activeCard.completed"
+                v-show="overdue(activeCard) && !activeCard.completed"
                 class="inline-block px-2 mx-1 text-sm text-white bg-red-500 rounded-sm"
               >
                 OVERDUE
@@ -68,19 +71,43 @@
             </h2>
             <div
               v-if="showDate"
-              class="absolute w-full"
+              class="absolute"
             >
-              <DatePicker
-                v-model="state.activeCard.deadline"
+              <Datepicker
+                v-model="date"
                 v-click-away="clickAwayDate"
-                :model-config="modelConfig"
-                class="shadow-lg"
+                inline
+                auto-apply
+                :enable-time-picker="false"
                 data-cy="card-detail-deadline"
-                @dayclick="
-                  state.patchCard(state.activeCard, { deadline: state.activeCard.deadline });
-                  showDate = false;
-                "
-              />
+                @update:model-value="updateDate"
+              >
+                <template #day="{ day }">
+                  <div data-cy="day">
+                    {{ day }}
+                  </div>
+                </template>
+                <template #month="{ text }">
+                  <div data-cy="header-month">
+                    {{ text }}
+                  </div>
+                </template>
+                <template #month-overlay="{ text }">
+                  <div data-cy="month">
+                    {{ text }}
+                  </div>
+                </template>
+                <template #year="{ year }">
+                  <div data-cy="header-year">
+                    {{ year }}
+                  </div>
+                </template>
+                <template #year-overlay="{ text }">
+                  <div data-cy="year">
+                    {{ text }}
+                  </div>
+                </template>
+              </Datepicker>
             </div>
           </div>
         </div>
@@ -92,14 +119,14 @@
             Description
           </h1>
           <textarea
-            v-model="state.activeCard.description"
+            v-model="activeCard.description"
             class="p-3 w-full h-36 resize-none"
             data-cy="card-description"
             @focus="
               selectInput($event);
               descriptionInputActive = true;
             "
-            @change="state.patchCard(state.activeCard, { description: state.activeCard.description })"
+            @change="patchCard(activeCard, { description: activeCard.description })"
             @keydown.enter="
               blurInput($event);
               descriptionInputActive = false;
@@ -118,19 +145,19 @@
             Image
           </h1>
           <div
-            v-if="state.activeCard.image"
+            v-if="activeCard.image"
             class="grid grid-cols-6 gap-x-4"
             data-cy="image-attachment"
           >
             <div class="col-span-2 row-span-2">
-              <img :src="'/backend' + state.activeCard.image">
+              <img :src="'/backend' + activeCard.image">
             </div>
             <div class="col-span-4 font-bold">
-              {{ state.activeCard.image.replace(`/data/uploaded/${state.activeCard.id}_`, '') }}
+              {{ activeCard.image.replace(`/data/uploaded/${activeCard.id}_`, '') }}
               <div
                 class="block font-normal underline cursor-pointer"
                 data-cy="image-delete"
-                @click="state.patchCard(state.activeCard, { image: null })"
+                @click="patchCard(activeCard, { image: null })"
               >
                 <Cross class="inline-block mb-1 w-4" />Delete
               </div>
@@ -138,7 +165,7 @@
           </div>
           <Dropzone
             v-else
-            :card="state.activeCard"
+            :card="activeCard"
           />
         </div>
       </div>
@@ -146,7 +173,10 @@
         <div class="grid self-end place-content-center place-self-end w-8 h-8 hover:bg-gray5 cursor-pointer">
           <Cross
             class="w-6 h-6 text-gray-600 fill-current"
-            @click="state.showCardModule(state.activeCard.id, false)"
+            @click="
+              showCardModule(activeCard.id, false);
+              router.push(router.currentRoute.value.path);
+            "
           />
         </div>
         <div
@@ -159,14 +189,17 @@
         <div
           class="py-0.5 px-2 text-sm text-gray-600 bg-gray3 hover:bg-gray5 rounded-sm cursor-pointer"
           data-cy="copy-properties"
-          @click="copyProperties(state.activeCard)"
+          @click="copyProperties(activeCard)"
         >
           <Copy class="inline-block mr-2 mb-0.5 w-4" />Copy attributes
         </div>
         <div
           class="py-0.5 px-2 text-sm text-gray-600 bg-gray3 hover:bg-gray5 rounded-sm cursor-pointer"
           data-cy="card-detail-delete"
-          @click="state.deleteCard(state.activeCard)"
+          @click="
+            deleteCard(activeCard);
+            router.push(router.currentRoute.value.path);
+          "
         >
           <Trash class="inline-block mr-2 mb-0.5 w-4" />Delete card
         </div>
@@ -175,12 +208,13 @@
   </div>
 </template>
 
-<script lang="ts">
-import { DatePicker } from 'v-calendar';
+<script setup lang="ts">
+import Datepicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
 import { blurInput } from '@/utils/blurInput';
-import { defineComponent, PropType, ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { selectInput } from '@/utils/selectInput';
-import { store } from '@/stores/store';
+import { useStore } from '@/store/store';
 import Attachment from '@/assets/icons/attachment.svg';
 import Board from '@/assets/icons/board.svg';
 import Card from '@/typings/card';
@@ -194,53 +228,44 @@ import Dropzone from '../Dropzone.vue';
 import List from '@/typings/list';
 import Trash from '@/assets/icons/trash.svg';
 import moment from 'moment';
+import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
 
-export default defineComponent({
-  components: {
-    Attachment,
-    Board,
-    Checkbox,
-    Clock,
-    Copy,
-    Cross,
-    DatePicker,
-    Description,
-    Downarrow,
-    Dropzone,
-    Trash,
-  },
-  setup() {
-    const state = store();
-    const cardListName = state.lists.find((l: List) => l.id === state.activeCard.listId)!['name'];
-    return { state, cardListName, blurInput, selectInput };
-  },
-  data() {
-    return {
-      showDate: false,
-      cardNameInputActive: false,
-      descriptionInputActive: false,
-      modelConfig: {
-        type: 'string',
-        mask: 'YYYY-MM-DD',
-      },
-    };
-  },
-  methods: {
-    clickAwayCardName() {
-      this.cardNameInputActive = false;
-    },
-    clickAwayDate() {
-      this.showDate = false;
-    },
-    copyProperties(content: Card) {
-      const clipBoardValue = JSON.stringify(content, null, 2);
-      const clipboard = window.navigator.clipboard;
-      this.state.showNotification('Card info copied to clipboard', false);
-      return clipboard.writeText(clipBoardValue);
-    },
-    overdue: (card: Card) => {
-      return card.deadline && moment(card.deadline).diff(moment().startOf('day'), 'days') < 1;
-    },
-  },
+const router = useRouter();
+const { showNotification, showCardModule, patchCard, deleteCard } = useStore();
+const { lists, activeCard } = storeToRefs(useStore());
+const cardListName = lists.value.find((l: List) => l.id === activeCard.value.listId)!['name'];
+
+const showDate = ref(false);
+const cardNameInputActive = ref(false);
+const descriptionInputActive = ref(false);
+const date = ref(new Date());
+
+const clickAwayCardName = () => {
+  cardNameInputActive.value = false;
+};
+const clickAwayDate = () => {
+  showDate.value = false;
+};
+
+const updateDate = (data: string) => {
+  const formattedDate = moment(data).format('YYYY-MM-DD');
+  patchCard(activeCard.value, { deadline: formattedDate });
+  showDate.value = false;
+};
+
+const copyProperties = (content: Card) => {
+  const clipBoardValue = JSON.stringify(content, null, 2);
+  const clipboard = window.navigator.clipboard;
+  showNotification('Card info copied to clipboard', false);
+  return clipboard.writeText(clipBoardValue);
+};
+
+const overdue = (card: Card) => {
+  return card.deadline && moment(card.deadline).diff(moment().startOf('day'), 'days') < 1;
+};
+
+onMounted(() => {
+  router.push(`${router.currentRoute.value.path}?card=${activeCard.value.id}`);
 });
 </script>

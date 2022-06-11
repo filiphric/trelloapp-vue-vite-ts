@@ -1,6 +1,21 @@
 {
-  "boards": [],
+  "boards": [
+    {
+      "name": "new board",
+      "user": 0,
+      "starred": false,
+      "created": "2022-06-11",
+      "id": 1
+    }
+  ],
   "cards": [],
-  "lists": [],
+  "lists": [
+    {
+      "boardId": 1,
+      "name": "new list",
+      "created": "2022-06-11",
+      "id": 1
+    }
+  ],
   "users": []
 }

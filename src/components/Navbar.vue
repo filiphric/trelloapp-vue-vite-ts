@@ -16,23 +16,13 @@
   </nav>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router';
 import Home from '@/assets/icons/homeicon.svg';
 import Login from '@/components/LoginButton.vue';
 
-export default defineComponent({
-  components: {
-    Home,
-    Login,
-  },
-  setup() {
-    const router = useRouter();
-    const route = useRoute();
-    return { route, router };
-  },
-});
+const router = useRouter();
+const route = useRoute();
 </script>
 
 <style lang="postcss" scoped>

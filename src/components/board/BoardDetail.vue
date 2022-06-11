@@ -41,7 +41,7 @@
           <input
             v-model="state.board.name"
             v-click-away="onClickAway"
-            class="text-white bg-white board-title bg-opacity-20 hover:bg-opacity-30"
+            class="text-white bg-white bg-opacity-20 hover:bg-opacity-30 board-title"
             data-cy="board-title"
             autocomplete="off"
             name="board-title"
@@ -52,7 +52,7 @@
           >
         </div>
         <div
-          class="inline-grid relative self-center ml-2 w-8 h-8 bg-white rounded-sm cursor-pointer bg-opacity-20 hover:bg-opacity-30"
+          class="inline-grid relative self-center ml-2 w-8 h-8 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-sm cursor-pointer"
           :class="[state.board.starred ? 'fill-current text-yellow-300' : 'stroke-current text-white']"
           data-cy="star"
           @click="
@@ -89,11 +89,11 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { blurInput } from '@/utils/blurInput';
-import { defineComponent, ref } from 'vue';
+import { ref } from 'vue';
 import { selectInput } from '@/utils/selectInput';
-import { store } from '@/stores/store';
+import { useStore } from '@/store/store';
 import { useRoute } from 'vue-router';
 import Dropdown from '@/components/board/Dropdown.vue';
 import ListCreate from '@/components/list/ListCreate.vue';
@@ -102,27 +102,14 @@ import LoadingIcon from '@/assets/icons/loadingIcon.svg';
 import Star from '@/assets/icons/star.svg';
 import draggable from 'vuedraggable';
 
-export default defineComponent({
-  components: {
-    Dropdown,
-    ListCreate,
-    ListItem,
-    LoadingIcon,
-    Star,
-    draggable,
-  },
-  setup() {
-    const route = useRoute();
-    const state = store();
-    const inputActive = ref(false);
-    const boardId = Number(route.params.board);
-    state.getBoardDetail(boardId);
-    const onClickAway = () => {
-      inputActive.value = false;
-    };
-    return { state, blurInput, selectInput, onClickAway };
-  },
-});
+const route = useRoute();
+const state = useStore();
+const inputActive = ref(false);
+const boardId = Number(route.params.board);
+state.getBoardDetail(boardId);
+const onClickAway = () => {
+  inputActive.value = false;
+};
 </script>
 
 <style lang="postcss" scoped>

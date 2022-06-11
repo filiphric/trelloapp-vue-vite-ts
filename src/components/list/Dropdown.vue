@@ -4,7 +4,7 @@
     @click="showDropdown()"
   >
     <Dots
-      class="inline-block place-self-end p-1.5 w-8 h-8 text-gray10 bg-transparent hover:bg-gray4 active:bg-gray7 rounded-sm border-2 border-transparent cursor-pointer flex-grow-0"
+      class="inline-block flex-grow-0 place-self-end p-1.5 w-8 h-8 text-gray10 bg-transparent hover:bg-gray4 active:bg-gray7 rounded-sm border-2 border-transparent cursor-pointer"
     />
   </button>
   <div
@@ -46,43 +46,27 @@
   </div>
 </template>
 
-<script lang="ts">
-import { PropType, defineComponent } from 'vue';
-import { store } from '@/stores/store';
+<script setup lang="ts">
+import { PropType, ref } from 'vue';
+import { useStore } from '@/store/store';
 import Cross from '@/assets/icons/cross.svg';
 import Dots from '@/assets/icons/dots.svg';
 import List from '@/typings/list';
-export default defineComponent({
-  components: {
-    Cross,
-    Dots,
-  },
-  props: {
-    list: {
-      default: null,
-      type: Object as PropType<List>,
-    },
-  },
-  emits: ['toggle-input'],
-  setup() {
-    const { deleteList } = store();
-    return { deleteList };
-  },
-  data() {
-    return {
-      dropdown: false,
-      id: this.list.id,
-    };
-  },
-  methods: {
-    onClickAway() {
-      this.dropdown = false;
-    },
-    showDropdown() {
-      this.dropdown = !this.dropdown;
-    },
+
+defineProps({
+  list: {
+    default: null,
+    type: Object as PropType<List>,
   },
 });
-</script>
 
-<style></style>
+defineEmits(['toggle-input']);
+const { deleteList } = useStore();
+const dropdown = ref(false);
+const onClickAway = () => {
+  dropdown.value = false;
+};
+const showDropdown = () => {
+  dropdown.value = !dropdown.value;
+};
+</script>

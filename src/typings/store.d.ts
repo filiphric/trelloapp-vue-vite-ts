@@ -1,3 +1,4 @@
+import { AxiosResponse } from 'axios';
 import 'pinia';
 import Board from './board';
 import Card from './card';
@@ -6,13 +7,15 @@ import List from './list';
 declare module 'pinia' {
   export interface PiniaCustomStateProperties<S> {
     board: Board;
-    lists: List[];
+    redirectBoardId: Board['id'];
+    lists: List[] | any;
     loading: boolean;
     loadingListCards: Record<any, string>;
     loadingError: {
       show: boolean;
       status: number;
       message: string;
+      tooLong: boolean;
     };
     createListInput: boolean;
     cardModule: boolean;

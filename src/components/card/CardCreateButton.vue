@@ -10,15 +10,7 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import Plus from '@/assets/icons/Plus.svg';
-export default defineComponent({
-  components: {
-    Plus,
-  },
-  emits: ['toggleInput'],
-});
+defineEmits(['toggleInput']);
 </script>
-
-<style></style>

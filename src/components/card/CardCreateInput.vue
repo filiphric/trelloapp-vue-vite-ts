@@ -11,7 +11,7 @@
       placeholder="Enter a title for this card..."
       @keydown.enter.prevent="addCard"
       @keyup.esc.prevent="
-        $emit('toggleInput', false);
+        emit('toggleInput', false);
         cardTitle = '';
       "
     />
@@ -24,7 +24,7 @@
         data-cy="cancel"
         class="inline-block order-last p-1 mx-0.5 w-8 h-8 text-gray-600 fill-current"
         @click.stop="
-          $emit('toggleInput', false);
+          emit('toggleInput', false);
           cardTitle = '';
         "
       />
@@ -32,58 +32,46 @@
   </div>
 </template>
 
-<script lang="ts">
-import { PropType, defineComponent } from 'vue';
-import { store } from '@/stores/store';
+<script setup lang="ts">
+import { PropType, ref, onMounted } from 'vue';
+import { useStore } from '@/store/store';
 import Cross from '@/assets/icons/cross.svg';
 import List from '@/typings/list';
 import SaveButton from '@/components/SaveButton.vue';
+import { storeToRefs } from 'pinia';
 
-export default defineComponent({
-  components: {
-    Cross,
-    SaveButton,
-  },
-  props: {
-    list: {
-      default: null,
-      type: Object as PropType<List>,
-    },
-  },
-  emits: ['toggleInput'],
-  setup() {
-    const state = store();
-    const createCard = state.createCard;
-    return { createCard, state };
-  },
-  data() {
-    return {
-      cardTitle: '',
-    };
-  },
-  mounted() {
-    const cardInput = this.$refs.cardCreate as HTMLElement;
-    cardInput.focus();
-  },
-  methods: {
-    addCard() {
-      if (!this.cardTitle) {
-        return;
-      }
-
-      this.createCard({
-        boardId: this.state.board.id,
-        listId: this.list.id,
-        name: this.cardTitle,
-      });
-      this.cardTitle = '';
-    },
-    onClickAway() {
-      this.$emit('toggleInput', false);
-      this.cardTitle = '';
-    },
+const props = defineProps({
+  list: {
+    default: null,
+    type: Object as PropType<List>,
   },
 });
-</script>
 
-<style></style>
+const emit = defineEmits(['toggleInput']);
+
+const { board } = storeToRefs(useStore());
+const cardCreate = ref();
+const { createCard } = useStore();
+let cardTitle = ref('');
+
+const addCard = () => {
+  if (!cardTitle.value) {
+    return;
+  }
+  createCard({
+    boardId: board.value.id,
+    listId: props.list.id,
+    name: cardTitle.value,
+  });
+  cardTitle.value = '';
+};
+
+const onClickAway = () => {
+  emit('toggleInput', false);
+  cardTitle.value = '';
+};
+
+onMounted(() => {
+  cardCreate.value.focus();
+});
+</script>

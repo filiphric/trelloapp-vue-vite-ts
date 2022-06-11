@@ -16,61 +16,55 @@
       class="new-board-input"
       data-cy="new-board-input"
       placeholder="Add board title"
-      @keyup.enter.prevent="createBoard(newBoardTitle)"
+      @keyup.enter.prevent="redirectToNewBoard()"
     >
     <div
-      v-if="newBoardInputActive"
+      v-show="newBoardInputActive"
       class="active"
     >
       <Cross
         class="icon"
-        @click.stop="newBoardInputActive = false"
+        @click.stop="inputVisible(false)"
       />
       <SaveButton
         data-cy="new-board-create"
         buttontext="Create board"
-        @click.stop="createBoard(newBoardTitle)"
+        @click.stop="redirectToNewBoard()"
       />
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, nextTick, ref } from 'vue';
-import { store } from '@/stores/store';
+<script setup lang="ts">
+import { nextTick, ref } from 'vue';
+import { useStore } from '@/store/store';
+import { useRouter } from 'vue-router';
 import Cross from '@/assets/icons/cross.svg';
 import SaveButton from '@/components/SaveButton.vue';
-export default defineComponent({
-  name: 'BoardCreate',
-  components: {
-    Cross,
-    SaveButton,
-  },
-  setup() {
-    let newBoardTitle = ref();
-    let newBoardInputActive = ref(false);
-    const boardCreateInput = ref();
-    const createBoard = store().createBoard;
-    const onClickAway = () => {
-      newBoardInputActive.value = false;
-      newBoardTitle.value = '';
-    };
-    const focusNewBoardInput = () => {
-      newBoardInputActive.value = true;
-      nextTick(() => {
-        boardCreateInput.value.focus();
-      });
-    };
-    return {
-      createBoard,
-      newBoardInputActive,
-      newBoardTitle,
-      boardCreateInput,
-      onClickAway,
-      focusNewBoardInput,
-    };
-  },
-});
+
+let newBoardTitle = ref();
+let newBoardInputActive = ref(false);
+const boardCreateInput = ref();
+const router = useRouter();
+const { createBoard } = useStore();
+const inputVisible = (flag: boolean) => {
+  newBoardInputActive.value = flag;
+};
+const onClickAway = () => {
+  inputVisible(false);
+  newBoardTitle.value = '';
+};
+const focusNewBoardInput = () => {
+  inputVisible(true);
+  nextTick(() => {
+    boardCreateInput.value.focus();
+  });
+};
+
+const redirectToNewBoard = async () => {
+  const board = await createBoard(newBoardTitle.value);
+  board?.id && router.push(`/board/${board.id}`);
+};
 </script>
 <style lang="postcss" scoped>
 h1 {

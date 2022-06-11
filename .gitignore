@@ -11,5 +11,6 @@ cypress/videos
 cypress/downloads
 backend/data/uploaded/*
 .env
+.vscode/*
 
 !/**/.gitkeep

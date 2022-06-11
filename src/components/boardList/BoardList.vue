@@ -20,7 +20,7 @@
         >
           Starred
         </h1>
-        <div class="flex flex-wrap gap-8 content-start mx-4 flex-cols-3 flex-grow">
+        <div class="flex flex-wrap flex-grow gap-8 content-start mx-4 flex-cols-3">
           <BoardItem
             v-for="board in state.starred"
             :key="board.id"
@@ -35,7 +35,7 @@
         <h1 class="inline-block py-5 mx-4 text-3xl font-semibold">
           My Boards
         </h1>
-        <div class="flex flex-wrap gap-8 content-start mx-4 flex-cols-3 flex-grow">
+        <div class="flex flex-wrap flex-grow gap-8 content-start mx-4 flex-cols-3">
           <BoardItem
             v-for="board in state.allBoards"
             :key="board.id"
@@ -49,32 +49,14 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, onMounted } from 'vue';
-import { store } from '@/stores/store';
+<script setup lang="ts">
+import { useStore } from '@/store/store';
 import BoardCreate from '@/components/board/BoardCreate.vue';
 import BoardItem from '@/components/board/BoardItem.vue';
 import Emptylist from '@/components/boardList/Emptylist.vue';
 import LoadingError from '@/components/boardList/LoadingError.vue';
 import Loading from '@/components/Loading.vue';
 
-export default defineComponent({
-  name: 'BoardList',
-  components: {
-    Emptylist,
-    BoardItem,
-    BoardCreate,
-    LoadingError,
-    Loading,
-  },
-  setup() {
-    const state = store();
-    onMounted(() => {
-      state.getBoardList();
-    });
-    return { state };
-  },
-});
+const state = useStore();
+state.getBoardList();
 </script>
-
-<style lang="postcss" scoped></style>

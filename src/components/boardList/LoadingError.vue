@@ -14,16 +14,8 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import { store } from '@/stores/store';
+<script setup lang="ts">
+import { useStore } from '@/store/store';
 import { storeToRefs } from 'pinia';
-export default defineComponent({
-  setup() {
-    const { loadingError } = storeToRefs(store());
-    return { loadingError };
-  },
-});
+const { loadingError } = storeToRefs(useStore());
 </script>
-
-<style></style>

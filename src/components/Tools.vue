@@ -7,47 +7,48 @@
     Reset application:
     <button
       class="px-1 m-1 bg-white border border-black"
-      @click="state.reset()"
+      @click="
+        reset();
+        router.push('/');
+      "
     >
       All
     </button>
     <button
       class="px-1 m-1 bg-white border border-black"
-      @click="state.resetBoards()"
+      @click="
+        resetBoards();
+        router.push('/');
+      "
     >
       Boards
     </button>
     <button
       class="px-1 m-1 bg-white border border-black"
-      @click="state.resetLists()"
+      @click="resetLists()"
     >
       Lists
     </button>
     <button
       class="px-1 m-1 bg-white border border-black"
-      @click="state.resetCards()"
+      @click="resetCards()"
     >
       Cards
     </button>
     <button
       class="px-1 m-1 bg-white border border-black"
-      @click="state.resetUsers()"
+      @click="resetUsers()"
     >
       Users
     </button>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from '@vue/runtime-core';
-import { store } from '@/stores/store';
+<script setup lang="ts">
+import { useStore } from '@/store/store';
+import { useRouter } from 'vue-router';
 
-export default defineComponent({
-  setup() {
-    const state = store();
-    return { state };
-  },
-});
+const { reset, resetBoards, resetLists, resetCards, resetUsers } = useStore();
+
+const router = useRouter();
 </script>
-
-<style></style>

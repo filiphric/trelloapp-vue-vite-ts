@@ -5,8 +5,8 @@
   >
     <!-- LOGGED OUT -->
     <div
-      v-show="!state.activeUser.loggedIn"
-      class="flex self-center h-8 text-sm bg-white rounded-sm cursor-pointer bg-opacity-30 hover:bg-opacity-20"
+      v-show="!activeUser.loggedIn"
+      class="flex self-center h-8 text-sm bg-white bg-opacity-30 hover:bg-opacity-20 rounded-sm cursor-pointer"
       data-cy="login-menu"
       @click="router.push('/login')"
     >
@@ -15,50 +15,39 @@
     </div>
     <!-- LOGGED IN -->
     <div
-      v-show="state.activeUser.loggedIn"
-      class="flex self-center h-8 text-sm bg-white rounded-sm cursor-pointer bg-opacity-30 hover:bg-opacity-20"
+      v-show="activeUser.loggedIn"
+      class="flex self-center h-8 text-sm bg-white bg-opacity-30 hover:bg-opacity-20 rounded-sm cursor-pointer"
       data-cy="logged-user"
       @click="
         logout();
-        state.getBoardList();
+        getBoardList();
         router.push('/');
       "
     >
       <LogoutIcon class="self-center ml-2 w-5 h-5 text-white fill-current" />
       <div class="inline-block self-center pr-2 pl-1">
-        {{ state.activeUser.email }}
+        {{ activeUser.email }}
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import { store } from '@/stores/store';
+<script setup lang="ts">
+import { useStore } from '@/store/store';
 import { useRoute, useRouter } from 'vue-router';
 import LogoutIcon from '@/assets/icons/logoutIcon.svg';
 import User from '@/assets/icons/user.svg';
 import axios from 'axios';
+import { storeToRefs } from 'pinia';
 
-export default defineComponent({
-  name: 'Login',
-  components: {
-    LogoutIcon,
-    User,
-  },
-  setup() {
-    const router = useRouter();
-    const route = useRoute();
-    const state = store();
-    const logout = function (this: any) {
-      this.state.activeUser.loggedIn = false;
-      axios.defaults.headers.common['Authorization'] = '';
-      document.cookie = 'trello_token=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
-      this.state.showNotification('User was logged out', false);
-    };
-    return { logout, route, router, state };
-  },
-});
+const router = useRouter();
+const route = useRoute();
+const { showNotification, getBoardList } = useStore();
+const { activeUser } = storeToRefs(useStore());
+const logout = function (this: any) {
+  activeUser.value.loggedIn = false;
+  axios.defaults.headers.common['Authorization'] = '';
+  document.cookie = 'trello_token=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+  showNotification('User was logged out', false);
+};
 </script>
-
-<style></style>
