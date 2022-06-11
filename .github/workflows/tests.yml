@@ -1,4 +1,4 @@
-name: Run tests
+name: e2e-tests
 on: [pull_request]
 jobs:
   cypress-run:
