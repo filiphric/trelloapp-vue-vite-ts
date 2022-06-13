@@ -56,11 +56,11 @@ it('list actions', function() {
 
   cy.step('open and close dropdown ')
   cy.getDataCy('list-options').click();
-  cy.getDataCy('dropdown').should('be.visible');
+  cy.getDataCy('list-dropdown').should('be.visible');
   cy.getDataCy('cancel').click();
   cy.getDataCy('list-options').click();
   cy.getDataCy('board-detail').click('bottomRight');
-  cy.getDataCy('dropdown').should('not.exist');
+  cy.getDataCy('list-dropdown').should('not.exist');
 
   cy.step('delete list')
   cy.getDataCy('list-options').click();

@@ -30,7 +30,7 @@
     <!-- BOARD DETAIL -->
     <div
       v-if="!state.loading && !state.loadingError.show"
-      class="overflow-x-auto overflow-y-hidden h-full whitespace-nowrap"
+      class="overflow-x-auto min-h-screen whitespace-nowrap"
       data-cy="board-detail"
     >
       <div class="py-2.5">
@@ -63,7 +63,7 @@
         >
           <Star class="place-self-center m-2" />
         </div>
-        <Dropdown :board="state.board" />
+        <BoardOptions :board="state.board" />
       </div>
       <draggable
         v-model="state.lists"
@@ -95,7 +95,7 @@ import { ref } from 'vue';
 import { selectInput } from '@/utils/selectInput';
 import { useStore } from '@/store/store';
 import { useRoute } from 'vue-router';
-import Dropdown from '@/components/board/Dropdown.vue';
+import BoardOptions from '@/components/board/BoardOptions.vue';
 import ListCreate from '@/components/list/ListCreate.vue';
 import ListItem from '@/components/list/ListItem.vue';
 import LoadingIcon from '@/assets/icons/loadingIcon.svg';

@@ -22,7 +22,7 @@
         "
         @blur="inputActive = false"
       >
-      <Dropdown
+      <ListOptions
         :list="list"
         @toggle-input="showCardCreate"
       />
@@ -75,7 +75,7 @@ import { useStore } from '@/store/store';
 import Card from '@/typings/card';
 import CardCreateInput from '@/components/card/CardCreateInput.vue';
 import CardItem from '@/components/card/CardItem.vue';
-import Dropdown from '@/components/list/Dropdown.vue';
+import ListOptions from '@/components/list/ListOptions.vue';
 import List from '@/typings/list';
 import Plus from '@/assets/icons/plus.svg';
 import draggable from 'vuedraggable';
