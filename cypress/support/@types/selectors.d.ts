@@ -58,7 +58,6 @@ export type Selectors =
 | 'new-card'
 | 'new-card-input'
 | 'notification-message'
-| 'selector'
 | 'signup-email'
 | 'signup-password'
 | 'signup-submit'

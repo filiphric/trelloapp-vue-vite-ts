@@ -1,7 +1,7 @@
 <template>
   <div
     class="grid fixed z-50 place-content-center w-screen h-screen"
-    style="background-color: rgba(30, 41, 59, 0.5);"
+    style="background-color: rgba(30, 41, 59, 0.5)"
   >
     <div class="shadow-lg">
       <input
@@ -33,18 +33,16 @@ import { onMounted, ref } from 'vue';
 import { useStore } from '@/store/store';
 import { storeToRefs } from 'pinia';
 
-const { searchCard, toggleSearch } = useStore()
-const { searchResults } = storeToRefs(useStore())
+const { searchCard, toggleSearch } = useStore();
+const { searchResults } = storeToRefs(useStore());
 const triggerSearch = () => {
-
   if (!searchQuery.value.length) {
-    searchResults.value = []
+    searchResults.value = [];
   }
-  else {
-    searchCard(searchQuery.value)
+ else {
+    searchCard(searchQuery.value);
   }
-
-}
+};
 
 const search = ref();
 const searchQuery = ref();

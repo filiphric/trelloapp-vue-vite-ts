@@ -3,11 +3,12 @@
     tabindex="-1"
     @keydown.meta.k="toggleSearch(!state.showSearch)"
     @keyup.f2="toggleTools(!state.showTools)"
-    @keyup.esc="toggleTools(false); toggleSearch(false)"
+    @keyup.esc="
+      toggleTools(false);
+      toggleSearch(false);
+    "
   >
-    <Search
-      v-if="state.showSearch"
-    />
+    <Search v-if="state.showSearch" />
     <Navbar />
     <Notification />
     <Tools v-show="state.showTools" />
@@ -44,5 +45,4 @@ if (trelloToken && trelloTokenValid) {
   const userId = JSON.parse(userData).sub;
   state.user(userId);
 }
-
 </script>

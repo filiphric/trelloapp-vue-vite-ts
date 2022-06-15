@@ -72,7 +72,7 @@ export const useStore = defineStore({
       },
       showTools: false,
       showSearch: false,
-      searchResults: []
+      searchResults: [],
     };
   },
   actions: {

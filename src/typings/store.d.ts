@@ -45,6 +45,6 @@ declare module 'pinia' {
     };
     showTools: boolean;
     showSearch: boolean;
-    searchResults: Cards[]
+    searchResults: Cards[];
   }
 }
