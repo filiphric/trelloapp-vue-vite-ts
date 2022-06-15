@@ -44,5 +44,7 @@ declare module 'pinia' {
       password: string;
     };
     showTools: boolean;
+    showSearch: boolean;
+    searchResults: Cards[];
   }
 }

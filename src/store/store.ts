@@ -23,6 +23,8 @@ import { resetCards } from './actions/resetCards';
 import { resetUsers } from './actions/resetUsers';
 import { patchBoard } from './actions/patchBoard';
 import { toggleTools } from './actions/toggleTools';
+import { toggleSearch } from './actions/toggleSearch';
+import { searchCard } from './actions/searchCard';
 import { oauthLogin } from './actions/oauthLogin';
 import { oauthSignup } from './actions/oauthSignup';
 import Board from '@/typings/board';
@@ -69,6 +71,8 @@ export const useStore = defineStore({
         password: '',
       },
       showTools: false,
+      showSearch: false,
+      searchResults: [],
     };
   },
   actions: {
@@ -104,6 +108,10 @@ export const useStore = defineStore({
 
     // api tools
     toggleTools,
+
+    // search functionality
+    toggleSearch,
+    searchCard,
 
     // reset actions
     reset,
