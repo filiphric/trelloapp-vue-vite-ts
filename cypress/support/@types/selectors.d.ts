@@ -58,6 +58,8 @@ export type Selectors =
 | 'new-card'
 | 'new-card-input'
 | 'notification-message'
+| 'result-item'
+| 'search-input'
 | 'signup-email'
 | 'signup-password'
 | 'signup-submit'

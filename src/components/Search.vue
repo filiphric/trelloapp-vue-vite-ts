@@ -10,11 +10,13 @@
         v-click-away="onClickAway"
         type="text"
         class="px-3 w-96 h-16 text-2xl bg-white border-b-2 border-slate-300 outline-none"
+        data-cy="search-input"
         @keyup="triggerSearch"
       >
       <div
         v-for="result in searchResults"
         :key="result.id"
+        data-cy="result-item"
         class="py-3 px-3 w-96 h-16 text-xl bg-white border-slate-600 border-b-1"
       >
         <a
