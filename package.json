@@ -5,7 +5,8 @@
     "start": "vite",
     "lint": "prettier --write \"src/**/*.{ts,vue,js}\" && eslint \"**/*.{ts,vue,js}\" --fix && echo \"✅ All files passed linting!\"",
     "typecheck": "tsc --noEmit -p . && vue-tsc --noEmit && echo \"✅ All file types passed!\"",
-    "selectorcheck": "./scripts/getSelectors.sh"
+    "selectorcheck": "./scripts/getSelectors.sh",
+    "postinstall": "echo \"Trello app was installed sucessfully ✅\nYou can now run it by typing:\nnpm start\""
   },
   "dependencies": {
     "@4tw/cypress-drag-drop": "^2.1.0",
@@ -63,7 +64,7 @@
   },
   "devDependencies": {
     "@cypress/skip-test": "^2.6.1",
-    "cypress": "^10.2.0",
+    "cypress": "^10.3.0",
     "esbuild": "^0.14.7",
     "eslint": "^8.5.0",
     "eslint-plugin-cypress": "^2.12.1",
