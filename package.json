@@ -60,6 +60,7 @@
     "vue-socket.io-extended": "^5.0.0-alpha.5",
     "vue-tsc": "^0.34.9",
     "vue3-click-away": "^1.1.0",
+    "vue3-keypress": "^4.0.1",
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {

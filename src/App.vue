@@ -1,23 +1,14 @@
 <template>
-  <div
-    tabindex="-1"
-    @keydown.meta.k="toggleSearch(!state.showSearch)"
-    @keyup.f2="toggleTools(!state.showTools)"
-    @keyup.esc="
-      toggleTools(false);
-      toggleSearch(false);
-    "
-  >
-    <Search v-if="state.showSearch" />
-    <Navbar />
-    <Notification />
-    <Tools v-show="state.showTools" />
-    <router-view />
-    <Footer />
-  </div>
+  <Search v-if="state.showSearch" />
+  <Navbar />
+  <Notification />
+  <Tools v-if="state.showTools" />
+  <router-view />
+  <Footer />
 </template>
 
 <script setup lang="ts">
+import { useKeypress } from 'vue3-keypress'
 import { useStore } from '@/store/store';
 import Navbar from '@/components/Navbar.vue';
 import Notification from '@/components/Notification.vue';
@@ -45,4 +36,31 @@ if (trelloToken && trelloTokenValid) {
   const userId = JSON.parse(userData).sub;
   state.user(userId);
 }
+
+useKeypress({
+  keyEvent: 'keydown',
+  keyBinds: [
+    {
+      keyCode: 113, // f2
+      success() {
+        toggleTools(!state.showTools)
+        },
+    },
+    {
+      keyCode: 75, // k
+      success() { 
+        toggleSearch(!state.showSearch)
+        },
+      modifiers: ['metaKey'],
+    },
+    {
+      keyCode: 27, // esc 
+      success() {
+        toggleSearch(false);
+        toggleTools(false)
+      },
+    },
+  ],
+})
+
 </script>
