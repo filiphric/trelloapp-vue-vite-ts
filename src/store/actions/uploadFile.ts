@@ -7,17 +7,14 @@ export const uploadFile = async function (this: any, card: Card, acceptFile?: Fi
   const { id } = card;
   file && formData.append('image', file);
   axios
-    .post('/api/upload', formData, {
+    .post(`/api/upload?card=${id}`, formData, {
       headers: {
-        'Content-Type': 'multipart/form-data',
-        cardid: id as unknown as string,
+        'Content-Type': 'multipart/form-data'
       },
     })
     .then((upload) => {
       this.showNotification('File was sucessfully uploaded', false);
-      const uploadedImagePath = upload.data.path;
-
-      this.patchCard(card, { image: uploadedImagePath });
+      this.activeCard = upload.data;
     })
     .catch(() => {
       this.showNotification('There was an error uploading file', true);
