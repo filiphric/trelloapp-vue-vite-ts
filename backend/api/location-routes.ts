@@ -21,7 +21,7 @@ app.get('/', (req, res, next) => {
       const result = {
         location: locale.toLowerCase(),
         currency: euCountries.includes(locale) ? 'EUR' : locale === 'UK' ? 'GBP' : 'USD',
-        discountEligible: countryDiscount,
+        discountEligible: countryDiscount ? true : false,
         discountAmount: countryDiscount?.discount
       }
 

@@ -1,17 +1,17 @@
 <template>
   <div class="bg-white">
     <div class="container py-8 px-6 mx-auto">
-      <p class="text-xl text-center text-gray-500">
-        Choose your plan
-      </p>
-
       <h1 class="mt-4 text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl">
         Pricing Plan
       </h1>
-      <p class="mt-3 text-center">
-        Seeing that you are from {{ emoji.emojify(`:flag-${pricing.location}:`) }}, {{ pricing.discountEligible ? `you are eligible for a discount of ${pricing.discountAmount}%` : 'you are unfortunately not eligible for discount' }}
-      </p>
-             
+      <div
+        v-if="pricing.discountEligible"
+        class="grid mt-4 bg-yellow-100 rounded-sm border border-yellow-300"
+      >
+        <p class="pb-1 text-center">
+          Your country is <span class="text-2xl">{{ emoji.emojify(`:flag-${pricing.location}:`) }}</span>, {{ pricing.discountEligible ? `you are eligible for a discount of ${pricing.discountAmount}%` : 'you are unfortunately not eligible for discount' }}
+        </p>
+      </div>  
       <div
         v-for="plan in plans"
         :key="plan.id"
@@ -23,19 +23,10 @@
             @click="pricing.activePlan = plan.id"
           >
             <div class="flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
+              <RoundCheckbox 
                 class="w-5 h-5 text-gray-400 sm:w-9 sm:h-9"
                 :class="plan.id === pricing.activePlan && 'text-blue6'"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd"
-                />
-              </svg>
+              />
 
               <div class="flex flex-col items-center mx-5 space-y-1">
                 <h2
@@ -46,10 +37,9 @@
                 </h2>
               </div>
             </div>
-                        
             <h2
-              class="text-2xl font-semibold text-gray-500 sm:text-4xl"
-              :class="plan.id === pricing.activePlan && 'text-blue6'"
+              class="text-2xl font-semibold sm:text-4xl"
+              :class="plan.id === pricing.activePlan ? 'text-blue6' : 'text-gray-500'"
             >
               {{ pricing.currency === 'EUR' ? '€' : pricing.currency === 'GBP' ? '£' : '$' }} {{ plan.price[pricing.currency] }} <span class="text-base font-medium">/ Month</span>
             </h2>
@@ -68,6 +58,7 @@
 import { useStore } from '@/store/store';
 import { storeToRefs } from 'pinia';
 import emoji from 'node-emoji'
+import RoundCheckbox from '@/assets/icons/roundCheckbox.svg';
 const { pricing } = storeToRefs(useStore());
 const { getLocation } = useStore();
 getLocation()
