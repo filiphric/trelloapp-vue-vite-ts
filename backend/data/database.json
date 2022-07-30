@@ -1,6 +1,55 @@
 {
-  "boards": [],
-  "cards": [],
-  "lists": [],
+  "boards": [
+    {
+      "name": "hiu",
+      "user": 0,
+      "starred": false,
+      "created": "2022-07-30",
+      "id": 1
+    },
+    {
+      "name": "gsad",
+      "user": 0,
+      "starred": false,
+      "created": "2022-07-30",
+      "id": 2
+    },
+    {
+      "name": "gsda",
+      "user": 0,
+      "starred": false,
+      "created": "2022-07-30",
+      "id": 3
+    },
+    {
+      "name": "gads",
+      "user": 0,
+      "starred": false,
+      "created": "2022-07-30",
+      "id": 4
+    }
+  ],
+  "cards": [
+    {
+      "order": 0,
+      "boardId": 1,
+      "listId": 1,
+      "name": "das",
+      "created": "2022-07-30",
+      "deadline": "2022-08-02",
+      "description": "",
+      "completed": false,
+      "id": 1
+    }
+  ],
+  "lists": [
+    {
+      "boardId": 1,
+      "name": "a",
+      "order": 0,
+      "created": "2022-07-30",
+      "id": 1
+    }
+  ],
   "users": []
 }

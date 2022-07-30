@@ -27,6 +27,7 @@ import { toggleSearch } from './actions/toggleSearch';
 import { searchCard } from './actions/searchCard';
 import { oauthLogin } from './actions/oauthLogin';
 import { oauthSignup } from './actions/oauthSignup';
+import { getLocation } from './actions/getLocation';
 import Board from '@/typings/board';
 
 export const useStore = defineStore({
@@ -70,6 +71,13 @@ export const useStore = defineStore({
         email: '',
         password: '',
       },
+      pricing: {
+        activePlan: 2,
+        location: 'us',
+        currency: 'USD',
+        discountEligible: false,
+        discountAmount: 0
+      },
       showTools: false,
       showSearch: false,
       searchResults: [],
@@ -105,6 +113,7 @@ export const useStore = defineStore({
     // other actions
     showNotification,
     showCardModule,
+    getLocation,
 
     // api tools
     toggleTools,

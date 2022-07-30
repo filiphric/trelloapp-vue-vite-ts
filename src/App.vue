@@ -3,7 +3,7 @@
   <Navbar />
   <Notification />
   <Tools v-if="state.showTools" />
-  <router-view />
+  <router-view class="mt-10 " />
   <Footer />
 </template>
 
