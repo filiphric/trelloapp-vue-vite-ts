@@ -6,6 +6,7 @@
       </h1>
       <div
         v-if="pricing.discountEligible"
+        data-cy="discount"
         class="grid mt-4 bg-yellow-100 rounded-sm border border-yellow-300"
       >
         <p class="pb-1 text-center">
@@ -20,6 +21,7 @@
         <div class="mt-6 space-y-8 xl:mt-12">
           <div
             class="flex justify-between items-center py-4 px-8 mx-auto max-w-2xl rounded-sm border cursor-pointer"
+            data-cy="plan-item"
             :class="plan.id === pricing.activePlan && 'border-blue6 text-blue6'"
             @click="pricing.activePlan = plan.id"
           >
@@ -41,6 +43,7 @@
             <h2
               class="text-2xl font-semibold sm:text-4xl"
               :class="plan.id === pricing.activePlan ? 'text-blue6' : 'text-gray-500'"
+              data-cy="plan-price"
             >
               {{ pricing.currency === 'EUR' ? '€' : pricing.currency === 'GBP' ? '£' : '$' }} {{ plan.price[pricing.currency] }}
               <span class="text-base font-medium">/ Month</span>

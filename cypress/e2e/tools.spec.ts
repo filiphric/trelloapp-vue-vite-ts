@@ -29,7 +29,7 @@ describe('Tools', () => {
     cy.getDataCy('card').should('be.visible')
     cy.getDataCy('list').should('be.visible')
   
-    cy.get('body').click().realPress('F2')
+    cy.window().trigger('keydown', { keyCode: 113, which: 113 })
   
     cy.getDataCy('api-tools')
       .should('be.visible')

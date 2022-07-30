@@ -131,15 +131,15 @@ export const useStore = defineStore({
   },
   getters: {
     starred: (state): Board[] => {
-      return state.boardList.all.filter((board: Board) => board.starred === true);
+      return state.boardList.all?.filter((board: Board) => board.starred === true);
     },
     allBoards: (state): Board[] => {
-      return state.boardList.all.filter((board: Board) => board.starred === false);
+      return state.boardList.all?.filter((board: Board) => board.starred === false);
     },
   },
 });
 
-/* istanbul ignore next */
+/* istanbul ignore if */
 if (window.Cypress) {
   window.store = useStore;
 }

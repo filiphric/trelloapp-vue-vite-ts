@@ -26,8 +26,9 @@ it('card detail actions', function() {
   cy.getDataCy('card').click();
 
   cy.step('card properties')
-  cy.getDataCy('copy-properties').click();
-  cy.task('getClipboard').should('eq', JSON.stringify(card, null, 2));
+  cy.getDataCy('copy-properties').realClick();
+  cy.window().its('navigator.clipboard')
+    .invoke('readText').should('eq', JSON.stringify(card, null, 2));
   cy.getDataCy('notification-message')
     .should('exist')
     .and('contain.text', 'Card info copied to clipboard');
@@ -68,12 +69,10 @@ it('card detail actions', function() {
   cy.step('image upload')
   cy.intercept({
     method: 'POST',
-    url: '/api/upload',
-    times: 2
+    url: '/api/upload?card=*',
   }).as('imageUpload');
   cy.getDataCy('upload-image').selectFile('cypress/fixtures/cypressLogo.png', { action: 'drag-drop' });
-  cy.wait('@imageUpload').its('response.body').should('have.property', 'path').and('not.be.empty');
-  cy.wait('@updateCard').its('response.body.image').should('not.be.empty');
+  cy.wait('@imageUpload').its('response.body').should('have.property', 'image').and('not.be.empty');
   cy.getDataCy('image-attachment').should('exist');
   cy.getDataCy('notification-message').should('exist').and('contain.text', 'File was sucessfully uploaded');
   cy.getDataCy('image-delete').click();
@@ -84,7 +83,7 @@ it('card detail actions', function() {
   cy.step('error when upload does not work')
   cy.intercept({
     method: 'POST',
-    url: '/api/upload'
+    url: '/api/upload?card=*'
   }, {
     statusCode: 400
   }).as('imageUpload');

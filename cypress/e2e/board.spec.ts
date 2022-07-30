@@ -86,10 +86,18 @@ it('board actions', () => {
 
 
   cy.step('shows network error when board are not loaded')
-  cy.intercept('/api/boards', {
-    forceNetworkError: true
+  cy.intercept({
+    url:'/api/boards',
+    times: 1
+  }, {
+    statusCode: 404
   })
   cy.reload()
   cy.getDataCy('board-list-error-message')
     .should('contain.text', 'There was an error loading your boards')
+
+  cy.contains('Try again').click()
+
+  cy.location('pathname').should('eq', '/')
+  cy.getDataCy('board-item').should('be.visible')
 });
