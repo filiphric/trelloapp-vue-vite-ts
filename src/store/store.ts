@@ -76,7 +76,7 @@ export const useStore = defineStore({
         location: 'us',
         currency: 'USD',
         discountEligible: false,
-        discountAmount: 0
+        discountAmount: 0,
       },
       showTools: false,
       showSearch: false,

@@ -9,9 +9,10 @@
         class="grid mt-4 bg-yellow-100 rounded-sm border border-yellow-300"
       >
         <p class="pb-1 text-center">
-          Your country is <span class="text-2xl">{{ emoji.emojify(`:flag-${pricing.location}:`) }}</span>, {{ pricing.discountEligible ? `you are eligible for a discount of ${pricing.discountAmount}%` : 'you are unfortunately not eligible for discount' }}
+          Your country is <span class="text-2xl">{{ emoji.emojify(`:flag-${pricing.location}:`) }}</span>,
+          {{ pricing.discountEligible ? `you are eligible for a discount of ${pricing.discountAmount}%` : 'you are unfortunately not eligible for discount' }}
         </p>
-      </div>  
+      </div>
       <div
         v-for="plan in plans"
         :key="plan.id"
@@ -23,7 +24,7 @@
             @click="pricing.activePlan = plan.id"
           >
             <div class="flex items-center">
-              <RoundCheckbox 
+              <RoundCheckbox
                 class="w-5 h-5 text-gray-400 sm:w-9 sm:h-9"
                 :class="plan.id === pricing.activePlan && 'text-blue6'"
               />
@@ -41,7 +42,8 @@
               class="text-2xl font-semibold sm:text-4xl"
               :class="plan.id === pricing.activePlan ? 'text-blue6' : 'text-gray-500'"
             >
-              {{ pricing.currency === 'EUR' ? '€' : pricing.currency === 'GBP' ? '£' : '$' }} {{ plan.price[pricing.currency] }} <span class="text-base font-medium">/ Month</span>
+              {{ pricing.currency === 'EUR' ? '€' : pricing.currency === 'GBP' ? '£' : '$' }} {{ plan.price[pricing.currency] }}
+              <span class="text-base font-medium">/ Month</span>
             </h2>
           </div>
         </div>
@@ -57,11 +59,11 @@
 <script setup lang="ts">
 import { useStore } from '@/store/store';
 import { storeToRefs } from 'pinia';
-import emoji from 'node-emoji'
+import emoji from 'node-emoji';
 import RoundCheckbox from '@/assets/icons/roundCheckbox.svg';
 const { pricing } = storeToRefs(useStore());
 const { getLocation } = useStore();
-getLocation()
+getLocation();
 
 const plans: { [key: string]: any } = [
   {
@@ -70,8 +72,8 @@ const plans: { [key: string]: any } = [
     price: {
       GBP: '39',
       USD: '49',
-      EUR: '59'
-    } 
+      EUR: '59',
+    },
   },
   {
     id: 2,
@@ -80,7 +82,7 @@ const plans: { [key: string]: any } = [
       GBP: '79',
       USD: '99',
       EUR: '129',
-    } 
+    },
   },
   {
     id: 3,
@@ -88,10 +90,8 @@ const plans: { [key: string]: any } = [
     price: {
       GBP: '119',
       USD: '149',
-      EUR: '179'
-    } 
+      EUR: '179',
+    },
   },
-]
-
-
+];
 </script>

@@ -3,12 +3,12 @@
   <Navbar />
   <Notification />
   <Tools v-if="state.showTools" />
-  <router-view class="mt-10 " />
+  <router-view class="mt-10" />
   <Footer />
 </template>
 
 <script setup lang="ts">
-import { useKeypress } from 'vue3-keypress'
+import { useKeypress } from 'vue3-keypress';
 import { useStore } from '@/store/store';
 import Navbar from '@/components/Navbar.vue';
 import Notification from '@/components/Notification.vue';
@@ -43,24 +43,23 @@ useKeypress({
     {
       keyCode: 113, // f2
       success() {
-        toggleTools(!state.showTools)
-        },
+        toggleTools(!state.showTools);
+      },
     },
     {
       keyCode: 75, // k
-      success() { 
-        toggleSearch(!state.showSearch)
-        },
+      success() {
+        toggleSearch(!state.showSearch);
+      },
       modifiers: ['metaKey'],
     },
     {
-      keyCode: 27, // esc 
+      keyCode: 27, // esc
       success() {
         toggleSearch(false);
-        toggleTools(false)
+        toggleTools(false);
       },
     },
   ],
-})
-
+});
 </script>

@@ -9,7 +9,7 @@ export const uploadFile = async function (this: any, card: Card, acceptFile?: Fi
   axios
     .post(`/api/upload?card=${id}`, formData, {
       headers: {
-        'Content-Type': 'multipart/form-data'
+        'Content-Type': 'multipart/form-data',
       },
     })
     .then((upload) => {
