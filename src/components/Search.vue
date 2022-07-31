@@ -20,7 +20,7 @@
         v-for="result in searchResults"
         :key="result.id"
         data-cy="result-item"
-        class="flex  w-96 h-12 text-xl bg-white border-slate-600 border-b-1"
+        class="flex w-96 h-12 text-xl bg-white border-slate-600 border-b-1"
       >
         <a
           :href="`/board/${result.boardId}?card=${result.id}`"
@@ -45,7 +45,7 @@ const triggerSearch = () => {
     searchCard(searchQuery.value);
   }
  else {
-  searchResults.value = [];
+    searchResults.value = [];
   }
 };
 

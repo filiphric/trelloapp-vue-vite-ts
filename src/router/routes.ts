@@ -3,6 +3,7 @@ import BoardList from '@/components/boardList/BoardList.vue';
 import Login from '@/components/Login.vue';
 import NotFound from '@/components/NotFound.vue';
 import Signup from '@/components/Signup.vue';
+import Pricing from '@/components/Pricing.vue';
 
 export const routes = [
   {
@@ -19,6 +20,11 @@ export const routes = [
     component: Signup,
     name: 'Signup',
     path: '/signup',
+  },
+  {
+    component: Pricing,
+    name: 'Pricing',
+    path: '/pricing',
   },
   {
     component: Board,

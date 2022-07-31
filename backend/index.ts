@@ -6,6 +6,7 @@ import resetRoutes from './api/reset-routes';
 import userRoutes from './api/user-routes';
 import loginRoutes from './api/login-routes';
 import signupRoutes from './api/signup-routes';
+import locationRoutes from './api/location-routes';
 
 export const startServer = (): PluginOption => {
   
@@ -36,6 +37,7 @@ export const startServer = (): PluginOption => {
   app.use('/cards', cardRoutes)
   app.use('/users', userRoutes)
   app.use('/reset', resetRoutes)
+  app.use('/location', locationRoutes)
   app.use(middleware);
 
   app.use(router);

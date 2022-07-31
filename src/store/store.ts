@@ -27,6 +27,7 @@ import { toggleSearch } from './actions/toggleSearch';
 import { searchCard } from './actions/searchCard';
 import { oauthLogin } from './actions/oauthLogin';
 import { oauthSignup } from './actions/oauthSignup';
+import { getLocation } from './actions/getLocation';
 import Board from '@/typings/board';
 
 export const useStore = defineStore({
@@ -70,6 +71,13 @@ export const useStore = defineStore({
         email: '',
         password: '',
       },
+      pricing: {
+        activePlan: 2,
+        location: 'us',
+        currency: 'USD',
+        discountEligible: false,
+        discountAmount: 0,
+      },
       showTools: false,
       showSearch: false,
       searchResults: [],
@@ -105,6 +113,7 @@ export const useStore = defineStore({
     // other actions
     showNotification,
     showCardModule,
+    getLocation,
 
     // api tools
     toggleTools,
@@ -122,15 +131,15 @@ export const useStore = defineStore({
   },
   getters: {
     starred: (state): Board[] => {
-      return state.boardList.all.filter((board: Board) => board.starred === true);
+      return state.boardList.all?.filter((board: Board) => board.starred === true);
     },
     allBoards: (state): Board[] => {
-      return state.boardList.all.filter((board: Board) => board.starred === false);
+      return state.boardList.all?.filter((board: Board) => board.starred === false);
     },
   },
 });
 
-/* istanbul ignore next */
+/* istanbul ignore if */
 if (window.Cypress) {
   window.store = useStore;
 }
