@@ -7,7 +7,7 @@
       <div
         v-if="pricing.discountEligible"
         data-cy="discount"
-        class="grid mt-4 bg-yellow-100 rounded-sm border border-yellow-300"
+        class="grid mx-auto mt-4 max-w-2xl bg-yellow-100 rounded-sm border border-yellow-300"
       >
         <p class="pb-1 text-center">
           Your country is <span class="text-2xl">{{ emoji.emojify(`:flag-${pricing.location}:`) }}</span>,

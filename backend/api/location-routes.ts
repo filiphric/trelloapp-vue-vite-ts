@@ -12,11 +12,10 @@ const discountCountries = [{
 app.get('/', (req, res, next) => { 
 
   axios
-    .get(`https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.VUE_APP_GEOLOCATION_API_KEY}&fields=country_code2`)
+    .get('https://geo.risk3sixty.com/me')
     .then( ({ data }) => {
-
       
-      const locale = data.country_code2
+      const locale = data.country
       const countryDiscount = discountCountries.find( c => c.countryCode === locale)
       const result = {
         location: locale.toLowerCase(),
