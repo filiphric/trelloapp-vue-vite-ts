@@ -52,21 +52,48 @@
         </div>
       </div>
       <div class="flex justify-center mt-6">
-        <button class="py-2 px-8 tracking-wide text-white capitalize bg-green7 hover:bg-green6 rounded-sm focus:outline-none">
-          Choose Plan
+        <button
+          class="py-2 px-8 tracking-wide text-white capitalize bg-green7 hover:bg-green6 rounded-sm focus:outline-none"
+          data-cy="find-location"
+          @click="geolocation"
+        >
+          Find my location
         </button>
       </div>
+      <div
+        id="map"
+        ref="map"
+        class="mx-auto mt-4 max-w-2xl h-64"
+      />
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import { useStore } from '@/store/store';
+import { ref } from 'vue'
 import { storeToRefs } from 'pinia';
 import emoji from 'node-emoji';
+import * as L from 'leaflet'
 import RoundCheckbox from '@/assets/icons/roundCheckbox.svg';
 const { pricing } = storeToRefs(useStore());
 const { getLocation } = useStore();
 getLocation();
+
+const geolocation = () => {
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(drawMap);
+  }
+  else {
+    console.log('not working!!')
+  }
+}
+
+const drawMap = (position: GeolocationPosition) => {
+  let map = L.map(ref('map').value);
+  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
+  let target = L.latLng(position.coords.latitude, position.coords.longitude);
+  map.setView(target, 14);
+}    
 
 const plans: { [key: string]: any } = [
   {

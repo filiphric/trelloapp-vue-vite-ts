@@ -41,6 +41,7 @@
     "json-server": "^0.17.0",
     "json-server-auth": "^2.1.0",
     "jws-jwk": "^0.1.4",
+    "leaflet": "^1.8.0",
     "moment": "^2.29.1",
     "nocache": "^3.0.1",
     "node-emoji": "^1.11.0",
@@ -67,6 +68,7 @@
   },
   "devDependencies": {
     "@cypress/skip-test": "^2.6.1",
+    "@types/leaflet": "^1.7.11",
     "cypress": "^10.3.0",
     "esbuild": "^0.14.7",
     "eslint": "^8.5.0",

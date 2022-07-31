@@ -34,6 +34,7 @@ export type Selectors =
 | 'discount'
 | 'due-date'
 | 'error-icon'
+| 'find-location'
 | 'first-board'
 | 'footer-link'
 | 'header-month'

@@ -57,3 +57,24 @@ it('shows pricing', () => {
   cy.getDataCy('discount').should('be.visible').and('contain', '20%')
 
 });
+
+it('shows map', () => {
+
+  cy.visit('/pricing', {
+    onBeforeLoad (win) {
+      // e.g., force Barcelona geolocation
+      const latitude = 41.38879;
+      const longitude = 2.15899;
+      cy.stub(win.navigator.geolocation, 'getCurrentPosition').callsFake((cb) => {
+        return cb({ coords: { latitude, longitude } });
+      });
+    }
+  })
+
+  cy.getDataCy('find-location')
+    .click()
+
+  cy.get('#map')
+    .should('be.visible')
+
+})
