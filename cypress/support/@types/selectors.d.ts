@@ -37,6 +37,7 @@ export type Selectors =
 | 'find-location'
 | 'first-board'
 | 'footer-link'
+| 'google-button'
 | 'header-month'
 | 'header-year'
 | 'home'
