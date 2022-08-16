@@ -20,7 +20,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": ["node"]
+    "types": ["node", "cypress"]
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "cypress/**/*"]
 }

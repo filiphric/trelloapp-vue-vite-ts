@@ -2,7 +2,7 @@
   <nav>
     <button
       data-cy="home"
-      :class="[route.path !== '/' ? 'visible' : 'invisible']"
+      :class="[route.path === '/' ? 'invisible' : 'visible']"
       @click="router.push('/')"
     >
       <Home class="place-self-center" />

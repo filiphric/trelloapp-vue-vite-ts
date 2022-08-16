@@ -5,7 +5,7 @@
   >
     <LoadingIcon class="inline-block mb-1" />&nbsp;&nbsp;Loading data ...
     <div
-      v-if="loadingError.tooLong"
+      v-if="connectionError"
       class="block mt-4"
     >
       This is taking too long.
@@ -18,7 +18,7 @@
 import LoadingIcon from '@/assets/icons/loadingIcon.svg';
 import { useStore } from '@/store/store';
 import { storeToRefs } from 'pinia';
-const { loading, loadingError } = storeToRefs(useStore());
+const { loading, connectionError } = storeToRefs(useStore());
 </script>
 
 <style lang="postcss" scoped>

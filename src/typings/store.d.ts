@@ -11,12 +11,12 @@ declare module 'pinia' {
     lists: List[] | any;
     loading: boolean;
     loadingListCards: Record<any, string>;
-    loadingError: {
+    loadingError: Partial<{
       show: boolean;
       status: number;
       message: string;
-      tooLong: boolean;
-    };
+    }>;
+    connectionError: boolean;
     createListInput: boolean;
     cardModule: boolean;
     activeCard: Card;
