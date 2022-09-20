@@ -32,16 +32,18 @@ app.get('/', ({ app: { parent: { db } }, headers, query }, res) => {
 
 app.post('/', ({ headers, body }, res, next) => {
 
-  validate(['body'], body, res)
+  validate(['name'], body, res)
+  if (res.statusCode !== 400) {
 
-  body.user = getUserId(headers) || 0;
-  body.starred = false;
-  body.created = moment().format('YYYY-MM-DD');
+    body.user = getUserId(headers) || 0;
+    body.starred = false;
+    body.created = moment().format('YYYY-MM-DD');
 
-  // socket.emit('boardCreated', req.body);
+    // socket.emit('boardCreated', req.body);
 
-  next()
+    next()
 
+  }
 })
 
 app.delete('/', ({ app: { parent: { db } } }, res) => {
