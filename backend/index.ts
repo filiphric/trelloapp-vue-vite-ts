@@ -9,7 +9,7 @@ import signupRoutes from './api/signup-routes';
 import locationRoutes from './api/location-routes';
 
 export const startServer = (): PluginOption => {
-  
+
   const jsonServer = require('json-server');
   const app = jsonServer.create();
   const auth = require('json-server-auth');
@@ -32,16 +32,16 @@ export const startServer = (): PluginOption => {
     '/users/*': '/600/users/$1',
   }));
   app.use(auth);
+  app.use(middleware);
   app.use('/boards', boardRoutes)
   app.use('/lists', listRoutes)
   app.use('/cards', cardRoutes)
   app.use('/users', userRoutes)
   app.use('/reset', resetRoutes)
   app.use('/location', locationRoutes)
-  app.use(middleware);
 
   app.use(router);
-  
+
   const server = app.listen(3001);
   // const io = require('socket.io')(server);
 
