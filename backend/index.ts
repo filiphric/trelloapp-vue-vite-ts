@@ -26,13 +26,13 @@ export const startServer = (): PluginOption => {
   app.use(nocache());
   app.use(busboy());
   app.use(jsonServer.bodyParser);
+  app.use(middleware);
   app.use('/login', loginRoutes)
   app.use('/signup', signupRoutes)
   app.use(jsonServer.rewriter({
     '/users/*': '/600/users/$1',
   }));
   app.use(auth);
-  app.use(middleware);
   app.use('/boards', boardRoutes)
   app.use('/lists', listRoutes)
   app.use('/cards', cardRoutes)
