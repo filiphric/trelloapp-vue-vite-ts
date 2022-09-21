@@ -30,6 +30,29 @@ app.get('/', ({ app: { parent: { db } }, headers, query }, res) => {
 
 })
 
+app.get('/:id', ({ app: { parent: { db } }, params, headers }, res, next) => {
+
+  const boardId = parseInt(params.id)
+  const board = db
+    .get('boards')
+    .find({ id: boardId })
+    .value();
+
+  const userId = getUserId(headers) || 0;
+
+  if (board.user === userId || board.user === 0) {
+
+    next()
+
+  }
+  else {
+    res.status(403).jsonp({
+      error: 'You don’t have access to this board'
+    });
+  }
+
+})
+
 app.post('/', ({ headers, body }, res, next) => {
 
   validate(['name'], body, res)

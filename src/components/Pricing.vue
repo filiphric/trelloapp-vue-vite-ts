@@ -70,10 +70,10 @@
 </template>
 <script setup lang="ts">
 import { useStore } from '@/store/store';
-import { ref } from 'vue'
+import { ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import emoji from 'node-emoji';
-import * as L from 'leaflet'
+import * as L from 'leaflet';
 import RoundCheckbox from '@/assets/icons/roundCheckbox.svg';
 const { pricing } = storeToRefs(useStore());
 const { getLocation } = useStore();
@@ -81,19 +81,19 @@ getLocation();
 
 const geolocation = () => {
   if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(drawMap);
+    navigator.geolocation.getCurrentPosition(drawMap);
   }
-  else {
-    console.log('not working!!')
+ else {
+    console.log('not working!!');
   }
-}
+};
 
 const drawMap = (position: GeolocationPosition) => {
   let map = L.map(ref('map').value);
   L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
   let target = L.latLng(position.coords.latitude, position.coords.longitude);
   map.setView(target, 14);
-}    
+};
 
 const plans: { [key: string]: any } = [
   {
