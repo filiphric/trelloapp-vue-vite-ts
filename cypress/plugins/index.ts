@@ -1,16 +1,9 @@
-import * as clipboardy from 'clipboardy';
 const createBundler = require('@bahmutov/cypress-esbuild-preprocessor')
 import * as path from 'path';
-import 'dotenv/config' 
+import 'dotenv/config'
 
 module.exports = (on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) => {
-  on('task', {
-    getClipboard: () => {
-      const clipboard: string = clipboardy.readSync();
-      return clipboard;
-    },
-  })
-  
+
   on('file:preprocessor',
     createBundler({
       tsconfig: path.resolve(__dirname, '../../tsconfig.json'),
