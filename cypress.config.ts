@@ -1,4 +1,6 @@
 import { defineConfig } from 'cypress'
+import constants from './constants'
+const { APP } = constants
 
 export default defineConfig({
   env: {
@@ -18,7 +20,7 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       return require('./cypress/plugins/index.ts')(on, config)
     },
-    baseUrl: 'http://localhost:3000',
+    baseUrl: `http://localhost:${APP}`,
     specPattern: 'cypress/e2e/**/*.spec.ts',
   },
   component: {
@@ -26,7 +28,7 @@ export default defineConfig({
       framework: 'vue',
       bundler: 'vite',
     },
-    setupNodeEvents(on, config) {},
+    setupNodeEvents(on, config) { },
     env: {
       coverage: false,
     },

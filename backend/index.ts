@@ -7,6 +7,8 @@ import userRoutes from './api/user-routes';
 import loginRoutes from './api/login-routes';
 import signupRoutes from './api/signup-routes';
 import locationRoutes from './api/location-routes';
+import constants from '../constants';
+const { SERVER } = constants
 
 export const startServer = (): PluginOption => {
 
@@ -42,7 +44,7 @@ export const startServer = (): PluginOption => {
 
   app.use(router);
 
-  const server = app.listen(3001);
+  const server = app.listen(SERVER);
   // const io = require('socket.io')(server);
 
   // io.on('connection', (socket) => {
