@@ -1,14 +1,7 @@
-const createBundler = require('@bahmutov/cypress-esbuild-preprocessor')
-import * as path from 'path';
 import 'dotenv/config'
 
 module.exports = (on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) => {
 
-  on('file:preprocessor',
-    createBundler({
-      tsconfig: path.resolve(__dirname, '../../tsconfig.json'),
-    }),
-  );
 
   require('@cypress/code-coverage/task')(on, config);
 

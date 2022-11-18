@@ -1,13 +1,16 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
+    "target": "ES2018",
+    "module": "ES2020",
     "strict": true,
     "sourceMap": true,
     "jsx": "preserve",
     "allowJs": true,
     "baseUrl": "./",
-    "lib": ["esnext", "dom"],
+    "lib": [
+      "ES2018",
+      "dom"
+    ],
     "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,
     "skipLibCheck": true,
@@ -18,11 +21,24 @@
     ],
     "moduleResolution": "node",
     "paths": {
-      "@/*": ["src/*"],
-      "@commands/*": ["cypress/support/commands/*"],
-      "@fixtures/*": ["cypress/fixture/*"]
+      "@/*": [
+        "src/*"
+      ],
+      "@commands/*": [
+        "cypress/support/commands/*"
+      ],
+      "@fixtures/*": [
+        "cypress/fixture/*"
+      ]
     },
-    "types": ["cypress-real-events", "node", "cypress"],
+    "types": [
+      "cypress-real-events",
+      "node",
+      "cypress"
+    ],
   },
-  "include": ["cypress/**/*.ts", "src/**/*"]
+  "include": [
+    "cypress/**/*.ts",
+    "src/**/*"
+  ]
 }
