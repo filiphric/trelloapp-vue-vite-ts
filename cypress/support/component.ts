@@ -1,4 +1,3 @@
-import './commands'
 import { mount } from 'cypress/vue'
 import VueClickAway from 'vue3-click-away';
 import '@/index.css';
