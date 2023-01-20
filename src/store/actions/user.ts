@@ -11,6 +11,6 @@ export const user = async function (this: any, id: number) {
     })
     .catch(() => {
       this.showNotification('User is not authorized', true);
-      document.cookie = 'trello_token=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+      document.cookie = 'auth_token=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
     });
 };

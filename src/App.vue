@@ -22,17 +22,17 @@ const toggleTools = state.toggleTools;
 const toggleSearch = state.toggleSearch;
 const getCookieValue = (name: string) => document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop();
 
-const trelloToken = getCookieValue('trello_token');
-const trelloTokenValid = trelloToken?.split('.')[1];
+const authToken = getCookieValue('auth_token');
+const authTokenValid = authToken?.split('.')[1];
 
-if (trelloToken && !trelloTokenValid) {
+if (authToken && !authTokenValid) {
   state.showNotification('Invalid authorization', true);
-  document.cookie = 'trello_token=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+  document.cookie = 'auth_token=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
 }
 
-if (trelloToken && trelloTokenValid) {
-  axios.defaults.headers.common['Authorization'] = `Bearer ${trelloToken}`;
-  const userData = window.atob(trelloTokenValid);
+if (authToken && authTokenValid) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${authToken}`;
+  const userData = window.atob(authTokenValid);
   const userId = JSON.parse(userData).sub;
   state.user(userId);
 }

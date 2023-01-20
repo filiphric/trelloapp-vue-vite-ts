@@ -25,7 +25,7 @@ describe('Signup', () => {
     cy.location('pathname')
       .should('eq', '/')
 
-    cy.getCookie('trello_token')
+    cy.getCookie('auth_token')
       .should('exist')
 
   });
@@ -48,7 +48,7 @@ describe('Signup', () => {
     cy.location('pathname')
       .should('eq', '/')
 
-    cy.getCookie('trello_token')
+    cy.getCookie('auth_token')
       .should('exist')
 
   });

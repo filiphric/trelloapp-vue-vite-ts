@@ -1,4 +1,4 @@
-export {}
+export { }
 declare global {
   namespace Cypress {
     interface Chainable {
@@ -14,9 +14,9 @@ declare global {
  *
  */
 
-export const googleLogin = function(this: any): Cypress.Chainable<any> {
+export const googleLogin = function (this: any): Cypress.Chainable<any> {
 
-return cy.request({
+  return cy.request({
     method: 'POST',
     url: 'https://www.googleapis.com/oauth2/v4/token',
     body: {
@@ -27,9 +27,9 @@ return cy.request({
     },
   }).then(({ body }) => {
     const { id_token } = body
-      cy.request('POST', '/api/login', { jwt: id_token })
-        .then( ({ body: { accessToken } }) => {
-          cy.setCookie('trello_token', accessToken)
-        })
+    cy.request('POST', '/api/login', { jwt: id_token })
+      .then(({ body: { accessToken } }) => {
+        cy.setCookie('auth_token', accessToken)
+      })
   })
 }

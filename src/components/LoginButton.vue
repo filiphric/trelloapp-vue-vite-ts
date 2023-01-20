@@ -47,7 +47,7 @@ const { activeUser } = storeToRefs(useStore());
 const logout = function (this: any) {
   activeUser.value.loggedIn = false;
   axios.defaults.headers.common['Authorization'] = '';
-  document.cookie = 'trello_token=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+  document.cookie = 'auth_token=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
   showNotification('User was logged out', false);
 };
 </script>

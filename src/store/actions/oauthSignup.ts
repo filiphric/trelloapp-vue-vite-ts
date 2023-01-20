@@ -8,7 +8,7 @@ export const oauthSignup = async function (this: any, jwt: string) {
       const email = data.user.email;
       const id = data.user.id;
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      document.cookie = `trello_token=${token}`;
+      document.cookie = `auth_token=${token}`;
       this.activeUser.id = id;
       this.activeUser.email = email;
       this.activeUser.accessToken = token;

@@ -5,6 +5,6 @@ export const resetUsers = async function (this: any) {
   this.activeUser.loggedIn = false;
   this.activeUser.email = '';
   axios.defaults.headers.common['Authorization'] = '';
-  document.cookie = 'trello_token=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+  document.cookie = 'auth_token=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
   this.showNotification('All users were deleted', false);
 };

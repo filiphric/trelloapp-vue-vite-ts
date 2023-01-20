@@ -1,14 +1,14 @@
 describe('Login', () => {
-  
+
   const user = {
     email: 'filip@example.com',
     password: 'Asdf.1234#'
   }
 
   beforeEach(() => {
-    
+
     cy.request('POST', '/api/reset')
-    cy.signupApi({login: false, ...user})
+    cy.signupApi({ login: false, ...user })
 
   });
 
@@ -47,7 +47,7 @@ describe('Login', () => {
     cy.location('pathname')
       .should('eq', '/')
 
-    cy.getCookie('trello_token')
+    cy.getCookie('auth_token')
       .should('exist')
 
     cy.getDataCy('logged-user')
@@ -55,7 +55,7 @@ describe('Login', () => {
 
     cy.getDataCy('notification-message')
       .should('contain.text', 'User was logged out')
-    
+
   });
 
   it('logs in a user (enter)', () => {
@@ -78,7 +78,7 @@ describe('Login', () => {
     cy.location('pathname')
       .should('eq', '/')
 
-    cy.getCookie('trello_token')
+    cy.getCookie('auth_token')
       .should('exist')
 
     cy.getDataCy('logged-user')
@@ -86,12 +86,12 @@ describe('Login', () => {
 
     cy.getDataCy('notification-message')
       .should('contain.text', 'User was logged out')
-    
+
   });
 
   it('shows error on invalid login', () => {
 
-    cy.setCookie('trello_token', 'invalid')
+    cy.setCookie('auth_token', 'invalid')
 
     cy.visit('/login')
 
