@@ -154,6 +154,14 @@
             </div>
             <div class="col-span-4 font-bold">
               {{ activeCard.image.replace(`/data/uploaded/${activeCard.id}_`, '') }}
+              <a
+                class="block font-normal underline cursor-pointer"
+                data-cy="image-delete"
+                :href="'/backend' + activeCard.image"
+                download
+              >
+                <Download class="inline-block mb-1 w-4" />Download
+              </a>
               <div
                 class="block font-normal underline cursor-pointer"
                 data-cy="image-delete"
@@ -222,6 +230,7 @@ import Checkbox from '@/components/Checkbox.vue';
 import Clock from '@/assets/icons/clock.svg';
 import Copy from '@/assets/icons/copy.svg';
 import Cross from '@/assets/icons/cross.svg';
+import Download from '@/assets/icons/download.svg';
 import Description from '@/assets/icons/description.svg';
 import Downarrow from '@/assets/icons/downarrow.svg';
 import Dropzone from '../Dropzone.vue';
