@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen bg-blue6">
+  <div class="bg-blue6">
     <CardDetail v-if="cardModule" />
     <BoardDetail />
   </div>

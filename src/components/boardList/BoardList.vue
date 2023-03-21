@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid h-screen bg-white background"
+    class="grid h-screen bg-white background board-list"
     data-cy="board-list"
   >
     <!-- LOADING -->
@@ -60,3 +60,8 @@ import Loading from '@/components/Loading.vue';
 const state = useStore();
 state.getBoardList();
 </script>
+<style lang="postcss" scoped>
+.board-list {
+  height: calc(100vh - 40px);
+}
+</style>

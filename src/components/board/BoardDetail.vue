@@ -30,7 +30,7 @@
     <!-- BOARD DETAIL -->
     <div
       v-if="!state.loading && !state.loadingError.show"
-      class="overflow-x-auto min-h-screen whitespace-nowrap"
+      class="overflow-x-auto whitespace-nowrap board-detail"
       data-cy="board-detail"
     >
       <div class="py-2.5">
@@ -75,14 +75,14 @@
       >
         <template #item="{ element }">
           <div
-            class="inline-block h-full align-top"
+            class="inline-block align-top"
             data-cy="list-placeholder"
           >
             <ListItem :list="element" />
           </div>
         </template>
       </draggable>
-      <div class="inline-block h-full align-top">
+      <div class="inline-block align-top">
         <ListCreate :board="state.board.id" />
       </div>
     </div>
@@ -113,6 +113,10 @@ const onClickAway = () => {
 </script>
 
 <style lang="postcss" scoped>
+.board-detail {
+  height: calc(100vh - 40px);
+}
+
 .board-title:focus {
   @apply bg-gray1 bg-opacity-100 hover:bg-opacity-100 text-black;
 }

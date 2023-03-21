@@ -6,14 +6,15 @@
   >
     <div
       class="board"
+      :id="'board-' + board.id"
       data-cy="board-item"
       @click="navigate"
       @mouseover="showStar = true"
       @mouseout="showStar = false"
     >
-      <h1>
+      <h2>
         {{ board.name }}
-      </h1>
+      </h2>
       <div
         v-show="showStar"
         data-cy="star"
@@ -53,7 +54,7 @@ let showStar = ref(false);
 .star {
   @apply justify-self-end self-start;
 }
-h1 {
+h2 {
   @apply text-white font-bold col-span-5;
 }
 </style>

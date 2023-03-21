@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav class="shadow-xl">
     <button
       data-cy="home"
       :class="[route.path !== '/' ? 'visible' : 'invisible']"
