@@ -12,6 +12,12 @@ app.get('/', ({ app: { parent: { db } }, headers, query }, res) => {
   if (query?.starred === 'false') {
     query.starred = false
   }
+  if (query?.id) {
+    query.id = Number(query.id)
+  }
+  if (query?.name) {
+    query.name = decodeURIComponent(query.name)
+  }
 
   const publicBoards = db
     .get('boards')
