@@ -1,0 +1,23 @@
+name: Replay test
+on: push
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+        with:
+          browser: replay-chromium
+          start: npm start
+          record: true
+          spec: cypress/e2e/cardDetail.spec.ts          
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload replays
+        if: always()
+        uses: replayio/action-upload@v0.5.0
+        with:
+          api-key: ${{ secrets.RECORD_REPLAY_API_KEY }}

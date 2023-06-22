@@ -1,6 +1,7 @@
 import '@4tw/cypress-drag-drop';
 import '@cypress/code-coverage/support';
 import 'cypress-real-events/support';
+require('@replayio/cypress/support');
 
 import './common'
 
