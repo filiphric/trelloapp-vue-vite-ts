@@ -12,7 +12,6 @@ jobs:
           browser: replay-chromium
           start: npm start
           record: true
-          spec: cypress/e2e/cardDetail.spec.ts          
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
