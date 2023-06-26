@@ -69,7 +69,7 @@
     "@cypress/skip-test": "^2.6.1",
     "@replayio/cypress": "^1.0.3",
     "@types/leaflet": "^1.7.11",
-    "cypress": "^12.15.0",
+    "cypress": "^12.14.0",
     "eslint": "^8.5.0",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-no-only-tests": "^2.6.0",
