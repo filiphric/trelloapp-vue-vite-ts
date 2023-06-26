@@ -9,7 +9,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          browser: replay-firefox
+          browser: replay-chrome
           start: npm start
           record: true
         env:

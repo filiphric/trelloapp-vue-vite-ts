@@ -28,7 +28,7 @@
     "axios": "^0.27.2",
     "connect-busboy": "^0.0.3",
     "connect-history-api-fallback": "^2.0.0",
-    "cypress-real-events": "^1.6.0",
+    "cypress-real-events": "^1.8.1",
     "dotenv": "^16.0.1",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.23.2",

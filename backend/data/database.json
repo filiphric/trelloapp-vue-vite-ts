@@ -4,47 +4,34 @@
       "name": "new board",
       "user": 0,
       "starred": false,
-      "created": "2023-06-22",
+      "created": "2023-06-26",
       "id": 1
     }
   ],
   "cards": [
     {
-      "order": 1,
-      "boardId": 1,
-      "listId": 2,
-      "name": "new card",
-      "created": "2023-06-22",
-      "deadline": "2023-06-25",
-      "description": "",
-      "completed": true,
-      "id": 1
-    },
-    {
       "order": 0,
       "boardId": 1,
-      "listId": 2,
-      "name": "card 2",
-      "created": "2023-06-22",
-      "deadline": "2023-06-25",
+      "listId": 1,
+      "name": "card 1",
+      "created": "2023-06-26",
+      "deadline": "2023-06-29",
       "description": "",
       "completed": false,
-      "id": 2
+      "id": 1
     }
   ],
   "lists": [
     {
       "boardId": 1,
-      "name": "new list",
-      "order": 0,
-      "created": "2023-06-22",
+      "name": "list 1",
+      "created": "2023-06-26",
       "id": 1
     },
     {
       "boardId": 1,
       "name": "list 2",
-      "order": 1,
-      "created": "2023-06-22",
+      "created": "2023-06-26",
       "id": 2
     }
   ],
