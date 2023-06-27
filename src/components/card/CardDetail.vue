@@ -156,7 +156,7 @@
               {{ activeCard.image.replace(`/data/uploaded/${activeCard.id}_`, '') }}
               <a
                 class="block font-normal underline cursor-pointer"
-                data-cy="image-delete"
+                data-cy="image-download"
                 :href="'/backend' + activeCard.image"
                 download
               >
@@ -243,7 +243,7 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 const { showNotification, showCardModule, patchCard, deleteCard } = useStore();
 const { lists, activeCard } = storeToRefs(useStore());
-const cardListName = lists.value.find((l: List) => l.id === activeCard.value.listId)!['name'];
+const cardListName = lists.value.find((l: List) => l.id === activeCard.value?.listId)?.name;
 
 const showDate = ref(false);
 const cardNameInputActive = ref(false);

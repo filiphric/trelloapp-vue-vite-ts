@@ -43,6 +43,7 @@ export type Selectors =
 | 'home'
 | 'image-attachment'
 | 'image-delete'
+| 'image-download'
 | 'info-icon'
 | 'list'
 | 'list-dropdown'

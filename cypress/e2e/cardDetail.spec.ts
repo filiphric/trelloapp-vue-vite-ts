@@ -7,6 +7,11 @@ beforeEach(() => {
 
 it('card detail actions', function() {
 
+  cy.on('window:before:load', (win: Window) => {
+    cy.window().its('navigator.clipboard.writeText')
+    cy.spy(win.navigator.clipboard, 'writeText').as('clipboardCopy');
+  });
+
   const boardId = this.board.id
   const cardId = this.card.id
   const card = this.card
@@ -27,8 +32,8 @@ it('card detail actions', function() {
 
   cy.step('card properties')
   cy.getDataCy('copy-properties').realClick();
-  cy.window().its('navigator.clipboard')
-    .invoke('readText').should('eq', JSON.stringify(card, null, 2));
+  cy.get('@clipboardCopy')
+    .should('have.been.calledWith', JSON.stringify(card, null, 2));
   cy.getDataCy('notification-message')
     .should('exist')
     .and('contain.text', 'Card info copied to clipboard');
