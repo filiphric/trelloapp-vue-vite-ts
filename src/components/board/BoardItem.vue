@@ -5,8 +5,8 @@
     :to="{ path: '/board/' + board.id }"
   >
     <div
-      class="board"
       :id="'board-' + board.id"
+      class="board"
       data-cy="board-item"
       @click="navigate"
       @mouseover="showStar = true"
