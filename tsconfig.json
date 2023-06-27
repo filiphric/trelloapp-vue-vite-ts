@@ -1,25 +1,22 @@
 {
   "compilerOptions": {
-    "target": "ES2018",
-    "module": "ES2020",
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "strict": true,
     "sourceMap": true,
     "jsx": "preserve",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "DOM"],
     "allowJs": true,
     "baseUrl": "./",
-    "lib": [
-      "ES2018",
-      "dom"
-    ],
     "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,
     "skipLibCheck": true,
-    "plugins": [
-      {
-        "name": "@vuedx/typescript-plugin-vue"
-      }
-    ],
-    "moduleResolution": "node",
+    "noEmit": true,
     "paths": {
       "@/*": [
         "src/*"
@@ -37,8 +34,6 @@
       "cypress"
     ],
   },
-  "include": [
-    "cypress/**/*.ts",
-    "src/**/*"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "cypress/**/*.ts"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
