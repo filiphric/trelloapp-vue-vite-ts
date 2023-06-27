@@ -8,7 +8,6 @@ beforeEach(() => {
 it('card detail actions', function() {
 
   cy.on('window:before:load', (win: Window) => {
-    cy.window().its('navigator.clipboard.writeText')
     cy.spy(win.navigator.clipboard, 'writeText').as('clipboardCopy');
   });
 

@@ -12,14 +12,14 @@
       src="@/assets/trello-logo.gif"
       @click="router.push('/')"
     >
-    <!-- <Login /> -->
+    <Login />
   </nav>
 </template>
 
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router';
 import Home from '@/assets/icons/homeicon.svg';
-// import Login from '@/components/LoginButton.vue';
+import Login from '@/components/LoginButton.vue';
 
 const router = useRouter();
 const route = useRoute();

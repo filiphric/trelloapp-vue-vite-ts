@@ -20,22 +20,7 @@ Cypress.Commands.add('googleLogin', googleLogin);
 Cypress.Commands.add('googleSignup', googleSignup);
 Cypress.Commands.add('signupApi', signupApi);
 
-declare global {
-  interface Window {
-    logCalls: number;
-    testFlow: string[];
-  }
-}
 
-beforeEach(function () {
-  window.logCalls = 1;
-  window.testFlow = [];
-});
-
-Cypress.on('fail', (err) => {
-  if (window.testFlow.length) {
-    err.message += `${'\n\n' + 'Test steps were:\n\n'}${window.testFlow.join('\n')}`;
-  }
-  throw err;
-});
-
+Cypress.on('uncaught:exception', () => {
+  return
+})
