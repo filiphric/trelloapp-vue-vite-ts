@@ -68,7 +68,7 @@
   "devDependencies": {
     "@cypress/skip-test": "^2.6.1",
     "@types/leaflet": "^1.7.11",
-    "cypress": "^10.11.0",
+    "cypress": "^13.6.6",
     "eslint": "^8.5.0",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-no-only-tests": "^2.6.0",
