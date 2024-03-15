@@ -35,14 +35,14 @@
     >
       <div class="py-2.5">
         <div class="inline-block relative py-1.5 mr-0 ml-3 h-8">
-          <div class="inline-block invisible px-3 font-bold">
-            {{ state.board.name }}
+          <div class="inline-block invisible px-3 font-bold" data-cy="board-title">
+            {{ state.board.name }} 
+            
           </div>
           <input
             v-model="state.board.name"
             v-click-away="onClickAway"
             class="text-white bg-white bg-opacity-20 hover:bg-opacity-30 board-title"
-            data-cy="board-title"
             autocomplete="off"
             name="board-title"
             @focus="selectInput($event)"

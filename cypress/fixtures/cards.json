@@ -1,0 +1,113 @@
+[
+    {
+        "order": 0,
+        "boardId": 2,
+        "listId": 5,
+        "name": "Create a Spec document",
+        "created": "2024-03-12",
+        "deadline": "2024-02-24",
+        "description": "Create a spec document in Obsidian with the following sections, Phase 1 and Phase 2",
+        "completed": true,
+        "id": 1
+    },
+    {
+        "order": 1,
+        "boardId": 2,
+        "listId": 5,
+        "name": "Create Website",
+        "created": "2024-03-12",
+        "deadline": "2024-02-24",
+        "description": "Create the basic shell of the website",
+        "completed": true,
+        "id": 2
+    },
+    {
+        "order": 2,
+        "boardId": 2,
+        "listId": 5,
+        "name": "Apply a CSS for design",
+        "created": "2024-03-12",
+        "deadline": "2024-02-26",
+        "description": "create website css",
+        "completed": true,
+        "id": 3,
+        "image": "/data/uploaded/3_chrome_q4SL915vQ0.png"
+    },
+    {
+        "order": 0,
+        "boardId": 2,
+        "listId": 4,
+        "name": "Add Dark mode Button",
+        "created": "2024-03-12",
+        "deadline": "2024-03-05",
+        "description": "",
+        "completed": false,
+        "id": 4
+    },
+    {
+        "order": 1,
+        "boardId": 2,
+        "listId": 4,
+        "name": "Add buttons for Socials",
+        "created": "2024-03-12",
+        "deadline": "2024-03-05",
+        "description": "",
+        "completed": false,
+        "id": 5
+    },
+    {
+        "order": 0,
+        "boardId": 2,
+        "listId": 2,
+        "name": "Add Testimonial Carousel ",
+        "created": "2024-03-12",
+        "deadline": "2024-08-17",
+        "description": "",
+        "completed": false,
+        "id": 6
+    },
+    {
+        "order": 0,
+        "boardId": 2,
+        "listId": 1,
+        "name": "Add cool cursor effect that can be eye tracked",
+        "created": "2024-03-12",
+        "deadline": "2024-11-09",
+        "description": "",
+        "completed": false,
+        "id": 7
+    },
+    {
+        "order": 3,
+        "boardId": 2,
+        "listId": 5,
+        "name": "Automate this Trello page",
+        "created": "2024-03-12",
+        "deadline": "2024-03-15",
+        "description": "",
+        "completed": false,
+        "id": 8
+    },
+    {
+        "order": 0,
+        "boardId": 1,
+        "listId": 8,
+        "name": "Keep this card",
+        "created": "2024-03-12",
+        "deadline": "2024-03-15",
+        "description": "",
+        "completed": false,
+        "id": 10
+    },
+    {
+        "order": 0,
+        "boardId": 1,
+        "listId": 7,
+        "name": "delete this card",
+        "created": "2024-03-12",
+        "deadline": "2024-03-15",
+        "description": "",
+        "completed": false,
+        "id": 11
+    }
+]

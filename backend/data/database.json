@@ -4,15 +4,43 @@
       "name": "Climbing Goals",
       "user": 1,
       "starred": false,
-      "created": "2024-03-11",
-      "id": 1
+      "id": 1,
+      "created": "2024-03-15"
     },
     {
       "name": "Portfolio Kanban",
       "user": 1,
       "starred": false,
-      "created": "2024-03-12",
-      "id": 2
+      "id": 2,
+      "created": "2024-03-15"
+    },
+    {
+      "name": "Wedding plan",
+      "user": 1,
+      "starred": false,
+      "id": 4,
+      "created": "2024-03-15"
+    },
+    {
+      "name": "Grocery List",
+      "user": 1,
+      "starred": true,
+      "id": 5,
+      "created": "2024-03-15"
+    },
+    {
+      "name": "RotaMaster",
+      "user": 1,
+      "starred": false,
+      "id": 6,
+      "created": "2024-03-15"
+    },
+    {
+      "name": "New Board",
+      "user": 1,
+      "starred": false,
+      "created": "2024-03-15",
+      "id": 7
     }
   ],
   "cards": [
@@ -21,10 +49,10 @@
       "boardId": 2,
       "listId": 5,
       "name": "Create a Spec document",
-      "created": "2024-03-12",
-      "deadline": "2024-02-24",
-      "description": "Create a spec document in Obsidian with the following sections, Phase 1 and Phase 2",
-      "completed": true,
+      "created": "2024-03-15",
+      "deadline": "2024-03-18",
+      "description": "",
+      "completed": false,
       "id": 1
     },
     {
@@ -32,10 +60,10 @@
       "boardId": 2,
       "listId": 5,
       "name": "Create Website",
-      "created": "2024-03-12",
-      "deadline": "2024-02-24",
-      "description": "Create the basic shell of the website",
-      "completed": true,
+      "created": "2024-03-15",
+      "deadline": "2024-03-18",
+      "description": "",
+      "completed": false,
       "id": 2
     },
     {
@@ -43,10 +71,10 @@
       "boardId": 2,
       "listId": 5,
       "name": "Apply a CSS for design",
-      "created": "2024-03-12",
-      "deadline": "2024-02-26",
-      "description": "create website css",
-      "completed": true,
+      "created": "2024-03-15",
+      "deadline": "2024-03-18",
+      "description": "",
+      "completed": false,
       "id": 3,
       "image": "/data/uploaded/3_chrome_q4SL915vQ0.png"
     },
@@ -55,8 +83,8 @@
       "boardId": 2,
       "listId": 4,
       "name": "Add Dark mode Button",
-      "created": "2024-03-12",
-      "deadline": "2024-03-05",
+      "created": "2024-03-15",
+      "deadline": "2024-03-18",
       "description": "",
       "completed": false,
       "id": 4
@@ -66,8 +94,8 @@
       "boardId": 2,
       "listId": 4,
       "name": "Add buttons for Socials",
-      "created": "2024-03-12",
-      "deadline": "2024-03-05",
+      "created": "2024-03-15",
+      "deadline": "2024-03-18",
       "description": "",
       "completed": false,
       "id": 5
@@ -77,8 +105,8 @@
       "boardId": 2,
       "listId": 2,
       "name": "Add Testimonial Carousel ",
-      "created": "2024-03-12",
-      "deadline": "2024-08-17",
+      "created": "2024-03-15",
+      "deadline": "2024-03-18",
       "description": "",
       "completed": false,
       "id": 6
@@ -88,8 +116,8 @@
       "boardId": 2,
       "listId": 1,
       "name": "Add cool cursor effect that can be eye tracked",
-      "created": "2024-03-12",
-      "deadline": "2024-11-09",
+      "created": "2024-03-15",
+      "deadline": "2024-03-18",
       "description": "",
       "completed": false,
       "id": 7
@@ -99,8 +127,8 @@
       "boardId": 2,
       "listId": 5,
       "name": "Automate this Trello page",
-      "created": "2024-03-12",
-      "deadline": "2024-03-15",
+      "created": "2024-03-15",
+      "deadline": "2024-03-18",
       "description": "",
       "completed": false,
       "id": 8
@@ -110,8 +138,8 @@
       "boardId": 1,
       "listId": 8,
       "name": "Keep this card",
-      "created": "2024-03-12",
-      "deadline": "2024-03-15",
+      "created": "2024-03-15",
+      "deadline": "2024-03-18",
       "description": "",
       "completed": false,
       "id": 10
@@ -121,8 +149,8 @@
       "boardId": 1,
       "listId": 7,
       "name": "delete this card",
-      "created": "2024-03-12",
-      "deadline": "2024-03-15",
+      "created": "2024-03-15",
+      "deadline": "2024-03-18",
       "description": "",
       "completed": false,
       "id": 11
@@ -133,57 +161,56 @@
       "boardId": 2,
       "name": "Backlog",
       "order": 0,
-      "created": "2024-03-12",
+      "created": "2024-03-15",
       "id": 1
     },
     {
       "boardId": 2,
       "name": "In Dev",
       "order": 1,
-      "created": "2024-03-12",
+      "created": "2024-03-15",
       "id": 2
     },
     {
       "boardId": 2,
       "name": "In Review",
       "order": 2,
-      "created": "2024-03-12",
+      "created": "2024-03-15",
       "id": 3
     },
     {
       "boardId": 2,
       "name": "In Test",
       "order": 3,
-      "created": "2024-03-12",
+      "created": "2024-03-15",
       "id": 4
     },
     {
       "boardId": 2,
       "name": "Test out",
       "order": 4,
-      "created": "2024-03-12",
+      "created": "2024-03-15",
       "id": 5
     },
     {
       "boardId": 1,
       "name": "Keep this list",
       "order": 0,
-      "created": "2024-03-12",
+      "created": "2024-03-15",
       "id": 7
     },
     {
       "boardId": 1,
       "name": "Delete this list",
       "order": 1,
-      "created": "2024-03-12",
+      "created": "2024-03-15",
       "id": 8
     }
   ],
   "users": [
     {
-      "email": "Existinguser123@test.com",
-      "password": "$2a$10$CgffcxVgdatiearnOxg5J.lWFV5RRBQ.hnmTKgAHBRBpPQkgeXbyC",
-      "welcomeEmail": false,
+      "email": "Existinguser@test.com",
+      "password": "$2a$10$hfHmT4mq8jdGWMCA18N9S.kq4fOFprBtr9HdEdvN8ZvjApCd/G3eW",
       "id": 1
     }
   ]

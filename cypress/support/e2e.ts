@@ -1,20 +1,76 @@
-// ***********************************************************
-// This example support/e2e.ts is processed and
-// loaded automatically before your test files.
-//
-// This is a great place to put global configuration and
-// behavior that modifies Cypress.
-//
-// You can change the location of this file or turn off
-// automatically serving support files with the
-// 'supportFile' configuration option.
-//
-// You can read more here:
-// https://on.cypress.io/configuration
-// ***********************************************************
-
-// Import commands.js using ES2015 syntax:
 import './commands'
 
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+before(() => {
+  cy.log('clearing the database')
+  cy.request('POST', '/api/reset')
+
+  cy.log('Seeding the database')
+  cy.fixture('users').then(myFixture => {
+    cy.request({
+      method: 'POST',
+      url: '/api/signup',
+      body: myFixture[0],
+    })
+  });
+
+let auth :string;
+cy.request({
+      method: 'POST',
+      url: '/api/login',
+      body: {
+        "email": "Existinguser@test.com",
+        "password": "Existinguser123"
+      },
+    }).then(function (response) {
+      auth = response.body.accessToken;
+    });
+
+  cy.fixture('boards').then(myFixture => {
+    for (let i = 0; i < myFixture.length; i++) {
+      cy.request({
+        method: 'POST',
+        url: '/api/boards',
+        headers: { authorization: `Bearer ${auth}` },
+        body: myFixture[i],
+      })
+    }
+  });
+
+  cy.fixture('lists').then(myFixture => {
+    for (let i = 0; i < myFixture.length; i++) {
+      cy.request({
+        method: 'POST',
+        url: '/api/lists',
+        headers: { authorization: `Bearer ${auth}` },
+        body: myFixture[i],
+      })
+    }
+  });
+
+  cy.fixture('cards').then(myFixture => {
+    for (let i = 0; i < myFixture.length; i++) {
+      cy.request({
+        method: 'POST',
+        url: '/api/cards',
+        headers: { authorization: `Bearer ${auth}` },
+        body: myFixture[i],
+      })
+    }
+  });
+
+  cy.fixture('boards').then(myFixture => {
+    cy.request({
+      method: 'PATCH',
+      url: '/api/boards/4',
+      headers: { authorization: `Bearer ${auth}` },
+      body: myFixture[3],
+    })
+  });
+
+  cy.log('Starting E2E tests')
+});
+
+beforeEach(() => {
+  cy.visit('/')
+})
+
