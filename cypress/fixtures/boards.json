@@ -1,38 +1,8 @@
 [
   {
-    "name": "Climbing Goals",
-    "user": 1,
-    "starred": false,
-    "id": 1
-  },
-  {
     "name": "Portfolio Kanban",
     "user": 1,
     "starred": false,
-    "id": 2
-  },
-  {
-    "name": "Meme Ideas",
-    "user": 1,
-    "starred": false,
-    "id": 3
-  }, 
-  {
-    "name": "Wedding plan",
-    "user": 1,
-    "starred": true,
-    "id": 4
-  },
-  {
-    "name": "Grocery List",
-    "user": 1,
-    "starred": false,
-    "id": 5
-  },
-  {
-    "name": "RoverMaster",
-    "user": 1,
-    "starred": false,
-    "id": 6
+    "id": 1
   }
 ]

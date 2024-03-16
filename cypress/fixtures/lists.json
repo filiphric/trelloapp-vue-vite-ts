@@ -1,51 +1,16 @@
     [
         {
-            "boardId": 2,
-            "name": "Backlog",
+            "boardId": 1,
+            "name": "Move this list",
             "order": 0,
             "created": "2024-03-12",
             "id": 1
-        },
-        {
-            "boardId": 2,
-            "name": "In Dev",
-            "order": 1,
-            "created": "2024-03-12",
-            "id": 2
-        },
-        {
-            "boardId": 2,
-            "name": "In Review",
-            "order": 2,
-            "created": "2024-03-12",
-            "id": 3
-        },
-        {
-            "boardId": 2,
-            "name": "In Test",
-            "order": 3,
-            "created": "2024-03-12",
-            "id": 4
-        },
-        {
-            "boardId": 2,
-            "name": "Test out",
-            "order": 4,
-            "created": "2024-03-12",
-            "id": 5
-        },
-        {
-            "boardId": 1,
-            "name": "Keep this list",
-            "order": 0,
-            "created": "2024-03-12",
-            "id": 7
         },
         {
             "boardId": 1,
             "name": "Delete this list",
             "order": 1,
             "created": "2024-03-12",
-            "id": 8
+            "id": 2
         }
     ]

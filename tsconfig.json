@@ -34,11 +34,13 @@
     "types": [
       "cypress-real-events",
       "node",
-      "cypress"
+      "cypress",
+      "@4tw/cypress-drag-drop"
     ],
   },
   "include": [
     "cypress/**/*.ts",
     "src/**/*"
   ]
+  
 }

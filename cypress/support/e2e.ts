@@ -1,76 +1,40 @@
 import './commands'
+import '@4tw/cypress-drag-drop'
+import '@cypress/grep'
 
 before(() => {
-  cy.log('clearing the database')
-  cy.request('POST', '/api/reset')
-
-  cy.log('Seeding the database')
-  cy.fixture('users').then(myFixture => {
-    cy.request({
-      method: 'POST',
-      url: '/api/signup',
-      body: myFixture[0],
-    })
-  });
-
-let auth :string;
-cy.request({
-      method: 'POST',
-      url: '/api/login',
-      body: {
-        "email": "Existinguser@test.com",
-        "password": "Existinguser123"
-      },
-    }).then(function (response) {
-      auth = response.body.accessToken;
-    });
-
-  cy.fixture('boards').then(myFixture => {
-    for (let i = 0; i < myFixture.length; i++) {
-      cy.request({
-        method: 'POST',
-        url: '/api/boards',
-        headers: { authorization: `Bearer ${auth}` },
-        body: myFixture[i],
-      })
-    }
-  });
-
-  cy.fixture('lists').then(myFixture => {
-    for (let i = 0; i < myFixture.length; i++) {
-      cy.request({
-        method: 'POST',
-        url: '/api/lists',
-        headers: { authorization: `Bearer ${auth}` },
-        body: myFixture[i],
-      })
-    }
-  });
-
-  cy.fixture('cards').then(myFixture => {
-    for (let i = 0; i < myFixture.length; i++) {
-      cy.request({
-        method: 'POST',
-        url: '/api/cards',
-        headers: { authorization: `Bearer ${auth}` },
-        body: myFixture[i],
-      })
-    }
-  });
-
-  cy.fixture('boards').then(myFixture => {
-    cy.request({
-      method: 'PATCH',
-      url: '/api/boards/4',
-      headers: { authorization: `Bearer ${auth}` },
-      body: myFixture[3],
-    })
-  });
-
-  cy.log('Starting E2E tests')
+//  cy.log('clearing the database')
+//  cy.request('POST', '/api/reset')
+//
+//  cy.log('Seeding the database')
+//    cy.request('POST', '/api/reset')
+//    cy.fixture('users').then((fixture) => {
+//        cy.request('POST', '/api/signup', fixture[0]).then(function (response) {
+//            const auth = response.body.accessToken;
+//            cy.seedData('boards', undefined, auth);
+//            cy.seedData('lists');
+//            cy.seedData('cards');
+//        });
+//    });
+//  cy.log('Starting E2E tests')
 });
 
 beforeEach(() => {
-  cy.visit('/')
+  // clear the database
+  cy.request('POST', '/api/reset')
+  cy.visit('')
+
+
+
+//  cy.log('Setting up the test')
+//    cy.request('POST', '/api/reset')
+//    cy.fixture('users').then((fixture) => {
+//        cy.request('POST', '/api/signup', fixture[0]).then(function (response) {
+//            const auth = response.body.accessToken;
+//            cy.seedData('boards', 0, auth);
+//            cy.seedData('lists');
+//            cy.seedData('cards');
+//        });
+//    });
 })
 
