@@ -1,7 +1,7 @@
 import { defineConfig } from "cypress";
 
 export default defineConfig({
-  
+  video: true,
   projectId: 'm2fvqo',
   e2e: {
     specPattern: "**/e2e/*/*.spec.ts", 
