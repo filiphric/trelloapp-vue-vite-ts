@@ -15,8 +15,8 @@ jobs:
         run: npm install
       - name: setup local server
         run: start npm start
-      - name: Run Cypress tests
-        run: npx cypress run
+      #- name: Run Cypress tests
+        #run: npx cypress run
       - uses: cypress-io/github-action@v2
       - uses: actions/upload-artifact@v2
         if: always()
