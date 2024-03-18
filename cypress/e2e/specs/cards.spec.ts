@@ -50,10 +50,10 @@ describe('Cards: as a valid user', () => {
     it('I can add a description to a card', () => {
         //Given I am on a cards detail page
         cy.visit('/board/1?card=1');
-        //when I add a description to the card
+        //When I add a description to the card
         cy.get('[data-cy="card-description"]').click().clear().type('This is a description').type('{enter}');
         //Then I should see the description has been added
-        cy.get('[data-cy="notification-message"]').should('have.text', 'Description was changed');
+        cy.notificationEquals('Description was changed');
     });
 
     it('I can see card has the correct details', () => {
@@ -63,7 +63,7 @@ describe('Cards: as a valid user', () => {
                 let card = response.body;
                 let boardId = parseInt(response.body.boardId);
                 let id = parseInt(response.body.id);
-                //when I view the card
+                //When I view the card
                 cy.visit(`/board/${boardId}?card=${id}`);
                 //Then I should see the correct details
                 cy.get('[data-cy="card-detail-title"]').should('have.value', card.name);
@@ -90,7 +90,7 @@ describe('Cards: as a valid user', () => {
     });
 
     it('I can add an image to a card', () => {
-        
-     });
+
+    });
 });
 

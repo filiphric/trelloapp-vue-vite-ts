@@ -14,6 +14,6 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: setup local server
-        run: npm start
+        run: start npm start
       - name: Run Cypress tests
         run: npm run cypress

@@ -11,12 +11,13 @@ Cypress.Commands.add('withValue', { prevSubject: true }, (element, value) => {
     });
   });
 
+Cypress.Commands.add('notificationEquals', (value) => {cy.get('[data-cy="notification-message"]').should('have.text', value)});
 
 Cypress.Commands.add('seedData', (fixtureName: string, index?: number, auth?: string) => {
     cy.log(`Seeding data from ${fixtureName}`);
     if (!auth) {
         cy.log('No auth token provided, seeding data as guest');
-            if (index == undefined) {
+           if (index == undefined) {
             cy.log('Seeding all data from fixture');
             cy.fixture(fixtureName).then((fixture) => {
                 for (let i = 0; i < fixture.length; i++) {
@@ -70,7 +71,7 @@ declare namespace Cypress {
     interface Chainable {
         loginAs(email: string, password: string): Chainable<void>
         seedData(fixtureName: string, index?: number, auth?: string): Chainable<void>
-        shouldHaveValue(expect: string): Chainable<void>
         withValue(value: string): Chainable<void>
+        notificationEquals(value: string): Chainable<void>
     }
 }

@@ -31,7 +31,7 @@ describe('Boards control: as a valid user', () => {
         cy.get('[data-cy="board-options"]').click();
         cy.get('[data-cy="delete-board"]').click();
         //Then I should see the board is deleted
-        cy.get('[data-cy="notification-message"]').should('have.text', 'Board was deleted')
+        cy.notificationEquals('Board was deleted');
     });
 
     it('I can favorite a board', () => {
