@@ -17,9 +17,9 @@ jobs:
         run: start npm start
       - name: Run Cypress tests
         run: npx cypress run
-      - uses: cypress-io/github-action
-      - uses: actions/upload-artifact@v1
-        if: failure()
+      - uses: cypress-io/github-action@v2
+      - uses: actions/upload-artifact@v2
+        if: always()
         with:
           name: cypress-videos
           path: cypress/videos
@@ -31,4 +31,4 @@ jobs:
 #        with:
 #          token: ${{ secrets.SLACK_TOKEN }}
 #          channels: "_tolk"
-#          message-text: "Cypress tests failed! They have been placed in this thread, good luck."
+#          message-text: "Cypress tests failed! They have been placed in this thread, good luck."R
