@@ -1,0 +1,24 @@
+[
+    {
+        "order": 0,
+        "boardId": 1,
+        "listId": 1,
+        "name": "Create a Spec document",
+        "created": "2024-03-12",
+        "deadline": "2024-02-24",
+        "description": "Create a spec document in Obsidian with the following sections, Phase 1 and Phase 2",
+        "completed": true,
+        "id": 1
+    },
+    {
+        "order": 0,
+        "boardId": 1,
+        "listId": 2,
+        "name": "Detailed Design Document",
+        "created": "2024-03-12",
+        "deadline": "2024-02-24",
+        "description": "Create a detailed design document",
+        "completed": true,
+        "id": 2
+    }
+]

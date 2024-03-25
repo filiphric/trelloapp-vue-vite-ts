@@ -13,10 +13,10 @@
       class="container mx-auto"
     >
       <!-- STARRED BOARDS -->
-      <div v-if="state.starred.length">
+      <div v-if="state.starred.length" data-cy="starred-section">
         <h1
           class="inline-block py-5 mx-4 text-3xl font-semibold"
-          data-cy="starred-boards"
+          data-cy="starred-header"
         >
           Starred
         </h1>
@@ -31,7 +31,7 @@
       </div>
 
       <!-- ALL BOARDS -->
-      <div v-if="state.allBoards.length">
+      <div v-if="state.allBoards.length" data-cy="all-boards">
         <h1 class="inline-block py-5 mx-4 text-3xl font-semibold">
           My Boards
         </h1>

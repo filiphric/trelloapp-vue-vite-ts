@@ -1,0 +1,16 @@
+    [
+        {
+            "boardId": 1,
+            "name": "Move this list",
+            "order": 0,
+            "created": "2024-03-12",
+            "id": 1
+        },
+        {
+            "boardId": 1,
+            "name": "Delete this list",
+            "order": 1,
+            "created": "2024-03-12",
+            "id": 2
+        }
+    ]

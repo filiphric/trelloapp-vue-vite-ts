@@ -9,7 +9,6 @@
     "postinstall": "echo \"Trello app was installed sucessfully ✅\nYou can now run it by typing:\nnpm start\""
   },
   "dependencies": {
-    "@4tw/cypress-drag-drop": "^2.1.0",
     "@cypress/code-coverage": "^3.10.0",
     "@cypress/vite-dev-server": "^2.2.1",
     "@cypress/vue": "^3.0.5",
@@ -66,9 +65,11 @@
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
+    "@4tw/cypress-drag-drop": "^2.2.5",
+    "@cypress/grep": "^4.0.1",
     "@cypress/skip-test": "^2.6.1",
     "@types/leaflet": "^1.7.11",
-    "cypress": "^10.4.0",
+    "cypress": "^13.7.0",
     "eslint": "^8.5.0",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-no-only-tests": "^2.6.0",

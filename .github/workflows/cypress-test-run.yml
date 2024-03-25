@@ -1,0 +1,34 @@
+name: Cypress Test Run
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: npm install
+      - name: setup local server
+        run: start npm start
+      - name: Run Cypress tests
+        run: npx cypress run
+      - uses: cypress-io/github-action@v2
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
+
+
+#      - name: "Upload screenshots to Slack"
+#        uses: trymbill/cypress-slack-video-upload-action@v1.3.0
+#        if: failure()
+#        with:
+#          token: ${{ secrets.SLACK_TOKEN }}
+#          channels: "_tolk"
+#          message-text: "Cypress tests failed! They have been placed in this thread, good luck."R
