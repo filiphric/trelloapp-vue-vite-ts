@@ -1,6 +1,50 @@
 {
-  "boards": [],
-  "cards": [],
-  "lists": [],
+  "boards": [
+    {
+      "name": "new board",
+      "user": 0,
+      "starred": false,
+      "created": "2024-12-20",
+      "id": 1
+    }
+  ],
+  "cards": [
+    {
+      "order": 1,
+      "boardId": 1,
+      "listId": 2,
+      "name": "card 1",
+      "created": "2024-12-20",
+      "deadline": "2024-12-23",
+      "description": "",
+      "completed": false,
+      "id": 1
+    },
+    {
+      "order": 0,
+      "boardId": 1,
+      "listId": 2,
+      "name": "card 2",
+      "created": "2024-12-20",
+      "deadline": "2024-12-23",
+      "description": "",
+      "completed": false,
+      "id": 2
+    }
+  ],
+  "lists": [
+    {
+      "boardId": 1,
+      "name": "list 1",
+      "created": "2024-12-20",
+      "id": 1
+    },
+    {
+      "boardId": 1,
+      "name": "list 2",
+      "created": "2024-12-20",
+      "id": 2
+    }
+  ],
   "users": []
 }
