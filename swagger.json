@@ -1,0 +1,985 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Trello Clone API",
+    "description": "API for a Trello clone application with boards, lists, cards, and user management",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Filip Hric",
+      "url": "https://filiphric.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api",
+      "description": "Development server"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "Board": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the board"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the board"
+          },
+          "user": {
+            "type": "integer",
+            "description": "User ID of the board owner (0 for public boards)"
+          },
+          "starred": {
+            "type": "boolean",
+            "description": "Whether the board is starred"
+          },
+          "created": {
+            "type": "string",
+            "format": "date",
+            "description": "Creation date in YYYY-MM-DD format"
+          }
+        },
+        "required": ["id", "name", "user", "starred", "created"]
+      },
+      "List": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the list"
+          },
+          "boardId": {
+            "type": "integer",
+            "description": "ID of the board this list belongs to"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the list"
+          },
+          "order": {
+            "type": "integer",
+            "description": "Order of the list within the board"
+          },
+          "created": {
+            "type": "string",
+            "format": "date",
+            "description": "Creation date in YYYY-MM-DD format"
+          }
+        },
+        "required": ["id", "boardId", "name", "order", "created"]
+      },
+      "Card": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the card"
+          },
+          "boardId": {
+            "type": "integer",
+            "description": "ID of the board this card belongs to"
+          },
+          "listId": {
+            "type": "integer",
+            "description": "ID of the list this card belongs to"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the card"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the card"
+          },
+          "completed": {
+            "type": "boolean",
+            "description": "Whether the card is completed"
+          },
+          "deadline": {
+            "type": "string",
+            "format": "date",
+            "description": "Deadline date in YYYY-MM-DD format"
+          },
+          "created": {
+            "type": "string",
+            "format": "date",
+            "description": "Creation date in YYYY-MM-DD format"
+          }
+        },
+        "required": ["id", "boardId", "listId", "name", "description", "completed", "deadline", "created"]
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the user"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "User's email address"
+          },
+          "password": {
+            "type": "string",
+            "description": "Hashed password"
+          }
+        },
+        "required": ["id", "email", "password"]
+      },
+      "Location": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string",
+            "description": "Country code in lowercase"
+          },
+          "currency": {
+            "type": "string",
+            "description": "Currency code (EUR, GBP, USD)"
+          },
+          "discountEligible": {
+            "type": "boolean",
+            "description": "Whether the user is eligible for discounts"
+          },
+          "discountAmount": {
+            "type": "integer",
+            "description": "Discount percentage if eligible"
+          }
+        },
+        "required": ["location", "currency", "discountEligible"]
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/boards": {
+      "get": {
+        "summary": "Get all boards",
+        "description": "Returns all boards accessible to the current user (public boards + user's private boards)",
+        "parameters": [
+          {
+            "name": "starred",
+            "in": "query",
+            "description": "Filter by starred status",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of boards",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Board"
+                  }
+                },
+                "examples": {
+                  "unauthorized": {
+                    "summary": "Unauthorized user",
+                    "value": [
+                      {
+                        "name": "new project",
+                        "user": 0,
+                        "id": 27315982008,
+                        "starred": false,
+                        "created": "2020-09-01"
+                      },
+                      {
+                        "name": "moon landing 2",
+                        "user": 0,
+                        "id": 14254049205,
+                        "starred": true,
+                        "created": "2020-09-01"
+                      }
+                    ]
+                  },
+                  "authorized": {
+                    "summary": "Authorized user",
+                    "value": [
+                      {
+                        "name": "new project",
+                        "user": 0,
+                        "id": 27315982008,
+                        "starred": false,
+                        "created": "2020-09-01"
+                      },
+                      {
+                        "name": "moon landing 2",
+                        "user": 0,
+                        "id": 14254049205,
+                        "starred": true,
+                        "created": "2020-09-01"
+                      },
+                      {
+                        "name": "private board",
+                        "user": 1,
+                        "id": 6606529940,
+                        "starred": false,
+                        "created": "2020-09-01"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new board",
+        "description": "Creates a new board. If user is authenticated, board is private. Otherwise, it's public.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the board"
+                  }
+                },
+                "required": ["name"]
+              },
+              "example": {
+                "name": "moon landing 2"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Board created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Board"
+                },
+                "example": {
+                  "name": "moon landing 2",
+                  "user": 1,
+                  "id": 22559285486,
+                  "starred": false,
+                  "created": "2020-09-01"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - missing required fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete all boards",
+        "description": "Deletes all boards, lists, and cards. This is a special endpoint for testing purposes.",
+        "responses": {
+          "204": {
+            "description": "All boards deleted successfully"
+          }
+        }
+      }
+    },
+    "/boards/{boardId}": {
+      "get": {
+        "summary": "Get board details",
+        "description": "Returns details of a specific board",
+        "parameters": [
+          {
+            "name": "boardId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the board",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Board details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Board"
+                },
+                "example": {
+                  "name": "new project",
+                  "user": 0,
+                  "id": 27315982008,
+                  "starred": false,
+                  "created": "2020-09-01"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - user doesn't have access to this board",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": "You don't have access to this board"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Board not found"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update board",
+        "description": "Updates board details. Only starred and name attributes can be changed.",
+        "parameters": [
+          {
+            "name": "boardId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the board",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "starred": {
+                    "type": "boolean",
+                    "description": "Whether the board is starred"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "New name for the board"
+                  }
+                }
+              },
+              "example": {
+                "starred": true,
+                "name": "project alpha"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Board updated successfully"
+          },
+          "403": {
+            "description": "Forbidden - user doesn't have access to this board"
+          },
+          "404": {
+            "description": "Board not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete board",
+        "description": "Deletes a specific board",
+        "parameters": [
+          {
+            "name": "boardId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the board",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Board deleted successfully"
+          },
+          "403": {
+            "description": "Forbidden - user doesn't have access to this board"
+          },
+          "404": {
+            "description": "Board not found"
+          }
+        }
+      }
+    },
+    "/lists": {
+      "get": {
+        "summary": "Get all lists",
+        "description": "Returns all lists, optionally filtered by boardId",
+        "parameters": [
+          {
+            "name": "boardId",
+            "in": "query",
+            "description": "Filter lists by board ID",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of lists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/List"
+                  }
+                },
+                "example": [
+                  {
+                    "boardId": 123456789,
+                    "name": "Groceries",
+                    "order": 0,
+                    "id": 68040017610,
+                    "created": "2022-01-26"
+                  },
+                  {
+                    "boardId": 987654321,
+                    "name": "Drugstore",
+                    "order": 1,
+                    "id": 87979775072,
+                    "created": "2022-02-11"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new list",
+        "description": "Creates a new list in a specific board",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "boardId": {
+                    "type": "integer",
+                    "description": "ID of the board to create the list in"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the list"
+                  }
+                },
+                "required": ["boardId", "name"]
+              },
+              "example": {
+                "boardId": 123456789,
+                "name": "to do"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "List created successfully"
+          },
+          "400": {
+            "description": "Bad request - missing required fields"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete all lists",
+        "description": "Deletes all lists and cards. This is a special endpoint for testing purposes.",
+        "responses": {
+          "204": {
+            "description": "All lists deleted successfully"
+          }
+        }
+      }
+    },
+    "/lists/{listId}": {
+      "patch": {
+        "summary": "Update list",
+        "description": "Updates list details",
+        "parameters": [
+          {
+            "name": "listId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the list",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "New name for the list"
+                  }
+                }
+              },
+              "example": {
+                "name": "renamed list"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List updated successfully"
+          },
+          "404": {
+            "description": "List not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete list",
+        "description": "Deletes a specific list",
+        "parameters": [
+          {
+            "name": "listId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the list",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "List deleted successfully"
+          },
+          "404": {
+            "description": "List not found"
+          }
+        }
+      }
+    },
+    "/cards": {
+      "post": {
+        "summary": "Create a new card",
+        "description": "Creates a new card in a specific list",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "boardId": {
+                    "type": "integer",
+                    "description": "ID of the board"
+                  },
+                  "listId": {
+                    "type": "integer",
+                    "description": "ID of the list to create the card in"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the card"
+                  }
+                },
+                "required": ["boardId", "listId", "name"]
+              },
+              "example": {
+                "boardId": 123456789,
+                "listId": 68040017610,
+                "name": "buy milk"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Card created successfully"
+          },
+          "400": {
+            "description": "Bad request - missing required fields"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete all cards",
+        "description": "Deletes all cards. This is a special endpoint for testing purposes.",
+        "responses": {
+          "204": {
+            "description": "All cards deleted successfully"
+          }
+        }
+      }
+    },
+    "/cards/{cardId}": {
+      "patch": {
+        "summary": "Update card",
+        "description": "Updates card details",
+        "parameters": [
+          {
+            "name": "cardId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the card",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "completed": {
+                    "type": "boolean",
+                    "description": "Whether the card is completed"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "New name for the card"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "New description for the card"
+                  },
+                  "deadline": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "New deadline for the card"
+                  }
+                }
+              },
+              "example": {
+                "completed": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Card updated successfully"
+          },
+          "404": {
+            "description": "Card not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete card",
+        "description": "Deletes a specific card",
+        "parameters": [
+          {
+            "name": "cardId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the card",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Card deleted successfully"
+          },
+          "404": {
+            "description": "Card not found"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "summary": "Get current user information",
+        "description": "Returns information for the currently authenticated user",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "$ref": "#/components/schemas/User"
+                    }
+                  }
+                },
+                "example": {
+                  "user": {
+                    "email": "filip@example.com",
+                    "password": "$2a$10$fdK.5O8uogdfjgklôjgd/gf90890NKLJ",
+                    "id": 1
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete all users",
+        "description": "Deletes all users. This is a special endpoint for testing purposes.",
+        "responses": {
+          "204": {
+            "description": "All users deleted successfully"
+          }
+        }
+      }
+    },
+    "/signup": {
+      "post": {
+        "summary": "Create a new user",
+        "description": "Creates a new user account",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "User's email address"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "User's password"
+                  }
+                },
+                "required": ["email", "password"]
+              },
+              "example": {
+                "email": "filip@example.com",
+                "password": "nbusr1234"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created successfully"
+          },
+          "400": {
+            "description": "Bad request - missing required fields"
+          },
+          "409": {
+            "description": "User already exists"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "summary": "Log in user",
+        "description": "Authenticates a user and returns a JWT token. Supports both email/password and Google JWT authentication.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "email": {
+                        "type": "string",
+                        "format": "email"
+                      },
+                      "password": {
+                        "type": "string"
+                      }
+                    },
+                    "required": ["email", "password"]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "jwt": {
+                        "type": "string",
+                        "description": "Google JWT token"
+                      }
+                    },
+                    "required": ["jwt"]
+                  }
+                ]
+              },
+              "examples": {
+                "email_password": {
+                  "summary": "Email and password login",
+                  "value": {
+                    "email": "filip@example.com",
+                    "password": "nbusr1234"
+                  }
+                },
+                "google_jwt": {
+                  "summary": "Google JWT login",
+                  "value": {
+                    "jwt": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "accessToken": {
+                      "type": "string",
+                      "description": "JWT access token"
+                    },
+                    "user": {
+                      "$ref": "#/components/schemas/User"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid credentials or authorization",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Invalid authorization"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/welcomeemail": {
+      "post": {
+        "summary": "Send welcome email",
+        "description": "Sends a request for a welcome email",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Email address to send welcome email to"
+                  }
+                },
+                "required": ["email"]
+              },
+              "example": {
+                "email": "filip@example.com"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Welcome email request sent successfully"
+          },
+          "400": {
+            "description": "Bad request - missing email"
+          }
+        }
+      }
+    },
+    "/reset": {
+      "post": {
+        "summary": "Reset database",
+        "description": "Deletes all boards, lists, cards, and users. This is a special endpoint for testing purposes.",
+        "responses": {
+          "204": {
+            "description": "Database reset successfully"
+          }
+        }
+      }
+    },
+    "/location": {
+      "get": {
+        "summary": "Get user location and pricing info",
+        "description": "Returns user's location information and pricing details based on their IP address",
+        "responses": {
+          "200": {
+            "description": "Location and pricing information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                },
+                "example": {
+                  "location": "sk",
+                  "currency": "EUR",
+                  "discountEligible": true,
+                  "discountAmount": 20
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
