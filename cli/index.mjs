@@ -1,4 +1,5 @@
 import { resolve } from 'node:path';
+import { spawn } from 'node:child_process';
 import chalk from 'chalk';
 import ora from 'ora';
 import prompts from 'prompts';
@@ -96,21 +97,44 @@ async function main() {
   console.log();
   console.log(chalk.green.bold('  ✔ Setup complete!'));
   console.log();
-  console.log(chalk.bold('  Next steps:'));
-  console.log();
-  console.log(chalk.cyan(`    cd ${dirName}`));
-  console.log(chalk.cyan('    npm start'));
-  console.log();
-  console.log(chalk.dim(`    App will be running at http://localhost:3000`));
 
-  if (installType === 'full') {
+  // ── Ask to start the app ──────────────────────────────────
+  const { startNow } = await prompts({
+    type: 'confirm',
+    name: 'startNow',
+    message: 'Start the app now?',
+    initial: true,
+  }, { onCancel });
+
+  if (startNow) {
     console.log();
-    console.log(chalk.dim('    Run tests:'));
-    console.log(chalk.dim('      npm test          (unit tests)'));
-    console.log(chalk.dim('      npm run test:e2e   (e2e tests)'));
-  }
+    console.log(chalk.cyan('  Starting the app...'));
+    console.log(chalk.dim(`  App will be running at http://localhost:3000`));
+    console.log();
 
-  console.log();
+    spawn('npm', ['start'], {
+      cwd: projectDir,
+      stdio: 'inherit',
+      shell: true,
+    });
+  } else {
+    console.log();
+    console.log(chalk.bold('  To start the app later:'));
+    console.log();
+    console.log(chalk.cyan(`    cd ${dirName}`));
+    console.log(chalk.cyan('    npm start'));
+    console.log();
+    console.log(chalk.dim(`    App will be running at http://localhost:3000`));
+
+    if (installType === 'full') {
+      console.log();
+      console.log(chalk.dim('    Run tests:'));
+      console.log(chalk.dim('      npm test          (unit tests)'));
+      console.log(chalk.dim('      npm run test:e2e   (e2e tests)'));
+    }
+
+    console.log();
+  }
 }
 
 main().catch((err) => {

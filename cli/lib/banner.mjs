@@ -5,10 +5,10 @@ export function printBanner() {
   const white = chalk.white.bold;
 
   console.log();
-  console.log(cyan('  ┌─────────────────────────────────────┐'));
-  console.log(cyan('  │                                     │'));
-  console.log(cyan('  │') + white('    Trello App Workshop Setup   ') + cyan('     │'));
-  console.log(cyan('  │                                     │'));
-  console.log(cyan('  └─────────────────────────────────────┘'));
+  console.log(cyan('  ┌───────────────────────────────────┐'));
+  console.log(cyan('  │                                   │'));
+  console.log(cyan('  │') + white('   Trello App Workshop Setup   ') + cyan('    │'));
+  console.log(cyan('  │                                   │'));
+  console.log(cyan('  └───────────────────────────────────┘'));
   console.log();
 }

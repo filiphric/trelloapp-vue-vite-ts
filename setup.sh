@@ -61,11 +61,11 @@ spin() {
 
 # ── Welcome banner ────────────────────────────────────────────────
 printf "\n"
-printf "${CYAN}${BOLD}  ┌─────────────────────────────────────┐${RESET}\n"
-printf "${CYAN}${BOLD}  │                                     │${RESET}\n"
-printf "${CYAN}${BOLD}  │   ${RESET}${BOLD}  Trello App Workshop Setup  ${CYAN}${BOLD}    │${RESET}\n"
-printf "${CYAN}${BOLD}  │                                     │${RESET}\n"
-printf "${CYAN}${BOLD}  └─────────────────────────────────────┘${RESET}\n"
+printf "${CYAN}${BOLD}  ┌───────────────────────────────────┐${RESET}\n"
+printf "${CYAN}${BOLD}  │                                   │${RESET}\n"
+printf "${CYAN}${BOLD}  │${RESET}${BOLD}   Trello App Workshop Setup       ${CYAN}${BOLD}│${RESET}\n"
+printf "${CYAN}${BOLD}  │                                   │${RESET}\n"
+printf "${CYAN}${BOLD}  └───────────────────────────────────┘${RESET}\n"
 printf "\n"
 
 # ── Check: git ────────────────────────────────────────────────────
@@ -165,8 +165,8 @@ if [ $? -ne 0 ]; then
   need_help
   exit 1
 fi
-printf "\r"
-success "Repository cloned                \n"
+printf "\r                                        \r"
+success "Repository cloned"
 
 # ── Reinitialize git ──────────────────────────────────────────────
 cd "$DIR_NAME"
@@ -186,8 +186,8 @@ if [ $? -ne 0 ]; then
   need_help
   exit 1
 fi
-printf "\r"
-success "Setup wizard ready              \n"
+printf "\r                                        \r"
+success "Setup wizard ready"
 
 # ── Hand off to Node.js CLI ──────────────────────────────────────
 printf "\n"
