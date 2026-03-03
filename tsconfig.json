@@ -4,7 +4,7 @@
     "module": "ES2020",
     "strict": true,
     "sourceMap": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "allowJs": true,
     "baseUrl": "./",
     "lib": [
@@ -14,31 +14,18 @@
     "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,
     "skipLibCheck": true,
-    "plugins": [
-      {
-        "name": "@vuedx/typescript-plugin-vue"
-      }
-    ],
     "moduleResolution": "node",
     "paths": {
       "@/*": [
         "src/*"
-      ],
-      "@commands/*": [
-        "cypress/support/commands/*"
-      ],
-      "@fixtures/*": [
-        "cypress/fixture/*"
       ]
     },
     "types": [
-      "cypress-real-events",
       "node",
-      "cypress"
-    ],
+      "vitest/globals"
+    ]
   },
   "include": [
-    "cypress/**/*.ts",
     "src/**/*"
   ]
 }

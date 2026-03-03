@@ -1,9 +1,10 @@
-export const showNotification = async function (this: any, message: string, isError: boolean) {
-  this.notification.message = message;
-  this.notification.error = isError;
-  this.notification.show = true;
+export const showNotification = (set: any, _get: any, message: string, isError: boolean) => {
+  set({
+    notification: { message, error: isError, show: true },
+  });
   setTimeout(() => {
-    // hide error message after 4 seconds
-    this.notification.show = false;
+    set({
+      notification: { message: '', error: false, show: false },
+    });
   }, 4000);
 };

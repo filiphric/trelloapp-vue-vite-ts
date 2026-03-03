@@ -5,27 +5,33 @@ module.exports = {
     node: true
   },
   extends: [
-    'plugin:vue/vue3-recommended',
-    'plugin:cypress/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
     'plugin:tailwind/recommended'
   ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 12,
-    parser: '@typescript-eslint/parser',
-    sourceType: 'module'
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true
+    }
   },
-  plugins: ['vue', '@typescript-eslint', 'cypress', 'no-only-tests', 'tailwindcss'],
+  ignorePatterns: ['dist', 'coverage', 'node_modules'],
+  plugins: ['react', 'react-hooks', '@typescript-eslint', 'no-only-tests', 'tailwindcss'],
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  },
   rules: {
     'brace-style': ['error', 'stroustrup'],
-    'cypress/assertion-before-screenshot': 'warn',
-    'cypress/no-force': 'warn',
-    'cypress/no-pause': 'error',
     'no-only-tests/no-only-tests': 'error',
     'quotes': ['error', 'single'],
-    'vue/multi-word-component-names': 'off',
-    'vue/script-setup-uses-vars': 'error',
+    'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
     'tailwindcss/classnames-order': 'error',
     'tailwindcss/no-contradicting-classname': 'error',
-  }
+  },
+  overrides: []
 };

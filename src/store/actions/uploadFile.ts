@@ -1,7 +1,7 @@
 import Card from '@/typings/card';
 import axios from 'axios';
 
-export const uploadFile = async function (this: any, card: Card, acceptFile?: File) {
+export const uploadFile = async (set: any, get: any, card: Card, acceptFile?: File) => {
   const formData = new FormData();
   const file = acceptFile;
   const { id } = card;
@@ -13,10 +13,10 @@ export const uploadFile = async function (this: any, card: Card, acceptFile?: Fi
       },
     })
     .then((upload) => {
-      this.showNotification('File was sucessfully uploaded', false);
-      this.activeCard = upload.data;
+      get().showNotification('File was sucessfully uploaded', false);
+      set({ activeCard: upload.data });
     })
     .catch(() => {
-      this.showNotification('There was an error uploading file', true);
+      get().showNotification('There was an error uploading file', true);
     });
 };

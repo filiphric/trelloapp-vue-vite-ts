@@ -1,24 +1,25 @@
 import axios from 'axios';
 
-export const getBoardList = async function (this: any) {
-  this.loadingError.show = false;
-  this.loadingError.message = '';
-  this.loadingError.status = '';
+export const getBoardList = async (set: any, get: any) => {
+  set({
+    loadingError: { ...get().loadingError, show: false, message: '', status: -1 },
+  });
   setTimeout(() => {
-    this.loadingError.tooLong = true;
+    set({
+      loadingError: { ...get().loadingError, tooLong: true },
+    });
   }, 3000);
   axios
     .get('/api/boards')
     .then(({ data }) => {
-      this.boardList.all = data;
-      this.loading = false;
+      set({ boardList: { all: data }, loading: false });
     })
     .catch(({ response }) => {
-      this.loading = false;
-      this.loadingError.show = true;
+      const loadingError = { ...get().loadingError, show: true };
       if (response) {
-        this.loadingError.message = response.data.message;
-        this.loadingError.status = response.status;
+        loadingError.message = response.data.message;
+        loadingError.status = response.status;
       }
+      set({ loading: false, loadingError });
     });
 };

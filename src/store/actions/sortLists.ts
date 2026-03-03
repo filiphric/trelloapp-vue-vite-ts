@@ -1,7 +1,7 @@
 import List from '@/typings/list';
 
-export const sortLists = async function (this: any) {
-  this.lists.forEach((list: List, index: number) => {
-    this.patchList(list, { order: index });
+export const sortLists = (set: any, get: any) => {
+  get().lists.forEach((list: List, index: number) => {
+    get().patchList(list, { order: index });
   });
 };

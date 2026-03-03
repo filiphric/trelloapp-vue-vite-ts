@@ -1,9 +1,8 @@
 import { createServer } from './backend/index';
 import { defineConfig } from 'vite';
 import istanbul from 'vite-plugin-istanbul';
-import svgLoader from 'vite-svg-loader';
-import vue from '@vitejs/plugin-vue';
-import pluginEnv from 'vite-plugin-vue-env';
+import svgr from 'vite-plugin-svgr';
+import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths'
 import constants from './constants'
 
@@ -14,17 +13,15 @@ export default defineConfig({
     'process.env': {}
   },
   plugins: [
-    vue(),
-    svgLoader(),
-    pluginEnv(),
+    react(),
+    svgr({ exportAsDefault: true }),
     istanbul({
       exclude: ['node_modules', 'test/'],
-      extension: ['.js', '.ts', '.vue'],
+      extension: ['.js', '.ts', '.tsx'],
       include: 'src/*',
-      cypress: true
     }),
     createServer(),
-    tsconfigPaths({ extensions: ['.ts', '.d.ts'] })
+    tsconfigPaths({ extensions: ['.ts', '.tsx', '.d.ts'] })
   ],
   server: {
     port: APP,
@@ -34,10 +31,6 @@ export default defineConfig({
         rewrite: path => path.replace(/^\/api/, ''),
         target: `http://localhost:${SERVER}`
       },
-      '^/socket.io/.*': {
-        changeOrigin: true,
-        target: `http://localhost:${SERVER}`,
-      }
     }
   }
 });

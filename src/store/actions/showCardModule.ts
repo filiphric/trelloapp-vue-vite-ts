@@ -1,22 +1,19 @@
 import Card from '@/typings/card';
 import axios from 'axios';
 
-export const showCardModule = async function (this: any, cardId: Card['id'], flag: boolean) {
+export const showCardModule = async (set: any, get: any, cardId: Card['id'], flag: boolean) => {
   if (flag) {
     await axios
       .get(`/api/cards/${cardId}`)
       .then(({ data }) => {
-        this.activeCard = data;
-        this.cardModule = true;
+        set({ activeCard: data, cardModule: true });
       })
       .catch(() => {
-        this.activeCard = {};
-        this.cardModule = false;
-        this.showNotification(`Card with id: ${cardId} was not found`, true);
+        set({ activeCard: {} as Card, cardModule: false });
+        get().showNotification(`Card with id: ${cardId} was not found`, true);
       });
   }
  else {
-    this.activeCard = {};
-    this.cardModule = false;
+    set({ activeCard: {} as Card, cardModule: false });
   }
 };

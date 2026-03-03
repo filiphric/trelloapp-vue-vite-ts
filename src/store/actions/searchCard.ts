@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const searchCard = async function (this: any, query: string) {
+export const searchCard = async (set: any, _get: any, query: string) => {
   const { data } = await axios.get(`/api/cards?q=${query}`);
-  this.searchResults = data;
+  set({ searchResults: data });
 };

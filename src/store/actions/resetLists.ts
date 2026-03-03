@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-export const resetLists = async function (this: any) {
+export const resetLists = async (set: any, get: any) => {
   await axios.delete('/api/lists');
-  this.activeCard = {};
-  this.cardModule = false;
-  this.lists = [];
-  this.showNotification('All lists were deleted', false);
+  set({ activeCard: {}, cardModule: false, lists: [] });
+  get().showNotification('All lists were deleted', false);
 };

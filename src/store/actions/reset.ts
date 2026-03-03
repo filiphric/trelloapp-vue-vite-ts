@@ -1,17 +1,19 @@
 import axios from 'axios';
 
-export const reset = async function (this: any) {
+export const reset = async (set: any, get: any) => {
   axios
     .post('/api/reset')
     .then(() => {
-      this.activeCard = {};
-      this.boardList.all = [];
-      this.cardModule = false;
-      this.showTools = false;
-      this.showNotification('All data was deleted', false);
+      set({
+        activeCard: {},
+        boardList: { all: [] },
+        cardModule: false,
+        showTools: false,
+      });
+      get().showNotification('All data was deleted', false);
     })
     .catch((e) => {
       console.log(e);
-      this.showNotification('Data could not be deleted', true);
+      get().showNotification('Data could not be deleted', true);
     });
 };

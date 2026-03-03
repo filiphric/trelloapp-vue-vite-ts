@@ -6,9 +6,9 @@ dist-ssr
 coverage
 .nyc_output
 .vscode
-cypress/screenshots
-cypress/videos
-cypress/downloads
+e2e/.auth/
+test-results/
+playwright-report/
 backend/data/uploaded/*
 .env
 .vscode/*

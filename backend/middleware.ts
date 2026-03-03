@@ -1,7 +1,6 @@
 const sendmail = require('sendmail')();
 const path = require('path'); // used for file path
 const fs = require('fs-extra');
-const socket = require('socket.io-client')('http://localhost:3001');
 
 module.exports = (req, res, next) => {
 

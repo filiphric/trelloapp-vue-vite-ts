@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep:*)",
+      "Bash(ls:*)",
+      "Bash(find src:*)",
+      "Bash(npm install:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx vite:*)",
+      "Bash(node:*)",
+      "Skill(replay-cli)",
+      "Bash(npm start:*)",
+      "Bash(lsof:*)",
+      "Bash(curl:*)",
+      "Bash(gtimeout 5:*)",
+      "mcp__replay__Screenshot",
+      "mcp__replay__NetworkRequest",
+      "mcp__replay__InspectElement",
+      "Bash(replayio list:*)",
+      "Bash(replayio upload:*)",
+      "Bash(pkill:*)",
+      "Bash(replayio record:*)",
+      "mcp__replay__ConsoleMessages",
+      "Bash(npx vitest:*)",
+      "Bash(npm info:*)",
+      "Bash(npm ls:*)",
+      "Bash(npx playwright:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(npx eslint:*)"
+    ]
+  }
+}

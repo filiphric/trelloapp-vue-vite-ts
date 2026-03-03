@@ -44,42 +44,8 @@ export const startServer = (): PluginOption => {
 
   app.use(router);
 
-  const server = app.listen(SERVER);
-  // const io = require('socket.io')(server);
+  app.listen(SERVER);
 
-  // io.on('connection', (socket) => {
-  //   socket.on('boardCreated', (message) => {
-  //     io.emit('boardCreated', message);
-  //   });
-  //   socket.on('boardsState', (message) => {
-  //     io.emit('boardsState', message);
-  //   });
-  //   socket.on('boardDeleted', (id) => {
-  //     io.emit('boardDeleted', id);
-  //   });
-  //   socket.on('boardUpdate', (id, message) => {
-  //     io.emit('boardUpdate', id, message);
-  //   });
-  //   socket.on('listCreated', (boardId, message) => {
-  //     io.emit('listCreated', boardId, message);
-  //   });
-  //   socket.on('listUpdated', (id, message) => {
-  //     io.emit('listUpdated', id, message);
-  //   });
-  //   socket.on('listDeleted', (id) => {
-  //     io.emit('listDeleted', id);
-  //   });
-  //   socket.on('cardCreated', (listId, message) => {
-  //     io.emit('cardCreated', listId, message);
-  //   });
-  //   socket.on('cardUpdated', (id, message) => {
-  //     io.emit('cardUpdated', id, message);
-  //   });
-  //   socket.on('cardDeleted', (id, message) => {
-  //     io.emit('cardDeleted', id, message);
-  //   });
-
-  // });
   return null;
 }
 

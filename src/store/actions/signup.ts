@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const signup = async function (this: any, email: string, password: string, welcomeEmail: boolean) {
+export const signup = async (set: any, get: any, email: string, password: string, welcomeEmail: boolean) => {
   await axios
     .post('/api/signup', { email, password, welcomeEmail })
     .then(({ data }) => {
@@ -9,11 +9,11 @@ export const signup = async function (this: any, email: string, password: string
       const id = data.user.id;
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       document.cookie = `auth_token=${token}`;
-      this.activeUser.id = id;
-      this.activeUser.email = email;
-      this.activeUser.accessToken = token;
-      this.user(this.activeUser.id);
-      this.showNotification('User was successfully created', false);
+      set({
+        activeUser: { ...get().activeUser, id, email, accessToken: token },
+      });
+      get().user(id);
+      get().showNotification('User was successfully created', false);
 
       welcomeEmail &&
         axios.post('/api/welcomeemail', {
@@ -21,6 +21,6 @@ export const signup = async function (this: any, email: string, password: string
         });
     })
     .catch((e) => {
-      this.showNotification(e.response.data, true);
+      get().showNotification(e.response.data, true);
     });
 };

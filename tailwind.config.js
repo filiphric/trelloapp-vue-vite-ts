@@ -1,7 +1,7 @@
 module.exports = {
   mode: 'jit',
   plugins: [], 
-  content: ['./src/**/*.vue', './src/**/*.html'],
+  content: ['./src/**/*.{tsx,ts,jsx,js}', './index.html'],
 theme: {
     extend: {
       colors: {

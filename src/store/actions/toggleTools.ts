@@ -1,3 +1,3 @@
-export const toggleTools = async function (this: any, flag: boolean) {
-  this.showTools = flag;
+export const toggleTools = (set: any, _get: any, flag: boolean) => {
+  set({ showTools: flag });
 };
