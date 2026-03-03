@@ -9,7 +9,10 @@ import { runCleanInstall } from './lib/clean.mjs';
 import { runVerification } from './lib/verify.mjs';
 
 const projectDir = resolve(process.cwd());
-const dirName = process.argv[2] || 'trelloapp';
+const args = process.argv.slice(2);
+const dirName = args.find(a => !a.startsWith('--')) || 'trelloapp';
+const flagClean = args.includes('--clean');
+const flagFull = args.includes('--full');
 
 // Handle Ctrl+C gracefully
 prompts.override({});
@@ -22,23 +25,35 @@ async function main() {
   printBanner();
 
   // ── Choose install type ──────────────────────────────────────
-  const { installType } = await prompts({
-    type: 'select',
-    name: 'installType',
-    message: 'Choose install type',
-    choices: [
-      {
-        title: 'Full install',
-        description: 'Includes test framework and example tests',
-        value: 'full',
-      },
-      {
-        title: 'Clean install',
-        description: 'App only — no test files or test dependencies',
-        value: 'clean',
-      },
-    ],
-  }, { onCancel });
+  let installType;
+
+  if (flagClean) {
+    installType = 'clean';
+    console.log(chalk.dim('  Using clean install (--clean)'));
+    console.log();
+  } else if (flagFull) {
+    installType = 'full';
+    console.log(chalk.dim('  Using full install (--full)'));
+    console.log();
+  } else {
+    ({ installType } = await prompts({
+      type: 'select',
+      name: 'installType',
+      message: 'Choose install type',
+      choices: [
+        {
+          title: 'Clean install',
+          description: 'App only — no test files or test dependencies',
+          value: 'clean',
+        },
+        {
+          title: 'Full install',
+          description: 'Includes test framework and example tests',
+          value: 'full',
+        },
+      ],
+    }, { onCancel }));
+  }
 
   // ── Clean install: remove test files ─────────────────────────
   if (installType === 'clean') {

@@ -191,4 +191,4 @@ success "Setup wizard ready"
 
 # ── Hand off to Node.js CLI ──────────────────────────────────────
 printf "\n"
-node cli/index.mjs "$DIR_NAME"
+node cli/index.mjs "$DIR_NAME" "$@"
