@@ -11,7 +11,7 @@ A Trello clone built with React + TypeScript + Vite + TailwindCSS, used for test
 Run the setup command in your terminal:
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/filiphric/trelloapp-vue-vite-ts/main/setup.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/filiphric/trelloapp-workshop-app/main/setup.sh)
 ```
 
 The installer will:
@@ -34,7 +34,7 @@ The app will be running at [http://localhost:3000](http://localhost:3000).
 If you prefer to set things up yourself:
 
 ```bash
-git clone https://github.com/filiphric/trelloapp-vue-vite-ts.git trelloapp
+git clone https://github.com/filiphric/trelloapp-workshop-app.git trelloapp
 cd trelloapp
 npm install
 cp .env_example .env

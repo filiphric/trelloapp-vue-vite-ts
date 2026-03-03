@@ -11,7 +11,7 @@ BOLD='\033[1m'
 DIM='\033[2m'
 RESET='\033[0m'
 
-REPO="https://github.com/filiphric/trelloapp-vue-vite-ts.git"
+REPO="https://github.com/filiphric/trelloapp-workshop-app.git"
 DEFAULT_DIR="trelloapp"
 
 cleanup() {
