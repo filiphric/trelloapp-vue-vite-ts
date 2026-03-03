@@ -4,7 +4,7 @@ import chalk from 'chalk';
 import ora from 'ora';
 import prompts from 'prompts';
 import { printBanner } from './lib/banner.mjs';
-import { run, copyIfMissing, parseNpmError, printSupportMessage } from './lib/helpers.mjs';
+import { run, copyIfMissing, parseNpmError, printSupportMessage, isPortInUse, getPortProcess, killProcess } from './lib/helpers.mjs';
 import { runCleanInstall } from './lib/clean.mjs';
 import { runVerification } from './lib/verify.mjs';
 
@@ -84,8 +84,53 @@ async function main() {
     console.log(chalk.green('  ✔') + '  .env file created from .env_example');
   }
 
-  // ── Verification ────────────────────────────────────────────
+  // ── Check port 3000 ────────────────────────────────────────
   console.log();
+  const portBusy = await isPortInUse(3000);
+
+  if (portBusy) {
+    const info = await getPortProcess(3000);
+    console.log(chalk.yellow('  ⚠') + '  Port 3000 is already in use');
+    if (info) {
+      console.log(chalk.dim(`     PID ${info.pid}: ${info.command}`));
+    }
+    console.log();
+
+    const { portAction } = await prompts({
+      type: 'select',
+      name: 'portAction',
+      message: 'How would you like to handle this?',
+      choices: [
+        {
+          title: 'Kill the process and free port 3000',
+          value: 'kill',
+        },
+        {
+          title: 'Skip — I\'ll handle it myself later',
+          value: 'skip',
+        },
+      ],
+    }, { onCancel });
+
+    if (portAction === 'kill') {
+      if (info) {
+        try {
+          await killProcess(info.pid);
+          console.log(chalk.green('  ✔') + `  Process ${info.pid} killed, port 3000 is free`);
+        } catch {
+          console.log(chalk.red('  ✖') + `  Could not kill process ${info.pid}`);
+          console.log(chalk.dim('     Try running manually: sudo kill -9 ' + info.pid));
+        }
+      } else {
+        console.log(chalk.yellow('  ⚠') + '  Could not identify the process');
+        console.log(chalk.dim('     Try running manually: kill -9 $(lsof -t -i :3000)'));
+      }
+    } else {
+      console.log(chalk.dim('     Remember to free port 3000 before running npm start'));
+    }
+  }
+
+  // ── Verification ────────────────────────────────────────────
   const verified = await runVerification(projectDir);
 
   if (verified === false) {

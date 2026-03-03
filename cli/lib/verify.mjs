@@ -1,10 +1,9 @@
 import { join } from 'node:path';
-import { createServer } from 'node:net';
 import { get } from 'node:http';
 import { spawn } from 'node:child_process';
 import chalk from 'chalk';
 import ora from 'ora';
-import { exists } from './helpers.mjs';
+import { exists, isPortInUse } from './helpers.mjs';
 
 /**
  * Wait for a URL to respond with a 200-level status.
@@ -58,25 +57,11 @@ export async function runVerification(projectDir) {
 
   spinner.succeed(chalk.green('Dependencies installed correctly'));
 
-  // 3. Check port 3000 availability
-  spinner.start('Checking port 3000...');
-  const portInUse = await new Promise((resolve) => {
-    const server = createServer();
-    server.once('error', (err) => {
-      resolve(err.code === 'EADDRINUSE');
-    });
-    server.once('listening', () => {
-      server.close();
-      resolve(false);
-    });
-    server.listen(3000);
-  });
-
-  if (portInUse) {
-    spinner.warn(chalk.yellow('Port 3000 is already in use'));
-    console.log(chalk.dim('  Find what\'s using it: lsof -i :3000'));
-    console.log(chalk.dim('  Kill it: kill -9 $(lsof -t -i :3000)'));
-    return true; // non-fatal
+  // 3. Check port 3000 availability before starting dev server
+  const portBusy = await isPortInUse(3000);
+  if (portBusy) {
+    // Port conflict was not resolved earlier — skip dev server check
+    return true;
   }
 
   // 4. Start dev server and check it responds

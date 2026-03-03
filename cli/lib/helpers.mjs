@@ -1,6 +1,7 @@
 import { spawn } from 'node:child_process';
 import { copyFile, access, readFile, writeFile } from 'node:fs/promises';
 import { constants } from 'node:fs';
+import { createServer } from 'node:net';
 import chalk from 'chalk';
 
 /**
@@ -80,6 +81,51 @@ export function parseNpmError(stderr) {
     return 'Dependency conflict. Try deleting node_modules and package-lock.json, then run npm install again.';
   }
   return null;
+}
+
+/**
+ * Check if a port is in use. Returns true if occupied.
+ */
+export function isPortInUse(port) {
+  return new Promise((resolve) => {
+    const server = createServer();
+    server.once('error', (err) => {
+      resolve(err.code === 'EADDRINUSE');
+    });
+    server.once('listening', () => {
+      server.close();
+      resolve(false);
+    });
+    server.listen(port);
+  });
+}
+
+/**
+ * Get info about what process is using a port.
+ * Returns { pid, command } or null if nothing found.
+ */
+export async function getPortProcess(port) {
+  const { code, stdout } = await run('lsof', ['-ti', `:${port}`]);
+  if (code !== 0 || !stdout.trim()) return null;
+
+  const pid = stdout.trim().split('\n')[0];
+  const ps = await run('ps', ['-p', pid, '-o', 'command=']);
+  return {
+    pid,
+    command: ps.stdout.trim() || 'unknown',
+  };
+}
+
+/**
+ * Kill a process by PID.
+ */
+export async function killProcess(pid) {
+  const result = await run('kill', ['-9', pid]);
+  if (result.code !== 0) {
+    throw new Error(`Failed to kill process ${pid}`);
+  }
+  // Give it a moment to release the port
+  await new Promise((r) => setTimeout(r, 500));
 }
 
 /**
