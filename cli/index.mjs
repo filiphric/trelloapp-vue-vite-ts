@@ -22,8 +22,6 @@ const onCancel = () => {
 };
 
 async function main() {
-  printBanner();
-
   // ── Choose install type ──────────────────────────────────────
   let installType;
 

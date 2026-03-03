@@ -61,11 +61,11 @@ spin() {
 
 # ── Welcome banner ────────────────────────────────────────────────
 printf "\n"
-printf "${CYAN}${BOLD}  ┌───────────────────────────────────┐${RESET}\n"
-printf "${CYAN}${BOLD}  │                                   │${RESET}\n"
-printf "${CYAN}${BOLD}  │${RESET}${BOLD}   Trello App Workshop Setup       ${CYAN}${BOLD}│${RESET}\n"
-printf "${CYAN}${BOLD}  │                                   │${RESET}\n"
-printf "${CYAN}${BOLD}  └───────────────────────────────────┘${RESET}\n"
+printf "${CYAN}${BOLD}  ┌────────────────────────────────┐${RESET}\n"
+printf "${CYAN}${BOLD}  │                                │${RESET}\n"
+printf "${CYAN}${BOLD}  │${RESET}${BOLD}   Trello App Workshop Setup    ${CYAN}${BOLD}│${RESET}\n"
+printf "${CYAN}${BOLD}  │                                │${RESET}\n"
+printf "${CYAN}${BOLD}  └────────────────────────────────┘${RESET}\n"
 printf "\n"
 
 # ── Check: git ────────────────────────────────────────────────────
