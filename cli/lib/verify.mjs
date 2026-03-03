@@ -57,9 +57,10 @@ export async function runVerification(projectDir) {
 
   spinner.succeed(chalk.green('Dependencies installed correctly'));
 
-  // 3. Check port 3000 availability before starting dev server
-  const portBusy = await isPortInUse(3000);
-  if (portBusy) {
+  // 3. Check port availability before starting dev server
+  const port3000Busy = await isPortInUse(3000);
+  const port3001Busy = await isPortInUse(3001);
+  if (port3000Busy || port3001Busy) {
     // Port conflict was not resolved earlier — skip dev server check
     return true;
   }
@@ -81,12 +82,14 @@ export async function runVerification(projectDir) {
     spinner.warn(chalk.yellow('Dev server verification timed out (this may be fine)'));
     allPassed = false;
   } finally {
-    // Kill the dev server process group
+    // Kill the entire process tree reliably
     try {
-      process.kill(-devServer.pid, 'SIGTERM');
+      process.kill(-devServer.pid, 'SIGKILL');
     } catch {
       // process may have already exited
     }
+    // Wait for ports to be released
+    await new Promise((r) => setTimeout(r, 1000));
   }
 
   return allPassed;

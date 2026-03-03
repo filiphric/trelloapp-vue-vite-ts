@@ -84,25 +84,37 @@ async function main() {
     console.log(chalk.green('  ✔') + '  .env file created from .env_example');
   }
 
-  // ── Check port 3000 ────────────────────────────────────────
+  // ── Check ports 3000 & 3001 ─────────────────────────────────
   console.log();
-  const portBusy = await isPortInUse(3000);
+  const portsToCheck = [
+    { port: 3000, label: 'App (Vite)' },
+    { port: 3001, label: 'Backend (API server)' },
+  ];
+  const busyPorts = [];
 
-  if (portBusy) {
-    const info = await getPortProcess(3000);
-    console.log(chalk.yellow('  ⚠') + '  Port 3000 is already in use');
-    if (info) {
-      console.log(chalk.dim(`     PID ${info.pid}: ${info.command}`));
+  for (const { port, label } of portsToCheck) {
+    if (await isPortInUse(port)) {
+      const info = await getPortProcess(port);
+      busyPorts.push({ port, label, info });
+    }
+  }
+
+  if (busyPorts.length > 0) {
+    for (const { port, label, info } of busyPorts) {
+      console.log(chalk.yellow('  ⚠') + `  Port ${port} is already in use (${label})`);
+      if (info) {
+        console.log(chalk.dim(`     PID ${info.pid}: ${info.command}`));
+      }
     }
     console.log();
 
     const { portAction } = await prompts({
       type: 'select',
       name: 'portAction',
-      message: 'How would you like to handle this?',
+      message: `Free ${busyPorts.length === 1 ? 'the port' : 'both ports'}?`,
       choices: [
         {
-          title: 'Kill the process and free port 3000',
+          title: `Kill ${busyPorts.length === 1 ? 'the process' : 'the processes'} and free ${busyPorts.length === 1 ? 'port ' + busyPorts[0].port : 'ports ' + busyPorts.map(p => p.port).join(' & ')}`,
           value: 'kill',
         },
         {
@@ -113,20 +125,22 @@ async function main() {
     }, { onCancel });
 
     if (portAction === 'kill') {
-      if (info) {
-        try {
-          await killProcess(info.pid);
-          console.log(chalk.green('  ✔') + `  Process ${info.pid} killed, port 3000 is free`);
-        } catch {
-          console.log(chalk.red('  ✖') + `  Could not kill process ${info.pid}`);
-          console.log(chalk.dim('     Try running manually: sudo kill -9 ' + info.pid));
+      for (const { port, info } of busyPorts) {
+        if (info) {
+          try {
+            await killProcess(info.pid);
+            console.log(chalk.green('  ✔') + `  Process ${info.pid} killed, port ${port} is free`);
+          } catch {
+            console.log(chalk.red('  ✖') + `  Could not kill process ${info.pid} (port ${port})`);
+            console.log(chalk.dim('     Try running manually: sudo kill -9 ' + info.pid));
+          }
+        } else {
+          console.log(chalk.yellow('  ⚠') + `  Could not identify process on port ${port}`);
+          console.log(chalk.dim(`     Try running manually: kill -9 $(lsof -t -i :${port})`));
         }
-      } else {
-        console.log(chalk.yellow('  ⚠') + '  Could not identify the process');
-        console.log(chalk.dim('     Try running manually: kill -9 $(lsof -t -i :3000)'));
       }
     } else {
-      console.log(chalk.dim('     Remember to free port 3000 before running npm start'));
+      console.log(chalk.dim('     Remember to free ports 3000 and 3001 before running npm start'));
     }
   }
 
