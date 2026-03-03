@@ -1,0 +1,10 @@
+{
+  "name": "trelloapp-setup-cli",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "chalk": "^5.4.0",
+    "ora": "^8.2.0",
+    "prompts": "^2.4.2"
+  }
+}
