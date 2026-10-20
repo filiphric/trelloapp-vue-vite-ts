@@ -7,6 +7,7 @@ import userRoutes from './api/user-routes';
 import loginRoutes from './api/login-routes';
 import signupRoutes from './api/signup-routes';
 import locationRoutes from './api/location-routes';
+import passwordResetRoutes from './api/password-reset-routes';
 import constants from '../constants';
 const { SERVER } = constants
 
@@ -31,6 +32,7 @@ export const startServer = (): PluginOption => {
   app.use(middleware);
   app.use('/login', loginRoutes)
   app.use('/signup', signupRoutes)
+  app.use('/password-reset', passwordResetRoutes)
   app.use(jsonServer.rewriter({
     '/users/*': '/600/users/$1',
   }));

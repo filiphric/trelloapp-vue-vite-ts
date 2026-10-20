@@ -6,6 +6,7 @@ import Signup from '@/components/Signup';
 import Pricing from '@/components/Pricing';
 import Board from '@/views/Board';
 import NotFound from '@/components/NotFound';
+import PasswordReset from '@/components/PasswordReset';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -13,6 +14,8 @@ const AppRoutes: React.FC = () => {
       <Route path="/" element={<BoardList />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/forgot-password" element={<PasswordReset />} />
+      <Route path="/reset-password" element={<PasswordReset confirm />} />
       <Route path="/pricing" element={<Pricing />} />
       <Route path="/board/:board" element={<Board />} />
       <Route path="*" element={<NotFound />} />

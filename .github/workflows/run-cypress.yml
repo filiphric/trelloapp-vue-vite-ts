@@ -1,25 +1,51 @@
-name: Run tests manually
-on: workflow_dispatch
+name: Mailosaur password reset demo
+on:
+  push:
+    branches: [main, 'demo/**']
+  workflow_dispatch:
+permissions:
+  contents: read
 jobs:
-  cypress-run:
+  password-reset:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        containers: [1, 2, 3]
+    timeout-minutes: 15
+    env:
+      APP_BASE_URL: http://localhost:3000
+      MAILOSAUR_API_KEY: ${{ secrets.MAILOSAUR_API_KEY }}
+      MAILOSAUR_SERVER_ID: ${{ secrets.MAILOSAUR_SERVER_ID }}
+      SMTP_HOST: ${{ secrets.SMTP_HOST }}
+      SMTP_PORT: ${{ secrets.SMTP_PORT }}
+      SMTP_USER: ${{ secrets.SMTP_USER }}
+      SMTP_PASS: ${{ secrets.SMTP_PASS }}
+      FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Cypress run
-        uses: cypress-io/github-action@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          start: npm start
-          record: true
-          parallel: true
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Codecov
-        uses: codecov/codecov-action@v2
+          node-version: 22
+          cache: npm
+      - name: Validate email test configuration
+        run: |
+          node - <<'JS'
+          for (const name of ['MAILOSAUR_API_KEY', 'MAILOSAUR_SERVER_ID', 'SMTP_HOST', 'SMTP_PORT', 'SMTP_USER', 'SMTP_PASS', 'FROM_EMAIL']) {
+            if (!process.env[name]) throw new Error(`Missing Actions secret: ${name}`);
+          }
+          JS
+      - name: Run Cypress password reset tests
+        uses: cypress-io/github-action@v6
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          start: npm start -- --host 127.0.0.1
+          wait-on: http://localhost:3000
+          browser: chrome
+          config-file: cypress.config.cjs
+      - name: Upload Cypress evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: password-reset-evidence
+          path: |
+            cypress/screenshots
+            cypress/videos
+            cypress/results
+          if-no-files-found: ignore
+          retention-days: 14

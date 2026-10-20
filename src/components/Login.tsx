@@ -47,6 +47,9 @@ const Login: React.FC = () => {
         <button data-test-id="login-submit" className="py-2 w-full text-white bg-green7 hover:bg-green6" onClick={handleLogin}>
           Log in
         </button>
+        <Link className="mt-4 text-sm text-center underline" to="/forgot-password" data-test-id="forgot-password">
+          Forgot your password?
+        </Link>
         <Link className="mt-4 text-sm text-center underline" to="/signup">
           Don&apos;t have an account? Sign up here.
         </Link>

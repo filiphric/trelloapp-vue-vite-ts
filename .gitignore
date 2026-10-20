@@ -12,6 +12,9 @@ test-results/
 playwright-report/
 backend/data/uploaded/*
 .env
+cypress/screenshots/
+cypress/videos/
+cypress/results/
 .vscode/*
 
 !/**/.gitkeep
